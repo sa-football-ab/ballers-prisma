@@ -1,0 +1,27 @@
+{
+  "name": "ballers-prisma",
+  "version": "1.0.0",
+  "description": "Package for Ballers app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sa-football-ab/ballers-prisma.git"
+  },
+  "keywords": [
+    "mysql",
+    "prisma",
+    "package"
+  ],
+  "author": "Talha Saleem",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sa-football-ab/ballers-prisma/issues"
+  },
+  "homepage": "https://github.com/sa-football-ab/ballers-prisma#readme",
+  "dependencies": {
+    "prisma": "^5.9.1"
+  }
+}

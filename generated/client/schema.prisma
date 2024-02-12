@@ -1,0 +1,67 @@
+// prisma/schema.prisma
+
+generator client {
+    provider = "prisma-client-js"
+    output   = "./generated/client"
+}
+
+// ---------------------------- Auth Service ------------------------------------- //
+
+//TODO: We should add date created and date updated in these tables too
+
+// Club Table defination
+model User {
+    id     String  @id
+    clubId String
+    teamId String?
+}
+
+// Install Table defination
+model Install {
+    id           String  @id
+    userId       String
+    deviceId     String
+    deviceName   String?
+    latestUserId String
+}
+
+// LinkedUserId Table defination
+model LinkedUserId {
+    id           String @id
+    userId       String
+    linkedUserId String
+}
+
+// LinkedAccounts Table defination
+model LinkedAccounts {
+    id                  String @id
+    userId              String
+    externalAccountType String
+    externalAccountId   String
+}
+
+// ---------------------------- General Service ------------------------------------- //
+
+// Club Table defination
+model Club {
+    id          String    @id
+    display     String
+    dateCreated DateTime  @default(now())
+    dateUpdated DateTime?
+    teams       Team[]
+}
+
+model Team {
+    id          String    @id
+    display     String
+    club        Club      @relation(fields: [clubId], references: [id])
+    clubId      String
+    voided      Boolean   @default(false) //  default value false
+    dateCreated DateTime  @default(now())
+    dateUpdated DateTime?
+}
+
+datasource db {
+    provider = "mysql"
+    url      = env("DATABASE_URL")
+}
