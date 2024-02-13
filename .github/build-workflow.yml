@@ -1,0 +1,30 @@
+name: Build Check
+
+on: [pull_request]
+
+jobs:
+  run-build-checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Determine Environment
+        id: env
+        run: |
+          if [ "${{ github.ref }}" = "refs/heads/main" ]; then
+            echo "env=prod" >> $GITHUB_ENV
+          else
+            echo "env=dev" >> $GITHUB_ENV
+          fi
+      - name: Set Environment Variables
+        run: |
+          if [ ${{ steps.env.outputs.env }} == 'prod' ]; then
+            echo "Setting production environment variables"
+            echo "DATABASE_URL=${{ secrets.DATABASE_URL_PROD }}" >> $GITHUB_ENV
+          else
+            echo "Setting development environment variables"
+            echo "DATABASE_URL=${{ secrets.DATABASE_URL_STAGE }}" >> $GITHUB_ENV
+          fi
+      - name: Generate Prisma Client
+        run: npx prisma generate
+      - name: Migrate Database
+        run: npx prisma migrate deploy
