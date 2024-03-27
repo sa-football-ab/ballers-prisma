@@ -43,6 +43,45 @@ export type Club = $Result.DefaultSelection<Prisma.$ClubPayload>
  * 
  */
 export type Team = $Result.DefaultSelection<Prisma.$TeamPayload>
+/**
+ * Model PlayerTraining
+ * 
+ */
+export type PlayerTraining = $Result.DefaultSelection<Prisma.$PlayerTrainingPayload>
+/**
+ * Model PlayerTrainingWeek
+ * 
+ */
+export type PlayerTrainingWeek = $Result.DefaultSelection<Prisma.$PlayerTrainingWeekPayload>
+/**
+ * Model PlayerTrainingLevel
+ * 
+ */
+export type PlayerTrainingLevel = $Result.DefaultSelection<Prisma.$PlayerTrainingLevelPayload>
+/**
+ * Model PlayerTrainingProgram
+ * 
+ */
+export type PlayerTrainingProgram = $Result.DefaultSelection<Prisma.$PlayerTrainingProgramPayload>
+
+/**
+ * Enums
+ */
+export namespace $Enums {
+  export const SubscriptionType: {
+  RECURRING: 'RECURRING',
+  ONE_OFF: 'ONE_OFF',
+  FREE: 'FREE',
+  CLUB: 'CLUB'
+};
+
+export type SubscriptionType = (typeof SubscriptionType)[keyof typeof SubscriptionType]
+
+}
+
+export type SubscriptionType = $Enums.SubscriptionType
+
+export const SubscriptionType: typeof $Enums.SubscriptionType
 
 /**
  * ##  Prisma Client ʲˢ
@@ -225,6 +264,46 @@ export class PrismaClient<
     * ```
     */
   get team(): Prisma.TeamDelegate<ExtArgs>;
+
+  /**
+   * `prisma.playerTraining`: Exposes CRUD operations for the **PlayerTraining** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more PlayerTrainings
+    * const playerTrainings = await prisma.playerTraining.findMany()
+    * ```
+    */
+  get playerTraining(): Prisma.PlayerTrainingDelegate<ExtArgs>;
+
+  /**
+   * `prisma.playerTrainingWeek`: Exposes CRUD operations for the **PlayerTrainingWeek** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more PlayerTrainingWeeks
+    * const playerTrainingWeeks = await prisma.playerTrainingWeek.findMany()
+    * ```
+    */
+  get playerTrainingWeek(): Prisma.PlayerTrainingWeekDelegate<ExtArgs>;
+
+  /**
+   * `prisma.playerTrainingLevel`: Exposes CRUD operations for the **PlayerTrainingLevel** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more PlayerTrainingLevels
+    * const playerTrainingLevels = await prisma.playerTrainingLevel.findMany()
+    * ```
+    */
+  get playerTrainingLevel(): Prisma.PlayerTrainingLevelDelegate<ExtArgs>;
+
+  /**
+   * `prisma.playerTrainingProgram`: Exposes CRUD operations for the **PlayerTrainingProgram** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more PlayerTrainingPrograms
+    * const playerTrainingPrograms = await prisma.playerTrainingProgram.findMany()
+    * ```
+    */
+  get playerTrainingProgram(): Prisma.PlayerTrainingProgramDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -282,8 +361,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 5.9.1
-   * Query Engine version: 23fdc5965b1e05fc54e5f26ed3de66776b93de64
+   * Prisma Client JS version: 5.11.0
+   * Query Engine version: efd2449663b3d73d637ea1fd226bafbcf45b3102
    */
   export type PrismaVersion = {
     client: string
@@ -700,7 +779,11 @@ export namespace Prisma {
     LinkedUserId: 'LinkedUserId',
     LinkedAccounts: 'LinkedAccounts',
     Club: 'Club',
-    Team: 'Team'
+    Team: 'Team',
+    PlayerTraining: 'PlayerTraining',
+    PlayerTrainingWeek: 'PlayerTrainingWeek',
+    PlayerTrainingLevel: 'PlayerTrainingLevel',
+    PlayerTrainingProgram: 'PlayerTrainingProgram'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -717,7 +800,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     meta: {
-      modelProps: 'user' | 'install' | 'linkedUserId' | 'linkedAccounts' | 'club' | 'team'
+      modelProps: 'user' | 'install' | 'linkedUserId' | 'linkedAccounts' | 'club' | 'team' | 'playerTraining' | 'playerTrainingWeek' | 'playerTrainingLevel' | 'playerTrainingProgram'
       txIsolationLevel: Prisma.TransactionIsolationLevel
     },
     model: {
@@ -1117,6 +1200,270 @@ export namespace Prisma {
           }
         }
       }
+      PlayerTraining: {
+        payload: Prisma.$PlayerTrainingPayload<ExtArgs>
+        fields: Prisma.PlayerTrainingFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.PlayerTrainingFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PlayerTrainingPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.PlayerTrainingFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PlayerTrainingPayload>
+          }
+          findFirst: {
+            args: Prisma.PlayerTrainingFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PlayerTrainingPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.PlayerTrainingFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PlayerTrainingPayload>
+          }
+          findMany: {
+            args: Prisma.PlayerTrainingFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PlayerTrainingPayload>[]
+          }
+          create: {
+            args: Prisma.PlayerTrainingCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PlayerTrainingPayload>
+          }
+          createMany: {
+            args: Prisma.PlayerTrainingCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.PlayerTrainingDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PlayerTrainingPayload>
+          }
+          update: {
+            args: Prisma.PlayerTrainingUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PlayerTrainingPayload>
+          }
+          deleteMany: {
+            args: Prisma.PlayerTrainingDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.PlayerTrainingUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.PlayerTrainingUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PlayerTrainingPayload>
+          }
+          aggregate: {
+            args: Prisma.PlayerTrainingAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregatePlayerTraining>
+          }
+          groupBy: {
+            args: Prisma.PlayerTrainingGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<PlayerTrainingGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.PlayerTrainingCountArgs<ExtArgs>,
+            result: $Utils.Optional<PlayerTrainingCountAggregateOutputType> | number
+          }
+        }
+      }
+      PlayerTrainingWeek: {
+        payload: Prisma.$PlayerTrainingWeekPayload<ExtArgs>
+        fields: Prisma.PlayerTrainingWeekFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.PlayerTrainingWeekFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PlayerTrainingWeekPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.PlayerTrainingWeekFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PlayerTrainingWeekPayload>
+          }
+          findFirst: {
+            args: Prisma.PlayerTrainingWeekFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PlayerTrainingWeekPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.PlayerTrainingWeekFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PlayerTrainingWeekPayload>
+          }
+          findMany: {
+            args: Prisma.PlayerTrainingWeekFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PlayerTrainingWeekPayload>[]
+          }
+          create: {
+            args: Prisma.PlayerTrainingWeekCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PlayerTrainingWeekPayload>
+          }
+          createMany: {
+            args: Prisma.PlayerTrainingWeekCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.PlayerTrainingWeekDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PlayerTrainingWeekPayload>
+          }
+          update: {
+            args: Prisma.PlayerTrainingWeekUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PlayerTrainingWeekPayload>
+          }
+          deleteMany: {
+            args: Prisma.PlayerTrainingWeekDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.PlayerTrainingWeekUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.PlayerTrainingWeekUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PlayerTrainingWeekPayload>
+          }
+          aggregate: {
+            args: Prisma.PlayerTrainingWeekAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregatePlayerTrainingWeek>
+          }
+          groupBy: {
+            args: Prisma.PlayerTrainingWeekGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<PlayerTrainingWeekGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.PlayerTrainingWeekCountArgs<ExtArgs>,
+            result: $Utils.Optional<PlayerTrainingWeekCountAggregateOutputType> | number
+          }
+        }
+      }
+      PlayerTrainingLevel: {
+        payload: Prisma.$PlayerTrainingLevelPayload<ExtArgs>
+        fields: Prisma.PlayerTrainingLevelFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.PlayerTrainingLevelFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PlayerTrainingLevelPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.PlayerTrainingLevelFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PlayerTrainingLevelPayload>
+          }
+          findFirst: {
+            args: Prisma.PlayerTrainingLevelFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PlayerTrainingLevelPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.PlayerTrainingLevelFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PlayerTrainingLevelPayload>
+          }
+          findMany: {
+            args: Prisma.PlayerTrainingLevelFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PlayerTrainingLevelPayload>[]
+          }
+          create: {
+            args: Prisma.PlayerTrainingLevelCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PlayerTrainingLevelPayload>
+          }
+          createMany: {
+            args: Prisma.PlayerTrainingLevelCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.PlayerTrainingLevelDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PlayerTrainingLevelPayload>
+          }
+          update: {
+            args: Prisma.PlayerTrainingLevelUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PlayerTrainingLevelPayload>
+          }
+          deleteMany: {
+            args: Prisma.PlayerTrainingLevelDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.PlayerTrainingLevelUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.PlayerTrainingLevelUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PlayerTrainingLevelPayload>
+          }
+          aggregate: {
+            args: Prisma.PlayerTrainingLevelAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregatePlayerTrainingLevel>
+          }
+          groupBy: {
+            args: Prisma.PlayerTrainingLevelGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<PlayerTrainingLevelGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.PlayerTrainingLevelCountArgs<ExtArgs>,
+            result: $Utils.Optional<PlayerTrainingLevelCountAggregateOutputType> | number
+          }
+        }
+      }
+      PlayerTrainingProgram: {
+        payload: Prisma.$PlayerTrainingProgramPayload<ExtArgs>
+        fields: Prisma.PlayerTrainingProgramFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.PlayerTrainingProgramFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PlayerTrainingProgramPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.PlayerTrainingProgramFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PlayerTrainingProgramPayload>
+          }
+          findFirst: {
+            args: Prisma.PlayerTrainingProgramFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PlayerTrainingProgramPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.PlayerTrainingProgramFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PlayerTrainingProgramPayload>
+          }
+          findMany: {
+            args: Prisma.PlayerTrainingProgramFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PlayerTrainingProgramPayload>[]
+          }
+          create: {
+            args: Prisma.PlayerTrainingProgramCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PlayerTrainingProgramPayload>
+          }
+          createMany: {
+            args: Prisma.PlayerTrainingProgramCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.PlayerTrainingProgramDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PlayerTrainingProgramPayload>
+          }
+          update: {
+            args: Prisma.PlayerTrainingProgramUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PlayerTrainingProgramPayload>
+          }
+          deleteMany: {
+            args: Prisma.PlayerTrainingProgramDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.PlayerTrainingProgramUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.PlayerTrainingProgramUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PlayerTrainingProgramPayload>
+          }
+          aggregate: {
+            args: Prisma.PlayerTrainingProgramAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregatePlayerTrainingProgram>
+          }
+          groupBy: {
+            args: Prisma.PlayerTrainingProgramGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<PlayerTrainingProgramGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.PlayerTrainingProgramCountArgs<ExtArgs>,
+            result: $Utils.Optional<PlayerTrainingProgramCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1174,6 +1521,16 @@ export namespace Prisma {
      * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/logging#the-log-option).
      */
     log?: (LogLevel | LogDefinition)[]
+    /**
+     * The default values for transactionOptions
+     * maxWait ?= 2000
+     * timeout ?= 5000
+     */
+    transactionOptions?: {
+      maxWait?: number
+      timeout?: number
+      isolationLevel?: Prisma.TransactionIsolationLevel
+    }
   }
 
   /* Types for Logging */
@@ -6584,6 +6941,3718 @@ export namespace Prisma {
 
 
   /**
+   * Model PlayerTraining
+   */
+
+  export type AggregatePlayerTraining = {
+    _count: PlayerTrainingCountAggregateOutputType | null
+    _avg: PlayerTrainingAvgAggregateOutputType | null
+    _sum: PlayerTrainingSumAggregateOutputType | null
+    _min: PlayerTrainingMinAggregateOutputType | null
+    _max: PlayerTrainingMaxAggregateOutputType | null
+  }
+
+  export type PlayerTrainingAvgAggregateOutputType = {
+    points: number | null
+  }
+
+  export type PlayerTrainingSumAggregateOutputType = {
+    points: number | null
+  }
+
+  export type PlayerTrainingMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    playerTrainingProgramId: string | null
+    playerTrainingProgramLevelId: string | null
+    playerTrainingProgramWeekId: string | null
+    trainingId: string | null
+    points: number | null
+    isCompleted: boolean | null
+    dateCompleted: Date | null
+    dateCreated: Date | null
+    trainingStartTime: Date | null
+    trainingEndTime: Date | null
+    address: string | null
+  }
+
+  export type PlayerTrainingMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    playerTrainingProgramId: string | null
+    playerTrainingProgramLevelId: string | null
+    playerTrainingProgramWeekId: string | null
+    trainingId: string | null
+    points: number | null
+    isCompleted: boolean | null
+    dateCompleted: Date | null
+    dateCreated: Date | null
+    trainingStartTime: Date | null
+    trainingEndTime: Date | null
+    address: string | null
+  }
+
+  export type PlayerTrainingCountAggregateOutputType = {
+    id: number
+    userId: number
+    playerTrainingProgramId: number
+    playerTrainingProgramLevelId: number
+    playerTrainingProgramWeekId: number
+    trainingId: number
+    points: number
+    isCompleted: number
+    dateCompleted: number
+    dateCreated: number
+    trainingStartTime: number
+    trainingEndTime: number
+    address: number
+    _all: number
+  }
+
+
+  export type PlayerTrainingAvgAggregateInputType = {
+    points?: true
+  }
+
+  export type PlayerTrainingSumAggregateInputType = {
+    points?: true
+  }
+
+  export type PlayerTrainingMinAggregateInputType = {
+    id?: true
+    userId?: true
+    playerTrainingProgramId?: true
+    playerTrainingProgramLevelId?: true
+    playerTrainingProgramWeekId?: true
+    trainingId?: true
+    points?: true
+    isCompleted?: true
+    dateCompleted?: true
+    dateCreated?: true
+    trainingStartTime?: true
+    trainingEndTime?: true
+    address?: true
+  }
+
+  export type PlayerTrainingMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    playerTrainingProgramId?: true
+    playerTrainingProgramLevelId?: true
+    playerTrainingProgramWeekId?: true
+    trainingId?: true
+    points?: true
+    isCompleted?: true
+    dateCompleted?: true
+    dateCreated?: true
+    trainingStartTime?: true
+    trainingEndTime?: true
+    address?: true
+  }
+
+  export type PlayerTrainingCountAggregateInputType = {
+    id?: true
+    userId?: true
+    playerTrainingProgramId?: true
+    playerTrainingProgramLevelId?: true
+    playerTrainingProgramWeekId?: true
+    trainingId?: true
+    points?: true
+    isCompleted?: true
+    dateCompleted?: true
+    dateCreated?: true
+    trainingStartTime?: true
+    trainingEndTime?: true
+    address?: true
+    _all?: true
+  }
+
+  export type PlayerTrainingAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PlayerTraining to aggregate.
+     */
+    where?: PlayerTrainingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PlayerTrainings to fetch.
+     */
+    orderBy?: PlayerTrainingOrderByWithRelationInput | PlayerTrainingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: PlayerTrainingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PlayerTrainings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PlayerTrainings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned PlayerTrainings
+    **/
+    _count?: true | PlayerTrainingCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: PlayerTrainingAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: PlayerTrainingSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: PlayerTrainingMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: PlayerTrainingMaxAggregateInputType
+  }
+
+  export type GetPlayerTrainingAggregateType<T extends PlayerTrainingAggregateArgs> = {
+        [P in keyof T & keyof AggregatePlayerTraining]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePlayerTraining[P]>
+      : GetScalarType<T[P], AggregatePlayerTraining[P]>
+  }
+
+
+
+
+  export type PlayerTrainingGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PlayerTrainingWhereInput
+    orderBy?: PlayerTrainingOrderByWithAggregationInput | PlayerTrainingOrderByWithAggregationInput[]
+    by: PlayerTrainingScalarFieldEnum[] | PlayerTrainingScalarFieldEnum
+    having?: PlayerTrainingScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: PlayerTrainingCountAggregateInputType | true
+    _avg?: PlayerTrainingAvgAggregateInputType
+    _sum?: PlayerTrainingSumAggregateInputType
+    _min?: PlayerTrainingMinAggregateInputType
+    _max?: PlayerTrainingMaxAggregateInputType
+  }
+
+  export type PlayerTrainingGroupByOutputType = {
+    id: string
+    userId: string
+    playerTrainingProgramId: string
+    playerTrainingProgramLevelId: string
+    playerTrainingProgramWeekId: string
+    trainingId: string
+    points: number
+    isCompleted: boolean
+    dateCompleted: Date | null
+    dateCreated: Date
+    trainingStartTime: Date | null
+    trainingEndTime: Date | null
+    address: string | null
+    _count: PlayerTrainingCountAggregateOutputType | null
+    _avg: PlayerTrainingAvgAggregateOutputType | null
+    _sum: PlayerTrainingSumAggregateOutputType | null
+    _min: PlayerTrainingMinAggregateOutputType | null
+    _max: PlayerTrainingMaxAggregateOutputType | null
+  }
+
+  type GetPlayerTrainingGroupByPayload<T extends PlayerTrainingGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PlayerTrainingGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PlayerTrainingGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PlayerTrainingGroupByOutputType[P]>
+            : GetScalarType<T[P], PlayerTrainingGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type PlayerTrainingSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    playerTrainingProgramId?: boolean
+    playerTrainingProgramLevelId?: boolean
+    playerTrainingProgramWeekId?: boolean
+    trainingId?: boolean
+    points?: boolean
+    isCompleted?: boolean
+    dateCompleted?: boolean
+    dateCreated?: boolean
+    trainingStartTime?: boolean
+    trainingEndTime?: boolean
+    address?: boolean
+  }, ExtArgs["result"]["playerTraining"]>
+
+  export type PlayerTrainingSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    playerTrainingProgramId?: boolean
+    playerTrainingProgramLevelId?: boolean
+    playerTrainingProgramWeekId?: boolean
+    trainingId?: boolean
+    points?: boolean
+    isCompleted?: boolean
+    dateCompleted?: boolean
+    dateCreated?: boolean
+    trainingStartTime?: boolean
+    trainingEndTime?: boolean
+    address?: boolean
+  }
+
+
+  export type $PlayerTrainingPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "PlayerTraining"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      playerTrainingProgramId: string
+      playerTrainingProgramLevelId: string
+      playerTrainingProgramWeekId: string
+      trainingId: string
+      points: number
+      isCompleted: boolean
+      dateCompleted: Date | null
+      dateCreated: Date
+      trainingStartTime: Date | null
+      trainingEndTime: Date | null
+      address: string | null
+    }, ExtArgs["result"]["playerTraining"]>
+    composites: {}
+  }
+
+
+  type PlayerTrainingGetPayload<S extends boolean | null | undefined | PlayerTrainingDefaultArgs> = $Result.GetResult<Prisma.$PlayerTrainingPayload, S>
+
+  type PlayerTrainingCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<PlayerTrainingFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: PlayerTrainingCountAggregateInputType | true
+    }
+
+  export interface PlayerTrainingDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['PlayerTraining'], meta: { name: 'PlayerTraining' } }
+    /**
+     * Find zero or one PlayerTraining that matches the filter.
+     * @param {PlayerTrainingFindUniqueArgs} args - Arguments to find a PlayerTraining
+     * @example
+     * // Get one PlayerTraining
+     * const playerTraining = await prisma.playerTraining.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends PlayerTrainingFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, PlayerTrainingFindUniqueArgs<ExtArgs>>
+    ): Prisma__PlayerTrainingClient<$Result.GetResult<Prisma.$PlayerTrainingPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one PlayerTraining that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {PlayerTrainingFindUniqueOrThrowArgs} args - Arguments to find a PlayerTraining
+     * @example
+     * // Get one PlayerTraining
+     * const playerTraining = await prisma.playerTraining.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends PlayerTrainingFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, PlayerTrainingFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__PlayerTrainingClient<$Result.GetResult<Prisma.$PlayerTrainingPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first PlayerTraining that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlayerTrainingFindFirstArgs} args - Arguments to find a PlayerTraining
+     * @example
+     * // Get one PlayerTraining
+     * const playerTraining = await prisma.playerTraining.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends PlayerTrainingFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, PlayerTrainingFindFirstArgs<ExtArgs>>
+    ): Prisma__PlayerTrainingClient<$Result.GetResult<Prisma.$PlayerTrainingPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first PlayerTraining that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlayerTrainingFindFirstOrThrowArgs} args - Arguments to find a PlayerTraining
+     * @example
+     * // Get one PlayerTraining
+     * const playerTraining = await prisma.playerTraining.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends PlayerTrainingFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, PlayerTrainingFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__PlayerTrainingClient<$Result.GetResult<Prisma.$PlayerTrainingPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more PlayerTrainings that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlayerTrainingFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all PlayerTrainings
+     * const playerTrainings = await prisma.playerTraining.findMany()
+     * 
+     * // Get first 10 PlayerTrainings
+     * const playerTrainings = await prisma.playerTraining.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const playerTrainingWithIdOnly = await prisma.playerTraining.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends PlayerTrainingFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, PlayerTrainingFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PlayerTrainingPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a PlayerTraining.
+     * @param {PlayerTrainingCreateArgs} args - Arguments to create a PlayerTraining.
+     * @example
+     * // Create one PlayerTraining
+     * const PlayerTraining = await prisma.playerTraining.create({
+     *   data: {
+     *     // ... data to create a PlayerTraining
+     *   }
+     * })
+     * 
+    **/
+    create<T extends PlayerTrainingCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, PlayerTrainingCreateArgs<ExtArgs>>
+    ): Prisma__PlayerTrainingClient<$Result.GetResult<Prisma.$PlayerTrainingPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many PlayerTrainings.
+     *     @param {PlayerTrainingCreateManyArgs} args - Arguments to create many PlayerTrainings.
+     *     @example
+     *     // Create many PlayerTrainings
+     *     const playerTraining = await prisma.playerTraining.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends PlayerTrainingCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, PlayerTrainingCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a PlayerTraining.
+     * @param {PlayerTrainingDeleteArgs} args - Arguments to delete one PlayerTraining.
+     * @example
+     * // Delete one PlayerTraining
+     * const PlayerTraining = await prisma.playerTraining.delete({
+     *   where: {
+     *     // ... filter to delete one PlayerTraining
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends PlayerTrainingDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, PlayerTrainingDeleteArgs<ExtArgs>>
+    ): Prisma__PlayerTrainingClient<$Result.GetResult<Prisma.$PlayerTrainingPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one PlayerTraining.
+     * @param {PlayerTrainingUpdateArgs} args - Arguments to update one PlayerTraining.
+     * @example
+     * // Update one PlayerTraining
+     * const playerTraining = await prisma.playerTraining.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends PlayerTrainingUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, PlayerTrainingUpdateArgs<ExtArgs>>
+    ): Prisma__PlayerTrainingClient<$Result.GetResult<Prisma.$PlayerTrainingPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more PlayerTrainings.
+     * @param {PlayerTrainingDeleteManyArgs} args - Arguments to filter PlayerTrainings to delete.
+     * @example
+     * // Delete a few PlayerTrainings
+     * const { count } = await prisma.playerTraining.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends PlayerTrainingDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, PlayerTrainingDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PlayerTrainings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlayerTrainingUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many PlayerTrainings
+     * const playerTraining = await prisma.playerTraining.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends PlayerTrainingUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, PlayerTrainingUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one PlayerTraining.
+     * @param {PlayerTrainingUpsertArgs} args - Arguments to update or create a PlayerTraining.
+     * @example
+     * // Update or create a PlayerTraining
+     * const playerTraining = await prisma.playerTraining.upsert({
+     *   create: {
+     *     // ... data to create a PlayerTraining
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the PlayerTraining we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends PlayerTrainingUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, PlayerTrainingUpsertArgs<ExtArgs>>
+    ): Prisma__PlayerTrainingClient<$Result.GetResult<Prisma.$PlayerTrainingPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of PlayerTrainings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlayerTrainingCountArgs} args - Arguments to filter PlayerTrainings to count.
+     * @example
+     * // Count the number of PlayerTrainings
+     * const count = await prisma.playerTraining.count({
+     *   where: {
+     *     // ... the filter for the PlayerTrainings we want to count
+     *   }
+     * })
+    **/
+    count<T extends PlayerTrainingCountArgs>(
+      args?: Subset<T, PlayerTrainingCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PlayerTrainingCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a PlayerTraining.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlayerTrainingAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PlayerTrainingAggregateArgs>(args: Subset<T, PlayerTrainingAggregateArgs>): Prisma.PrismaPromise<GetPlayerTrainingAggregateType<T>>
+
+    /**
+     * Group by PlayerTraining.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlayerTrainingGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends PlayerTrainingGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: PlayerTrainingGroupByArgs['orderBy'] }
+        : { orderBy?: PlayerTrainingGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, PlayerTrainingGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPlayerTrainingGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the PlayerTraining model
+   */
+  readonly fields: PlayerTrainingFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for PlayerTraining.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__PlayerTrainingClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the PlayerTraining model
+   */ 
+  interface PlayerTrainingFieldRefs {
+    readonly id: FieldRef<"PlayerTraining", 'String'>
+    readonly userId: FieldRef<"PlayerTraining", 'String'>
+    readonly playerTrainingProgramId: FieldRef<"PlayerTraining", 'String'>
+    readonly playerTrainingProgramLevelId: FieldRef<"PlayerTraining", 'String'>
+    readonly playerTrainingProgramWeekId: FieldRef<"PlayerTraining", 'String'>
+    readonly trainingId: FieldRef<"PlayerTraining", 'String'>
+    readonly points: FieldRef<"PlayerTraining", 'Int'>
+    readonly isCompleted: FieldRef<"PlayerTraining", 'Boolean'>
+    readonly dateCompleted: FieldRef<"PlayerTraining", 'DateTime'>
+    readonly dateCreated: FieldRef<"PlayerTraining", 'DateTime'>
+    readonly trainingStartTime: FieldRef<"PlayerTraining", 'DateTime'>
+    readonly trainingEndTime: FieldRef<"PlayerTraining", 'DateTime'>
+    readonly address: FieldRef<"PlayerTraining", 'String'>
+  }
+    
+
+  // Custom InputTypes
+
+  /**
+   * PlayerTraining findUnique
+   */
+  export type PlayerTrainingFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlayerTraining
+     */
+    select?: PlayerTrainingSelect<ExtArgs> | null
+    /**
+     * Filter, which PlayerTraining to fetch.
+     */
+    where: PlayerTrainingWhereUniqueInput
+  }
+
+
+  /**
+   * PlayerTraining findUniqueOrThrow
+   */
+  export type PlayerTrainingFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlayerTraining
+     */
+    select?: PlayerTrainingSelect<ExtArgs> | null
+    /**
+     * Filter, which PlayerTraining to fetch.
+     */
+    where: PlayerTrainingWhereUniqueInput
+  }
+
+
+  /**
+   * PlayerTraining findFirst
+   */
+  export type PlayerTrainingFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlayerTraining
+     */
+    select?: PlayerTrainingSelect<ExtArgs> | null
+    /**
+     * Filter, which PlayerTraining to fetch.
+     */
+    where?: PlayerTrainingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PlayerTrainings to fetch.
+     */
+    orderBy?: PlayerTrainingOrderByWithRelationInput | PlayerTrainingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PlayerTrainings.
+     */
+    cursor?: PlayerTrainingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PlayerTrainings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PlayerTrainings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PlayerTrainings.
+     */
+    distinct?: PlayerTrainingScalarFieldEnum | PlayerTrainingScalarFieldEnum[]
+  }
+
+
+  /**
+   * PlayerTraining findFirstOrThrow
+   */
+  export type PlayerTrainingFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlayerTraining
+     */
+    select?: PlayerTrainingSelect<ExtArgs> | null
+    /**
+     * Filter, which PlayerTraining to fetch.
+     */
+    where?: PlayerTrainingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PlayerTrainings to fetch.
+     */
+    orderBy?: PlayerTrainingOrderByWithRelationInput | PlayerTrainingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PlayerTrainings.
+     */
+    cursor?: PlayerTrainingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PlayerTrainings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PlayerTrainings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PlayerTrainings.
+     */
+    distinct?: PlayerTrainingScalarFieldEnum | PlayerTrainingScalarFieldEnum[]
+  }
+
+
+  /**
+   * PlayerTraining findMany
+   */
+  export type PlayerTrainingFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlayerTraining
+     */
+    select?: PlayerTrainingSelect<ExtArgs> | null
+    /**
+     * Filter, which PlayerTrainings to fetch.
+     */
+    where?: PlayerTrainingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PlayerTrainings to fetch.
+     */
+    orderBy?: PlayerTrainingOrderByWithRelationInput | PlayerTrainingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing PlayerTrainings.
+     */
+    cursor?: PlayerTrainingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PlayerTrainings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PlayerTrainings.
+     */
+    skip?: number
+    distinct?: PlayerTrainingScalarFieldEnum | PlayerTrainingScalarFieldEnum[]
+  }
+
+
+  /**
+   * PlayerTraining create
+   */
+  export type PlayerTrainingCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlayerTraining
+     */
+    select?: PlayerTrainingSelect<ExtArgs> | null
+    /**
+     * The data needed to create a PlayerTraining.
+     */
+    data: XOR<PlayerTrainingCreateInput, PlayerTrainingUncheckedCreateInput>
+  }
+
+
+  /**
+   * PlayerTraining createMany
+   */
+  export type PlayerTrainingCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many PlayerTrainings.
+     */
+    data: PlayerTrainingCreateManyInput | PlayerTrainingCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * PlayerTraining update
+   */
+  export type PlayerTrainingUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlayerTraining
+     */
+    select?: PlayerTrainingSelect<ExtArgs> | null
+    /**
+     * The data needed to update a PlayerTraining.
+     */
+    data: XOR<PlayerTrainingUpdateInput, PlayerTrainingUncheckedUpdateInput>
+    /**
+     * Choose, which PlayerTraining to update.
+     */
+    where: PlayerTrainingWhereUniqueInput
+  }
+
+
+  /**
+   * PlayerTraining updateMany
+   */
+  export type PlayerTrainingUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update PlayerTrainings.
+     */
+    data: XOR<PlayerTrainingUpdateManyMutationInput, PlayerTrainingUncheckedUpdateManyInput>
+    /**
+     * Filter which PlayerTrainings to update
+     */
+    where?: PlayerTrainingWhereInput
+  }
+
+
+  /**
+   * PlayerTraining upsert
+   */
+  export type PlayerTrainingUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlayerTraining
+     */
+    select?: PlayerTrainingSelect<ExtArgs> | null
+    /**
+     * The filter to search for the PlayerTraining to update in case it exists.
+     */
+    where: PlayerTrainingWhereUniqueInput
+    /**
+     * In case the PlayerTraining found by the `where` argument doesn't exist, create a new PlayerTraining with this data.
+     */
+    create: XOR<PlayerTrainingCreateInput, PlayerTrainingUncheckedCreateInput>
+    /**
+     * In case the PlayerTraining was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<PlayerTrainingUpdateInput, PlayerTrainingUncheckedUpdateInput>
+  }
+
+
+  /**
+   * PlayerTraining delete
+   */
+  export type PlayerTrainingDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlayerTraining
+     */
+    select?: PlayerTrainingSelect<ExtArgs> | null
+    /**
+     * Filter which PlayerTraining to delete.
+     */
+    where: PlayerTrainingWhereUniqueInput
+  }
+
+
+  /**
+   * PlayerTraining deleteMany
+   */
+  export type PlayerTrainingDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PlayerTrainings to delete
+     */
+    where?: PlayerTrainingWhereInput
+  }
+
+
+  /**
+   * PlayerTraining without action
+   */
+  export type PlayerTrainingDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlayerTraining
+     */
+    select?: PlayerTrainingSelect<ExtArgs> | null
+  }
+
+
+
+  /**
+   * Model PlayerTrainingWeek
+   */
+
+  export type AggregatePlayerTrainingWeek = {
+    _count: PlayerTrainingWeekCountAggregateOutputType | null
+    _min: PlayerTrainingWeekMinAggregateOutputType | null
+    _max: PlayerTrainingWeekMaxAggregateOutputType | null
+  }
+
+  export type PlayerTrainingWeekMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    playerTrainingProgramId: string | null
+    playerTrainingProgramLevelId: string | null
+    trainingProgramWeekId: string | null
+    isCompleted: boolean | null
+    dateCompleted: Date | null
+    dateCreated: Date | null
+  }
+
+  export type PlayerTrainingWeekMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    playerTrainingProgramId: string | null
+    playerTrainingProgramLevelId: string | null
+    trainingProgramWeekId: string | null
+    isCompleted: boolean | null
+    dateCompleted: Date | null
+    dateCreated: Date | null
+  }
+
+  export type PlayerTrainingWeekCountAggregateOutputType = {
+    id: number
+    userId: number
+    playerTrainingProgramId: number
+    playerTrainingProgramLevelId: number
+    trainingProgramWeekId: number
+    isCompleted: number
+    dateCompleted: number
+    dateCreated: number
+    _all: number
+  }
+
+
+  export type PlayerTrainingWeekMinAggregateInputType = {
+    id?: true
+    userId?: true
+    playerTrainingProgramId?: true
+    playerTrainingProgramLevelId?: true
+    trainingProgramWeekId?: true
+    isCompleted?: true
+    dateCompleted?: true
+    dateCreated?: true
+  }
+
+  export type PlayerTrainingWeekMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    playerTrainingProgramId?: true
+    playerTrainingProgramLevelId?: true
+    trainingProgramWeekId?: true
+    isCompleted?: true
+    dateCompleted?: true
+    dateCreated?: true
+  }
+
+  export type PlayerTrainingWeekCountAggregateInputType = {
+    id?: true
+    userId?: true
+    playerTrainingProgramId?: true
+    playerTrainingProgramLevelId?: true
+    trainingProgramWeekId?: true
+    isCompleted?: true
+    dateCompleted?: true
+    dateCreated?: true
+    _all?: true
+  }
+
+  export type PlayerTrainingWeekAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PlayerTrainingWeek to aggregate.
+     */
+    where?: PlayerTrainingWeekWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PlayerTrainingWeeks to fetch.
+     */
+    orderBy?: PlayerTrainingWeekOrderByWithRelationInput | PlayerTrainingWeekOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: PlayerTrainingWeekWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PlayerTrainingWeeks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PlayerTrainingWeeks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned PlayerTrainingWeeks
+    **/
+    _count?: true | PlayerTrainingWeekCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: PlayerTrainingWeekMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: PlayerTrainingWeekMaxAggregateInputType
+  }
+
+  export type GetPlayerTrainingWeekAggregateType<T extends PlayerTrainingWeekAggregateArgs> = {
+        [P in keyof T & keyof AggregatePlayerTrainingWeek]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePlayerTrainingWeek[P]>
+      : GetScalarType<T[P], AggregatePlayerTrainingWeek[P]>
+  }
+
+
+
+
+  export type PlayerTrainingWeekGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PlayerTrainingWeekWhereInput
+    orderBy?: PlayerTrainingWeekOrderByWithAggregationInput | PlayerTrainingWeekOrderByWithAggregationInput[]
+    by: PlayerTrainingWeekScalarFieldEnum[] | PlayerTrainingWeekScalarFieldEnum
+    having?: PlayerTrainingWeekScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: PlayerTrainingWeekCountAggregateInputType | true
+    _min?: PlayerTrainingWeekMinAggregateInputType
+    _max?: PlayerTrainingWeekMaxAggregateInputType
+  }
+
+  export type PlayerTrainingWeekGroupByOutputType = {
+    id: string
+    userId: string
+    playerTrainingProgramId: string
+    playerTrainingProgramLevelId: string
+    trainingProgramWeekId: string
+    isCompleted: boolean
+    dateCompleted: Date | null
+    dateCreated: Date
+    _count: PlayerTrainingWeekCountAggregateOutputType | null
+    _min: PlayerTrainingWeekMinAggregateOutputType | null
+    _max: PlayerTrainingWeekMaxAggregateOutputType | null
+  }
+
+  type GetPlayerTrainingWeekGroupByPayload<T extends PlayerTrainingWeekGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PlayerTrainingWeekGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PlayerTrainingWeekGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PlayerTrainingWeekGroupByOutputType[P]>
+            : GetScalarType<T[P], PlayerTrainingWeekGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type PlayerTrainingWeekSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    playerTrainingProgramId?: boolean
+    playerTrainingProgramLevelId?: boolean
+    trainingProgramWeekId?: boolean
+    isCompleted?: boolean
+    dateCompleted?: boolean
+    dateCreated?: boolean
+  }, ExtArgs["result"]["playerTrainingWeek"]>
+
+  export type PlayerTrainingWeekSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    playerTrainingProgramId?: boolean
+    playerTrainingProgramLevelId?: boolean
+    trainingProgramWeekId?: boolean
+    isCompleted?: boolean
+    dateCompleted?: boolean
+    dateCreated?: boolean
+  }
+
+
+  export type $PlayerTrainingWeekPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "PlayerTrainingWeek"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      playerTrainingProgramId: string
+      playerTrainingProgramLevelId: string
+      trainingProgramWeekId: string
+      isCompleted: boolean
+      dateCompleted: Date | null
+      dateCreated: Date
+    }, ExtArgs["result"]["playerTrainingWeek"]>
+    composites: {}
+  }
+
+
+  type PlayerTrainingWeekGetPayload<S extends boolean | null | undefined | PlayerTrainingWeekDefaultArgs> = $Result.GetResult<Prisma.$PlayerTrainingWeekPayload, S>
+
+  type PlayerTrainingWeekCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<PlayerTrainingWeekFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: PlayerTrainingWeekCountAggregateInputType | true
+    }
+
+  export interface PlayerTrainingWeekDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['PlayerTrainingWeek'], meta: { name: 'PlayerTrainingWeek' } }
+    /**
+     * Find zero or one PlayerTrainingWeek that matches the filter.
+     * @param {PlayerTrainingWeekFindUniqueArgs} args - Arguments to find a PlayerTrainingWeek
+     * @example
+     * // Get one PlayerTrainingWeek
+     * const playerTrainingWeek = await prisma.playerTrainingWeek.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends PlayerTrainingWeekFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, PlayerTrainingWeekFindUniqueArgs<ExtArgs>>
+    ): Prisma__PlayerTrainingWeekClient<$Result.GetResult<Prisma.$PlayerTrainingWeekPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one PlayerTrainingWeek that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {PlayerTrainingWeekFindUniqueOrThrowArgs} args - Arguments to find a PlayerTrainingWeek
+     * @example
+     * // Get one PlayerTrainingWeek
+     * const playerTrainingWeek = await prisma.playerTrainingWeek.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends PlayerTrainingWeekFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, PlayerTrainingWeekFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__PlayerTrainingWeekClient<$Result.GetResult<Prisma.$PlayerTrainingWeekPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first PlayerTrainingWeek that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlayerTrainingWeekFindFirstArgs} args - Arguments to find a PlayerTrainingWeek
+     * @example
+     * // Get one PlayerTrainingWeek
+     * const playerTrainingWeek = await prisma.playerTrainingWeek.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends PlayerTrainingWeekFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, PlayerTrainingWeekFindFirstArgs<ExtArgs>>
+    ): Prisma__PlayerTrainingWeekClient<$Result.GetResult<Prisma.$PlayerTrainingWeekPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first PlayerTrainingWeek that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlayerTrainingWeekFindFirstOrThrowArgs} args - Arguments to find a PlayerTrainingWeek
+     * @example
+     * // Get one PlayerTrainingWeek
+     * const playerTrainingWeek = await prisma.playerTrainingWeek.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends PlayerTrainingWeekFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, PlayerTrainingWeekFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__PlayerTrainingWeekClient<$Result.GetResult<Prisma.$PlayerTrainingWeekPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more PlayerTrainingWeeks that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlayerTrainingWeekFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all PlayerTrainingWeeks
+     * const playerTrainingWeeks = await prisma.playerTrainingWeek.findMany()
+     * 
+     * // Get first 10 PlayerTrainingWeeks
+     * const playerTrainingWeeks = await prisma.playerTrainingWeek.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const playerTrainingWeekWithIdOnly = await prisma.playerTrainingWeek.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends PlayerTrainingWeekFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, PlayerTrainingWeekFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PlayerTrainingWeekPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a PlayerTrainingWeek.
+     * @param {PlayerTrainingWeekCreateArgs} args - Arguments to create a PlayerTrainingWeek.
+     * @example
+     * // Create one PlayerTrainingWeek
+     * const PlayerTrainingWeek = await prisma.playerTrainingWeek.create({
+     *   data: {
+     *     // ... data to create a PlayerTrainingWeek
+     *   }
+     * })
+     * 
+    **/
+    create<T extends PlayerTrainingWeekCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, PlayerTrainingWeekCreateArgs<ExtArgs>>
+    ): Prisma__PlayerTrainingWeekClient<$Result.GetResult<Prisma.$PlayerTrainingWeekPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many PlayerTrainingWeeks.
+     *     @param {PlayerTrainingWeekCreateManyArgs} args - Arguments to create many PlayerTrainingWeeks.
+     *     @example
+     *     // Create many PlayerTrainingWeeks
+     *     const playerTrainingWeek = await prisma.playerTrainingWeek.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends PlayerTrainingWeekCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, PlayerTrainingWeekCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a PlayerTrainingWeek.
+     * @param {PlayerTrainingWeekDeleteArgs} args - Arguments to delete one PlayerTrainingWeek.
+     * @example
+     * // Delete one PlayerTrainingWeek
+     * const PlayerTrainingWeek = await prisma.playerTrainingWeek.delete({
+     *   where: {
+     *     // ... filter to delete one PlayerTrainingWeek
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends PlayerTrainingWeekDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, PlayerTrainingWeekDeleteArgs<ExtArgs>>
+    ): Prisma__PlayerTrainingWeekClient<$Result.GetResult<Prisma.$PlayerTrainingWeekPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one PlayerTrainingWeek.
+     * @param {PlayerTrainingWeekUpdateArgs} args - Arguments to update one PlayerTrainingWeek.
+     * @example
+     * // Update one PlayerTrainingWeek
+     * const playerTrainingWeek = await prisma.playerTrainingWeek.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends PlayerTrainingWeekUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, PlayerTrainingWeekUpdateArgs<ExtArgs>>
+    ): Prisma__PlayerTrainingWeekClient<$Result.GetResult<Prisma.$PlayerTrainingWeekPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more PlayerTrainingWeeks.
+     * @param {PlayerTrainingWeekDeleteManyArgs} args - Arguments to filter PlayerTrainingWeeks to delete.
+     * @example
+     * // Delete a few PlayerTrainingWeeks
+     * const { count } = await prisma.playerTrainingWeek.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends PlayerTrainingWeekDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, PlayerTrainingWeekDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PlayerTrainingWeeks.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlayerTrainingWeekUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many PlayerTrainingWeeks
+     * const playerTrainingWeek = await prisma.playerTrainingWeek.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends PlayerTrainingWeekUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, PlayerTrainingWeekUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one PlayerTrainingWeek.
+     * @param {PlayerTrainingWeekUpsertArgs} args - Arguments to update or create a PlayerTrainingWeek.
+     * @example
+     * // Update or create a PlayerTrainingWeek
+     * const playerTrainingWeek = await prisma.playerTrainingWeek.upsert({
+     *   create: {
+     *     // ... data to create a PlayerTrainingWeek
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the PlayerTrainingWeek we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends PlayerTrainingWeekUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, PlayerTrainingWeekUpsertArgs<ExtArgs>>
+    ): Prisma__PlayerTrainingWeekClient<$Result.GetResult<Prisma.$PlayerTrainingWeekPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of PlayerTrainingWeeks.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlayerTrainingWeekCountArgs} args - Arguments to filter PlayerTrainingWeeks to count.
+     * @example
+     * // Count the number of PlayerTrainingWeeks
+     * const count = await prisma.playerTrainingWeek.count({
+     *   where: {
+     *     // ... the filter for the PlayerTrainingWeeks we want to count
+     *   }
+     * })
+    **/
+    count<T extends PlayerTrainingWeekCountArgs>(
+      args?: Subset<T, PlayerTrainingWeekCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PlayerTrainingWeekCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a PlayerTrainingWeek.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlayerTrainingWeekAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PlayerTrainingWeekAggregateArgs>(args: Subset<T, PlayerTrainingWeekAggregateArgs>): Prisma.PrismaPromise<GetPlayerTrainingWeekAggregateType<T>>
+
+    /**
+     * Group by PlayerTrainingWeek.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlayerTrainingWeekGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends PlayerTrainingWeekGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: PlayerTrainingWeekGroupByArgs['orderBy'] }
+        : { orderBy?: PlayerTrainingWeekGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, PlayerTrainingWeekGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPlayerTrainingWeekGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the PlayerTrainingWeek model
+   */
+  readonly fields: PlayerTrainingWeekFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for PlayerTrainingWeek.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__PlayerTrainingWeekClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the PlayerTrainingWeek model
+   */ 
+  interface PlayerTrainingWeekFieldRefs {
+    readonly id: FieldRef<"PlayerTrainingWeek", 'String'>
+    readonly userId: FieldRef<"PlayerTrainingWeek", 'String'>
+    readonly playerTrainingProgramId: FieldRef<"PlayerTrainingWeek", 'String'>
+    readonly playerTrainingProgramLevelId: FieldRef<"PlayerTrainingWeek", 'String'>
+    readonly trainingProgramWeekId: FieldRef<"PlayerTrainingWeek", 'String'>
+    readonly isCompleted: FieldRef<"PlayerTrainingWeek", 'Boolean'>
+    readonly dateCompleted: FieldRef<"PlayerTrainingWeek", 'DateTime'>
+    readonly dateCreated: FieldRef<"PlayerTrainingWeek", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+
+  /**
+   * PlayerTrainingWeek findUnique
+   */
+  export type PlayerTrainingWeekFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlayerTrainingWeek
+     */
+    select?: PlayerTrainingWeekSelect<ExtArgs> | null
+    /**
+     * Filter, which PlayerTrainingWeek to fetch.
+     */
+    where: PlayerTrainingWeekWhereUniqueInput
+  }
+
+
+  /**
+   * PlayerTrainingWeek findUniqueOrThrow
+   */
+  export type PlayerTrainingWeekFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlayerTrainingWeek
+     */
+    select?: PlayerTrainingWeekSelect<ExtArgs> | null
+    /**
+     * Filter, which PlayerTrainingWeek to fetch.
+     */
+    where: PlayerTrainingWeekWhereUniqueInput
+  }
+
+
+  /**
+   * PlayerTrainingWeek findFirst
+   */
+  export type PlayerTrainingWeekFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlayerTrainingWeek
+     */
+    select?: PlayerTrainingWeekSelect<ExtArgs> | null
+    /**
+     * Filter, which PlayerTrainingWeek to fetch.
+     */
+    where?: PlayerTrainingWeekWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PlayerTrainingWeeks to fetch.
+     */
+    orderBy?: PlayerTrainingWeekOrderByWithRelationInput | PlayerTrainingWeekOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PlayerTrainingWeeks.
+     */
+    cursor?: PlayerTrainingWeekWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PlayerTrainingWeeks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PlayerTrainingWeeks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PlayerTrainingWeeks.
+     */
+    distinct?: PlayerTrainingWeekScalarFieldEnum | PlayerTrainingWeekScalarFieldEnum[]
+  }
+
+
+  /**
+   * PlayerTrainingWeek findFirstOrThrow
+   */
+  export type PlayerTrainingWeekFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlayerTrainingWeek
+     */
+    select?: PlayerTrainingWeekSelect<ExtArgs> | null
+    /**
+     * Filter, which PlayerTrainingWeek to fetch.
+     */
+    where?: PlayerTrainingWeekWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PlayerTrainingWeeks to fetch.
+     */
+    orderBy?: PlayerTrainingWeekOrderByWithRelationInput | PlayerTrainingWeekOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PlayerTrainingWeeks.
+     */
+    cursor?: PlayerTrainingWeekWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PlayerTrainingWeeks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PlayerTrainingWeeks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PlayerTrainingWeeks.
+     */
+    distinct?: PlayerTrainingWeekScalarFieldEnum | PlayerTrainingWeekScalarFieldEnum[]
+  }
+
+
+  /**
+   * PlayerTrainingWeek findMany
+   */
+  export type PlayerTrainingWeekFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlayerTrainingWeek
+     */
+    select?: PlayerTrainingWeekSelect<ExtArgs> | null
+    /**
+     * Filter, which PlayerTrainingWeeks to fetch.
+     */
+    where?: PlayerTrainingWeekWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PlayerTrainingWeeks to fetch.
+     */
+    orderBy?: PlayerTrainingWeekOrderByWithRelationInput | PlayerTrainingWeekOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing PlayerTrainingWeeks.
+     */
+    cursor?: PlayerTrainingWeekWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PlayerTrainingWeeks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PlayerTrainingWeeks.
+     */
+    skip?: number
+    distinct?: PlayerTrainingWeekScalarFieldEnum | PlayerTrainingWeekScalarFieldEnum[]
+  }
+
+
+  /**
+   * PlayerTrainingWeek create
+   */
+  export type PlayerTrainingWeekCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlayerTrainingWeek
+     */
+    select?: PlayerTrainingWeekSelect<ExtArgs> | null
+    /**
+     * The data needed to create a PlayerTrainingWeek.
+     */
+    data: XOR<PlayerTrainingWeekCreateInput, PlayerTrainingWeekUncheckedCreateInput>
+  }
+
+
+  /**
+   * PlayerTrainingWeek createMany
+   */
+  export type PlayerTrainingWeekCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many PlayerTrainingWeeks.
+     */
+    data: PlayerTrainingWeekCreateManyInput | PlayerTrainingWeekCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * PlayerTrainingWeek update
+   */
+  export type PlayerTrainingWeekUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlayerTrainingWeek
+     */
+    select?: PlayerTrainingWeekSelect<ExtArgs> | null
+    /**
+     * The data needed to update a PlayerTrainingWeek.
+     */
+    data: XOR<PlayerTrainingWeekUpdateInput, PlayerTrainingWeekUncheckedUpdateInput>
+    /**
+     * Choose, which PlayerTrainingWeek to update.
+     */
+    where: PlayerTrainingWeekWhereUniqueInput
+  }
+
+
+  /**
+   * PlayerTrainingWeek updateMany
+   */
+  export type PlayerTrainingWeekUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update PlayerTrainingWeeks.
+     */
+    data: XOR<PlayerTrainingWeekUpdateManyMutationInput, PlayerTrainingWeekUncheckedUpdateManyInput>
+    /**
+     * Filter which PlayerTrainingWeeks to update
+     */
+    where?: PlayerTrainingWeekWhereInput
+  }
+
+
+  /**
+   * PlayerTrainingWeek upsert
+   */
+  export type PlayerTrainingWeekUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlayerTrainingWeek
+     */
+    select?: PlayerTrainingWeekSelect<ExtArgs> | null
+    /**
+     * The filter to search for the PlayerTrainingWeek to update in case it exists.
+     */
+    where: PlayerTrainingWeekWhereUniqueInput
+    /**
+     * In case the PlayerTrainingWeek found by the `where` argument doesn't exist, create a new PlayerTrainingWeek with this data.
+     */
+    create: XOR<PlayerTrainingWeekCreateInput, PlayerTrainingWeekUncheckedCreateInput>
+    /**
+     * In case the PlayerTrainingWeek was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<PlayerTrainingWeekUpdateInput, PlayerTrainingWeekUncheckedUpdateInput>
+  }
+
+
+  /**
+   * PlayerTrainingWeek delete
+   */
+  export type PlayerTrainingWeekDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlayerTrainingWeek
+     */
+    select?: PlayerTrainingWeekSelect<ExtArgs> | null
+    /**
+     * Filter which PlayerTrainingWeek to delete.
+     */
+    where: PlayerTrainingWeekWhereUniqueInput
+  }
+
+
+  /**
+   * PlayerTrainingWeek deleteMany
+   */
+  export type PlayerTrainingWeekDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PlayerTrainingWeeks to delete
+     */
+    where?: PlayerTrainingWeekWhereInput
+  }
+
+
+  /**
+   * PlayerTrainingWeek without action
+   */
+  export type PlayerTrainingWeekDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlayerTrainingWeek
+     */
+    select?: PlayerTrainingWeekSelect<ExtArgs> | null
+  }
+
+
+
+  /**
+   * Model PlayerTrainingLevel
+   */
+
+  export type AggregatePlayerTrainingLevel = {
+    _count: PlayerTrainingLevelCountAggregateOutputType | null
+    _min: PlayerTrainingLevelMinAggregateOutputType | null
+    _max: PlayerTrainingLevelMaxAggregateOutputType | null
+  }
+
+  export type PlayerTrainingLevelMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    playerTrainingProgramId: string | null
+    trainingProgramLevelId: string | null
+    isCompleted: boolean | null
+    dateCompleted: Date | null
+    dateCreated: Date | null
+  }
+
+  export type PlayerTrainingLevelMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    playerTrainingProgramId: string | null
+    trainingProgramLevelId: string | null
+    isCompleted: boolean | null
+    dateCompleted: Date | null
+    dateCreated: Date | null
+  }
+
+  export type PlayerTrainingLevelCountAggregateOutputType = {
+    id: number
+    userId: number
+    playerTrainingProgramId: number
+    trainingProgramLevelId: number
+    isCompleted: number
+    dateCompleted: number
+    dateCreated: number
+    _all: number
+  }
+
+
+  export type PlayerTrainingLevelMinAggregateInputType = {
+    id?: true
+    userId?: true
+    playerTrainingProgramId?: true
+    trainingProgramLevelId?: true
+    isCompleted?: true
+    dateCompleted?: true
+    dateCreated?: true
+  }
+
+  export type PlayerTrainingLevelMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    playerTrainingProgramId?: true
+    trainingProgramLevelId?: true
+    isCompleted?: true
+    dateCompleted?: true
+    dateCreated?: true
+  }
+
+  export type PlayerTrainingLevelCountAggregateInputType = {
+    id?: true
+    userId?: true
+    playerTrainingProgramId?: true
+    trainingProgramLevelId?: true
+    isCompleted?: true
+    dateCompleted?: true
+    dateCreated?: true
+    _all?: true
+  }
+
+  export type PlayerTrainingLevelAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PlayerTrainingLevel to aggregate.
+     */
+    where?: PlayerTrainingLevelWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PlayerTrainingLevels to fetch.
+     */
+    orderBy?: PlayerTrainingLevelOrderByWithRelationInput | PlayerTrainingLevelOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: PlayerTrainingLevelWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PlayerTrainingLevels from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PlayerTrainingLevels.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned PlayerTrainingLevels
+    **/
+    _count?: true | PlayerTrainingLevelCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: PlayerTrainingLevelMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: PlayerTrainingLevelMaxAggregateInputType
+  }
+
+  export type GetPlayerTrainingLevelAggregateType<T extends PlayerTrainingLevelAggregateArgs> = {
+        [P in keyof T & keyof AggregatePlayerTrainingLevel]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePlayerTrainingLevel[P]>
+      : GetScalarType<T[P], AggregatePlayerTrainingLevel[P]>
+  }
+
+
+
+
+  export type PlayerTrainingLevelGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PlayerTrainingLevelWhereInput
+    orderBy?: PlayerTrainingLevelOrderByWithAggregationInput | PlayerTrainingLevelOrderByWithAggregationInput[]
+    by: PlayerTrainingLevelScalarFieldEnum[] | PlayerTrainingLevelScalarFieldEnum
+    having?: PlayerTrainingLevelScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: PlayerTrainingLevelCountAggregateInputType | true
+    _min?: PlayerTrainingLevelMinAggregateInputType
+    _max?: PlayerTrainingLevelMaxAggregateInputType
+  }
+
+  export type PlayerTrainingLevelGroupByOutputType = {
+    id: string
+    userId: string
+    playerTrainingProgramId: string
+    trainingProgramLevelId: string
+    isCompleted: boolean
+    dateCompleted: Date | null
+    dateCreated: Date
+    _count: PlayerTrainingLevelCountAggregateOutputType | null
+    _min: PlayerTrainingLevelMinAggregateOutputType | null
+    _max: PlayerTrainingLevelMaxAggregateOutputType | null
+  }
+
+  type GetPlayerTrainingLevelGroupByPayload<T extends PlayerTrainingLevelGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PlayerTrainingLevelGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PlayerTrainingLevelGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PlayerTrainingLevelGroupByOutputType[P]>
+            : GetScalarType<T[P], PlayerTrainingLevelGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type PlayerTrainingLevelSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    playerTrainingProgramId?: boolean
+    trainingProgramLevelId?: boolean
+    isCompleted?: boolean
+    dateCompleted?: boolean
+    dateCreated?: boolean
+  }, ExtArgs["result"]["playerTrainingLevel"]>
+
+  export type PlayerTrainingLevelSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    playerTrainingProgramId?: boolean
+    trainingProgramLevelId?: boolean
+    isCompleted?: boolean
+    dateCompleted?: boolean
+    dateCreated?: boolean
+  }
+
+
+  export type $PlayerTrainingLevelPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "PlayerTrainingLevel"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      playerTrainingProgramId: string
+      trainingProgramLevelId: string
+      isCompleted: boolean
+      dateCompleted: Date | null
+      dateCreated: Date
+    }, ExtArgs["result"]["playerTrainingLevel"]>
+    composites: {}
+  }
+
+
+  type PlayerTrainingLevelGetPayload<S extends boolean | null | undefined | PlayerTrainingLevelDefaultArgs> = $Result.GetResult<Prisma.$PlayerTrainingLevelPayload, S>
+
+  type PlayerTrainingLevelCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<PlayerTrainingLevelFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: PlayerTrainingLevelCountAggregateInputType | true
+    }
+
+  export interface PlayerTrainingLevelDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['PlayerTrainingLevel'], meta: { name: 'PlayerTrainingLevel' } }
+    /**
+     * Find zero or one PlayerTrainingLevel that matches the filter.
+     * @param {PlayerTrainingLevelFindUniqueArgs} args - Arguments to find a PlayerTrainingLevel
+     * @example
+     * // Get one PlayerTrainingLevel
+     * const playerTrainingLevel = await prisma.playerTrainingLevel.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends PlayerTrainingLevelFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, PlayerTrainingLevelFindUniqueArgs<ExtArgs>>
+    ): Prisma__PlayerTrainingLevelClient<$Result.GetResult<Prisma.$PlayerTrainingLevelPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one PlayerTrainingLevel that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {PlayerTrainingLevelFindUniqueOrThrowArgs} args - Arguments to find a PlayerTrainingLevel
+     * @example
+     * // Get one PlayerTrainingLevel
+     * const playerTrainingLevel = await prisma.playerTrainingLevel.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends PlayerTrainingLevelFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, PlayerTrainingLevelFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__PlayerTrainingLevelClient<$Result.GetResult<Prisma.$PlayerTrainingLevelPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first PlayerTrainingLevel that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlayerTrainingLevelFindFirstArgs} args - Arguments to find a PlayerTrainingLevel
+     * @example
+     * // Get one PlayerTrainingLevel
+     * const playerTrainingLevel = await prisma.playerTrainingLevel.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends PlayerTrainingLevelFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, PlayerTrainingLevelFindFirstArgs<ExtArgs>>
+    ): Prisma__PlayerTrainingLevelClient<$Result.GetResult<Prisma.$PlayerTrainingLevelPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first PlayerTrainingLevel that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlayerTrainingLevelFindFirstOrThrowArgs} args - Arguments to find a PlayerTrainingLevel
+     * @example
+     * // Get one PlayerTrainingLevel
+     * const playerTrainingLevel = await prisma.playerTrainingLevel.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends PlayerTrainingLevelFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, PlayerTrainingLevelFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__PlayerTrainingLevelClient<$Result.GetResult<Prisma.$PlayerTrainingLevelPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more PlayerTrainingLevels that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlayerTrainingLevelFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all PlayerTrainingLevels
+     * const playerTrainingLevels = await prisma.playerTrainingLevel.findMany()
+     * 
+     * // Get first 10 PlayerTrainingLevels
+     * const playerTrainingLevels = await prisma.playerTrainingLevel.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const playerTrainingLevelWithIdOnly = await prisma.playerTrainingLevel.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends PlayerTrainingLevelFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, PlayerTrainingLevelFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PlayerTrainingLevelPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a PlayerTrainingLevel.
+     * @param {PlayerTrainingLevelCreateArgs} args - Arguments to create a PlayerTrainingLevel.
+     * @example
+     * // Create one PlayerTrainingLevel
+     * const PlayerTrainingLevel = await prisma.playerTrainingLevel.create({
+     *   data: {
+     *     // ... data to create a PlayerTrainingLevel
+     *   }
+     * })
+     * 
+    **/
+    create<T extends PlayerTrainingLevelCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, PlayerTrainingLevelCreateArgs<ExtArgs>>
+    ): Prisma__PlayerTrainingLevelClient<$Result.GetResult<Prisma.$PlayerTrainingLevelPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many PlayerTrainingLevels.
+     *     @param {PlayerTrainingLevelCreateManyArgs} args - Arguments to create many PlayerTrainingLevels.
+     *     @example
+     *     // Create many PlayerTrainingLevels
+     *     const playerTrainingLevel = await prisma.playerTrainingLevel.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends PlayerTrainingLevelCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, PlayerTrainingLevelCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a PlayerTrainingLevel.
+     * @param {PlayerTrainingLevelDeleteArgs} args - Arguments to delete one PlayerTrainingLevel.
+     * @example
+     * // Delete one PlayerTrainingLevel
+     * const PlayerTrainingLevel = await prisma.playerTrainingLevel.delete({
+     *   where: {
+     *     // ... filter to delete one PlayerTrainingLevel
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends PlayerTrainingLevelDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, PlayerTrainingLevelDeleteArgs<ExtArgs>>
+    ): Prisma__PlayerTrainingLevelClient<$Result.GetResult<Prisma.$PlayerTrainingLevelPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one PlayerTrainingLevel.
+     * @param {PlayerTrainingLevelUpdateArgs} args - Arguments to update one PlayerTrainingLevel.
+     * @example
+     * // Update one PlayerTrainingLevel
+     * const playerTrainingLevel = await prisma.playerTrainingLevel.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends PlayerTrainingLevelUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, PlayerTrainingLevelUpdateArgs<ExtArgs>>
+    ): Prisma__PlayerTrainingLevelClient<$Result.GetResult<Prisma.$PlayerTrainingLevelPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more PlayerTrainingLevels.
+     * @param {PlayerTrainingLevelDeleteManyArgs} args - Arguments to filter PlayerTrainingLevels to delete.
+     * @example
+     * // Delete a few PlayerTrainingLevels
+     * const { count } = await prisma.playerTrainingLevel.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends PlayerTrainingLevelDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, PlayerTrainingLevelDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PlayerTrainingLevels.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlayerTrainingLevelUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many PlayerTrainingLevels
+     * const playerTrainingLevel = await prisma.playerTrainingLevel.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends PlayerTrainingLevelUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, PlayerTrainingLevelUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one PlayerTrainingLevel.
+     * @param {PlayerTrainingLevelUpsertArgs} args - Arguments to update or create a PlayerTrainingLevel.
+     * @example
+     * // Update or create a PlayerTrainingLevel
+     * const playerTrainingLevel = await prisma.playerTrainingLevel.upsert({
+     *   create: {
+     *     // ... data to create a PlayerTrainingLevel
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the PlayerTrainingLevel we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends PlayerTrainingLevelUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, PlayerTrainingLevelUpsertArgs<ExtArgs>>
+    ): Prisma__PlayerTrainingLevelClient<$Result.GetResult<Prisma.$PlayerTrainingLevelPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of PlayerTrainingLevels.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlayerTrainingLevelCountArgs} args - Arguments to filter PlayerTrainingLevels to count.
+     * @example
+     * // Count the number of PlayerTrainingLevels
+     * const count = await prisma.playerTrainingLevel.count({
+     *   where: {
+     *     // ... the filter for the PlayerTrainingLevels we want to count
+     *   }
+     * })
+    **/
+    count<T extends PlayerTrainingLevelCountArgs>(
+      args?: Subset<T, PlayerTrainingLevelCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PlayerTrainingLevelCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a PlayerTrainingLevel.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlayerTrainingLevelAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PlayerTrainingLevelAggregateArgs>(args: Subset<T, PlayerTrainingLevelAggregateArgs>): Prisma.PrismaPromise<GetPlayerTrainingLevelAggregateType<T>>
+
+    /**
+     * Group by PlayerTrainingLevel.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlayerTrainingLevelGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends PlayerTrainingLevelGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: PlayerTrainingLevelGroupByArgs['orderBy'] }
+        : { orderBy?: PlayerTrainingLevelGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, PlayerTrainingLevelGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPlayerTrainingLevelGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the PlayerTrainingLevel model
+   */
+  readonly fields: PlayerTrainingLevelFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for PlayerTrainingLevel.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__PlayerTrainingLevelClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the PlayerTrainingLevel model
+   */ 
+  interface PlayerTrainingLevelFieldRefs {
+    readonly id: FieldRef<"PlayerTrainingLevel", 'String'>
+    readonly userId: FieldRef<"PlayerTrainingLevel", 'String'>
+    readonly playerTrainingProgramId: FieldRef<"PlayerTrainingLevel", 'String'>
+    readonly trainingProgramLevelId: FieldRef<"PlayerTrainingLevel", 'String'>
+    readonly isCompleted: FieldRef<"PlayerTrainingLevel", 'Boolean'>
+    readonly dateCompleted: FieldRef<"PlayerTrainingLevel", 'DateTime'>
+    readonly dateCreated: FieldRef<"PlayerTrainingLevel", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+
+  /**
+   * PlayerTrainingLevel findUnique
+   */
+  export type PlayerTrainingLevelFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlayerTrainingLevel
+     */
+    select?: PlayerTrainingLevelSelect<ExtArgs> | null
+    /**
+     * Filter, which PlayerTrainingLevel to fetch.
+     */
+    where: PlayerTrainingLevelWhereUniqueInput
+  }
+
+
+  /**
+   * PlayerTrainingLevel findUniqueOrThrow
+   */
+  export type PlayerTrainingLevelFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlayerTrainingLevel
+     */
+    select?: PlayerTrainingLevelSelect<ExtArgs> | null
+    /**
+     * Filter, which PlayerTrainingLevel to fetch.
+     */
+    where: PlayerTrainingLevelWhereUniqueInput
+  }
+
+
+  /**
+   * PlayerTrainingLevel findFirst
+   */
+  export type PlayerTrainingLevelFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlayerTrainingLevel
+     */
+    select?: PlayerTrainingLevelSelect<ExtArgs> | null
+    /**
+     * Filter, which PlayerTrainingLevel to fetch.
+     */
+    where?: PlayerTrainingLevelWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PlayerTrainingLevels to fetch.
+     */
+    orderBy?: PlayerTrainingLevelOrderByWithRelationInput | PlayerTrainingLevelOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PlayerTrainingLevels.
+     */
+    cursor?: PlayerTrainingLevelWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PlayerTrainingLevels from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PlayerTrainingLevels.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PlayerTrainingLevels.
+     */
+    distinct?: PlayerTrainingLevelScalarFieldEnum | PlayerTrainingLevelScalarFieldEnum[]
+  }
+
+
+  /**
+   * PlayerTrainingLevel findFirstOrThrow
+   */
+  export type PlayerTrainingLevelFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlayerTrainingLevel
+     */
+    select?: PlayerTrainingLevelSelect<ExtArgs> | null
+    /**
+     * Filter, which PlayerTrainingLevel to fetch.
+     */
+    where?: PlayerTrainingLevelWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PlayerTrainingLevels to fetch.
+     */
+    orderBy?: PlayerTrainingLevelOrderByWithRelationInput | PlayerTrainingLevelOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PlayerTrainingLevels.
+     */
+    cursor?: PlayerTrainingLevelWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PlayerTrainingLevels from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PlayerTrainingLevels.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PlayerTrainingLevels.
+     */
+    distinct?: PlayerTrainingLevelScalarFieldEnum | PlayerTrainingLevelScalarFieldEnum[]
+  }
+
+
+  /**
+   * PlayerTrainingLevel findMany
+   */
+  export type PlayerTrainingLevelFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlayerTrainingLevel
+     */
+    select?: PlayerTrainingLevelSelect<ExtArgs> | null
+    /**
+     * Filter, which PlayerTrainingLevels to fetch.
+     */
+    where?: PlayerTrainingLevelWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PlayerTrainingLevels to fetch.
+     */
+    orderBy?: PlayerTrainingLevelOrderByWithRelationInput | PlayerTrainingLevelOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing PlayerTrainingLevels.
+     */
+    cursor?: PlayerTrainingLevelWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PlayerTrainingLevels from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PlayerTrainingLevels.
+     */
+    skip?: number
+    distinct?: PlayerTrainingLevelScalarFieldEnum | PlayerTrainingLevelScalarFieldEnum[]
+  }
+
+
+  /**
+   * PlayerTrainingLevel create
+   */
+  export type PlayerTrainingLevelCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlayerTrainingLevel
+     */
+    select?: PlayerTrainingLevelSelect<ExtArgs> | null
+    /**
+     * The data needed to create a PlayerTrainingLevel.
+     */
+    data: XOR<PlayerTrainingLevelCreateInput, PlayerTrainingLevelUncheckedCreateInput>
+  }
+
+
+  /**
+   * PlayerTrainingLevel createMany
+   */
+  export type PlayerTrainingLevelCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many PlayerTrainingLevels.
+     */
+    data: PlayerTrainingLevelCreateManyInput | PlayerTrainingLevelCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * PlayerTrainingLevel update
+   */
+  export type PlayerTrainingLevelUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlayerTrainingLevel
+     */
+    select?: PlayerTrainingLevelSelect<ExtArgs> | null
+    /**
+     * The data needed to update a PlayerTrainingLevel.
+     */
+    data: XOR<PlayerTrainingLevelUpdateInput, PlayerTrainingLevelUncheckedUpdateInput>
+    /**
+     * Choose, which PlayerTrainingLevel to update.
+     */
+    where: PlayerTrainingLevelWhereUniqueInput
+  }
+
+
+  /**
+   * PlayerTrainingLevel updateMany
+   */
+  export type PlayerTrainingLevelUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update PlayerTrainingLevels.
+     */
+    data: XOR<PlayerTrainingLevelUpdateManyMutationInput, PlayerTrainingLevelUncheckedUpdateManyInput>
+    /**
+     * Filter which PlayerTrainingLevels to update
+     */
+    where?: PlayerTrainingLevelWhereInput
+  }
+
+
+  /**
+   * PlayerTrainingLevel upsert
+   */
+  export type PlayerTrainingLevelUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlayerTrainingLevel
+     */
+    select?: PlayerTrainingLevelSelect<ExtArgs> | null
+    /**
+     * The filter to search for the PlayerTrainingLevel to update in case it exists.
+     */
+    where: PlayerTrainingLevelWhereUniqueInput
+    /**
+     * In case the PlayerTrainingLevel found by the `where` argument doesn't exist, create a new PlayerTrainingLevel with this data.
+     */
+    create: XOR<PlayerTrainingLevelCreateInput, PlayerTrainingLevelUncheckedCreateInput>
+    /**
+     * In case the PlayerTrainingLevel was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<PlayerTrainingLevelUpdateInput, PlayerTrainingLevelUncheckedUpdateInput>
+  }
+
+
+  /**
+   * PlayerTrainingLevel delete
+   */
+  export type PlayerTrainingLevelDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlayerTrainingLevel
+     */
+    select?: PlayerTrainingLevelSelect<ExtArgs> | null
+    /**
+     * Filter which PlayerTrainingLevel to delete.
+     */
+    where: PlayerTrainingLevelWhereUniqueInput
+  }
+
+
+  /**
+   * PlayerTrainingLevel deleteMany
+   */
+  export type PlayerTrainingLevelDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PlayerTrainingLevels to delete
+     */
+    where?: PlayerTrainingLevelWhereInput
+  }
+
+
+  /**
+   * PlayerTrainingLevel without action
+   */
+  export type PlayerTrainingLevelDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlayerTrainingLevel
+     */
+    select?: PlayerTrainingLevelSelect<ExtArgs> | null
+  }
+
+
+
+  /**
+   * Model PlayerTrainingProgram
+   */
+
+  export type AggregatePlayerTrainingProgram = {
+    _count: PlayerTrainingProgramCountAggregateOutputType | null
+    _min: PlayerTrainingProgramMinAggregateOutputType | null
+    _max: PlayerTrainingProgramMaxAggregateOutputType | null
+  }
+
+  export type PlayerTrainingProgramMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    trainingProgramId: string | null
+    isCompleted: boolean | null
+    isLocked: boolean | null
+    isPremium: boolean | null
+    subscriptionType: $Enums.SubscriptionType | null
+    subscriptionId: string | null
+    dateCompleted: Date | null
+    dateCreated: Date | null
+  }
+
+  export type PlayerTrainingProgramMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    trainingProgramId: string | null
+    isCompleted: boolean | null
+    isLocked: boolean | null
+    isPremium: boolean | null
+    subscriptionType: $Enums.SubscriptionType | null
+    subscriptionId: string | null
+    dateCompleted: Date | null
+    dateCreated: Date | null
+  }
+
+  export type PlayerTrainingProgramCountAggregateOutputType = {
+    id: number
+    userId: number
+    trainingProgramId: number
+    isCompleted: number
+    isLocked: number
+    isPremium: number
+    subscriptionType: number
+    subscriptionId: number
+    dateCompleted: number
+    dateCreated: number
+    _all: number
+  }
+
+
+  export type PlayerTrainingProgramMinAggregateInputType = {
+    id?: true
+    userId?: true
+    trainingProgramId?: true
+    isCompleted?: true
+    isLocked?: true
+    isPremium?: true
+    subscriptionType?: true
+    subscriptionId?: true
+    dateCompleted?: true
+    dateCreated?: true
+  }
+
+  export type PlayerTrainingProgramMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    trainingProgramId?: true
+    isCompleted?: true
+    isLocked?: true
+    isPremium?: true
+    subscriptionType?: true
+    subscriptionId?: true
+    dateCompleted?: true
+    dateCreated?: true
+  }
+
+  export type PlayerTrainingProgramCountAggregateInputType = {
+    id?: true
+    userId?: true
+    trainingProgramId?: true
+    isCompleted?: true
+    isLocked?: true
+    isPremium?: true
+    subscriptionType?: true
+    subscriptionId?: true
+    dateCompleted?: true
+    dateCreated?: true
+    _all?: true
+  }
+
+  export type PlayerTrainingProgramAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PlayerTrainingProgram to aggregate.
+     */
+    where?: PlayerTrainingProgramWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PlayerTrainingPrograms to fetch.
+     */
+    orderBy?: PlayerTrainingProgramOrderByWithRelationInput | PlayerTrainingProgramOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: PlayerTrainingProgramWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PlayerTrainingPrograms from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PlayerTrainingPrograms.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned PlayerTrainingPrograms
+    **/
+    _count?: true | PlayerTrainingProgramCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: PlayerTrainingProgramMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: PlayerTrainingProgramMaxAggregateInputType
+  }
+
+  export type GetPlayerTrainingProgramAggregateType<T extends PlayerTrainingProgramAggregateArgs> = {
+        [P in keyof T & keyof AggregatePlayerTrainingProgram]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePlayerTrainingProgram[P]>
+      : GetScalarType<T[P], AggregatePlayerTrainingProgram[P]>
+  }
+
+
+
+
+  export type PlayerTrainingProgramGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PlayerTrainingProgramWhereInput
+    orderBy?: PlayerTrainingProgramOrderByWithAggregationInput | PlayerTrainingProgramOrderByWithAggregationInput[]
+    by: PlayerTrainingProgramScalarFieldEnum[] | PlayerTrainingProgramScalarFieldEnum
+    having?: PlayerTrainingProgramScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: PlayerTrainingProgramCountAggregateInputType | true
+    _min?: PlayerTrainingProgramMinAggregateInputType
+    _max?: PlayerTrainingProgramMaxAggregateInputType
+  }
+
+  export type PlayerTrainingProgramGroupByOutputType = {
+    id: string
+    userId: string
+    trainingProgramId: string
+    isCompleted: boolean
+    isLocked: boolean
+    isPremium: boolean
+    subscriptionType: $Enums.SubscriptionType
+    subscriptionId: string | null
+    dateCompleted: Date | null
+    dateCreated: Date
+    _count: PlayerTrainingProgramCountAggregateOutputType | null
+    _min: PlayerTrainingProgramMinAggregateOutputType | null
+    _max: PlayerTrainingProgramMaxAggregateOutputType | null
+  }
+
+  type GetPlayerTrainingProgramGroupByPayload<T extends PlayerTrainingProgramGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PlayerTrainingProgramGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PlayerTrainingProgramGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PlayerTrainingProgramGroupByOutputType[P]>
+            : GetScalarType<T[P], PlayerTrainingProgramGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type PlayerTrainingProgramSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    trainingProgramId?: boolean
+    isCompleted?: boolean
+    isLocked?: boolean
+    isPremium?: boolean
+    subscriptionType?: boolean
+    subscriptionId?: boolean
+    dateCompleted?: boolean
+    dateCreated?: boolean
+  }, ExtArgs["result"]["playerTrainingProgram"]>
+
+  export type PlayerTrainingProgramSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    trainingProgramId?: boolean
+    isCompleted?: boolean
+    isLocked?: boolean
+    isPremium?: boolean
+    subscriptionType?: boolean
+    subscriptionId?: boolean
+    dateCompleted?: boolean
+    dateCreated?: boolean
+  }
+
+
+  export type $PlayerTrainingProgramPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "PlayerTrainingProgram"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      trainingProgramId: string
+      isCompleted: boolean
+      isLocked: boolean
+      isPremium: boolean
+      subscriptionType: $Enums.SubscriptionType
+      subscriptionId: string | null
+      dateCompleted: Date | null
+      dateCreated: Date
+    }, ExtArgs["result"]["playerTrainingProgram"]>
+    composites: {}
+  }
+
+
+  type PlayerTrainingProgramGetPayload<S extends boolean | null | undefined | PlayerTrainingProgramDefaultArgs> = $Result.GetResult<Prisma.$PlayerTrainingProgramPayload, S>
+
+  type PlayerTrainingProgramCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<PlayerTrainingProgramFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: PlayerTrainingProgramCountAggregateInputType | true
+    }
+
+  export interface PlayerTrainingProgramDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['PlayerTrainingProgram'], meta: { name: 'PlayerTrainingProgram' } }
+    /**
+     * Find zero or one PlayerTrainingProgram that matches the filter.
+     * @param {PlayerTrainingProgramFindUniqueArgs} args - Arguments to find a PlayerTrainingProgram
+     * @example
+     * // Get one PlayerTrainingProgram
+     * const playerTrainingProgram = await prisma.playerTrainingProgram.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends PlayerTrainingProgramFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, PlayerTrainingProgramFindUniqueArgs<ExtArgs>>
+    ): Prisma__PlayerTrainingProgramClient<$Result.GetResult<Prisma.$PlayerTrainingProgramPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one PlayerTrainingProgram that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {PlayerTrainingProgramFindUniqueOrThrowArgs} args - Arguments to find a PlayerTrainingProgram
+     * @example
+     * // Get one PlayerTrainingProgram
+     * const playerTrainingProgram = await prisma.playerTrainingProgram.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends PlayerTrainingProgramFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, PlayerTrainingProgramFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__PlayerTrainingProgramClient<$Result.GetResult<Prisma.$PlayerTrainingProgramPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first PlayerTrainingProgram that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlayerTrainingProgramFindFirstArgs} args - Arguments to find a PlayerTrainingProgram
+     * @example
+     * // Get one PlayerTrainingProgram
+     * const playerTrainingProgram = await prisma.playerTrainingProgram.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends PlayerTrainingProgramFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, PlayerTrainingProgramFindFirstArgs<ExtArgs>>
+    ): Prisma__PlayerTrainingProgramClient<$Result.GetResult<Prisma.$PlayerTrainingProgramPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first PlayerTrainingProgram that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlayerTrainingProgramFindFirstOrThrowArgs} args - Arguments to find a PlayerTrainingProgram
+     * @example
+     * // Get one PlayerTrainingProgram
+     * const playerTrainingProgram = await prisma.playerTrainingProgram.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends PlayerTrainingProgramFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, PlayerTrainingProgramFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__PlayerTrainingProgramClient<$Result.GetResult<Prisma.$PlayerTrainingProgramPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more PlayerTrainingPrograms that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlayerTrainingProgramFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all PlayerTrainingPrograms
+     * const playerTrainingPrograms = await prisma.playerTrainingProgram.findMany()
+     * 
+     * // Get first 10 PlayerTrainingPrograms
+     * const playerTrainingPrograms = await prisma.playerTrainingProgram.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const playerTrainingProgramWithIdOnly = await prisma.playerTrainingProgram.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends PlayerTrainingProgramFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, PlayerTrainingProgramFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PlayerTrainingProgramPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a PlayerTrainingProgram.
+     * @param {PlayerTrainingProgramCreateArgs} args - Arguments to create a PlayerTrainingProgram.
+     * @example
+     * // Create one PlayerTrainingProgram
+     * const PlayerTrainingProgram = await prisma.playerTrainingProgram.create({
+     *   data: {
+     *     // ... data to create a PlayerTrainingProgram
+     *   }
+     * })
+     * 
+    **/
+    create<T extends PlayerTrainingProgramCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, PlayerTrainingProgramCreateArgs<ExtArgs>>
+    ): Prisma__PlayerTrainingProgramClient<$Result.GetResult<Prisma.$PlayerTrainingProgramPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many PlayerTrainingPrograms.
+     *     @param {PlayerTrainingProgramCreateManyArgs} args - Arguments to create many PlayerTrainingPrograms.
+     *     @example
+     *     // Create many PlayerTrainingPrograms
+     *     const playerTrainingProgram = await prisma.playerTrainingProgram.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends PlayerTrainingProgramCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, PlayerTrainingProgramCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a PlayerTrainingProgram.
+     * @param {PlayerTrainingProgramDeleteArgs} args - Arguments to delete one PlayerTrainingProgram.
+     * @example
+     * // Delete one PlayerTrainingProgram
+     * const PlayerTrainingProgram = await prisma.playerTrainingProgram.delete({
+     *   where: {
+     *     // ... filter to delete one PlayerTrainingProgram
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends PlayerTrainingProgramDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, PlayerTrainingProgramDeleteArgs<ExtArgs>>
+    ): Prisma__PlayerTrainingProgramClient<$Result.GetResult<Prisma.$PlayerTrainingProgramPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one PlayerTrainingProgram.
+     * @param {PlayerTrainingProgramUpdateArgs} args - Arguments to update one PlayerTrainingProgram.
+     * @example
+     * // Update one PlayerTrainingProgram
+     * const playerTrainingProgram = await prisma.playerTrainingProgram.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends PlayerTrainingProgramUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, PlayerTrainingProgramUpdateArgs<ExtArgs>>
+    ): Prisma__PlayerTrainingProgramClient<$Result.GetResult<Prisma.$PlayerTrainingProgramPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more PlayerTrainingPrograms.
+     * @param {PlayerTrainingProgramDeleteManyArgs} args - Arguments to filter PlayerTrainingPrograms to delete.
+     * @example
+     * // Delete a few PlayerTrainingPrograms
+     * const { count } = await prisma.playerTrainingProgram.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends PlayerTrainingProgramDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, PlayerTrainingProgramDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PlayerTrainingPrograms.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlayerTrainingProgramUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many PlayerTrainingPrograms
+     * const playerTrainingProgram = await prisma.playerTrainingProgram.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends PlayerTrainingProgramUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, PlayerTrainingProgramUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one PlayerTrainingProgram.
+     * @param {PlayerTrainingProgramUpsertArgs} args - Arguments to update or create a PlayerTrainingProgram.
+     * @example
+     * // Update or create a PlayerTrainingProgram
+     * const playerTrainingProgram = await prisma.playerTrainingProgram.upsert({
+     *   create: {
+     *     // ... data to create a PlayerTrainingProgram
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the PlayerTrainingProgram we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends PlayerTrainingProgramUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, PlayerTrainingProgramUpsertArgs<ExtArgs>>
+    ): Prisma__PlayerTrainingProgramClient<$Result.GetResult<Prisma.$PlayerTrainingProgramPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of PlayerTrainingPrograms.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlayerTrainingProgramCountArgs} args - Arguments to filter PlayerTrainingPrograms to count.
+     * @example
+     * // Count the number of PlayerTrainingPrograms
+     * const count = await prisma.playerTrainingProgram.count({
+     *   where: {
+     *     // ... the filter for the PlayerTrainingPrograms we want to count
+     *   }
+     * })
+    **/
+    count<T extends PlayerTrainingProgramCountArgs>(
+      args?: Subset<T, PlayerTrainingProgramCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PlayerTrainingProgramCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a PlayerTrainingProgram.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlayerTrainingProgramAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PlayerTrainingProgramAggregateArgs>(args: Subset<T, PlayerTrainingProgramAggregateArgs>): Prisma.PrismaPromise<GetPlayerTrainingProgramAggregateType<T>>
+
+    /**
+     * Group by PlayerTrainingProgram.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlayerTrainingProgramGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends PlayerTrainingProgramGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: PlayerTrainingProgramGroupByArgs['orderBy'] }
+        : { orderBy?: PlayerTrainingProgramGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, PlayerTrainingProgramGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPlayerTrainingProgramGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the PlayerTrainingProgram model
+   */
+  readonly fields: PlayerTrainingProgramFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for PlayerTrainingProgram.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__PlayerTrainingProgramClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the PlayerTrainingProgram model
+   */ 
+  interface PlayerTrainingProgramFieldRefs {
+    readonly id: FieldRef<"PlayerTrainingProgram", 'String'>
+    readonly userId: FieldRef<"PlayerTrainingProgram", 'String'>
+    readonly trainingProgramId: FieldRef<"PlayerTrainingProgram", 'String'>
+    readonly isCompleted: FieldRef<"PlayerTrainingProgram", 'Boolean'>
+    readonly isLocked: FieldRef<"PlayerTrainingProgram", 'Boolean'>
+    readonly isPremium: FieldRef<"PlayerTrainingProgram", 'Boolean'>
+    readonly subscriptionType: FieldRef<"PlayerTrainingProgram", 'SubscriptionType'>
+    readonly subscriptionId: FieldRef<"PlayerTrainingProgram", 'String'>
+    readonly dateCompleted: FieldRef<"PlayerTrainingProgram", 'DateTime'>
+    readonly dateCreated: FieldRef<"PlayerTrainingProgram", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+
+  /**
+   * PlayerTrainingProgram findUnique
+   */
+  export type PlayerTrainingProgramFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlayerTrainingProgram
+     */
+    select?: PlayerTrainingProgramSelect<ExtArgs> | null
+    /**
+     * Filter, which PlayerTrainingProgram to fetch.
+     */
+    where: PlayerTrainingProgramWhereUniqueInput
+  }
+
+
+  /**
+   * PlayerTrainingProgram findUniqueOrThrow
+   */
+  export type PlayerTrainingProgramFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlayerTrainingProgram
+     */
+    select?: PlayerTrainingProgramSelect<ExtArgs> | null
+    /**
+     * Filter, which PlayerTrainingProgram to fetch.
+     */
+    where: PlayerTrainingProgramWhereUniqueInput
+  }
+
+
+  /**
+   * PlayerTrainingProgram findFirst
+   */
+  export type PlayerTrainingProgramFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlayerTrainingProgram
+     */
+    select?: PlayerTrainingProgramSelect<ExtArgs> | null
+    /**
+     * Filter, which PlayerTrainingProgram to fetch.
+     */
+    where?: PlayerTrainingProgramWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PlayerTrainingPrograms to fetch.
+     */
+    orderBy?: PlayerTrainingProgramOrderByWithRelationInput | PlayerTrainingProgramOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PlayerTrainingPrograms.
+     */
+    cursor?: PlayerTrainingProgramWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PlayerTrainingPrograms from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PlayerTrainingPrograms.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PlayerTrainingPrograms.
+     */
+    distinct?: PlayerTrainingProgramScalarFieldEnum | PlayerTrainingProgramScalarFieldEnum[]
+  }
+
+
+  /**
+   * PlayerTrainingProgram findFirstOrThrow
+   */
+  export type PlayerTrainingProgramFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlayerTrainingProgram
+     */
+    select?: PlayerTrainingProgramSelect<ExtArgs> | null
+    /**
+     * Filter, which PlayerTrainingProgram to fetch.
+     */
+    where?: PlayerTrainingProgramWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PlayerTrainingPrograms to fetch.
+     */
+    orderBy?: PlayerTrainingProgramOrderByWithRelationInput | PlayerTrainingProgramOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PlayerTrainingPrograms.
+     */
+    cursor?: PlayerTrainingProgramWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PlayerTrainingPrograms from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PlayerTrainingPrograms.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PlayerTrainingPrograms.
+     */
+    distinct?: PlayerTrainingProgramScalarFieldEnum | PlayerTrainingProgramScalarFieldEnum[]
+  }
+
+
+  /**
+   * PlayerTrainingProgram findMany
+   */
+  export type PlayerTrainingProgramFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlayerTrainingProgram
+     */
+    select?: PlayerTrainingProgramSelect<ExtArgs> | null
+    /**
+     * Filter, which PlayerTrainingPrograms to fetch.
+     */
+    where?: PlayerTrainingProgramWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PlayerTrainingPrograms to fetch.
+     */
+    orderBy?: PlayerTrainingProgramOrderByWithRelationInput | PlayerTrainingProgramOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing PlayerTrainingPrograms.
+     */
+    cursor?: PlayerTrainingProgramWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PlayerTrainingPrograms from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PlayerTrainingPrograms.
+     */
+    skip?: number
+    distinct?: PlayerTrainingProgramScalarFieldEnum | PlayerTrainingProgramScalarFieldEnum[]
+  }
+
+
+  /**
+   * PlayerTrainingProgram create
+   */
+  export type PlayerTrainingProgramCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlayerTrainingProgram
+     */
+    select?: PlayerTrainingProgramSelect<ExtArgs> | null
+    /**
+     * The data needed to create a PlayerTrainingProgram.
+     */
+    data: XOR<PlayerTrainingProgramCreateInput, PlayerTrainingProgramUncheckedCreateInput>
+  }
+
+
+  /**
+   * PlayerTrainingProgram createMany
+   */
+  export type PlayerTrainingProgramCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many PlayerTrainingPrograms.
+     */
+    data: PlayerTrainingProgramCreateManyInput | PlayerTrainingProgramCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * PlayerTrainingProgram update
+   */
+  export type PlayerTrainingProgramUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlayerTrainingProgram
+     */
+    select?: PlayerTrainingProgramSelect<ExtArgs> | null
+    /**
+     * The data needed to update a PlayerTrainingProgram.
+     */
+    data: XOR<PlayerTrainingProgramUpdateInput, PlayerTrainingProgramUncheckedUpdateInput>
+    /**
+     * Choose, which PlayerTrainingProgram to update.
+     */
+    where: PlayerTrainingProgramWhereUniqueInput
+  }
+
+
+  /**
+   * PlayerTrainingProgram updateMany
+   */
+  export type PlayerTrainingProgramUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update PlayerTrainingPrograms.
+     */
+    data: XOR<PlayerTrainingProgramUpdateManyMutationInput, PlayerTrainingProgramUncheckedUpdateManyInput>
+    /**
+     * Filter which PlayerTrainingPrograms to update
+     */
+    where?: PlayerTrainingProgramWhereInput
+  }
+
+
+  /**
+   * PlayerTrainingProgram upsert
+   */
+  export type PlayerTrainingProgramUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlayerTrainingProgram
+     */
+    select?: PlayerTrainingProgramSelect<ExtArgs> | null
+    /**
+     * The filter to search for the PlayerTrainingProgram to update in case it exists.
+     */
+    where: PlayerTrainingProgramWhereUniqueInput
+    /**
+     * In case the PlayerTrainingProgram found by the `where` argument doesn't exist, create a new PlayerTrainingProgram with this data.
+     */
+    create: XOR<PlayerTrainingProgramCreateInput, PlayerTrainingProgramUncheckedCreateInput>
+    /**
+     * In case the PlayerTrainingProgram was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<PlayerTrainingProgramUpdateInput, PlayerTrainingProgramUncheckedUpdateInput>
+  }
+
+
+  /**
+   * PlayerTrainingProgram delete
+   */
+  export type PlayerTrainingProgramDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlayerTrainingProgram
+     */
+    select?: PlayerTrainingProgramSelect<ExtArgs> | null
+    /**
+     * Filter which PlayerTrainingProgram to delete.
+     */
+    where: PlayerTrainingProgramWhereUniqueInput
+  }
+
+
+  /**
+   * PlayerTrainingProgram deleteMany
+   */
+  export type PlayerTrainingProgramDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PlayerTrainingPrograms to delete
+     */
+    where?: PlayerTrainingProgramWhereInput
+  }
+
+
+  /**
+   * PlayerTrainingProgram without action
+   */
+  export type PlayerTrainingProgramDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlayerTrainingProgram
+     */
+    select?: PlayerTrainingProgramSelect<ExtArgs> | null
+  }
+
+
+
+  /**
    * Enums
    */
 
@@ -6658,6 +10727,68 @@ export namespace Prisma {
   export type TeamScalarFieldEnum = (typeof TeamScalarFieldEnum)[keyof typeof TeamScalarFieldEnum]
 
 
+  export const PlayerTrainingScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    playerTrainingProgramId: 'playerTrainingProgramId',
+    playerTrainingProgramLevelId: 'playerTrainingProgramLevelId',
+    playerTrainingProgramWeekId: 'playerTrainingProgramWeekId',
+    trainingId: 'trainingId',
+    points: 'points',
+    isCompleted: 'isCompleted',
+    dateCompleted: 'dateCompleted',
+    dateCreated: 'dateCreated',
+    trainingStartTime: 'trainingStartTime',
+    trainingEndTime: 'trainingEndTime',
+    address: 'address'
+  };
+
+  export type PlayerTrainingScalarFieldEnum = (typeof PlayerTrainingScalarFieldEnum)[keyof typeof PlayerTrainingScalarFieldEnum]
+
+
+  export const PlayerTrainingWeekScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    playerTrainingProgramId: 'playerTrainingProgramId',
+    playerTrainingProgramLevelId: 'playerTrainingProgramLevelId',
+    trainingProgramWeekId: 'trainingProgramWeekId',
+    isCompleted: 'isCompleted',
+    dateCompleted: 'dateCompleted',
+    dateCreated: 'dateCreated'
+  };
+
+  export type PlayerTrainingWeekScalarFieldEnum = (typeof PlayerTrainingWeekScalarFieldEnum)[keyof typeof PlayerTrainingWeekScalarFieldEnum]
+
+
+  export const PlayerTrainingLevelScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    playerTrainingProgramId: 'playerTrainingProgramId',
+    trainingProgramLevelId: 'trainingProgramLevelId',
+    isCompleted: 'isCompleted',
+    dateCompleted: 'dateCompleted',
+    dateCreated: 'dateCreated'
+  };
+
+  export type PlayerTrainingLevelScalarFieldEnum = (typeof PlayerTrainingLevelScalarFieldEnum)[keyof typeof PlayerTrainingLevelScalarFieldEnum]
+
+
+  export const PlayerTrainingProgramScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    trainingProgramId: 'trainingProgramId',
+    isCompleted: 'isCompleted',
+    isLocked: 'isLocked',
+    isPremium: 'isPremium',
+    subscriptionType: 'subscriptionType',
+    subscriptionId: 'subscriptionId',
+    dateCompleted: 'dateCompleted',
+    dateCreated: 'dateCreated'
+  };
+
+  export type PlayerTrainingProgramScalarFieldEnum = (typeof PlayerTrainingProgramScalarFieldEnum)[keyof typeof PlayerTrainingProgramScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -6704,6 +10835,20 @@ export namespace Prisma {
    * Reference to a field of type 'Int'
    */
   export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+    
+
+
+  /**
+   * Reference to a field of type 'SubscriptionType'
+   */
+  export type EnumSubscriptionTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SubscriptionType'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float'
+   */
+  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
     
   /**
    * Deep Input Types
@@ -7001,6 +11146,306 @@ export namespace Prisma {
     voided?: BoolWithAggregatesFilter<"Team"> | boolean
     dateCreated?: DateTimeWithAggregatesFilter<"Team"> | Date | string
     dateUpdated?: DateTimeNullableWithAggregatesFilter<"Team"> | Date | string | null
+  }
+
+  export type PlayerTrainingWhereInput = {
+    AND?: PlayerTrainingWhereInput | PlayerTrainingWhereInput[]
+    OR?: PlayerTrainingWhereInput[]
+    NOT?: PlayerTrainingWhereInput | PlayerTrainingWhereInput[]
+    id?: StringFilter<"PlayerTraining"> | string
+    userId?: StringFilter<"PlayerTraining"> | string
+    playerTrainingProgramId?: StringFilter<"PlayerTraining"> | string
+    playerTrainingProgramLevelId?: StringFilter<"PlayerTraining"> | string
+    playerTrainingProgramWeekId?: StringFilter<"PlayerTraining"> | string
+    trainingId?: StringFilter<"PlayerTraining"> | string
+    points?: IntFilter<"PlayerTraining"> | number
+    isCompleted?: BoolFilter<"PlayerTraining"> | boolean
+    dateCompleted?: DateTimeNullableFilter<"PlayerTraining"> | Date | string | null
+    dateCreated?: DateTimeFilter<"PlayerTraining"> | Date | string
+    trainingStartTime?: DateTimeNullableFilter<"PlayerTraining"> | Date | string | null
+    trainingEndTime?: DateTimeNullableFilter<"PlayerTraining"> | Date | string | null
+    address?: StringNullableFilter<"PlayerTraining"> | string | null
+  }
+
+  export type PlayerTrainingOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    playerTrainingProgramId?: SortOrder
+    playerTrainingProgramLevelId?: SortOrder
+    playerTrainingProgramWeekId?: SortOrder
+    trainingId?: SortOrder
+    points?: SortOrder
+    isCompleted?: SortOrder
+    dateCompleted?: SortOrderInput | SortOrder
+    dateCreated?: SortOrder
+    trainingStartTime?: SortOrderInput | SortOrder
+    trainingEndTime?: SortOrderInput | SortOrder
+    address?: SortOrderInput | SortOrder
+  }
+
+  export type PlayerTrainingWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: PlayerTrainingWhereInput | PlayerTrainingWhereInput[]
+    OR?: PlayerTrainingWhereInput[]
+    NOT?: PlayerTrainingWhereInput | PlayerTrainingWhereInput[]
+    userId?: StringFilter<"PlayerTraining"> | string
+    playerTrainingProgramId?: StringFilter<"PlayerTraining"> | string
+    playerTrainingProgramLevelId?: StringFilter<"PlayerTraining"> | string
+    playerTrainingProgramWeekId?: StringFilter<"PlayerTraining"> | string
+    trainingId?: StringFilter<"PlayerTraining"> | string
+    points?: IntFilter<"PlayerTraining"> | number
+    isCompleted?: BoolFilter<"PlayerTraining"> | boolean
+    dateCompleted?: DateTimeNullableFilter<"PlayerTraining"> | Date | string | null
+    dateCreated?: DateTimeFilter<"PlayerTraining"> | Date | string
+    trainingStartTime?: DateTimeNullableFilter<"PlayerTraining"> | Date | string | null
+    trainingEndTime?: DateTimeNullableFilter<"PlayerTraining"> | Date | string | null
+    address?: StringNullableFilter<"PlayerTraining"> | string | null
+  }, "id">
+
+  export type PlayerTrainingOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    playerTrainingProgramId?: SortOrder
+    playerTrainingProgramLevelId?: SortOrder
+    playerTrainingProgramWeekId?: SortOrder
+    trainingId?: SortOrder
+    points?: SortOrder
+    isCompleted?: SortOrder
+    dateCompleted?: SortOrderInput | SortOrder
+    dateCreated?: SortOrder
+    trainingStartTime?: SortOrderInput | SortOrder
+    trainingEndTime?: SortOrderInput | SortOrder
+    address?: SortOrderInput | SortOrder
+    _count?: PlayerTrainingCountOrderByAggregateInput
+    _avg?: PlayerTrainingAvgOrderByAggregateInput
+    _max?: PlayerTrainingMaxOrderByAggregateInput
+    _min?: PlayerTrainingMinOrderByAggregateInput
+    _sum?: PlayerTrainingSumOrderByAggregateInput
+  }
+
+  export type PlayerTrainingScalarWhereWithAggregatesInput = {
+    AND?: PlayerTrainingScalarWhereWithAggregatesInput | PlayerTrainingScalarWhereWithAggregatesInput[]
+    OR?: PlayerTrainingScalarWhereWithAggregatesInput[]
+    NOT?: PlayerTrainingScalarWhereWithAggregatesInput | PlayerTrainingScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"PlayerTraining"> | string
+    userId?: StringWithAggregatesFilter<"PlayerTraining"> | string
+    playerTrainingProgramId?: StringWithAggregatesFilter<"PlayerTraining"> | string
+    playerTrainingProgramLevelId?: StringWithAggregatesFilter<"PlayerTraining"> | string
+    playerTrainingProgramWeekId?: StringWithAggregatesFilter<"PlayerTraining"> | string
+    trainingId?: StringWithAggregatesFilter<"PlayerTraining"> | string
+    points?: IntWithAggregatesFilter<"PlayerTraining"> | number
+    isCompleted?: BoolWithAggregatesFilter<"PlayerTraining"> | boolean
+    dateCompleted?: DateTimeNullableWithAggregatesFilter<"PlayerTraining"> | Date | string | null
+    dateCreated?: DateTimeWithAggregatesFilter<"PlayerTraining"> | Date | string
+    trainingStartTime?: DateTimeNullableWithAggregatesFilter<"PlayerTraining"> | Date | string | null
+    trainingEndTime?: DateTimeNullableWithAggregatesFilter<"PlayerTraining"> | Date | string | null
+    address?: StringNullableWithAggregatesFilter<"PlayerTraining"> | string | null
+  }
+
+  export type PlayerTrainingWeekWhereInput = {
+    AND?: PlayerTrainingWeekWhereInput | PlayerTrainingWeekWhereInput[]
+    OR?: PlayerTrainingWeekWhereInput[]
+    NOT?: PlayerTrainingWeekWhereInput | PlayerTrainingWeekWhereInput[]
+    id?: StringFilter<"PlayerTrainingWeek"> | string
+    userId?: StringFilter<"PlayerTrainingWeek"> | string
+    playerTrainingProgramId?: StringFilter<"PlayerTrainingWeek"> | string
+    playerTrainingProgramLevelId?: StringFilter<"PlayerTrainingWeek"> | string
+    trainingProgramWeekId?: StringFilter<"PlayerTrainingWeek"> | string
+    isCompleted?: BoolFilter<"PlayerTrainingWeek"> | boolean
+    dateCompleted?: DateTimeNullableFilter<"PlayerTrainingWeek"> | Date | string | null
+    dateCreated?: DateTimeFilter<"PlayerTrainingWeek"> | Date | string
+  }
+
+  export type PlayerTrainingWeekOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    playerTrainingProgramId?: SortOrder
+    playerTrainingProgramLevelId?: SortOrder
+    trainingProgramWeekId?: SortOrder
+    isCompleted?: SortOrder
+    dateCompleted?: SortOrderInput | SortOrder
+    dateCreated?: SortOrder
+  }
+
+  export type PlayerTrainingWeekWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: PlayerTrainingWeekWhereInput | PlayerTrainingWeekWhereInput[]
+    OR?: PlayerTrainingWeekWhereInput[]
+    NOT?: PlayerTrainingWeekWhereInput | PlayerTrainingWeekWhereInput[]
+    userId?: StringFilter<"PlayerTrainingWeek"> | string
+    playerTrainingProgramId?: StringFilter<"PlayerTrainingWeek"> | string
+    playerTrainingProgramLevelId?: StringFilter<"PlayerTrainingWeek"> | string
+    trainingProgramWeekId?: StringFilter<"PlayerTrainingWeek"> | string
+    isCompleted?: BoolFilter<"PlayerTrainingWeek"> | boolean
+    dateCompleted?: DateTimeNullableFilter<"PlayerTrainingWeek"> | Date | string | null
+    dateCreated?: DateTimeFilter<"PlayerTrainingWeek"> | Date | string
+  }, "id">
+
+  export type PlayerTrainingWeekOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    playerTrainingProgramId?: SortOrder
+    playerTrainingProgramLevelId?: SortOrder
+    trainingProgramWeekId?: SortOrder
+    isCompleted?: SortOrder
+    dateCompleted?: SortOrderInput | SortOrder
+    dateCreated?: SortOrder
+    _count?: PlayerTrainingWeekCountOrderByAggregateInput
+    _max?: PlayerTrainingWeekMaxOrderByAggregateInput
+    _min?: PlayerTrainingWeekMinOrderByAggregateInput
+  }
+
+  export type PlayerTrainingWeekScalarWhereWithAggregatesInput = {
+    AND?: PlayerTrainingWeekScalarWhereWithAggregatesInput | PlayerTrainingWeekScalarWhereWithAggregatesInput[]
+    OR?: PlayerTrainingWeekScalarWhereWithAggregatesInput[]
+    NOT?: PlayerTrainingWeekScalarWhereWithAggregatesInput | PlayerTrainingWeekScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"PlayerTrainingWeek"> | string
+    userId?: StringWithAggregatesFilter<"PlayerTrainingWeek"> | string
+    playerTrainingProgramId?: StringWithAggregatesFilter<"PlayerTrainingWeek"> | string
+    playerTrainingProgramLevelId?: StringWithAggregatesFilter<"PlayerTrainingWeek"> | string
+    trainingProgramWeekId?: StringWithAggregatesFilter<"PlayerTrainingWeek"> | string
+    isCompleted?: BoolWithAggregatesFilter<"PlayerTrainingWeek"> | boolean
+    dateCompleted?: DateTimeNullableWithAggregatesFilter<"PlayerTrainingWeek"> | Date | string | null
+    dateCreated?: DateTimeWithAggregatesFilter<"PlayerTrainingWeek"> | Date | string
+  }
+
+  export type PlayerTrainingLevelWhereInput = {
+    AND?: PlayerTrainingLevelWhereInput | PlayerTrainingLevelWhereInput[]
+    OR?: PlayerTrainingLevelWhereInput[]
+    NOT?: PlayerTrainingLevelWhereInput | PlayerTrainingLevelWhereInput[]
+    id?: StringFilter<"PlayerTrainingLevel"> | string
+    userId?: StringFilter<"PlayerTrainingLevel"> | string
+    playerTrainingProgramId?: StringFilter<"PlayerTrainingLevel"> | string
+    trainingProgramLevelId?: StringFilter<"PlayerTrainingLevel"> | string
+    isCompleted?: BoolFilter<"PlayerTrainingLevel"> | boolean
+    dateCompleted?: DateTimeNullableFilter<"PlayerTrainingLevel"> | Date | string | null
+    dateCreated?: DateTimeFilter<"PlayerTrainingLevel"> | Date | string
+  }
+
+  export type PlayerTrainingLevelOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    playerTrainingProgramId?: SortOrder
+    trainingProgramLevelId?: SortOrder
+    isCompleted?: SortOrder
+    dateCompleted?: SortOrderInput | SortOrder
+    dateCreated?: SortOrder
+  }
+
+  export type PlayerTrainingLevelWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: PlayerTrainingLevelWhereInput | PlayerTrainingLevelWhereInput[]
+    OR?: PlayerTrainingLevelWhereInput[]
+    NOT?: PlayerTrainingLevelWhereInput | PlayerTrainingLevelWhereInput[]
+    userId?: StringFilter<"PlayerTrainingLevel"> | string
+    playerTrainingProgramId?: StringFilter<"PlayerTrainingLevel"> | string
+    trainingProgramLevelId?: StringFilter<"PlayerTrainingLevel"> | string
+    isCompleted?: BoolFilter<"PlayerTrainingLevel"> | boolean
+    dateCompleted?: DateTimeNullableFilter<"PlayerTrainingLevel"> | Date | string | null
+    dateCreated?: DateTimeFilter<"PlayerTrainingLevel"> | Date | string
+  }, "id">
+
+  export type PlayerTrainingLevelOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    playerTrainingProgramId?: SortOrder
+    trainingProgramLevelId?: SortOrder
+    isCompleted?: SortOrder
+    dateCompleted?: SortOrderInput | SortOrder
+    dateCreated?: SortOrder
+    _count?: PlayerTrainingLevelCountOrderByAggregateInput
+    _max?: PlayerTrainingLevelMaxOrderByAggregateInput
+    _min?: PlayerTrainingLevelMinOrderByAggregateInput
+  }
+
+  export type PlayerTrainingLevelScalarWhereWithAggregatesInput = {
+    AND?: PlayerTrainingLevelScalarWhereWithAggregatesInput | PlayerTrainingLevelScalarWhereWithAggregatesInput[]
+    OR?: PlayerTrainingLevelScalarWhereWithAggregatesInput[]
+    NOT?: PlayerTrainingLevelScalarWhereWithAggregatesInput | PlayerTrainingLevelScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"PlayerTrainingLevel"> | string
+    userId?: StringWithAggregatesFilter<"PlayerTrainingLevel"> | string
+    playerTrainingProgramId?: StringWithAggregatesFilter<"PlayerTrainingLevel"> | string
+    trainingProgramLevelId?: StringWithAggregatesFilter<"PlayerTrainingLevel"> | string
+    isCompleted?: BoolWithAggregatesFilter<"PlayerTrainingLevel"> | boolean
+    dateCompleted?: DateTimeNullableWithAggregatesFilter<"PlayerTrainingLevel"> | Date | string | null
+    dateCreated?: DateTimeWithAggregatesFilter<"PlayerTrainingLevel"> | Date | string
+  }
+
+  export type PlayerTrainingProgramWhereInput = {
+    AND?: PlayerTrainingProgramWhereInput | PlayerTrainingProgramWhereInput[]
+    OR?: PlayerTrainingProgramWhereInput[]
+    NOT?: PlayerTrainingProgramWhereInput | PlayerTrainingProgramWhereInput[]
+    id?: StringFilter<"PlayerTrainingProgram"> | string
+    userId?: StringFilter<"PlayerTrainingProgram"> | string
+    trainingProgramId?: StringFilter<"PlayerTrainingProgram"> | string
+    isCompleted?: BoolFilter<"PlayerTrainingProgram"> | boolean
+    isLocked?: BoolFilter<"PlayerTrainingProgram"> | boolean
+    isPremium?: BoolFilter<"PlayerTrainingProgram"> | boolean
+    subscriptionType?: EnumSubscriptionTypeFilter<"PlayerTrainingProgram"> | $Enums.SubscriptionType
+    subscriptionId?: StringNullableFilter<"PlayerTrainingProgram"> | string | null
+    dateCompleted?: DateTimeNullableFilter<"PlayerTrainingProgram"> | Date | string | null
+    dateCreated?: DateTimeFilter<"PlayerTrainingProgram"> | Date | string
+  }
+
+  export type PlayerTrainingProgramOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    trainingProgramId?: SortOrder
+    isCompleted?: SortOrder
+    isLocked?: SortOrder
+    isPremium?: SortOrder
+    subscriptionType?: SortOrder
+    subscriptionId?: SortOrderInput | SortOrder
+    dateCompleted?: SortOrderInput | SortOrder
+    dateCreated?: SortOrder
+  }
+
+  export type PlayerTrainingProgramWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: PlayerTrainingProgramWhereInput | PlayerTrainingProgramWhereInput[]
+    OR?: PlayerTrainingProgramWhereInput[]
+    NOT?: PlayerTrainingProgramWhereInput | PlayerTrainingProgramWhereInput[]
+    userId?: StringFilter<"PlayerTrainingProgram"> | string
+    trainingProgramId?: StringFilter<"PlayerTrainingProgram"> | string
+    isCompleted?: BoolFilter<"PlayerTrainingProgram"> | boolean
+    isLocked?: BoolFilter<"PlayerTrainingProgram"> | boolean
+    isPremium?: BoolFilter<"PlayerTrainingProgram"> | boolean
+    subscriptionType?: EnumSubscriptionTypeFilter<"PlayerTrainingProgram"> | $Enums.SubscriptionType
+    subscriptionId?: StringNullableFilter<"PlayerTrainingProgram"> | string | null
+    dateCompleted?: DateTimeNullableFilter<"PlayerTrainingProgram"> | Date | string | null
+    dateCreated?: DateTimeFilter<"PlayerTrainingProgram"> | Date | string
+  }, "id">
+
+  export type PlayerTrainingProgramOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    trainingProgramId?: SortOrder
+    isCompleted?: SortOrder
+    isLocked?: SortOrder
+    isPremium?: SortOrder
+    subscriptionType?: SortOrder
+    subscriptionId?: SortOrderInput | SortOrder
+    dateCompleted?: SortOrderInput | SortOrder
+    dateCreated?: SortOrder
+    _count?: PlayerTrainingProgramCountOrderByAggregateInput
+    _max?: PlayerTrainingProgramMaxOrderByAggregateInput
+    _min?: PlayerTrainingProgramMinOrderByAggregateInput
+  }
+
+  export type PlayerTrainingProgramScalarWhereWithAggregatesInput = {
+    AND?: PlayerTrainingProgramScalarWhereWithAggregatesInput | PlayerTrainingProgramScalarWhereWithAggregatesInput[]
+    OR?: PlayerTrainingProgramScalarWhereWithAggregatesInput[]
+    NOT?: PlayerTrainingProgramScalarWhereWithAggregatesInput | PlayerTrainingProgramScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"PlayerTrainingProgram"> | string
+    userId?: StringWithAggregatesFilter<"PlayerTrainingProgram"> | string
+    trainingProgramId?: StringWithAggregatesFilter<"PlayerTrainingProgram"> | string
+    isCompleted?: BoolWithAggregatesFilter<"PlayerTrainingProgram"> | boolean
+    isLocked?: BoolWithAggregatesFilter<"PlayerTrainingProgram"> | boolean
+    isPremium?: BoolWithAggregatesFilter<"PlayerTrainingProgram"> | boolean
+    subscriptionType?: EnumSubscriptionTypeWithAggregatesFilter<"PlayerTrainingProgram"> | $Enums.SubscriptionType
+    subscriptionId?: StringNullableWithAggregatesFilter<"PlayerTrainingProgram"> | string | null
+    dateCompleted?: DateTimeNullableWithAggregatesFilter<"PlayerTrainingProgram"> | Date | string | null
+    dateCreated?: DateTimeWithAggregatesFilter<"PlayerTrainingProgram"> | Date | string
   }
 
   export type UserCreateInput = {
@@ -7307,6 +11752,356 @@ export namespace Prisma {
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
+  export type PlayerTrainingCreateInput = {
+    id: string
+    userId: string
+    playerTrainingProgramId: string
+    playerTrainingProgramLevelId: string
+    playerTrainingProgramWeekId: string
+    trainingId: string
+    points: number
+    isCompleted: boolean
+    dateCompleted?: Date | string | null
+    dateCreated?: Date | string
+    trainingStartTime?: Date | string | null
+    trainingEndTime?: Date | string | null
+    address?: string | null
+  }
+
+  export type PlayerTrainingUncheckedCreateInput = {
+    id: string
+    userId: string
+    playerTrainingProgramId: string
+    playerTrainingProgramLevelId: string
+    playerTrainingProgramWeekId: string
+    trainingId: string
+    points: number
+    isCompleted: boolean
+    dateCompleted?: Date | string | null
+    dateCreated?: Date | string
+    trainingStartTime?: Date | string | null
+    trainingEndTime?: Date | string | null
+    address?: string | null
+  }
+
+  export type PlayerTrainingUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    playerTrainingProgramId?: StringFieldUpdateOperationsInput | string
+    playerTrainingProgramLevelId?: StringFieldUpdateOperationsInput | string
+    playerTrainingProgramWeekId?: StringFieldUpdateOperationsInput | string
+    trainingId?: StringFieldUpdateOperationsInput | string
+    points?: IntFieldUpdateOperationsInput | number
+    isCompleted?: BoolFieldUpdateOperationsInput | boolean
+    dateCompleted?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
+    trainingStartTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    trainingEndTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type PlayerTrainingUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    playerTrainingProgramId?: StringFieldUpdateOperationsInput | string
+    playerTrainingProgramLevelId?: StringFieldUpdateOperationsInput | string
+    playerTrainingProgramWeekId?: StringFieldUpdateOperationsInput | string
+    trainingId?: StringFieldUpdateOperationsInput | string
+    points?: IntFieldUpdateOperationsInput | number
+    isCompleted?: BoolFieldUpdateOperationsInput | boolean
+    dateCompleted?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
+    trainingStartTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    trainingEndTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type PlayerTrainingCreateManyInput = {
+    id: string
+    userId: string
+    playerTrainingProgramId: string
+    playerTrainingProgramLevelId: string
+    playerTrainingProgramWeekId: string
+    trainingId: string
+    points: number
+    isCompleted: boolean
+    dateCompleted?: Date | string | null
+    dateCreated?: Date | string
+    trainingStartTime?: Date | string | null
+    trainingEndTime?: Date | string | null
+    address?: string | null
+  }
+
+  export type PlayerTrainingUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    playerTrainingProgramId?: StringFieldUpdateOperationsInput | string
+    playerTrainingProgramLevelId?: StringFieldUpdateOperationsInput | string
+    playerTrainingProgramWeekId?: StringFieldUpdateOperationsInput | string
+    trainingId?: StringFieldUpdateOperationsInput | string
+    points?: IntFieldUpdateOperationsInput | number
+    isCompleted?: BoolFieldUpdateOperationsInput | boolean
+    dateCompleted?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
+    trainingStartTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    trainingEndTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type PlayerTrainingUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    playerTrainingProgramId?: StringFieldUpdateOperationsInput | string
+    playerTrainingProgramLevelId?: StringFieldUpdateOperationsInput | string
+    playerTrainingProgramWeekId?: StringFieldUpdateOperationsInput | string
+    trainingId?: StringFieldUpdateOperationsInput | string
+    points?: IntFieldUpdateOperationsInput | number
+    isCompleted?: BoolFieldUpdateOperationsInput | boolean
+    dateCompleted?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
+    trainingStartTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    trainingEndTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type PlayerTrainingWeekCreateInput = {
+    id: string
+    userId: string
+    playerTrainingProgramId: string
+    playerTrainingProgramLevelId: string
+    trainingProgramWeekId: string
+    isCompleted: boolean
+    dateCompleted?: Date | string | null
+    dateCreated?: Date | string
+  }
+
+  export type PlayerTrainingWeekUncheckedCreateInput = {
+    id: string
+    userId: string
+    playerTrainingProgramId: string
+    playerTrainingProgramLevelId: string
+    trainingProgramWeekId: string
+    isCompleted: boolean
+    dateCompleted?: Date | string | null
+    dateCreated?: Date | string
+  }
+
+  export type PlayerTrainingWeekUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    playerTrainingProgramId?: StringFieldUpdateOperationsInput | string
+    playerTrainingProgramLevelId?: StringFieldUpdateOperationsInput | string
+    trainingProgramWeekId?: StringFieldUpdateOperationsInput | string
+    isCompleted?: BoolFieldUpdateOperationsInput | boolean
+    dateCompleted?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PlayerTrainingWeekUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    playerTrainingProgramId?: StringFieldUpdateOperationsInput | string
+    playerTrainingProgramLevelId?: StringFieldUpdateOperationsInput | string
+    trainingProgramWeekId?: StringFieldUpdateOperationsInput | string
+    isCompleted?: BoolFieldUpdateOperationsInput | boolean
+    dateCompleted?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PlayerTrainingWeekCreateManyInput = {
+    id: string
+    userId: string
+    playerTrainingProgramId: string
+    playerTrainingProgramLevelId: string
+    trainingProgramWeekId: string
+    isCompleted: boolean
+    dateCompleted?: Date | string | null
+    dateCreated?: Date | string
+  }
+
+  export type PlayerTrainingWeekUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    playerTrainingProgramId?: StringFieldUpdateOperationsInput | string
+    playerTrainingProgramLevelId?: StringFieldUpdateOperationsInput | string
+    trainingProgramWeekId?: StringFieldUpdateOperationsInput | string
+    isCompleted?: BoolFieldUpdateOperationsInput | boolean
+    dateCompleted?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PlayerTrainingWeekUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    playerTrainingProgramId?: StringFieldUpdateOperationsInput | string
+    playerTrainingProgramLevelId?: StringFieldUpdateOperationsInput | string
+    trainingProgramWeekId?: StringFieldUpdateOperationsInput | string
+    isCompleted?: BoolFieldUpdateOperationsInput | boolean
+    dateCompleted?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PlayerTrainingLevelCreateInput = {
+    id: string
+    userId: string
+    playerTrainingProgramId: string
+    trainingProgramLevelId: string
+    isCompleted: boolean
+    dateCompleted?: Date | string | null
+    dateCreated?: Date | string
+  }
+
+  export type PlayerTrainingLevelUncheckedCreateInput = {
+    id: string
+    userId: string
+    playerTrainingProgramId: string
+    trainingProgramLevelId: string
+    isCompleted: boolean
+    dateCompleted?: Date | string | null
+    dateCreated?: Date | string
+  }
+
+  export type PlayerTrainingLevelUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    playerTrainingProgramId?: StringFieldUpdateOperationsInput | string
+    trainingProgramLevelId?: StringFieldUpdateOperationsInput | string
+    isCompleted?: BoolFieldUpdateOperationsInput | boolean
+    dateCompleted?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PlayerTrainingLevelUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    playerTrainingProgramId?: StringFieldUpdateOperationsInput | string
+    trainingProgramLevelId?: StringFieldUpdateOperationsInput | string
+    isCompleted?: BoolFieldUpdateOperationsInput | boolean
+    dateCompleted?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PlayerTrainingLevelCreateManyInput = {
+    id: string
+    userId: string
+    playerTrainingProgramId: string
+    trainingProgramLevelId: string
+    isCompleted: boolean
+    dateCompleted?: Date | string | null
+    dateCreated?: Date | string
+  }
+
+  export type PlayerTrainingLevelUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    playerTrainingProgramId?: StringFieldUpdateOperationsInput | string
+    trainingProgramLevelId?: StringFieldUpdateOperationsInput | string
+    isCompleted?: BoolFieldUpdateOperationsInput | boolean
+    dateCompleted?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PlayerTrainingLevelUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    playerTrainingProgramId?: StringFieldUpdateOperationsInput | string
+    trainingProgramLevelId?: StringFieldUpdateOperationsInput | string
+    isCompleted?: BoolFieldUpdateOperationsInput | boolean
+    dateCompleted?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PlayerTrainingProgramCreateInput = {
+    id: string
+    userId: string
+    trainingProgramId: string
+    isCompleted: boolean
+    isLocked: boolean
+    isPremium: boolean
+    subscriptionType: $Enums.SubscriptionType
+    subscriptionId?: string | null
+    dateCompleted?: Date | string | null
+    dateCreated?: Date | string
+  }
+
+  export type PlayerTrainingProgramUncheckedCreateInput = {
+    id: string
+    userId: string
+    trainingProgramId: string
+    isCompleted: boolean
+    isLocked: boolean
+    isPremium: boolean
+    subscriptionType: $Enums.SubscriptionType
+    subscriptionId?: string | null
+    dateCompleted?: Date | string | null
+    dateCreated?: Date | string
+  }
+
+  export type PlayerTrainingProgramUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    trainingProgramId?: StringFieldUpdateOperationsInput | string
+    isCompleted?: BoolFieldUpdateOperationsInput | boolean
+    isLocked?: BoolFieldUpdateOperationsInput | boolean
+    isPremium?: BoolFieldUpdateOperationsInput | boolean
+    subscriptionType?: EnumSubscriptionTypeFieldUpdateOperationsInput | $Enums.SubscriptionType
+    subscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
+    dateCompleted?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PlayerTrainingProgramUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    trainingProgramId?: StringFieldUpdateOperationsInput | string
+    isCompleted?: BoolFieldUpdateOperationsInput | boolean
+    isLocked?: BoolFieldUpdateOperationsInput | boolean
+    isPremium?: BoolFieldUpdateOperationsInput | boolean
+    subscriptionType?: EnumSubscriptionTypeFieldUpdateOperationsInput | $Enums.SubscriptionType
+    subscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
+    dateCompleted?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PlayerTrainingProgramCreateManyInput = {
+    id: string
+    userId: string
+    trainingProgramId: string
+    isCompleted: boolean
+    isLocked: boolean
+    isPremium: boolean
+    subscriptionType: $Enums.SubscriptionType
+    subscriptionId?: string | null
+    dateCompleted?: Date | string | null
+    dateCreated?: Date | string
+  }
+
+  export type PlayerTrainingProgramUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    trainingProgramId?: StringFieldUpdateOperationsInput | string
+    isCompleted?: BoolFieldUpdateOperationsInput | boolean
+    isLocked?: BoolFieldUpdateOperationsInput | boolean
+    isPremium?: BoolFieldUpdateOperationsInput | boolean
+    subscriptionType?: EnumSubscriptionTypeFieldUpdateOperationsInput | $Enums.SubscriptionType
+    subscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
+    dateCompleted?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PlayerTrainingProgramUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    trainingProgramId?: StringFieldUpdateOperationsInput | string
+    isCompleted?: BoolFieldUpdateOperationsInput | boolean
+    isLocked?: BoolFieldUpdateOperationsInput | boolean
+    isPremium?: BoolFieldUpdateOperationsInput | boolean
+    subscriptionType?: EnumSubscriptionTypeFieldUpdateOperationsInput | $Enums.SubscriptionType
+    subscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
+    dateCompleted?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[]
@@ -7581,6 +12376,208 @@ export namespace Prisma {
     _max?: NestedBoolFilter<$PrismaModel>
   }
 
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type PlayerTrainingCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    playerTrainingProgramId?: SortOrder
+    playerTrainingProgramLevelId?: SortOrder
+    playerTrainingProgramWeekId?: SortOrder
+    trainingId?: SortOrder
+    points?: SortOrder
+    isCompleted?: SortOrder
+    dateCompleted?: SortOrder
+    dateCreated?: SortOrder
+    trainingStartTime?: SortOrder
+    trainingEndTime?: SortOrder
+    address?: SortOrder
+  }
+
+  export type PlayerTrainingAvgOrderByAggregateInput = {
+    points?: SortOrder
+  }
+
+  export type PlayerTrainingMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    playerTrainingProgramId?: SortOrder
+    playerTrainingProgramLevelId?: SortOrder
+    playerTrainingProgramWeekId?: SortOrder
+    trainingId?: SortOrder
+    points?: SortOrder
+    isCompleted?: SortOrder
+    dateCompleted?: SortOrder
+    dateCreated?: SortOrder
+    trainingStartTime?: SortOrder
+    trainingEndTime?: SortOrder
+    address?: SortOrder
+  }
+
+  export type PlayerTrainingMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    playerTrainingProgramId?: SortOrder
+    playerTrainingProgramLevelId?: SortOrder
+    playerTrainingProgramWeekId?: SortOrder
+    trainingId?: SortOrder
+    points?: SortOrder
+    isCompleted?: SortOrder
+    dateCompleted?: SortOrder
+    dateCreated?: SortOrder
+    trainingStartTime?: SortOrder
+    trainingEndTime?: SortOrder
+    address?: SortOrder
+  }
+
+  export type PlayerTrainingSumOrderByAggregateInput = {
+    points?: SortOrder
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type PlayerTrainingWeekCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    playerTrainingProgramId?: SortOrder
+    playerTrainingProgramLevelId?: SortOrder
+    trainingProgramWeekId?: SortOrder
+    isCompleted?: SortOrder
+    dateCompleted?: SortOrder
+    dateCreated?: SortOrder
+  }
+
+  export type PlayerTrainingWeekMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    playerTrainingProgramId?: SortOrder
+    playerTrainingProgramLevelId?: SortOrder
+    trainingProgramWeekId?: SortOrder
+    isCompleted?: SortOrder
+    dateCompleted?: SortOrder
+    dateCreated?: SortOrder
+  }
+
+  export type PlayerTrainingWeekMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    playerTrainingProgramId?: SortOrder
+    playerTrainingProgramLevelId?: SortOrder
+    trainingProgramWeekId?: SortOrder
+    isCompleted?: SortOrder
+    dateCompleted?: SortOrder
+    dateCreated?: SortOrder
+  }
+
+  export type PlayerTrainingLevelCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    playerTrainingProgramId?: SortOrder
+    trainingProgramLevelId?: SortOrder
+    isCompleted?: SortOrder
+    dateCompleted?: SortOrder
+    dateCreated?: SortOrder
+  }
+
+  export type PlayerTrainingLevelMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    playerTrainingProgramId?: SortOrder
+    trainingProgramLevelId?: SortOrder
+    isCompleted?: SortOrder
+    dateCompleted?: SortOrder
+    dateCreated?: SortOrder
+  }
+
+  export type PlayerTrainingLevelMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    playerTrainingProgramId?: SortOrder
+    trainingProgramLevelId?: SortOrder
+    isCompleted?: SortOrder
+    dateCompleted?: SortOrder
+    dateCreated?: SortOrder
+  }
+
+  export type EnumSubscriptionTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.SubscriptionType | EnumSubscriptionTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.SubscriptionType[]
+    notIn?: $Enums.SubscriptionType[]
+    not?: NestedEnumSubscriptionTypeFilter<$PrismaModel> | $Enums.SubscriptionType
+  }
+
+  export type PlayerTrainingProgramCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    trainingProgramId?: SortOrder
+    isCompleted?: SortOrder
+    isLocked?: SortOrder
+    isPremium?: SortOrder
+    subscriptionType?: SortOrder
+    subscriptionId?: SortOrder
+    dateCompleted?: SortOrder
+    dateCreated?: SortOrder
+  }
+
+  export type PlayerTrainingProgramMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    trainingProgramId?: SortOrder
+    isCompleted?: SortOrder
+    isLocked?: SortOrder
+    isPremium?: SortOrder
+    subscriptionType?: SortOrder
+    subscriptionId?: SortOrder
+    dateCompleted?: SortOrder
+    dateCreated?: SortOrder
+  }
+
+  export type PlayerTrainingProgramMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    trainingProgramId?: SortOrder
+    isCompleted?: SortOrder
+    isLocked?: SortOrder
+    isPremium?: SortOrder
+    subscriptionType?: SortOrder
+    subscriptionId?: SortOrder
+    dateCompleted?: SortOrder
+    dateCreated?: SortOrder
+  }
+
+  export type EnumSubscriptionTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.SubscriptionType | EnumSubscriptionTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.SubscriptionType[]
+    notIn?: $Enums.SubscriptionType[]
+    not?: NestedEnumSubscriptionTypeWithAggregatesFilter<$PrismaModel> | $Enums.SubscriptionType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumSubscriptionTypeFilter<$PrismaModel>
+    _max?: NestedEnumSubscriptionTypeFilter<$PrismaModel>
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -7655,6 +12652,18 @@ export namespace Prisma {
     upsert?: ClubUpsertWithoutTeamsInput
     connect?: ClubWhereUniqueInput
     update?: XOR<XOR<ClubUpdateToOneWithWhereWithoutTeamsInput, ClubUpdateWithoutTeamsInput>, ClubUncheckedUpdateWithoutTeamsInput>
+  }
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type EnumSubscriptionTypeFieldUpdateOperationsInput = {
+    set?: $Enums.SubscriptionType
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -7802,6 +12811,50 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedBoolFilter<$PrismaModel>
     _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type NestedEnumSubscriptionTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.SubscriptionType | EnumSubscriptionTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.SubscriptionType[]
+    notIn?: $Enums.SubscriptionType[]
+    not?: NestedEnumSubscriptionTypeFilter<$PrismaModel> | $Enums.SubscriptionType
+  }
+
+  export type NestedEnumSubscriptionTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.SubscriptionType | EnumSubscriptionTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.SubscriptionType[]
+    notIn?: $Enums.SubscriptionType[]
+    not?: NestedEnumSubscriptionTypeWithAggregatesFilter<$PrismaModel> | $Enums.SubscriptionType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumSubscriptionTypeFilter<$PrismaModel>
+    _max?: NestedEnumSubscriptionTypeFilter<$PrismaModel>
   }
 
   export type TeamCreateWithoutClubInput = {
@@ -7967,6 +13020,22 @@ export namespace Prisma {
      * @deprecated Use TeamDefaultArgs instead
      */
     export type TeamArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = TeamDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use PlayerTrainingDefaultArgs instead
+     */
+    export type PlayerTrainingArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = PlayerTrainingDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use PlayerTrainingWeekDefaultArgs instead
+     */
+    export type PlayerTrainingWeekArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = PlayerTrainingWeekDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use PlayerTrainingLevelDefaultArgs instead
+     */
+    export type PlayerTrainingLevelArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = PlayerTrainingLevelDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use PlayerTrainingProgramDefaultArgs instead
+     */
+    export type PlayerTrainingProgramArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = PlayerTrainingProgramDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany
