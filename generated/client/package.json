@@ -1,5 +1,5 @@
 {
-  "name": "prisma-client-f621c50b66badbce660208760c2d16a50c3e73d3e3e25bcf85f8cbf6137cc221",
+  "name": "prisma-client-ab36c1c07ec860422fb1d0597aa7679d5d8eec97685bd9d20166c17197a861a4",
   "main": "index.js",
   "types": "index.d.ts",
   "browser": "index-browser.js",
@@ -7,22 +7,22 @@
     "./package.json": "./package.json",
     ".": {
       "require": {
-        "types": "./default.d.ts",
-        "node": "./default.js",
+        "node": "./index.js",
         "edge-light": "./wasm.js",
         "workerd": "./wasm.js",
         "worker": "./wasm.js",
-        "browser": "./index-browser.js"
+        "browser": "./index-browser.js",
+        "default": "./index.js"
       },
       "import": {
-        "types": "./default.d.ts",
-        "node": "./default.js",
+        "node": "./index.js",
         "edge-light": "./wasm.js",
         "workerd": "./wasm.js",
         "worker": "./wasm.js",
-        "browser": "./index-browser.js"
+        "browser": "./index-browser.js",
+        "default": "./index.js"
       },
-      "default": "./default.js"
+      "default": "./index.js"
     },
     "./edge": {
       "types": "./edge.d.ts",
@@ -37,16 +37,16 @@
       "default": "./extension.js"
     },
     "./index-browser": {
-      "types": "./default.d.ts",
+      "types": "./index.d.ts",
       "require": "./index-browser.js",
       "import": "./index-browser.js",
       "default": "./index-browser.js"
     },
     "./index": {
-      "types": "./default.d.ts",
-      "require": "./default.js",
-      "import": "./default.js",
-      "default": "./default.js"
+      "types": "./index.d.ts",
+      "require": "./index.js",
+      "import": "./index.js",
+      "default": "./index.js"
     },
     "./wasm": {
       "types": "./wasm.d.ts",
@@ -66,8 +66,13 @@
       "import": "./runtime/binary.js",
       "default": "./runtime/binary.js"
     },
+    "./generator-build": {
+      "require": "./generator-build/index.js",
+      "import": "./generator-build/index.js",
+      "default": "./generator-build/index.js"
+    },
     "./*": "./*"
   },
-  "version": "5.9.1",
+  "version": "5.11.0",
   "sideEffects": false
 }

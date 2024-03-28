@@ -41,8 +41,6 @@ model LinkedAccounts {
     externalAccountId   String
 }
 
-// ---------------------------- General Service ------------------------------------- //
-
 // Club Table defination
 model Club {
     id          String    @id
@@ -52,6 +50,7 @@ model Club {
     teams       Team[]
 }
 
+// Team Table defination
 model Team {
     id          String    @id
     display     String
@@ -62,7 +61,76 @@ model Team {
     dateUpdated DateTime?
 }
 
+// ---------------------------- Training Program Service ------------------------------------- //
+// PlayerTraining Table defination
+model PlayerTraining {
+    id                           String    @id
+    userId                       String
+    //Keys of the player training program
+    playerTrainingProgramId      String
+    playerTrainingProgramLevelId String
+    playerTrainingProgramWeekId  String
+    //Actual keys of the training program
+    trainingId                   String
+    points                       Int
+    isCompleted                  Boolean
+    dateCompleted                DateTime?
+    dateCreated                  DateTime  @default(now())
+    trainingStartTime            DateTime?
+    trainingEndTime              DateTime?
+    address                      String?
+}
+
+// PlayerTrainingWeek Table defination
+model PlayerTrainingWeek {
+    id                           String    @id
+    userId                       String
+    //Keys of the player training program
+    playerTrainingProgramId      String
+    playerTrainingProgramLevelId String
+    //Actual keys of the training program
+    trainingProgramWeekId        String
+    isCompleted                  Boolean
+    dateCompleted                DateTime?
+    dateCreated                  DateTime  @default(now())
+}
+
+// PlayerTrainingLevel Table defination
+model PlayerTrainingLevel {
+    id                      String    @id
+    userId                  String
+    //Keys of the player training program
+    playerTrainingProgramId String
+    //Actual keys of the training program
+    trainingProgramLevelId  String
+    isCompleted             Boolean
+    dateCompleted           DateTime?
+    dateCreated             DateTime  @default(now())
+}
+
+// SubscriptionType Enum defination
+enum SubscriptionType {
+    RECURRING
+    ONE_OFF
+    FREE
+    CLUB
+}
+
+// PlayerTrainingProgram Table defination
+model PlayerTrainingProgram {
+    id                String           @id
+    userId            String
+    trainingProgramId String
+    isCompleted       Boolean
+    isLocked          Boolean
+    isPremium         Boolean
+    subscriptionType  SubscriptionType
+    subscriptionId    String?
+    dateCompleted     DateTime?
+    dateCreated       DateTime         @default(now())
+}
+
 datasource db {
     provider = "mysql"
-    url      = env("DATABASE_URL")
+    url      = "mysql://admin:test1234@database-1.czwkbo5ujv8s.eu-north-1.rds.amazonaws.com:3306/smaStage"
 }
