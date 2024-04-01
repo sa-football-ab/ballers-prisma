@@ -132,5 +132,5 @@ model PlayerTrainingProgram {
 
 datasource db {
     provider = "mysql"
-    url      = "mysql://admin:test1234@database-1.czwkbo5ujv8s.eu-north-1.rds.amazonaws.com:3306/smaStage"
+    url      = env("DATABASE_URL")
 }
