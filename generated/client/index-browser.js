@@ -168,7 +168,7 @@ exports.Prisma.PlayerTrainingScalarFieldEnum = {
   playerTrainingProgramId: 'playerTrainingProgramId',
   playerTrainingProgramLevelId: 'playerTrainingProgramLevelId',
   playerTrainingProgramWeekId: 'playerTrainingProgramWeekId',
-  trainingId: 'trainingId',
+  trainingIndex: 'trainingIndex',
   points: 'points',
   isCompleted: 'isCompleted',
   dateCompleted: 'dateCompleted',
@@ -183,7 +183,7 @@ exports.Prisma.PlayerTrainingWeekScalarFieldEnum = {
   userId: 'userId',
   playerTrainingProgramId: 'playerTrainingProgramId',
   playerTrainingProgramLevelId: 'playerTrainingProgramLevelId',
-  trainingProgramWeekId: 'trainingProgramWeekId',
+  trainingProgramWeekIndex: 'trainingProgramWeekIndex',
   isCompleted: 'isCompleted',
   dateCompleted: 'dateCompleted',
   dateCreated: 'dateCreated'
@@ -193,7 +193,7 @@ exports.Prisma.PlayerTrainingLevelScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
   playerTrainingProgramId: 'playerTrainingProgramId',
-  trainingProgramLevelId: 'trainingProgramLevelId',
+  trainingProgramLevelIndex: 'trainingProgramLevelIndex',
   isCompleted: 'isCompleted',
   dateCompleted: 'dateCompleted',
   dateCreated: 'dateCreated'

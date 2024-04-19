@@ -6953,10 +6953,12 @@ export namespace Prisma {
   }
 
   export type PlayerTrainingAvgAggregateOutputType = {
+    trainingIndex: number | null
     points: number | null
   }
 
   export type PlayerTrainingSumAggregateOutputType = {
+    trainingIndex: number | null
     points: number | null
   }
 
@@ -6966,7 +6968,7 @@ export namespace Prisma {
     playerTrainingProgramId: string | null
     playerTrainingProgramLevelId: string | null
     playerTrainingProgramWeekId: string | null
-    trainingId: string | null
+    trainingIndex: number | null
     points: number | null
     isCompleted: boolean | null
     dateCompleted: Date | null
@@ -6982,7 +6984,7 @@ export namespace Prisma {
     playerTrainingProgramId: string | null
     playerTrainingProgramLevelId: string | null
     playerTrainingProgramWeekId: string | null
-    trainingId: string | null
+    trainingIndex: number | null
     points: number | null
     isCompleted: boolean | null
     dateCompleted: Date | null
@@ -6998,7 +7000,7 @@ export namespace Prisma {
     playerTrainingProgramId: number
     playerTrainingProgramLevelId: number
     playerTrainingProgramWeekId: number
-    trainingId: number
+    trainingIndex: number
     points: number
     isCompleted: number
     dateCompleted: number
@@ -7011,10 +7013,12 @@ export namespace Prisma {
 
 
   export type PlayerTrainingAvgAggregateInputType = {
+    trainingIndex?: true
     points?: true
   }
 
   export type PlayerTrainingSumAggregateInputType = {
+    trainingIndex?: true
     points?: true
   }
 
@@ -7024,7 +7028,7 @@ export namespace Prisma {
     playerTrainingProgramId?: true
     playerTrainingProgramLevelId?: true
     playerTrainingProgramWeekId?: true
-    trainingId?: true
+    trainingIndex?: true
     points?: true
     isCompleted?: true
     dateCompleted?: true
@@ -7040,7 +7044,7 @@ export namespace Prisma {
     playerTrainingProgramId?: true
     playerTrainingProgramLevelId?: true
     playerTrainingProgramWeekId?: true
-    trainingId?: true
+    trainingIndex?: true
     points?: true
     isCompleted?: true
     dateCompleted?: true
@@ -7056,7 +7060,7 @@ export namespace Prisma {
     playerTrainingProgramId?: true
     playerTrainingProgramLevelId?: true
     playerTrainingProgramWeekId?: true
-    trainingId?: true
+    trainingIndex?: true
     points?: true
     isCompleted?: true
     dateCompleted?: true
@@ -7159,7 +7163,7 @@ export namespace Prisma {
     playerTrainingProgramId: string
     playerTrainingProgramLevelId: string
     playerTrainingProgramWeekId: string
-    trainingId: string
+    trainingIndex: number
     points: number
     isCompleted: boolean
     dateCompleted: Date | null
@@ -7194,7 +7198,7 @@ export namespace Prisma {
     playerTrainingProgramId?: boolean
     playerTrainingProgramLevelId?: boolean
     playerTrainingProgramWeekId?: boolean
-    trainingId?: boolean
+    trainingIndex?: boolean
     points?: boolean
     isCompleted?: boolean
     dateCompleted?: boolean
@@ -7210,7 +7214,7 @@ export namespace Prisma {
     playerTrainingProgramId?: boolean
     playerTrainingProgramLevelId?: boolean
     playerTrainingProgramWeekId?: boolean
-    trainingId?: boolean
+    trainingIndex?: boolean
     points?: boolean
     isCompleted?: boolean
     dateCompleted?: boolean
@@ -7230,7 +7234,7 @@ export namespace Prisma {
       playerTrainingProgramId: string
       playerTrainingProgramLevelId: string
       playerTrainingProgramWeekId: string
-      trainingId: string
+      trainingIndex: number
       points: number
       isCompleted: boolean
       dateCompleted: Date | null
@@ -7637,7 +7641,7 @@ export namespace Prisma {
     readonly playerTrainingProgramId: FieldRef<"PlayerTraining", 'String'>
     readonly playerTrainingProgramLevelId: FieldRef<"PlayerTraining", 'String'>
     readonly playerTrainingProgramWeekId: FieldRef<"PlayerTraining", 'String'>
-    readonly trainingId: FieldRef<"PlayerTraining", 'String'>
+    readonly trainingIndex: FieldRef<"PlayerTraining", 'Int'>
     readonly points: FieldRef<"PlayerTraining", 'Int'>
     readonly isCompleted: FieldRef<"PlayerTraining", 'Boolean'>
     readonly dateCompleted: FieldRef<"PlayerTraining", 'DateTime'>
@@ -7938,8 +7942,18 @@ export namespace Prisma {
 
   export type AggregatePlayerTrainingWeek = {
     _count: PlayerTrainingWeekCountAggregateOutputType | null
+    _avg: PlayerTrainingWeekAvgAggregateOutputType | null
+    _sum: PlayerTrainingWeekSumAggregateOutputType | null
     _min: PlayerTrainingWeekMinAggregateOutputType | null
     _max: PlayerTrainingWeekMaxAggregateOutputType | null
+  }
+
+  export type PlayerTrainingWeekAvgAggregateOutputType = {
+    trainingProgramWeekIndex: number | null
+  }
+
+  export type PlayerTrainingWeekSumAggregateOutputType = {
+    trainingProgramWeekIndex: number | null
   }
 
   export type PlayerTrainingWeekMinAggregateOutputType = {
@@ -7947,7 +7961,7 @@ export namespace Prisma {
     userId: string | null
     playerTrainingProgramId: string | null
     playerTrainingProgramLevelId: string | null
-    trainingProgramWeekId: string | null
+    trainingProgramWeekIndex: number | null
     isCompleted: boolean | null
     dateCompleted: Date | null
     dateCreated: Date | null
@@ -7958,7 +7972,7 @@ export namespace Prisma {
     userId: string | null
     playerTrainingProgramId: string | null
     playerTrainingProgramLevelId: string | null
-    trainingProgramWeekId: string | null
+    trainingProgramWeekIndex: number | null
     isCompleted: boolean | null
     dateCompleted: Date | null
     dateCreated: Date | null
@@ -7969,7 +7983,7 @@ export namespace Prisma {
     userId: number
     playerTrainingProgramId: number
     playerTrainingProgramLevelId: number
-    trainingProgramWeekId: number
+    trainingProgramWeekIndex: number
     isCompleted: number
     dateCompleted: number
     dateCreated: number
@@ -7977,12 +7991,20 @@ export namespace Prisma {
   }
 
 
+  export type PlayerTrainingWeekAvgAggregateInputType = {
+    trainingProgramWeekIndex?: true
+  }
+
+  export type PlayerTrainingWeekSumAggregateInputType = {
+    trainingProgramWeekIndex?: true
+  }
+
   export type PlayerTrainingWeekMinAggregateInputType = {
     id?: true
     userId?: true
     playerTrainingProgramId?: true
     playerTrainingProgramLevelId?: true
-    trainingProgramWeekId?: true
+    trainingProgramWeekIndex?: true
     isCompleted?: true
     dateCompleted?: true
     dateCreated?: true
@@ -7993,7 +8015,7 @@ export namespace Prisma {
     userId?: true
     playerTrainingProgramId?: true
     playerTrainingProgramLevelId?: true
-    trainingProgramWeekId?: true
+    trainingProgramWeekIndex?: true
     isCompleted?: true
     dateCompleted?: true
     dateCreated?: true
@@ -8004,7 +8026,7 @@ export namespace Prisma {
     userId?: true
     playerTrainingProgramId?: true
     playerTrainingProgramLevelId?: true
-    trainingProgramWeekId?: true
+    trainingProgramWeekIndex?: true
     isCompleted?: true
     dateCompleted?: true
     dateCreated?: true
@@ -8049,6 +8071,18 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
+     * Select which fields to average
+    **/
+    _avg?: PlayerTrainingWeekAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: PlayerTrainingWeekSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
      * Select which fields to find the minimum value
     **/
     _min?: PlayerTrainingWeekMinAggregateInputType
@@ -8079,6 +8113,8 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: PlayerTrainingWeekCountAggregateInputType | true
+    _avg?: PlayerTrainingWeekAvgAggregateInputType
+    _sum?: PlayerTrainingWeekSumAggregateInputType
     _min?: PlayerTrainingWeekMinAggregateInputType
     _max?: PlayerTrainingWeekMaxAggregateInputType
   }
@@ -8088,11 +8124,13 @@ export namespace Prisma {
     userId: string
     playerTrainingProgramId: string
     playerTrainingProgramLevelId: string
-    trainingProgramWeekId: string
+    trainingProgramWeekIndex: number
     isCompleted: boolean
     dateCompleted: Date | null
     dateCreated: Date
     _count: PlayerTrainingWeekCountAggregateOutputType | null
+    _avg: PlayerTrainingWeekAvgAggregateOutputType | null
+    _sum: PlayerTrainingWeekSumAggregateOutputType | null
     _min: PlayerTrainingWeekMinAggregateOutputType | null
     _max: PlayerTrainingWeekMaxAggregateOutputType | null
   }
@@ -8116,7 +8154,7 @@ export namespace Prisma {
     userId?: boolean
     playerTrainingProgramId?: boolean
     playerTrainingProgramLevelId?: boolean
-    trainingProgramWeekId?: boolean
+    trainingProgramWeekIndex?: boolean
     isCompleted?: boolean
     dateCompleted?: boolean
     dateCreated?: boolean
@@ -8127,7 +8165,7 @@ export namespace Prisma {
     userId?: boolean
     playerTrainingProgramId?: boolean
     playerTrainingProgramLevelId?: boolean
-    trainingProgramWeekId?: boolean
+    trainingProgramWeekIndex?: boolean
     isCompleted?: boolean
     dateCompleted?: boolean
     dateCreated?: boolean
@@ -8142,7 +8180,7 @@ export namespace Prisma {
       userId: string
       playerTrainingProgramId: string
       playerTrainingProgramLevelId: string
-      trainingProgramWeekId: string
+      trainingProgramWeekIndex: number
       isCompleted: boolean
       dateCompleted: Date | null
       dateCreated: Date
@@ -8544,7 +8582,7 @@ export namespace Prisma {
     readonly userId: FieldRef<"PlayerTrainingWeek", 'String'>
     readonly playerTrainingProgramId: FieldRef<"PlayerTrainingWeek", 'String'>
     readonly playerTrainingProgramLevelId: FieldRef<"PlayerTrainingWeek", 'String'>
-    readonly trainingProgramWeekId: FieldRef<"PlayerTrainingWeek", 'String'>
+    readonly trainingProgramWeekIndex: FieldRef<"PlayerTrainingWeek", 'Int'>
     readonly isCompleted: FieldRef<"PlayerTrainingWeek", 'Boolean'>
     readonly dateCompleted: FieldRef<"PlayerTrainingWeek", 'DateTime'>
     readonly dateCreated: FieldRef<"PlayerTrainingWeek", 'DateTime'>
@@ -8841,15 +8879,25 @@ export namespace Prisma {
 
   export type AggregatePlayerTrainingLevel = {
     _count: PlayerTrainingLevelCountAggregateOutputType | null
+    _avg: PlayerTrainingLevelAvgAggregateOutputType | null
+    _sum: PlayerTrainingLevelSumAggregateOutputType | null
     _min: PlayerTrainingLevelMinAggregateOutputType | null
     _max: PlayerTrainingLevelMaxAggregateOutputType | null
+  }
+
+  export type PlayerTrainingLevelAvgAggregateOutputType = {
+    trainingProgramLevelIndex: number | null
+  }
+
+  export type PlayerTrainingLevelSumAggregateOutputType = {
+    trainingProgramLevelIndex: number | null
   }
 
   export type PlayerTrainingLevelMinAggregateOutputType = {
     id: string | null
     userId: string | null
     playerTrainingProgramId: string | null
-    trainingProgramLevelId: string | null
+    trainingProgramLevelIndex: number | null
     isCompleted: boolean | null
     dateCompleted: Date | null
     dateCreated: Date | null
@@ -8859,7 +8907,7 @@ export namespace Prisma {
     id: string | null
     userId: string | null
     playerTrainingProgramId: string | null
-    trainingProgramLevelId: string | null
+    trainingProgramLevelIndex: number | null
     isCompleted: boolean | null
     dateCompleted: Date | null
     dateCreated: Date | null
@@ -8869,7 +8917,7 @@ export namespace Prisma {
     id: number
     userId: number
     playerTrainingProgramId: number
-    trainingProgramLevelId: number
+    trainingProgramLevelIndex: number
     isCompleted: number
     dateCompleted: number
     dateCreated: number
@@ -8877,11 +8925,19 @@ export namespace Prisma {
   }
 
 
+  export type PlayerTrainingLevelAvgAggregateInputType = {
+    trainingProgramLevelIndex?: true
+  }
+
+  export type PlayerTrainingLevelSumAggregateInputType = {
+    trainingProgramLevelIndex?: true
+  }
+
   export type PlayerTrainingLevelMinAggregateInputType = {
     id?: true
     userId?: true
     playerTrainingProgramId?: true
-    trainingProgramLevelId?: true
+    trainingProgramLevelIndex?: true
     isCompleted?: true
     dateCompleted?: true
     dateCreated?: true
@@ -8891,7 +8947,7 @@ export namespace Prisma {
     id?: true
     userId?: true
     playerTrainingProgramId?: true
-    trainingProgramLevelId?: true
+    trainingProgramLevelIndex?: true
     isCompleted?: true
     dateCompleted?: true
     dateCreated?: true
@@ -8901,7 +8957,7 @@ export namespace Prisma {
     id?: true
     userId?: true
     playerTrainingProgramId?: true
-    trainingProgramLevelId?: true
+    trainingProgramLevelIndex?: true
     isCompleted?: true
     dateCompleted?: true
     dateCreated?: true
@@ -8946,6 +9002,18 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
+     * Select which fields to average
+    **/
+    _avg?: PlayerTrainingLevelAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: PlayerTrainingLevelSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
      * Select which fields to find the minimum value
     **/
     _min?: PlayerTrainingLevelMinAggregateInputType
@@ -8976,6 +9044,8 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: PlayerTrainingLevelCountAggregateInputType | true
+    _avg?: PlayerTrainingLevelAvgAggregateInputType
+    _sum?: PlayerTrainingLevelSumAggregateInputType
     _min?: PlayerTrainingLevelMinAggregateInputType
     _max?: PlayerTrainingLevelMaxAggregateInputType
   }
@@ -8984,11 +9054,13 @@ export namespace Prisma {
     id: string
     userId: string
     playerTrainingProgramId: string
-    trainingProgramLevelId: string
+    trainingProgramLevelIndex: number
     isCompleted: boolean
     dateCompleted: Date | null
     dateCreated: Date
     _count: PlayerTrainingLevelCountAggregateOutputType | null
+    _avg: PlayerTrainingLevelAvgAggregateOutputType | null
+    _sum: PlayerTrainingLevelSumAggregateOutputType | null
     _min: PlayerTrainingLevelMinAggregateOutputType | null
     _max: PlayerTrainingLevelMaxAggregateOutputType | null
   }
@@ -9011,7 +9083,7 @@ export namespace Prisma {
     id?: boolean
     userId?: boolean
     playerTrainingProgramId?: boolean
-    trainingProgramLevelId?: boolean
+    trainingProgramLevelIndex?: boolean
     isCompleted?: boolean
     dateCompleted?: boolean
     dateCreated?: boolean
@@ -9021,7 +9093,7 @@ export namespace Prisma {
     id?: boolean
     userId?: boolean
     playerTrainingProgramId?: boolean
-    trainingProgramLevelId?: boolean
+    trainingProgramLevelIndex?: boolean
     isCompleted?: boolean
     dateCompleted?: boolean
     dateCreated?: boolean
@@ -9035,7 +9107,7 @@ export namespace Prisma {
       id: string
       userId: string
       playerTrainingProgramId: string
-      trainingProgramLevelId: string
+      trainingProgramLevelIndex: number
       isCompleted: boolean
       dateCompleted: Date | null
       dateCreated: Date
@@ -9436,7 +9508,7 @@ export namespace Prisma {
     readonly id: FieldRef<"PlayerTrainingLevel", 'String'>
     readonly userId: FieldRef<"PlayerTrainingLevel", 'String'>
     readonly playerTrainingProgramId: FieldRef<"PlayerTrainingLevel", 'String'>
-    readonly trainingProgramLevelId: FieldRef<"PlayerTrainingLevel", 'String'>
+    readonly trainingProgramLevelIndex: FieldRef<"PlayerTrainingLevel", 'Int'>
     readonly isCompleted: FieldRef<"PlayerTrainingLevel", 'Boolean'>
     readonly dateCompleted: FieldRef<"PlayerTrainingLevel", 'DateTime'>
     readonly dateCreated: FieldRef<"PlayerTrainingLevel", 'DateTime'>
@@ -10733,7 +10805,7 @@ export namespace Prisma {
     playerTrainingProgramId: 'playerTrainingProgramId',
     playerTrainingProgramLevelId: 'playerTrainingProgramLevelId',
     playerTrainingProgramWeekId: 'playerTrainingProgramWeekId',
-    trainingId: 'trainingId',
+    trainingIndex: 'trainingIndex',
     points: 'points',
     isCompleted: 'isCompleted',
     dateCompleted: 'dateCompleted',
@@ -10751,7 +10823,7 @@ export namespace Prisma {
     userId: 'userId',
     playerTrainingProgramId: 'playerTrainingProgramId',
     playerTrainingProgramLevelId: 'playerTrainingProgramLevelId',
-    trainingProgramWeekId: 'trainingProgramWeekId',
+    trainingProgramWeekIndex: 'trainingProgramWeekIndex',
     isCompleted: 'isCompleted',
     dateCompleted: 'dateCompleted',
     dateCreated: 'dateCreated'
@@ -10764,7 +10836,7 @@ export namespace Prisma {
     id: 'id',
     userId: 'userId',
     playerTrainingProgramId: 'playerTrainingProgramId',
-    trainingProgramLevelId: 'trainingProgramLevelId',
+    trainingProgramLevelIndex: 'trainingProgramLevelIndex',
     isCompleted: 'isCompleted',
     dateCompleted: 'dateCompleted',
     dateCreated: 'dateCreated'
@@ -11157,7 +11229,7 @@ export namespace Prisma {
     playerTrainingProgramId?: StringFilter<"PlayerTraining"> | string
     playerTrainingProgramLevelId?: StringFilter<"PlayerTraining"> | string
     playerTrainingProgramWeekId?: StringFilter<"PlayerTraining"> | string
-    trainingId?: StringFilter<"PlayerTraining"> | string
+    trainingIndex?: IntFilter<"PlayerTraining"> | number
     points?: IntFilter<"PlayerTraining"> | number
     isCompleted?: BoolFilter<"PlayerTraining"> | boolean
     dateCompleted?: DateTimeNullableFilter<"PlayerTraining"> | Date | string | null
@@ -11173,7 +11245,7 @@ export namespace Prisma {
     playerTrainingProgramId?: SortOrder
     playerTrainingProgramLevelId?: SortOrder
     playerTrainingProgramWeekId?: SortOrder
-    trainingId?: SortOrder
+    trainingIndex?: SortOrder
     points?: SortOrder
     isCompleted?: SortOrder
     dateCompleted?: SortOrderInput | SortOrder
@@ -11192,7 +11264,7 @@ export namespace Prisma {
     playerTrainingProgramId?: StringFilter<"PlayerTraining"> | string
     playerTrainingProgramLevelId?: StringFilter<"PlayerTraining"> | string
     playerTrainingProgramWeekId?: StringFilter<"PlayerTraining"> | string
-    trainingId?: StringFilter<"PlayerTraining"> | string
+    trainingIndex?: IntFilter<"PlayerTraining"> | number
     points?: IntFilter<"PlayerTraining"> | number
     isCompleted?: BoolFilter<"PlayerTraining"> | boolean
     dateCompleted?: DateTimeNullableFilter<"PlayerTraining"> | Date | string | null
@@ -11208,7 +11280,7 @@ export namespace Prisma {
     playerTrainingProgramId?: SortOrder
     playerTrainingProgramLevelId?: SortOrder
     playerTrainingProgramWeekId?: SortOrder
-    trainingId?: SortOrder
+    trainingIndex?: SortOrder
     points?: SortOrder
     isCompleted?: SortOrder
     dateCompleted?: SortOrderInput | SortOrder
@@ -11232,7 +11304,7 @@ export namespace Prisma {
     playerTrainingProgramId?: StringWithAggregatesFilter<"PlayerTraining"> | string
     playerTrainingProgramLevelId?: StringWithAggregatesFilter<"PlayerTraining"> | string
     playerTrainingProgramWeekId?: StringWithAggregatesFilter<"PlayerTraining"> | string
-    trainingId?: StringWithAggregatesFilter<"PlayerTraining"> | string
+    trainingIndex?: IntWithAggregatesFilter<"PlayerTraining"> | number
     points?: IntWithAggregatesFilter<"PlayerTraining"> | number
     isCompleted?: BoolWithAggregatesFilter<"PlayerTraining"> | boolean
     dateCompleted?: DateTimeNullableWithAggregatesFilter<"PlayerTraining"> | Date | string | null
@@ -11250,7 +11322,7 @@ export namespace Prisma {
     userId?: StringFilter<"PlayerTrainingWeek"> | string
     playerTrainingProgramId?: StringFilter<"PlayerTrainingWeek"> | string
     playerTrainingProgramLevelId?: StringFilter<"PlayerTrainingWeek"> | string
-    trainingProgramWeekId?: StringFilter<"PlayerTrainingWeek"> | string
+    trainingProgramWeekIndex?: IntFilter<"PlayerTrainingWeek"> | number
     isCompleted?: BoolFilter<"PlayerTrainingWeek"> | boolean
     dateCompleted?: DateTimeNullableFilter<"PlayerTrainingWeek"> | Date | string | null
     dateCreated?: DateTimeFilter<"PlayerTrainingWeek"> | Date | string
@@ -11261,7 +11333,7 @@ export namespace Prisma {
     userId?: SortOrder
     playerTrainingProgramId?: SortOrder
     playerTrainingProgramLevelId?: SortOrder
-    trainingProgramWeekId?: SortOrder
+    trainingProgramWeekIndex?: SortOrder
     isCompleted?: SortOrder
     dateCompleted?: SortOrderInput | SortOrder
     dateCreated?: SortOrder
@@ -11275,7 +11347,7 @@ export namespace Prisma {
     userId?: StringFilter<"PlayerTrainingWeek"> | string
     playerTrainingProgramId?: StringFilter<"PlayerTrainingWeek"> | string
     playerTrainingProgramLevelId?: StringFilter<"PlayerTrainingWeek"> | string
-    trainingProgramWeekId?: StringFilter<"PlayerTrainingWeek"> | string
+    trainingProgramWeekIndex?: IntFilter<"PlayerTrainingWeek"> | number
     isCompleted?: BoolFilter<"PlayerTrainingWeek"> | boolean
     dateCompleted?: DateTimeNullableFilter<"PlayerTrainingWeek"> | Date | string | null
     dateCreated?: DateTimeFilter<"PlayerTrainingWeek"> | Date | string
@@ -11286,13 +11358,15 @@ export namespace Prisma {
     userId?: SortOrder
     playerTrainingProgramId?: SortOrder
     playerTrainingProgramLevelId?: SortOrder
-    trainingProgramWeekId?: SortOrder
+    trainingProgramWeekIndex?: SortOrder
     isCompleted?: SortOrder
     dateCompleted?: SortOrderInput | SortOrder
     dateCreated?: SortOrder
     _count?: PlayerTrainingWeekCountOrderByAggregateInput
+    _avg?: PlayerTrainingWeekAvgOrderByAggregateInput
     _max?: PlayerTrainingWeekMaxOrderByAggregateInput
     _min?: PlayerTrainingWeekMinOrderByAggregateInput
+    _sum?: PlayerTrainingWeekSumOrderByAggregateInput
   }
 
   export type PlayerTrainingWeekScalarWhereWithAggregatesInput = {
@@ -11303,7 +11377,7 @@ export namespace Prisma {
     userId?: StringWithAggregatesFilter<"PlayerTrainingWeek"> | string
     playerTrainingProgramId?: StringWithAggregatesFilter<"PlayerTrainingWeek"> | string
     playerTrainingProgramLevelId?: StringWithAggregatesFilter<"PlayerTrainingWeek"> | string
-    trainingProgramWeekId?: StringWithAggregatesFilter<"PlayerTrainingWeek"> | string
+    trainingProgramWeekIndex?: IntWithAggregatesFilter<"PlayerTrainingWeek"> | number
     isCompleted?: BoolWithAggregatesFilter<"PlayerTrainingWeek"> | boolean
     dateCompleted?: DateTimeNullableWithAggregatesFilter<"PlayerTrainingWeek"> | Date | string | null
     dateCreated?: DateTimeWithAggregatesFilter<"PlayerTrainingWeek"> | Date | string
@@ -11316,7 +11390,7 @@ export namespace Prisma {
     id?: StringFilter<"PlayerTrainingLevel"> | string
     userId?: StringFilter<"PlayerTrainingLevel"> | string
     playerTrainingProgramId?: StringFilter<"PlayerTrainingLevel"> | string
-    trainingProgramLevelId?: StringFilter<"PlayerTrainingLevel"> | string
+    trainingProgramLevelIndex?: IntFilter<"PlayerTrainingLevel"> | number
     isCompleted?: BoolFilter<"PlayerTrainingLevel"> | boolean
     dateCompleted?: DateTimeNullableFilter<"PlayerTrainingLevel"> | Date | string | null
     dateCreated?: DateTimeFilter<"PlayerTrainingLevel"> | Date | string
@@ -11326,7 +11400,7 @@ export namespace Prisma {
     id?: SortOrder
     userId?: SortOrder
     playerTrainingProgramId?: SortOrder
-    trainingProgramLevelId?: SortOrder
+    trainingProgramLevelIndex?: SortOrder
     isCompleted?: SortOrder
     dateCompleted?: SortOrderInput | SortOrder
     dateCreated?: SortOrder
@@ -11339,7 +11413,7 @@ export namespace Prisma {
     NOT?: PlayerTrainingLevelWhereInput | PlayerTrainingLevelWhereInput[]
     userId?: StringFilter<"PlayerTrainingLevel"> | string
     playerTrainingProgramId?: StringFilter<"PlayerTrainingLevel"> | string
-    trainingProgramLevelId?: StringFilter<"PlayerTrainingLevel"> | string
+    trainingProgramLevelIndex?: IntFilter<"PlayerTrainingLevel"> | number
     isCompleted?: BoolFilter<"PlayerTrainingLevel"> | boolean
     dateCompleted?: DateTimeNullableFilter<"PlayerTrainingLevel"> | Date | string | null
     dateCreated?: DateTimeFilter<"PlayerTrainingLevel"> | Date | string
@@ -11349,13 +11423,15 @@ export namespace Prisma {
     id?: SortOrder
     userId?: SortOrder
     playerTrainingProgramId?: SortOrder
-    trainingProgramLevelId?: SortOrder
+    trainingProgramLevelIndex?: SortOrder
     isCompleted?: SortOrder
     dateCompleted?: SortOrderInput | SortOrder
     dateCreated?: SortOrder
     _count?: PlayerTrainingLevelCountOrderByAggregateInput
+    _avg?: PlayerTrainingLevelAvgOrderByAggregateInput
     _max?: PlayerTrainingLevelMaxOrderByAggregateInput
     _min?: PlayerTrainingLevelMinOrderByAggregateInput
+    _sum?: PlayerTrainingLevelSumOrderByAggregateInput
   }
 
   export type PlayerTrainingLevelScalarWhereWithAggregatesInput = {
@@ -11365,7 +11441,7 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"PlayerTrainingLevel"> | string
     userId?: StringWithAggregatesFilter<"PlayerTrainingLevel"> | string
     playerTrainingProgramId?: StringWithAggregatesFilter<"PlayerTrainingLevel"> | string
-    trainingProgramLevelId?: StringWithAggregatesFilter<"PlayerTrainingLevel"> | string
+    trainingProgramLevelIndex?: IntWithAggregatesFilter<"PlayerTrainingLevel"> | number
     isCompleted?: BoolWithAggregatesFilter<"PlayerTrainingLevel"> | boolean
     dateCompleted?: DateTimeNullableWithAggregatesFilter<"PlayerTrainingLevel"> | Date | string | null
     dateCreated?: DateTimeWithAggregatesFilter<"PlayerTrainingLevel"> | Date | string
@@ -11758,7 +11834,7 @@ export namespace Prisma {
     playerTrainingProgramId: string
     playerTrainingProgramLevelId: string
     playerTrainingProgramWeekId: string
-    trainingId: string
+    trainingIndex?: number
     points: number
     isCompleted: boolean
     dateCompleted?: Date | string | null
@@ -11774,7 +11850,7 @@ export namespace Prisma {
     playerTrainingProgramId: string
     playerTrainingProgramLevelId: string
     playerTrainingProgramWeekId: string
-    trainingId: string
+    trainingIndex?: number
     points: number
     isCompleted: boolean
     dateCompleted?: Date | string | null
@@ -11790,7 +11866,7 @@ export namespace Prisma {
     playerTrainingProgramId?: StringFieldUpdateOperationsInput | string
     playerTrainingProgramLevelId?: StringFieldUpdateOperationsInput | string
     playerTrainingProgramWeekId?: StringFieldUpdateOperationsInput | string
-    trainingId?: StringFieldUpdateOperationsInput | string
+    trainingIndex?: IntFieldUpdateOperationsInput | number
     points?: IntFieldUpdateOperationsInput | number
     isCompleted?: BoolFieldUpdateOperationsInput | boolean
     dateCompleted?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -11806,7 +11882,7 @@ export namespace Prisma {
     playerTrainingProgramId?: StringFieldUpdateOperationsInput | string
     playerTrainingProgramLevelId?: StringFieldUpdateOperationsInput | string
     playerTrainingProgramWeekId?: StringFieldUpdateOperationsInput | string
-    trainingId?: StringFieldUpdateOperationsInput | string
+    trainingIndex?: IntFieldUpdateOperationsInput | number
     points?: IntFieldUpdateOperationsInput | number
     isCompleted?: BoolFieldUpdateOperationsInput | boolean
     dateCompleted?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -11822,7 +11898,7 @@ export namespace Prisma {
     playerTrainingProgramId: string
     playerTrainingProgramLevelId: string
     playerTrainingProgramWeekId: string
-    trainingId: string
+    trainingIndex?: number
     points: number
     isCompleted: boolean
     dateCompleted?: Date | string | null
@@ -11838,7 +11914,7 @@ export namespace Prisma {
     playerTrainingProgramId?: StringFieldUpdateOperationsInput | string
     playerTrainingProgramLevelId?: StringFieldUpdateOperationsInput | string
     playerTrainingProgramWeekId?: StringFieldUpdateOperationsInput | string
-    trainingId?: StringFieldUpdateOperationsInput | string
+    trainingIndex?: IntFieldUpdateOperationsInput | number
     points?: IntFieldUpdateOperationsInput | number
     isCompleted?: BoolFieldUpdateOperationsInput | boolean
     dateCompleted?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -11854,7 +11930,7 @@ export namespace Prisma {
     playerTrainingProgramId?: StringFieldUpdateOperationsInput | string
     playerTrainingProgramLevelId?: StringFieldUpdateOperationsInput | string
     playerTrainingProgramWeekId?: StringFieldUpdateOperationsInput | string
-    trainingId?: StringFieldUpdateOperationsInput | string
+    trainingIndex?: IntFieldUpdateOperationsInput | number
     points?: IntFieldUpdateOperationsInput | number
     isCompleted?: BoolFieldUpdateOperationsInput | boolean
     dateCompleted?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -11869,7 +11945,7 @@ export namespace Prisma {
     userId: string
     playerTrainingProgramId: string
     playerTrainingProgramLevelId: string
-    trainingProgramWeekId: string
+    trainingProgramWeekIndex?: number
     isCompleted: boolean
     dateCompleted?: Date | string | null
     dateCreated?: Date | string
@@ -11880,7 +11956,7 @@ export namespace Prisma {
     userId: string
     playerTrainingProgramId: string
     playerTrainingProgramLevelId: string
-    trainingProgramWeekId: string
+    trainingProgramWeekIndex?: number
     isCompleted: boolean
     dateCompleted?: Date | string | null
     dateCreated?: Date | string
@@ -11891,7 +11967,7 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     playerTrainingProgramId?: StringFieldUpdateOperationsInput | string
     playerTrainingProgramLevelId?: StringFieldUpdateOperationsInput | string
-    trainingProgramWeekId?: StringFieldUpdateOperationsInput | string
+    trainingProgramWeekIndex?: IntFieldUpdateOperationsInput | number
     isCompleted?: BoolFieldUpdateOperationsInput | boolean
     dateCompleted?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11902,7 +11978,7 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     playerTrainingProgramId?: StringFieldUpdateOperationsInput | string
     playerTrainingProgramLevelId?: StringFieldUpdateOperationsInput | string
-    trainingProgramWeekId?: StringFieldUpdateOperationsInput | string
+    trainingProgramWeekIndex?: IntFieldUpdateOperationsInput | number
     isCompleted?: BoolFieldUpdateOperationsInput | boolean
     dateCompleted?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11913,7 +11989,7 @@ export namespace Prisma {
     userId: string
     playerTrainingProgramId: string
     playerTrainingProgramLevelId: string
-    trainingProgramWeekId: string
+    trainingProgramWeekIndex?: number
     isCompleted: boolean
     dateCompleted?: Date | string | null
     dateCreated?: Date | string
@@ -11924,7 +12000,7 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     playerTrainingProgramId?: StringFieldUpdateOperationsInput | string
     playerTrainingProgramLevelId?: StringFieldUpdateOperationsInput | string
-    trainingProgramWeekId?: StringFieldUpdateOperationsInput | string
+    trainingProgramWeekIndex?: IntFieldUpdateOperationsInput | number
     isCompleted?: BoolFieldUpdateOperationsInput | boolean
     dateCompleted?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11935,7 +12011,7 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     playerTrainingProgramId?: StringFieldUpdateOperationsInput | string
     playerTrainingProgramLevelId?: StringFieldUpdateOperationsInput | string
-    trainingProgramWeekId?: StringFieldUpdateOperationsInput | string
+    trainingProgramWeekIndex?: IntFieldUpdateOperationsInput | number
     isCompleted?: BoolFieldUpdateOperationsInput | boolean
     dateCompleted?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11945,7 +12021,7 @@ export namespace Prisma {
     id: string
     userId: string
     playerTrainingProgramId: string
-    trainingProgramLevelId: string
+    trainingProgramLevelIndex?: number
     isCompleted: boolean
     dateCompleted?: Date | string | null
     dateCreated?: Date | string
@@ -11955,7 +12031,7 @@ export namespace Prisma {
     id: string
     userId: string
     playerTrainingProgramId: string
-    trainingProgramLevelId: string
+    trainingProgramLevelIndex?: number
     isCompleted: boolean
     dateCompleted?: Date | string | null
     dateCreated?: Date | string
@@ -11965,7 +12041,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     playerTrainingProgramId?: StringFieldUpdateOperationsInput | string
-    trainingProgramLevelId?: StringFieldUpdateOperationsInput | string
+    trainingProgramLevelIndex?: IntFieldUpdateOperationsInput | number
     isCompleted?: BoolFieldUpdateOperationsInput | boolean
     dateCompleted?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11975,7 +12051,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     playerTrainingProgramId?: StringFieldUpdateOperationsInput | string
-    trainingProgramLevelId?: StringFieldUpdateOperationsInput | string
+    trainingProgramLevelIndex?: IntFieldUpdateOperationsInput | number
     isCompleted?: BoolFieldUpdateOperationsInput | boolean
     dateCompleted?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11985,7 +12061,7 @@ export namespace Prisma {
     id: string
     userId: string
     playerTrainingProgramId: string
-    trainingProgramLevelId: string
+    trainingProgramLevelIndex?: number
     isCompleted: boolean
     dateCompleted?: Date | string | null
     dateCreated?: Date | string
@@ -11995,7 +12071,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     playerTrainingProgramId?: StringFieldUpdateOperationsInput | string
-    trainingProgramLevelId?: StringFieldUpdateOperationsInput | string
+    trainingProgramLevelIndex?: IntFieldUpdateOperationsInput | number
     isCompleted?: BoolFieldUpdateOperationsInput | boolean
     dateCompleted?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12005,7 +12081,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     playerTrainingProgramId?: StringFieldUpdateOperationsInput | string
-    trainingProgramLevelId?: StringFieldUpdateOperationsInput | string
+    trainingProgramLevelIndex?: IntFieldUpdateOperationsInput | number
     isCompleted?: BoolFieldUpdateOperationsInput | boolean
     dateCompleted?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12393,7 +12469,7 @@ export namespace Prisma {
     playerTrainingProgramId?: SortOrder
     playerTrainingProgramLevelId?: SortOrder
     playerTrainingProgramWeekId?: SortOrder
-    trainingId?: SortOrder
+    trainingIndex?: SortOrder
     points?: SortOrder
     isCompleted?: SortOrder
     dateCompleted?: SortOrder
@@ -12404,6 +12480,7 @@ export namespace Prisma {
   }
 
   export type PlayerTrainingAvgOrderByAggregateInput = {
+    trainingIndex?: SortOrder
     points?: SortOrder
   }
 
@@ -12413,7 +12490,7 @@ export namespace Prisma {
     playerTrainingProgramId?: SortOrder
     playerTrainingProgramLevelId?: SortOrder
     playerTrainingProgramWeekId?: SortOrder
-    trainingId?: SortOrder
+    trainingIndex?: SortOrder
     points?: SortOrder
     isCompleted?: SortOrder
     dateCompleted?: SortOrder
@@ -12429,7 +12506,7 @@ export namespace Prisma {
     playerTrainingProgramId?: SortOrder
     playerTrainingProgramLevelId?: SortOrder
     playerTrainingProgramWeekId?: SortOrder
-    trainingId?: SortOrder
+    trainingIndex?: SortOrder
     points?: SortOrder
     isCompleted?: SortOrder
     dateCompleted?: SortOrder
@@ -12440,6 +12517,7 @@ export namespace Prisma {
   }
 
   export type PlayerTrainingSumOrderByAggregateInput = {
+    trainingIndex?: SortOrder
     points?: SortOrder
   }
 
@@ -12464,10 +12542,14 @@ export namespace Prisma {
     userId?: SortOrder
     playerTrainingProgramId?: SortOrder
     playerTrainingProgramLevelId?: SortOrder
-    trainingProgramWeekId?: SortOrder
+    trainingProgramWeekIndex?: SortOrder
     isCompleted?: SortOrder
     dateCompleted?: SortOrder
     dateCreated?: SortOrder
+  }
+
+  export type PlayerTrainingWeekAvgOrderByAggregateInput = {
+    trainingProgramWeekIndex?: SortOrder
   }
 
   export type PlayerTrainingWeekMaxOrderByAggregateInput = {
@@ -12475,7 +12557,7 @@ export namespace Prisma {
     userId?: SortOrder
     playerTrainingProgramId?: SortOrder
     playerTrainingProgramLevelId?: SortOrder
-    trainingProgramWeekId?: SortOrder
+    trainingProgramWeekIndex?: SortOrder
     isCompleted?: SortOrder
     dateCompleted?: SortOrder
     dateCreated?: SortOrder
@@ -12486,27 +12568,35 @@ export namespace Prisma {
     userId?: SortOrder
     playerTrainingProgramId?: SortOrder
     playerTrainingProgramLevelId?: SortOrder
-    trainingProgramWeekId?: SortOrder
+    trainingProgramWeekIndex?: SortOrder
     isCompleted?: SortOrder
     dateCompleted?: SortOrder
     dateCreated?: SortOrder
+  }
+
+  export type PlayerTrainingWeekSumOrderByAggregateInput = {
+    trainingProgramWeekIndex?: SortOrder
   }
 
   export type PlayerTrainingLevelCountOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
     playerTrainingProgramId?: SortOrder
-    trainingProgramLevelId?: SortOrder
+    trainingProgramLevelIndex?: SortOrder
     isCompleted?: SortOrder
     dateCompleted?: SortOrder
     dateCreated?: SortOrder
+  }
+
+  export type PlayerTrainingLevelAvgOrderByAggregateInput = {
+    trainingProgramLevelIndex?: SortOrder
   }
 
   export type PlayerTrainingLevelMaxOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
     playerTrainingProgramId?: SortOrder
-    trainingProgramLevelId?: SortOrder
+    trainingProgramLevelIndex?: SortOrder
     isCompleted?: SortOrder
     dateCompleted?: SortOrder
     dateCreated?: SortOrder
@@ -12516,10 +12606,14 @@ export namespace Prisma {
     id?: SortOrder
     userId?: SortOrder
     playerTrainingProgramId?: SortOrder
-    trainingProgramLevelId?: SortOrder
+    trainingProgramLevelIndex?: SortOrder
     isCompleted?: SortOrder
     dateCompleted?: SortOrder
     dateCreated?: SortOrder
+  }
+
+  export type PlayerTrainingLevelSumOrderByAggregateInput = {
+    trainingProgramLevelIndex?: SortOrder
   }
 
   export type EnumSubscriptionTypeFilter<$PrismaModel = never> = {

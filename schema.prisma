@@ -71,7 +71,7 @@ model PlayerTraining {
     playerTrainingProgramLevelId String
     playerTrainingProgramWeekId  String
     //Actual keys of the training program
-    trainingId                   String
+    trainingIndex                Int       @default(-1)
     points                       Int
     isCompleted                  Boolean
     dateCompleted                DateTime?
@@ -89,7 +89,7 @@ model PlayerTrainingWeek {
     playerTrainingProgramId      String
     playerTrainingProgramLevelId String
     //Actual keys of the training program
-    trainingProgramWeekId        String
+    trainingProgramWeekIndex     Int       @default(-1)
     isCompleted                  Boolean
     dateCompleted                DateTime?
     dateCreated                  DateTime  @default(now())
@@ -97,15 +97,15 @@ model PlayerTrainingWeek {
 
 // PlayerTrainingLevel Table defination
 model PlayerTrainingLevel {
-    id                      String    @id
-    userId                  String
+    id                        String    @id
+    userId                    String
     //Keys of the player training program
-    playerTrainingProgramId String
+    playerTrainingProgramId   String
     //Actual keys of the training program
-    trainingProgramLevelId  String
-    isCompleted             Boolean
-    dateCompleted           DateTime?
-    dateCreated             DateTime  @default(now())
+    trainingProgramLevelIndex Int       @default(-1)
+    isCompleted               Boolean
+    dateCompleted             DateTime?
+    dateCreated               DateTime  @default(now())
 }
 
 // SubscriptionType Enum defination
