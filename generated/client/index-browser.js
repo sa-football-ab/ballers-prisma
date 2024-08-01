@@ -121,6 +121,7 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
 
 exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
+  userType: 'userType',
   clubId: 'clubId',
   teamId: 'teamId'
 };
@@ -158,6 +159,28 @@ exports.Prisma.TeamScalarFieldEnum = {
   display: 'display',
   clubId: 'clubId',
   voided: 'voided',
+  dateCreated: 'dateCreated',
+  dateUpdated: 'dateUpdated'
+};
+
+exports.Prisma.UserActivityScalarFieldEnum = {
+  activityId: 'activityId',
+  userId: 'userId',
+  totalTime: 'totalTime'
+};
+
+exports.Prisma.ActivityScalarFieldEnum = {
+  id: 'id',
+  teamId: 'teamId',
+  activityUrl: 'activityUrl',
+  clubId: 'clubId',
+  noOfReg: 'noOfReg',
+  coach: 'coach',
+  activityDate: 'activityDate',
+  program: 'program',
+  minAge: 'minAge',
+  maxAge: 'maxAge',
+  equipments: 'equipments',
   dateCreated: 'dateCreated',
   dateUpdated: 'dateUpdated'
 };
@@ -217,15 +240,31 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
+exports.Prisma.JsonNullValueInput = {
+  JsonNull: Prisma.JsonNull
+};
+
 exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
+
+exports.Prisma.JsonNullValueFilter = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull,
+  AnyNull: Prisma.AnyNull
+};
+exports.UserType = exports.$Enums.UserType = {
+  PLAYER: 'PLAYER',
+  COACH: 'COACH'
+};
+
 exports.SubscriptionType = exports.$Enums.SubscriptionType = {
   RECURRING: 'RECURRING',
   ONE_OFF: 'ONE_OFF',
   FREE: 'FREE',
-  CLUB: 'CLUB'
+  CLUB: 'CLUB',
+  AI: 'AI'
 };
 
 exports.Prisma.ModelName = {
@@ -235,6 +274,8 @@ exports.Prisma.ModelName = {
   LinkedAccounts: 'LinkedAccounts',
   Club: 'Club',
   Team: 'Team',
+  UserActivity: 'UserActivity',
+  Activity: 'Activity',
   PlayerTraining: 'PlayerTraining',
   PlayerTrainingWeek: 'PlayerTrainingWeek',
   PlayerTrainingLevel: 'PlayerTrainingLevel',

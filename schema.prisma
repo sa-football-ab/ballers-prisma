@@ -11,10 +11,21 @@ generator client {
 //TODO: We should add date created and date updated in these tables too
 
 // Club Table defination
+// Club Table defination
+
+// SubscriptionType Enum defination
+enum UserType {
+    PLAYER
+    COACH
+}
+
 model User {
-    id     String  @id
-    clubId String
-    teamId String?
+    id           String         @id
+    userType     UserType       @default(PLAYER)
+    clubId       String
+    teamId       String?
+    activities   Activity[]
+    UserActivity UserActivity[]
 }
 
 // Install Table defination
@@ -43,22 +54,54 @@ model LinkedAccounts {
 
 // Club Table defination
 model Club {
-    id          String    @id
+    id          String     @id
     display     String
-    dateCreated DateTime  @default(now())
+    dateCreated DateTime   @default(now())
     dateUpdated DateTime?
     teams       Team[]
+    Activity    Activity[]
 }
 
 // Team Table defination
 model Team {
-    id          String    @id
+    id          String     @id
     display     String
-    club        Club      @relation(fields: [clubId], references: [id])
+    club        Club       @relation(fields: [clubId], references: [id])
     clubId      String
-    voided      Boolean   @default(false) //  default value false
-    dateCreated DateTime  @default(now())
+    voided      Boolean    @default(false) //  default value false
+    dateCreated DateTime   @default(now())
     dateUpdated DateTime?
+    Activity    Activity[]
+}
+
+model UserActivity {
+    activity   Activity @relation(fields: [activityId], references: [id])
+    user       User     @relation(fields: [userId], references: [id])
+    activityId String
+    userId     String
+    totalTime  Int
+
+    @@id([activityId, userId]) // Composite primary key
+}
+
+model Activity {
+    id           String         @id
+    team         Team           @relation(fields: [teamId], references: [id])
+    teamId       String
+    club         Club           @relation(fields: [clubId], references: [id])
+    activityUrl  String
+    clubId       String
+    noOfReg      Int
+    coach        String
+    players      User[]
+    activityDate DateTime
+    program      String
+    minAge       Int
+    maxAge       Int
+    equipments   Json
+    dateCreated  DateTime       @default(now())
+    dateUpdated  DateTime?
+    UserActivity UserActivity[]
 }
 
 // ---------------------------- Training Program Service ------------------------------------- //
@@ -114,6 +157,7 @@ enum SubscriptionType {
     ONE_OFF
     FREE
     CLUB
+    AI
 }
 
 // PlayerTrainingProgram Table defination
