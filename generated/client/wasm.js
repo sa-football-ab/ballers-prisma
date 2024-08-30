@@ -123,7 +123,11 @@ exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
   userType: 'userType',
   clubId: 'clubId',
-  teamId: 'teamId'
+  teamId: 'teamId',
+  personNumber: 'personNumber',
+  name: 'name',
+  clubOnboarding: 'clubOnboarding',
+  gender: 'gender'
 };
 
 exports.Prisma.InstallScalarFieldEnum = {
@@ -163,19 +167,12 @@ exports.Prisma.TeamScalarFieldEnum = {
   dateUpdated: 'dateUpdated'
 };
 
-exports.Prisma.UserActivityScalarFieldEnum = {
-  activityId: 'activityId',
-  userId: 'userId',
-  totalTime: 'totalTime'
-};
-
 exports.Prisma.ActivityScalarFieldEnum = {
   id: 'id',
   teamId: 'teamId',
-  activityUrl: 'activityUrl',
   clubId: 'clubId',
+  userId: 'userId',
   noOfReg: 'noOfReg',
-  coach: 'coach',
   activityDate: 'activityDate',
   program: 'program',
   minAge: 'minAge',
@@ -274,7 +271,6 @@ exports.Prisma.ModelName = {
   LinkedAccounts: 'LinkedAccounts',
   Club: 'Club',
   Team: 'Team',
-  UserActivity: 'UserActivity',
   Activity: 'Activity',
   PlayerTraining: 'PlayerTraining',
   PlayerTrainingWeek: 'PlayerTrainingWeek',

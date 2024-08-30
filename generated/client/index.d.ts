@@ -44,11 +44,6 @@ export type Club = $Result.DefaultSelection<Prisma.$ClubPayload>
  */
 export type Team = $Result.DefaultSelection<Prisma.$TeamPayload>
 /**
- * Model UserActivity
- * 
- */
-export type UserActivity = $Result.DefaultSelection<Prisma.$UserActivityPayload>
-/**
  * Model Activity
  * 
  */
@@ -287,16 +282,6 @@ export class PrismaClient<
     * ```
     */
   get team(): Prisma.TeamDelegate<ExtArgs>;
-
-  /**
-   * `prisma.userActivity`: Exposes CRUD operations for the **UserActivity** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more UserActivities
-    * const userActivities = await prisma.userActivity.findMany()
-    * ```
-    */
-  get userActivity(): Prisma.UserActivityDelegate<ExtArgs>;
 
   /**
    * `prisma.activity`: Exposes CRUD operations for the **Activity** model.
@@ -823,7 +808,6 @@ export namespace Prisma {
     LinkedAccounts: 'LinkedAccounts',
     Club: 'Club',
     Team: 'Team',
-    UserActivity: 'UserActivity',
     Activity: 'Activity',
     PlayerTraining: 'PlayerTraining',
     PlayerTrainingWeek: 'PlayerTrainingWeek',
@@ -845,7 +829,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     meta: {
-      modelProps: 'user' | 'install' | 'linkedUserId' | 'linkedAccounts' | 'club' | 'team' | 'userActivity' | 'activity' | 'playerTraining' | 'playerTrainingWeek' | 'playerTrainingLevel' | 'playerTrainingProgram'
+      modelProps: 'user' | 'install' | 'linkedUserId' | 'linkedAccounts' | 'club' | 'team' | 'activity' | 'playerTraining' | 'playerTrainingWeek' | 'playerTrainingLevel' | 'playerTrainingProgram'
       txIsolationLevel: Prisma.TransactionIsolationLevel
     },
     model: {
@@ -1242,72 +1226,6 @@ export namespace Prisma {
           count: {
             args: Prisma.TeamCountArgs<ExtArgs>,
             result: $Utils.Optional<TeamCountAggregateOutputType> | number
-          }
-        }
-      }
-      UserActivity: {
-        payload: Prisma.$UserActivityPayload<ExtArgs>
-        fields: Prisma.UserActivityFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.UserActivityFindUniqueArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$UserActivityPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.UserActivityFindUniqueOrThrowArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$UserActivityPayload>
-          }
-          findFirst: {
-            args: Prisma.UserActivityFindFirstArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$UserActivityPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.UserActivityFindFirstOrThrowArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$UserActivityPayload>
-          }
-          findMany: {
-            args: Prisma.UserActivityFindManyArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$UserActivityPayload>[]
-          }
-          create: {
-            args: Prisma.UserActivityCreateArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$UserActivityPayload>
-          }
-          createMany: {
-            args: Prisma.UserActivityCreateManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
-          }
-          delete: {
-            args: Prisma.UserActivityDeleteArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$UserActivityPayload>
-          }
-          update: {
-            args: Prisma.UserActivityUpdateArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$UserActivityPayload>
-          }
-          deleteMany: {
-            args: Prisma.UserActivityDeleteManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
-          }
-          updateMany: {
-            args: Prisma.UserActivityUpdateManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
-          }
-          upsert: {
-            args: Prisma.UserActivityUpsertArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$UserActivityPayload>
-          }
-          aggregate: {
-            args: Prisma.UserActivityAggregateArgs<ExtArgs>,
-            result: $Utils.Optional<AggregateUserActivity>
-          }
-          groupBy: {
-            args: Prisma.UserActivityGroupByArgs<ExtArgs>,
-            result: $Utils.Optional<UserActivityGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.UserActivityCountArgs<ExtArgs>,
-            result: $Utils.Optional<UserActivityCountAggregateOutputType> | number
           }
         }
       }
@@ -1800,13 +1718,11 @@ export namespace Prisma {
    */
 
   export type UserCountOutputType = {
-    activities: number
-    UserActivity: number
+    Activity: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    activities?: boolean | UserCountOutputTypeCountActivitiesArgs
-    UserActivity?: boolean | UserCountOutputTypeCountUserActivityArgs
+    Activity?: boolean | UserCountOutputTypeCountActivityArgs
   }
 
   // Custom InputTypes
@@ -1825,16 +1741,8 @@ export namespace Prisma {
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountActivitiesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserCountOutputTypeCountActivityArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ActivityWhereInput
-  }
-
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountUserActivityArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: UserActivityWhereInput
   }
 
 
@@ -1918,50 +1826,6 @@ export namespace Prisma {
 
 
   /**
-   * Count Type ActivityCountOutputType
-   */
-
-  export type ActivityCountOutputType = {
-    players: number
-    UserActivity: number
-  }
-
-  export type ActivityCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    players?: boolean | ActivityCountOutputTypeCountPlayersArgs
-    UserActivity?: boolean | ActivityCountOutputTypeCountUserActivityArgs
-  }
-
-  // Custom InputTypes
-
-  /**
-   * ActivityCountOutputType without action
-   */
-  export type ActivityCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ActivityCountOutputType
-     */
-    select?: ActivityCountOutputTypeSelect<ExtArgs> | null
-  }
-
-
-  /**
-   * ActivityCountOutputType without action
-   */
-  export type ActivityCountOutputTypeCountPlayersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: UserWhereInput
-  }
-
-
-  /**
-   * ActivityCountOutputType without action
-   */
-  export type ActivityCountOutputTypeCountUserActivityArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: UserActivityWhereInput
-  }
-
-
-
-  /**
    * Models
    */
 
@@ -1980,6 +1844,10 @@ export namespace Prisma {
     userType: $Enums.UserType | null
     clubId: string | null
     teamId: string | null
+    personNumber: string | null
+    name: string | null
+    clubOnboarding: boolean | null
+    gender: string | null
   }
 
   export type UserMaxAggregateOutputType = {
@@ -1987,6 +1855,10 @@ export namespace Prisma {
     userType: $Enums.UserType | null
     clubId: string | null
     teamId: string | null
+    personNumber: string | null
+    name: string | null
+    clubOnboarding: boolean | null
+    gender: string | null
   }
 
   export type UserCountAggregateOutputType = {
@@ -1994,6 +1866,10 @@ export namespace Prisma {
     userType: number
     clubId: number
     teamId: number
+    personNumber: number
+    name: number
+    clubOnboarding: number
+    gender: number
     _all: number
   }
 
@@ -2003,6 +1879,10 @@ export namespace Prisma {
     userType?: true
     clubId?: true
     teamId?: true
+    personNumber?: true
+    name?: true
+    clubOnboarding?: true
+    gender?: true
   }
 
   export type UserMaxAggregateInputType = {
@@ -2010,6 +1890,10 @@ export namespace Prisma {
     userType?: true
     clubId?: true
     teamId?: true
+    personNumber?: true
+    name?: true
+    clubOnboarding?: true
+    gender?: true
   }
 
   export type UserCountAggregateInputType = {
@@ -2017,6 +1901,10 @@ export namespace Prisma {
     userType?: true
     clubId?: true
     teamId?: true
+    personNumber?: true
+    name?: true
+    clubOnboarding?: true
+    gender?: true
     _all?: true
   }
 
@@ -2097,6 +1985,10 @@ export namespace Prisma {
     userType: $Enums.UserType
     clubId: string
     teamId: string | null
+    personNumber: string | null
+    name: string | null
+    clubOnboarding: boolean
+    gender: string | null
     _count: UserCountAggregateOutputType | null
     _min: UserMinAggregateOutputType | null
     _max: UserMaxAggregateOutputType | null
@@ -2121,8 +2013,11 @@ export namespace Prisma {
     userType?: boolean
     clubId?: boolean
     teamId?: boolean
-    activities?: boolean | User$activitiesArgs<ExtArgs>
-    UserActivity?: boolean | User$UserActivityArgs<ExtArgs>
+    personNumber?: boolean
+    name?: boolean
+    clubOnboarding?: boolean
+    gender?: boolean
+    Activity?: boolean | User$ActivityArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -2131,11 +2026,14 @@ export namespace Prisma {
     userType?: boolean
     clubId?: boolean
     teamId?: boolean
+    personNumber?: boolean
+    name?: boolean
+    clubOnboarding?: boolean
+    gender?: boolean
   }
 
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    activities?: boolean | User$activitiesArgs<ExtArgs>
-    UserActivity?: boolean | User$UserActivityArgs<ExtArgs>
+    Activity?: boolean | User$ActivityArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -2143,14 +2041,17 @@ export namespace Prisma {
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
     objects: {
-      activities: Prisma.$ActivityPayload<ExtArgs>[]
-      UserActivity: Prisma.$UserActivityPayload<ExtArgs>[]
+      Activity: Prisma.$ActivityPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       userType: $Enums.UserType
       clubId: string
       teamId: string | null
+      personNumber: string | null
+      name: string | null
+      clubOnboarding: boolean
+      gender: string | null
     }, ExtArgs["result"]["user"]>
     composites: {}
   }
@@ -2516,9 +2417,7 @@ export namespace Prisma {
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
-    activities<T extends User$activitiesArgs<ExtArgs> = {}>(args?: Subset<T, User$activitiesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ActivityPayload<ExtArgs>, T, 'findMany'> | Null>;
-
-    UserActivity<T extends User$UserActivityArgs<ExtArgs> = {}>(args?: Subset<T, User$UserActivityArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserActivityPayload<ExtArgs>, T, 'findMany'> | Null>;
+    Activity<T extends User$ActivityArgs<ExtArgs> = {}>(args?: Subset<T, User$ActivityArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ActivityPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -2552,6 +2451,10 @@ export namespace Prisma {
     readonly userType: FieldRef<"User", 'UserType'>
     readonly clubId: FieldRef<"User", 'String'>
     readonly teamId: FieldRef<"User", 'String'>
+    readonly personNumber: FieldRef<"User", 'String'>
+    readonly name: FieldRef<"User", 'String'>
+    readonly clubOnboarding: FieldRef<"User", 'Boolean'>
+    readonly gender: FieldRef<"User", 'String'>
   }
     
 
@@ -2864,9 +2767,9 @@ export namespace Prisma {
 
 
   /**
-   * User.activities
+   * User.Activity
    */
-  export type User$activitiesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type User$ActivityArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Activity
      */
@@ -2881,27 +2784,6 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: ActivityScalarFieldEnum | ActivityScalarFieldEnum[]
-  }
-
-
-  /**
-   * User.UserActivity
-   */
-  export type User$UserActivityArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserActivity
-     */
-    select?: UserActivitySelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: UserActivityInclude<ExtArgs> | null
-    where?: UserActivityWhereInput
-    orderBy?: UserActivityOrderByWithRelationInput | UserActivityOrderByWithRelationInput[]
-    cursor?: UserActivityWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: UserActivityScalarFieldEnum | UserActivityScalarFieldEnum[]
   }
 
 
@@ -7412,941 +7294,6 @@ export namespace Prisma {
 
 
   /**
-   * Model UserActivity
-   */
-
-  export type AggregateUserActivity = {
-    _count: UserActivityCountAggregateOutputType | null
-    _avg: UserActivityAvgAggregateOutputType | null
-    _sum: UserActivitySumAggregateOutputType | null
-    _min: UserActivityMinAggregateOutputType | null
-    _max: UserActivityMaxAggregateOutputType | null
-  }
-
-  export type UserActivityAvgAggregateOutputType = {
-    totalTime: number | null
-  }
-
-  export type UserActivitySumAggregateOutputType = {
-    totalTime: number | null
-  }
-
-  export type UserActivityMinAggregateOutputType = {
-    activityId: string | null
-    userId: string | null
-    totalTime: number | null
-  }
-
-  export type UserActivityMaxAggregateOutputType = {
-    activityId: string | null
-    userId: string | null
-    totalTime: number | null
-  }
-
-  export type UserActivityCountAggregateOutputType = {
-    activityId: number
-    userId: number
-    totalTime: number
-    _all: number
-  }
-
-
-  export type UserActivityAvgAggregateInputType = {
-    totalTime?: true
-  }
-
-  export type UserActivitySumAggregateInputType = {
-    totalTime?: true
-  }
-
-  export type UserActivityMinAggregateInputType = {
-    activityId?: true
-    userId?: true
-    totalTime?: true
-  }
-
-  export type UserActivityMaxAggregateInputType = {
-    activityId?: true
-    userId?: true
-    totalTime?: true
-  }
-
-  export type UserActivityCountAggregateInputType = {
-    activityId?: true
-    userId?: true
-    totalTime?: true
-    _all?: true
-  }
-
-  export type UserActivityAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which UserActivity to aggregate.
-     */
-    where?: UserActivityWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of UserActivities to fetch.
-     */
-    orderBy?: UserActivityOrderByWithRelationInput | UserActivityOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: UserActivityWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` UserActivities from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` UserActivities.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned UserActivities
-    **/
-    _count?: true | UserActivityCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: UserActivityAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: UserActivitySumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: UserActivityMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: UserActivityMaxAggregateInputType
-  }
-
-  export type GetUserActivityAggregateType<T extends UserActivityAggregateArgs> = {
-        [P in keyof T & keyof AggregateUserActivity]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateUserActivity[P]>
-      : GetScalarType<T[P], AggregateUserActivity[P]>
-  }
-
-
-
-
-  export type UserActivityGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: UserActivityWhereInput
-    orderBy?: UserActivityOrderByWithAggregationInput | UserActivityOrderByWithAggregationInput[]
-    by: UserActivityScalarFieldEnum[] | UserActivityScalarFieldEnum
-    having?: UserActivityScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: UserActivityCountAggregateInputType | true
-    _avg?: UserActivityAvgAggregateInputType
-    _sum?: UserActivitySumAggregateInputType
-    _min?: UserActivityMinAggregateInputType
-    _max?: UserActivityMaxAggregateInputType
-  }
-
-  export type UserActivityGroupByOutputType = {
-    activityId: string
-    userId: string
-    totalTime: number
-    _count: UserActivityCountAggregateOutputType | null
-    _avg: UserActivityAvgAggregateOutputType | null
-    _sum: UserActivitySumAggregateOutputType | null
-    _min: UserActivityMinAggregateOutputType | null
-    _max: UserActivityMaxAggregateOutputType | null
-  }
-
-  type GetUserActivityGroupByPayload<T extends UserActivityGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<UserActivityGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof UserActivityGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], UserActivityGroupByOutputType[P]>
-            : GetScalarType<T[P], UserActivityGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type UserActivitySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    activityId?: boolean
-    userId?: boolean
-    totalTime?: boolean
-    activity?: boolean | ActivityDefaultArgs<ExtArgs>
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["userActivity"]>
-
-  export type UserActivitySelectScalar = {
-    activityId?: boolean
-    userId?: boolean
-    totalTime?: boolean
-  }
-
-  export type UserActivityInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    activity?: boolean | ActivityDefaultArgs<ExtArgs>
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }
-
-
-  export type $UserActivityPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "UserActivity"
-    objects: {
-      activity: Prisma.$ActivityPayload<ExtArgs>
-      user: Prisma.$UserPayload<ExtArgs>
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      activityId: string
-      userId: string
-      totalTime: number
-    }, ExtArgs["result"]["userActivity"]>
-    composites: {}
-  }
-
-
-  type UserActivityGetPayload<S extends boolean | null | undefined | UserActivityDefaultArgs> = $Result.GetResult<Prisma.$UserActivityPayload, S>
-
-  type UserActivityCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<UserActivityFindManyArgs, 'select' | 'include' | 'distinct'> & {
-      select?: UserActivityCountAggregateInputType | true
-    }
-
-  export interface UserActivityDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['UserActivity'], meta: { name: 'UserActivity' } }
-    /**
-     * Find zero or one UserActivity that matches the filter.
-     * @param {UserActivityFindUniqueArgs} args - Arguments to find a UserActivity
-     * @example
-     * // Get one UserActivity
-     * const userActivity = await prisma.userActivity.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findUnique<T extends UserActivityFindUniqueArgs<ExtArgs>>(
-      args: SelectSubset<T, UserActivityFindUniqueArgs<ExtArgs>>
-    ): Prisma__UserActivityClient<$Result.GetResult<Prisma.$UserActivityPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
-
-    /**
-     * Find one UserActivity that matches the filter or throw an error  with `error.code='P2025'` 
-     *     if no matches were found.
-     * @param {UserActivityFindUniqueOrThrowArgs} args - Arguments to find a UserActivity
-     * @example
-     * // Get one UserActivity
-     * const userActivity = await prisma.userActivity.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findUniqueOrThrow<T extends UserActivityFindUniqueOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, UserActivityFindUniqueOrThrowArgs<ExtArgs>>
-    ): Prisma__UserActivityClient<$Result.GetResult<Prisma.$UserActivityPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
-
-    /**
-     * Find the first UserActivity that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserActivityFindFirstArgs} args - Arguments to find a UserActivity
-     * @example
-     * // Get one UserActivity
-     * const userActivity = await prisma.userActivity.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findFirst<T extends UserActivityFindFirstArgs<ExtArgs>>(
-      args?: SelectSubset<T, UserActivityFindFirstArgs<ExtArgs>>
-    ): Prisma__UserActivityClient<$Result.GetResult<Prisma.$UserActivityPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
-
-    /**
-     * Find the first UserActivity that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserActivityFindFirstOrThrowArgs} args - Arguments to find a UserActivity
-     * @example
-     * // Get one UserActivity
-     * const userActivity = await prisma.userActivity.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findFirstOrThrow<T extends UserActivityFindFirstOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, UserActivityFindFirstOrThrowArgs<ExtArgs>>
-    ): Prisma__UserActivityClient<$Result.GetResult<Prisma.$UserActivityPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
-
-    /**
-     * Find zero or more UserActivities that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserActivityFindManyArgs=} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all UserActivities
-     * const userActivities = await prisma.userActivity.findMany()
-     * 
-     * // Get first 10 UserActivities
-     * const userActivities = await prisma.userActivity.findMany({ take: 10 })
-     * 
-     * // Only select the `activityId`
-     * const userActivityWithActivityIdOnly = await prisma.userActivity.findMany({ select: { activityId: true } })
-     * 
-    **/
-    findMany<T extends UserActivityFindManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, UserActivityFindManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserActivityPayload<ExtArgs>, T, 'findMany'>>
-
-    /**
-     * Create a UserActivity.
-     * @param {UserActivityCreateArgs} args - Arguments to create a UserActivity.
-     * @example
-     * // Create one UserActivity
-     * const UserActivity = await prisma.userActivity.create({
-     *   data: {
-     *     // ... data to create a UserActivity
-     *   }
-     * })
-     * 
-    **/
-    create<T extends UserActivityCreateArgs<ExtArgs>>(
-      args: SelectSubset<T, UserActivityCreateArgs<ExtArgs>>
-    ): Prisma__UserActivityClient<$Result.GetResult<Prisma.$UserActivityPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
-
-    /**
-     * Create many UserActivities.
-     *     @param {UserActivityCreateManyArgs} args - Arguments to create many UserActivities.
-     *     @example
-     *     // Create many UserActivities
-     *     const userActivity = await prisma.userActivity.createMany({
-     *       data: {
-     *         // ... provide data here
-     *       }
-     *     })
-     *     
-    **/
-    createMany<T extends UserActivityCreateManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, UserActivityCreateManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Delete a UserActivity.
-     * @param {UserActivityDeleteArgs} args - Arguments to delete one UserActivity.
-     * @example
-     * // Delete one UserActivity
-     * const UserActivity = await prisma.userActivity.delete({
-     *   where: {
-     *     // ... filter to delete one UserActivity
-     *   }
-     * })
-     * 
-    **/
-    delete<T extends UserActivityDeleteArgs<ExtArgs>>(
-      args: SelectSubset<T, UserActivityDeleteArgs<ExtArgs>>
-    ): Prisma__UserActivityClient<$Result.GetResult<Prisma.$UserActivityPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
-
-    /**
-     * Update one UserActivity.
-     * @param {UserActivityUpdateArgs} args - Arguments to update one UserActivity.
-     * @example
-     * // Update one UserActivity
-     * const userActivity = await prisma.userActivity.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-    **/
-    update<T extends UserActivityUpdateArgs<ExtArgs>>(
-      args: SelectSubset<T, UserActivityUpdateArgs<ExtArgs>>
-    ): Prisma__UserActivityClient<$Result.GetResult<Prisma.$UserActivityPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
-
-    /**
-     * Delete zero or more UserActivities.
-     * @param {UserActivityDeleteManyArgs} args - Arguments to filter UserActivities to delete.
-     * @example
-     * // Delete a few UserActivities
-     * const { count } = await prisma.userActivity.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-    **/
-    deleteMany<T extends UserActivityDeleteManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, UserActivityDeleteManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more UserActivities.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserActivityUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many UserActivities
-     * const userActivity = await prisma.userActivity.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-    **/
-    updateMany<T extends UserActivityUpdateManyArgs<ExtArgs>>(
-      args: SelectSubset<T, UserActivityUpdateManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create or update one UserActivity.
-     * @param {UserActivityUpsertArgs} args - Arguments to update or create a UserActivity.
-     * @example
-     * // Update or create a UserActivity
-     * const userActivity = await prisma.userActivity.upsert({
-     *   create: {
-     *     // ... data to create a UserActivity
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the UserActivity we want to update
-     *   }
-     * })
-    **/
-    upsert<T extends UserActivityUpsertArgs<ExtArgs>>(
-      args: SelectSubset<T, UserActivityUpsertArgs<ExtArgs>>
-    ): Prisma__UserActivityClient<$Result.GetResult<Prisma.$UserActivityPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
-
-    /**
-     * Count the number of UserActivities.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserActivityCountArgs} args - Arguments to filter UserActivities to count.
-     * @example
-     * // Count the number of UserActivities
-     * const count = await prisma.userActivity.count({
-     *   where: {
-     *     // ... the filter for the UserActivities we want to count
-     *   }
-     * })
-    **/
-    count<T extends UserActivityCountArgs>(
-      args?: Subset<T, UserActivityCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], UserActivityCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a UserActivity.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserActivityAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends UserActivityAggregateArgs>(args: Subset<T, UserActivityAggregateArgs>): Prisma.PrismaPromise<GetUserActivityAggregateType<T>>
-
-    /**
-     * Group by UserActivity.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserActivityGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends UserActivityGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: UserActivityGroupByArgs['orderBy'] }
-        : { orderBy?: UserActivityGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, UserActivityGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetUserActivityGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the UserActivity model
-   */
-  readonly fields: UserActivityFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for UserActivity.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__UserActivityClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: 'PrismaPromise';
-
-    activity<T extends ActivityDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ActivityDefaultArgs<ExtArgs>>): Prisma__ActivityClient<$Result.GetResult<Prisma.$ActivityPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
-
-    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
-
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
-  }
-
-
-
-  /**
-   * Fields of the UserActivity model
-   */ 
-  interface UserActivityFieldRefs {
-    readonly activityId: FieldRef<"UserActivity", 'String'>
-    readonly userId: FieldRef<"UserActivity", 'String'>
-    readonly totalTime: FieldRef<"UserActivity", 'Int'>
-  }
-    
-
-  // Custom InputTypes
-
-  /**
-   * UserActivity findUnique
-   */
-  export type UserActivityFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserActivity
-     */
-    select?: UserActivitySelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: UserActivityInclude<ExtArgs> | null
-    /**
-     * Filter, which UserActivity to fetch.
-     */
-    where: UserActivityWhereUniqueInput
-  }
-
-
-  /**
-   * UserActivity findUniqueOrThrow
-   */
-  export type UserActivityFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserActivity
-     */
-    select?: UserActivitySelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: UserActivityInclude<ExtArgs> | null
-    /**
-     * Filter, which UserActivity to fetch.
-     */
-    where: UserActivityWhereUniqueInput
-  }
-
-
-  /**
-   * UserActivity findFirst
-   */
-  export type UserActivityFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserActivity
-     */
-    select?: UserActivitySelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: UserActivityInclude<ExtArgs> | null
-    /**
-     * Filter, which UserActivity to fetch.
-     */
-    where?: UserActivityWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of UserActivities to fetch.
-     */
-    orderBy?: UserActivityOrderByWithRelationInput | UserActivityOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for UserActivities.
-     */
-    cursor?: UserActivityWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` UserActivities from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` UserActivities.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of UserActivities.
-     */
-    distinct?: UserActivityScalarFieldEnum | UserActivityScalarFieldEnum[]
-  }
-
-
-  /**
-   * UserActivity findFirstOrThrow
-   */
-  export type UserActivityFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserActivity
-     */
-    select?: UserActivitySelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: UserActivityInclude<ExtArgs> | null
-    /**
-     * Filter, which UserActivity to fetch.
-     */
-    where?: UserActivityWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of UserActivities to fetch.
-     */
-    orderBy?: UserActivityOrderByWithRelationInput | UserActivityOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for UserActivities.
-     */
-    cursor?: UserActivityWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` UserActivities from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` UserActivities.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of UserActivities.
-     */
-    distinct?: UserActivityScalarFieldEnum | UserActivityScalarFieldEnum[]
-  }
-
-
-  /**
-   * UserActivity findMany
-   */
-  export type UserActivityFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserActivity
-     */
-    select?: UserActivitySelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: UserActivityInclude<ExtArgs> | null
-    /**
-     * Filter, which UserActivities to fetch.
-     */
-    where?: UserActivityWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of UserActivities to fetch.
-     */
-    orderBy?: UserActivityOrderByWithRelationInput | UserActivityOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing UserActivities.
-     */
-    cursor?: UserActivityWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` UserActivities from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` UserActivities.
-     */
-    skip?: number
-    distinct?: UserActivityScalarFieldEnum | UserActivityScalarFieldEnum[]
-  }
-
-
-  /**
-   * UserActivity create
-   */
-  export type UserActivityCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserActivity
-     */
-    select?: UserActivitySelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: UserActivityInclude<ExtArgs> | null
-    /**
-     * The data needed to create a UserActivity.
-     */
-    data: XOR<UserActivityCreateInput, UserActivityUncheckedCreateInput>
-  }
-
-
-  /**
-   * UserActivity createMany
-   */
-  export type UserActivityCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many UserActivities.
-     */
-    data: UserActivityCreateManyInput | UserActivityCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-
-  /**
-   * UserActivity update
-   */
-  export type UserActivityUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserActivity
-     */
-    select?: UserActivitySelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: UserActivityInclude<ExtArgs> | null
-    /**
-     * The data needed to update a UserActivity.
-     */
-    data: XOR<UserActivityUpdateInput, UserActivityUncheckedUpdateInput>
-    /**
-     * Choose, which UserActivity to update.
-     */
-    where: UserActivityWhereUniqueInput
-  }
-
-
-  /**
-   * UserActivity updateMany
-   */
-  export type UserActivityUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update UserActivities.
-     */
-    data: XOR<UserActivityUpdateManyMutationInput, UserActivityUncheckedUpdateManyInput>
-    /**
-     * Filter which UserActivities to update
-     */
-    where?: UserActivityWhereInput
-  }
-
-
-  /**
-   * UserActivity upsert
-   */
-  export type UserActivityUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserActivity
-     */
-    select?: UserActivitySelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: UserActivityInclude<ExtArgs> | null
-    /**
-     * The filter to search for the UserActivity to update in case it exists.
-     */
-    where: UserActivityWhereUniqueInput
-    /**
-     * In case the UserActivity found by the `where` argument doesn't exist, create a new UserActivity with this data.
-     */
-    create: XOR<UserActivityCreateInput, UserActivityUncheckedCreateInput>
-    /**
-     * In case the UserActivity was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<UserActivityUpdateInput, UserActivityUncheckedUpdateInput>
-  }
-
-
-  /**
-   * UserActivity delete
-   */
-  export type UserActivityDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserActivity
-     */
-    select?: UserActivitySelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: UserActivityInclude<ExtArgs> | null
-    /**
-     * Filter which UserActivity to delete.
-     */
-    where: UserActivityWhereUniqueInput
-  }
-
-
-  /**
-   * UserActivity deleteMany
-   */
-  export type UserActivityDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which UserActivities to delete
-     */
-    where?: UserActivityWhereInput
-  }
-
-
-  /**
-   * UserActivity without action
-   */
-  export type UserActivityDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserActivity
-     */
-    select?: UserActivitySelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: UserActivityInclude<ExtArgs> | null
-  }
-
-
-
-  /**
    * Model Activity
    */
 
@@ -8373,10 +7320,9 @@ export namespace Prisma {
   export type ActivityMinAggregateOutputType = {
     id: string | null
     teamId: string | null
-    activityUrl: string | null
     clubId: string | null
+    userId: string | null
     noOfReg: number | null
-    coach: string | null
     activityDate: Date | null
     program: string | null
     minAge: number | null
@@ -8388,10 +7334,9 @@ export namespace Prisma {
   export type ActivityMaxAggregateOutputType = {
     id: string | null
     teamId: string | null
-    activityUrl: string | null
     clubId: string | null
+    userId: string | null
     noOfReg: number | null
-    coach: string | null
     activityDate: Date | null
     program: string | null
     minAge: number | null
@@ -8403,10 +7348,9 @@ export namespace Prisma {
   export type ActivityCountAggregateOutputType = {
     id: number
     teamId: number
-    activityUrl: number
     clubId: number
+    userId: number
     noOfReg: number
-    coach: number
     activityDate: number
     program: number
     minAge: number
@@ -8433,10 +7377,9 @@ export namespace Prisma {
   export type ActivityMinAggregateInputType = {
     id?: true
     teamId?: true
-    activityUrl?: true
     clubId?: true
+    userId?: true
     noOfReg?: true
-    coach?: true
     activityDate?: true
     program?: true
     minAge?: true
@@ -8448,10 +7391,9 @@ export namespace Prisma {
   export type ActivityMaxAggregateInputType = {
     id?: true
     teamId?: true
-    activityUrl?: true
     clubId?: true
+    userId?: true
     noOfReg?: true
-    coach?: true
     activityDate?: true
     program?: true
     minAge?: true
@@ -8463,10 +7405,9 @@ export namespace Prisma {
   export type ActivityCountAggregateInputType = {
     id?: true
     teamId?: true
-    activityUrl?: true
     clubId?: true
+    userId?: true
     noOfReg?: true
-    coach?: true
     activityDate?: true
     program?: true
     minAge?: true
@@ -8566,10 +7507,9 @@ export namespace Prisma {
   export type ActivityGroupByOutputType = {
     id: string
     teamId: string
-    activityUrl: string
     clubId: string
+    userId: string
     noOfReg: number
-    coach: string
     activityDate: Date
     program: string
     minAge: number
@@ -8601,10 +7541,9 @@ export namespace Prisma {
   export type ActivitySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     teamId?: boolean
-    activityUrl?: boolean
     clubId?: boolean
+    userId?: boolean
     noOfReg?: boolean
-    coach?: boolean
     activityDate?: boolean
     program?: boolean
     minAge?: boolean
@@ -8614,18 +7553,15 @@ export namespace Prisma {
     dateUpdated?: boolean
     team?: boolean | TeamDefaultArgs<ExtArgs>
     club?: boolean | ClubDefaultArgs<ExtArgs>
-    players?: boolean | Activity$playersArgs<ExtArgs>
-    UserActivity?: boolean | Activity$UserActivityArgs<ExtArgs>
-    _count?: boolean | ActivityCountOutputTypeDefaultArgs<ExtArgs>
+    coach?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["activity"]>
 
   export type ActivitySelectScalar = {
     id?: boolean
     teamId?: boolean
-    activityUrl?: boolean
     clubId?: boolean
+    userId?: boolean
     noOfReg?: boolean
-    coach?: boolean
     activityDate?: boolean
     program?: boolean
     minAge?: boolean
@@ -8638,9 +7574,7 @@ export namespace Prisma {
   export type ActivityInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     team?: boolean | TeamDefaultArgs<ExtArgs>
     club?: boolean | ClubDefaultArgs<ExtArgs>
-    players?: boolean | Activity$playersArgs<ExtArgs>
-    UserActivity?: boolean | Activity$UserActivityArgs<ExtArgs>
-    _count?: boolean | ActivityCountOutputTypeDefaultArgs<ExtArgs>
+    coach?: boolean | UserDefaultArgs<ExtArgs>
   }
 
 
@@ -8649,16 +7583,14 @@ export namespace Prisma {
     objects: {
       team: Prisma.$TeamPayload<ExtArgs>
       club: Prisma.$ClubPayload<ExtArgs>
-      players: Prisma.$UserPayload<ExtArgs>[]
-      UserActivity: Prisma.$UserActivityPayload<ExtArgs>[]
+      coach: Prisma.$UserPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       teamId: string
-      activityUrl: string
       clubId: string
+      userId: string
       noOfReg: number
-      coach: string
       activityDate: Date
       program: string
       minAge: number
@@ -9035,9 +7967,7 @@ export namespace Prisma {
 
     club<T extends ClubDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ClubDefaultArgs<ExtArgs>>): Prisma__ClubClient<$Result.GetResult<Prisma.$ClubPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
 
-    players<T extends Activity$playersArgs<ExtArgs> = {}>(args?: Subset<T, Activity$playersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findMany'> | Null>;
-
-    UserActivity<T extends Activity$UserActivityArgs<ExtArgs> = {}>(args?: Subset<T, Activity$UserActivityArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserActivityPayload<ExtArgs>, T, 'findMany'> | Null>;
+    coach<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -9069,10 +7999,9 @@ export namespace Prisma {
   interface ActivityFieldRefs {
     readonly id: FieldRef<"Activity", 'String'>
     readonly teamId: FieldRef<"Activity", 'String'>
-    readonly activityUrl: FieldRef<"Activity", 'String'>
     readonly clubId: FieldRef<"Activity", 'String'>
+    readonly userId: FieldRef<"Activity", 'String'>
     readonly noOfReg: FieldRef<"Activity", 'Int'>
-    readonly coach: FieldRef<"Activity", 'String'>
     readonly activityDate: FieldRef<"Activity", 'DateTime'>
     readonly program: FieldRef<"Activity", 'String'>
     readonly minAge: FieldRef<"Activity", 'Int'>
@@ -9388,48 +8317,6 @@ export namespace Prisma {
      * Filter which Activities to delete
      */
     where?: ActivityWhereInput
-  }
-
-
-  /**
-   * Activity.players
-   */
-  export type Activity$playersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: UserInclude<ExtArgs> | null
-    where?: UserWhereInput
-    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
-    cursor?: UserWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
-  }
-
-
-  /**
-   * Activity.UserActivity
-   */
-  export type Activity$UserActivityArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserActivity
-     */
-    select?: UserActivitySelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: UserActivityInclude<ExtArgs> | null
-    where?: UserActivityWhereInput
-    orderBy?: UserActivityOrderByWithRelationInput | UserActivityOrderByWithRelationInput[]
-    cursor?: UserActivityWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: UserActivityScalarFieldEnum | UserActivityScalarFieldEnum[]
   }
 
 
@@ -13251,7 +12138,11 @@ export namespace Prisma {
     id: 'id',
     userType: 'userType',
     clubId: 'clubId',
-    teamId: 'teamId'
+    teamId: 'teamId',
+    personNumber: 'personNumber',
+    name: 'name',
+    clubOnboarding: 'clubOnboarding',
+    gender: 'gender'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -13309,22 +12200,12 @@ export namespace Prisma {
   export type TeamScalarFieldEnum = (typeof TeamScalarFieldEnum)[keyof typeof TeamScalarFieldEnum]
 
 
-  export const UserActivityScalarFieldEnum: {
-    activityId: 'activityId',
-    userId: 'userId',
-    totalTime: 'totalTime'
-  };
-
-  export type UserActivityScalarFieldEnum = (typeof UserActivityScalarFieldEnum)[keyof typeof UserActivityScalarFieldEnum]
-
-
   export const ActivityScalarFieldEnum: {
     id: 'id',
     teamId: 'teamId',
-    activityUrl: 'activityUrl',
     clubId: 'clubId',
+    userId: 'userId',
     noOfReg: 'noOfReg',
-    coach: 'coach',
     activityDate: 'activityDate',
     program: 'program',
     minAge: 'minAge',
@@ -13451,16 +12332,16 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'DateTime'
+   * Reference to a field of type 'Boolean'
    */
-  export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 
   /**
-   * Reference to a field of type 'Boolean'
+   * Reference to a field of type 'DateTime'
    */
-  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+  export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
     
 
 
@@ -13503,8 +12384,11 @@ export namespace Prisma {
     userType?: EnumUserTypeFilter<"User"> | $Enums.UserType
     clubId?: StringFilter<"User"> | string
     teamId?: StringNullableFilter<"User"> | string | null
-    activities?: ActivityListRelationFilter
-    UserActivity?: UserActivityListRelationFilter
+    personNumber?: StringNullableFilter<"User"> | string | null
+    name?: StringNullableFilter<"User"> | string | null
+    clubOnboarding?: BoolFilter<"User"> | boolean
+    gender?: StringNullableFilter<"User"> | string | null
+    Activity?: ActivityListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -13512,8 +12396,11 @@ export namespace Prisma {
     userType?: SortOrder
     clubId?: SortOrder
     teamId?: SortOrderInput | SortOrder
-    activities?: ActivityOrderByRelationAggregateInput
-    UserActivity?: UserActivityOrderByRelationAggregateInput
+    personNumber?: SortOrderInput | SortOrder
+    name?: SortOrderInput | SortOrder
+    clubOnboarding?: SortOrder
+    gender?: SortOrderInput | SortOrder
+    Activity?: ActivityOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -13524,8 +12411,11 @@ export namespace Prisma {
     userType?: EnumUserTypeFilter<"User"> | $Enums.UserType
     clubId?: StringFilter<"User"> | string
     teamId?: StringNullableFilter<"User"> | string | null
-    activities?: ActivityListRelationFilter
-    UserActivity?: UserActivityListRelationFilter
+    personNumber?: StringNullableFilter<"User"> | string | null
+    name?: StringNullableFilter<"User"> | string | null
+    clubOnboarding?: BoolFilter<"User"> | boolean
+    gender?: StringNullableFilter<"User"> | string | null
+    Activity?: ActivityListRelationFilter
   }, "id">
 
   export type UserOrderByWithAggregationInput = {
@@ -13533,6 +12423,10 @@ export namespace Prisma {
     userType?: SortOrder
     clubId?: SortOrder
     teamId?: SortOrderInput | SortOrder
+    personNumber?: SortOrderInput | SortOrder
+    name?: SortOrderInput | SortOrder
+    clubOnboarding?: SortOrder
+    gender?: SortOrderInput | SortOrder
     _count?: UserCountOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
     _min?: UserMinOrderByAggregateInput
@@ -13546,6 +12440,10 @@ export namespace Prisma {
     userType?: EnumUserTypeWithAggregatesFilter<"User"> | $Enums.UserType
     clubId?: StringWithAggregatesFilter<"User"> | string
     teamId?: StringNullableWithAggregatesFilter<"User"> | string | null
+    personNumber?: StringNullableWithAggregatesFilter<"User"> | string | null
+    name?: StringNullableWithAggregatesFilter<"User"> | string | null
+    clubOnboarding?: BoolWithAggregatesFilter<"User"> | boolean
+    gender?: StringNullableWithAggregatesFilter<"User"> | string | null
   }
 
   export type InstallWhereInput = {
@@ -13805,67 +12703,15 @@ export namespace Prisma {
     dateUpdated?: DateTimeNullableWithAggregatesFilter<"Team"> | Date | string | null
   }
 
-  export type UserActivityWhereInput = {
-    AND?: UserActivityWhereInput | UserActivityWhereInput[]
-    OR?: UserActivityWhereInput[]
-    NOT?: UserActivityWhereInput | UserActivityWhereInput[]
-    activityId?: StringFilter<"UserActivity"> | string
-    userId?: StringFilter<"UserActivity"> | string
-    totalTime?: IntFilter<"UserActivity"> | number
-    activity?: XOR<ActivityRelationFilter, ActivityWhereInput>
-    user?: XOR<UserRelationFilter, UserWhereInput>
-  }
-
-  export type UserActivityOrderByWithRelationInput = {
-    activityId?: SortOrder
-    userId?: SortOrder
-    totalTime?: SortOrder
-    activity?: ActivityOrderByWithRelationInput
-    user?: UserOrderByWithRelationInput
-  }
-
-  export type UserActivityWhereUniqueInput = Prisma.AtLeast<{
-    activityId_userId?: UserActivityActivityIdUserIdCompoundUniqueInput
-    AND?: UserActivityWhereInput | UserActivityWhereInput[]
-    OR?: UserActivityWhereInput[]
-    NOT?: UserActivityWhereInput | UserActivityWhereInput[]
-    activityId?: StringFilter<"UserActivity"> | string
-    userId?: StringFilter<"UserActivity"> | string
-    totalTime?: IntFilter<"UserActivity"> | number
-    activity?: XOR<ActivityRelationFilter, ActivityWhereInput>
-    user?: XOR<UserRelationFilter, UserWhereInput>
-  }, "activityId_userId">
-
-  export type UserActivityOrderByWithAggregationInput = {
-    activityId?: SortOrder
-    userId?: SortOrder
-    totalTime?: SortOrder
-    _count?: UserActivityCountOrderByAggregateInput
-    _avg?: UserActivityAvgOrderByAggregateInput
-    _max?: UserActivityMaxOrderByAggregateInput
-    _min?: UserActivityMinOrderByAggregateInput
-    _sum?: UserActivitySumOrderByAggregateInput
-  }
-
-  export type UserActivityScalarWhereWithAggregatesInput = {
-    AND?: UserActivityScalarWhereWithAggregatesInput | UserActivityScalarWhereWithAggregatesInput[]
-    OR?: UserActivityScalarWhereWithAggregatesInput[]
-    NOT?: UserActivityScalarWhereWithAggregatesInput | UserActivityScalarWhereWithAggregatesInput[]
-    activityId?: StringWithAggregatesFilter<"UserActivity"> | string
-    userId?: StringWithAggregatesFilter<"UserActivity"> | string
-    totalTime?: IntWithAggregatesFilter<"UserActivity"> | number
-  }
-
   export type ActivityWhereInput = {
     AND?: ActivityWhereInput | ActivityWhereInput[]
     OR?: ActivityWhereInput[]
     NOT?: ActivityWhereInput | ActivityWhereInput[]
     id?: StringFilter<"Activity"> | string
     teamId?: StringFilter<"Activity"> | string
-    activityUrl?: StringFilter<"Activity"> | string
     clubId?: StringFilter<"Activity"> | string
+    userId?: StringFilter<"Activity"> | string
     noOfReg?: IntFilter<"Activity"> | number
-    coach?: StringFilter<"Activity"> | string
     activityDate?: DateTimeFilter<"Activity"> | Date | string
     program?: StringFilter<"Activity"> | string
     minAge?: IntFilter<"Activity"> | number
@@ -13875,17 +12721,15 @@ export namespace Prisma {
     dateUpdated?: DateTimeNullableFilter<"Activity"> | Date | string | null
     team?: XOR<TeamRelationFilter, TeamWhereInput>
     club?: XOR<ClubRelationFilter, ClubWhereInput>
-    players?: UserListRelationFilter
-    UserActivity?: UserActivityListRelationFilter
+    coach?: XOR<UserRelationFilter, UserWhereInput>
   }
 
   export type ActivityOrderByWithRelationInput = {
     id?: SortOrder
     teamId?: SortOrder
-    activityUrl?: SortOrder
     clubId?: SortOrder
+    userId?: SortOrder
     noOfReg?: SortOrder
-    coach?: SortOrder
     activityDate?: SortOrder
     program?: SortOrder
     minAge?: SortOrder
@@ -13895,8 +12739,7 @@ export namespace Prisma {
     dateUpdated?: SortOrderInput | SortOrder
     team?: TeamOrderByWithRelationInput
     club?: ClubOrderByWithRelationInput
-    players?: UserOrderByRelationAggregateInput
-    UserActivity?: UserActivityOrderByRelationAggregateInput
+    coach?: UserOrderByWithRelationInput
   }
 
   export type ActivityWhereUniqueInput = Prisma.AtLeast<{
@@ -13905,10 +12748,9 @@ export namespace Prisma {
     OR?: ActivityWhereInput[]
     NOT?: ActivityWhereInput | ActivityWhereInput[]
     teamId?: StringFilter<"Activity"> | string
-    activityUrl?: StringFilter<"Activity"> | string
     clubId?: StringFilter<"Activity"> | string
+    userId?: StringFilter<"Activity"> | string
     noOfReg?: IntFilter<"Activity"> | number
-    coach?: StringFilter<"Activity"> | string
     activityDate?: DateTimeFilter<"Activity"> | Date | string
     program?: StringFilter<"Activity"> | string
     minAge?: IntFilter<"Activity"> | number
@@ -13918,17 +12760,15 @@ export namespace Prisma {
     dateUpdated?: DateTimeNullableFilter<"Activity"> | Date | string | null
     team?: XOR<TeamRelationFilter, TeamWhereInput>
     club?: XOR<ClubRelationFilter, ClubWhereInput>
-    players?: UserListRelationFilter
-    UserActivity?: UserActivityListRelationFilter
+    coach?: XOR<UserRelationFilter, UserWhereInput>
   }, "id">
 
   export type ActivityOrderByWithAggregationInput = {
     id?: SortOrder
     teamId?: SortOrder
-    activityUrl?: SortOrder
     clubId?: SortOrder
+    userId?: SortOrder
     noOfReg?: SortOrder
-    coach?: SortOrder
     activityDate?: SortOrder
     program?: SortOrder
     minAge?: SortOrder
@@ -13949,10 +12789,9 @@ export namespace Prisma {
     NOT?: ActivityScalarWhereWithAggregatesInput | ActivityScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Activity"> | string
     teamId?: StringWithAggregatesFilter<"Activity"> | string
-    activityUrl?: StringWithAggregatesFilter<"Activity"> | string
     clubId?: StringWithAggregatesFilter<"Activity"> | string
+    userId?: StringWithAggregatesFilter<"Activity"> | string
     noOfReg?: IntWithAggregatesFilter<"Activity"> | number
-    coach?: StringWithAggregatesFilter<"Activity"> | string
     activityDate?: DateTimeWithAggregatesFilter<"Activity"> | Date | string
     program?: StringWithAggregatesFilter<"Activity"> | string
     minAge?: IntWithAggregatesFilter<"Activity"> | number
@@ -14271,8 +13110,11 @@ export namespace Prisma {
     userType?: $Enums.UserType
     clubId: string
     teamId?: string | null
-    activities?: ActivityCreateNestedManyWithoutPlayersInput
-    UserActivity?: UserActivityCreateNestedManyWithoutUserInput
+    personNumber?: string | null
+    name?: string | null
+    clubOnboarding?: boolean
+    gender?: string | null
+    Activity?: ActivityCreateNestedManyWithoutCoachInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -14280,8 +13122,11 @@ export namespace Prisma {
     userType?: $Enums.UserType
     clubId: string
     teamId?: string | null
-    activities?: ActivityUncheckedCreateNestedManyWithoutPlayersInput
-    UserActivity?: UserActivityUncheckedCreateNestedManyWithoutUserInput
+    personNumber?: string | null
+    name?: string | null
+    clubOnboarding?: boolean
+    gender?: string | null
+    Activity?: ActivityUncheckedCreateNestedManyWithoutCoachInput
   }
 
   export type UserUpdateInput = {
@@ -14289,8 +13134,11 @@ export namespace Prisma {
     userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
     clubId?: StringFieldUpdateOperationsInput | string
     teamId?: NullableStringFieldUpdateOperationsInput | string | null
-    activities?: ActivityUpdateManyWithoutPlayersNestedInput
-    UserActivity?: UserActivityUpdateManyWithoutUserNestedInput
+    personNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    clubOnboarding?: BoolFieldUpdateOperationsInput | boolean
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
+    Activity?: ActivityUpdateManyWithoutCoachNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -14298,8 +13146,11 @@ export namespace Prisma {
     userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
     clubId?: StringFieldUpdateOperationsInput | string
     teamId?: NullableStringFieldUpdateOperationsInput | string | null
-    activities?: ActivityUncheckedUpdateManyWithoutPlayersNestedInput
-    UserActivity?: UserActivityUncheckedUpdateManyWithoutUserNestedInput
+    personNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    clubOnboarding?: BoolFieldUpdateOperationsInput | boolean
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
+    Activity?: ActivityUncheckedUpdateManyWithoutCoachNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -14307,6 +13158,10 @@ export namespace Prisma {
     userType?: $Enums.UserType
     clubId: string
     teamId?: string | null
+    personNumber?: string | null
+    name?: string | null
+    clubOnboarding?: boolean
+    gender?: string | null
   }
 
   export type UserUpdateManyMutationInput = {
@@ -14314,6 +13169,10 @@ export namespace Prisma {
     userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
     clubId?: StringFieldUpdateOperationsInput | string
     teamId?: NullableStringFieldUpdateOperationsInput | string | null
+    personNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    clubOnboarding?: BoolFieldUpdateOperationsInput | boolean
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type UserUncheckedUpdateManyInput = {
@@ -14321,6 +13180,10 @@ export namespace Prisma {
     userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
     clubId?: StringFieldUpdateOperationsInput | string
     teamId?: NullableStringFieldUpdateOperationsInput | string | null
+    personNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    clubOnboarding?: BoolFieldUpdateOperationsInput | boolean
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type InstallCreateInput = {
@@ -14593,51 +13456,9 @@ export namespace Prisma {
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
-  export type UserActivityCreateInput = {
-    totalTime: number
-    activity: ActivityCreateNestedOneWithoutUserActivityInput
-    user: UserCreateNestedOneWithoutUserActivityInput
-  }
-
-  export type UserActivityUncheckedCreateInput = {
-    activityId: string
-    userId: string
-    totalTime: number
-  }
-
-  export type UserActivityUpdateInput = {
-    totalTime?: IntFieldUpdateOperationsInput | number
-    activity?: ActivityUpdateOneRequiredWithoutUserActivityNestedInput
-    user?: UserUpdateOneRequiredWithoutUserActivityNestedInput
-  }
-
-  export type UserActivityUncheckedUpdateInput = {
-    activityId?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
-    totalTime?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type UserActivityCreateManyInput = {
-    activityId: string
-    userId: string
-    totalTime: number
-  }
-
-  export type UserActivityUpdateManyMutationInput = {
-    totalTime?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type UserActivityUncheckedUpdateManyInput = {
-    activityId?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
-    totalTime?: IntFieldUpdateOperationsInput | number
-  }
-
   export type ActivityCreateInput = {
     id: string
-    activityUrl: string
     noOfReg: number
-    coach: string
     activityDate: Date | string
     program: string
     minAge: number
@@ -14647,17 +13468,15 @@ export namespace Prisma {
     dateUpdated?: Date | string | null
     team: TeamCreateNestedOneWithoutActivityInput
     club: ClubCreateNestedOneWithoutActivityInput
-    players?: UserCreateNestedManyWithoutActivitiesInput
-    UserActivity?: UserActivityCreateNestedManyWithoutActivityInput
+    coach: UserCreateNestedOneWithoutActivityInput
   }
 
   export type ActivityUncheckedCreateInput = {
     id: string
     teamId: string
-    activityUrl: string
     clubId: string
+    userId: string
     noOfReg: number
-    coach: string
     activityDate: Date | string
     program: string
     minAge: number
@@ -14665,15 +13484,11 @@ export namespace Prisma {
     equipments: JsonNullValueInput | InputJsonValue
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
-    players?: UserUncheckedCreateNestedManyWithoutActivitiesInput
-    UserActivity?: UserActivityUncheckedCreateNestedManyWithoutActivityInput
   }
 
   export type ActivityUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    activityUrl?: StringFieldUpdateOperationsInput | string
     noOfReg?: IntFieldUpdateOperationsInput | number
-    coach?: StringFieldUpdateOperationsInput | string
     activityDate?: DateTimeFieldUpdateOperationsInput | Date | string
     program?: StringFieldUpdateOperationsInput | string
     minAge?: IntFieldUpdateOperationsInput | number
@@ -14683,17 +13498,15 @@ export namespace Prisma {
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     team?: TeamUpdateOneRequiredWithoutActivityNestedInput
     club?: ClubUpdateOneRequiredWithoutActivityNestedInput
-    players?: UserUpdateManyWithoutActivitiesNestedInput
-    UserActivity?: UserActivityUpdateManyWithoutActivityNestedInput
+    coach?: UserUpdateOneRequiredWithoutActivityNestedInput
   }
 
   export type ActivityUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     teamId?: StringFieldUpdateOperationsInput | string
-    activityUrl?: StringFieldUpdateOperationsInput | string
     clubId?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
     noOfReg?: IntFieldUpdateOperationsInput | number
-    coach?: StringFieldUpdateOperationsInput | string
     activityDate?: DateTimeFieldUpdateOperationsInput | Date | string
     program?: StringFieldUpdateOperationsInput | string
     minAge?: IntFieldUpdateOperationsInput | number
@@ -14701,17 +13514,14 @@ export namespace Prisma {
     equipments?: JsonNullValueInput | InputJsonValue
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    players?: UserUncheckedUpdateManyWithoutActivitiesNestedInput
-    UserActivity?: UserActivityUncheckedUpdateManyWithoutActivityNestedInput
   }
 
   export type ActivityCreateManyInput = {
     id: string
     teamId: string
-    activityUrl: string
     clubId: string
+    userId: string
     noOfReg: number
-    coach: string
     activityDate: Date | string
     program: string
     minAge: number
@@ -14723,9 +13533,7 @@ export namespace Prisma {
 
   export type ActivityUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    activityUrl?: StringFieldUpdateOperationsInput | string
     noOfReg?: IntFieldUpdateOperationsInput | number
-    coach?: StringFieldUpdateOperationsInput | string
     activityDate?: DateTimeFieldUpdateOperationsInput | Date | string
     program?: StringFieldUpdateOperationsInput | string
     minAge?: IntFieldUpdateOperationsInput | number
@@ -14738,10 +13546,9 @@ export namespace Prisma {
   export type ActivityUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     teamId?: StringFieldUpdateOperationsInput | string
-    activityUrl?: StringFieldUpdateOperationsInput | string
     clubId?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
     noOfReg?: IntFieldUpdateOperationsInput | number
-    coach?: StringFieldUpdateOperationsInput | string
     activityDate?: DateTimeFieldUpdateOperationsInput | Date | string
     program?: StringFieldUpdateOperationsInput | string
     minAge?: IntFieldUpdateOperationsInput | number
@@ -15136,16 +13943,15 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type ActivityListRelationFilter = {
     every?: ActivityWhereInput
     some?: ActivityWhereInput
     none?: ActivityWhereInput
-  }
-
-  export type UserActivityListRelationFilter = {
-    every?: UserActivityWhereInput
-    some?: UserActivityWhereInput
-    none?: UserActivityWhereInput
   }
 
   export type SortOrderInput = {
@@ -15157,15 +13963,15 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
-  export type UserActivityOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
   export type UserCountOrderByAggregateInput = {
     id?: SortOrder
     userType?: SortOrder
     clubId?: SortOrder
     teamId?: SortOrder
+    personNumber?: SortOrder
+    name?: SortOrder
+    clubOnboarding?: SortOrder
+    gender?: SortOrder
   }
 
   export type UserMaxOrderByAggregateInput = {
@@ -15173,6 +13979,10 @@ export namespace Prisma {
     userType?: SortOrder
     clubId?: SortOrder
     teamId?: SortOrder
+    personNumber?: SortOrder
+    name?: SortOrder
+    clubOnboarding?: SortOrder
+    gender?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
@@ -15180,6 +13990,10 @@ export namespace Prisma {
     userType?: SortOrder
     clubId?: SortOrder
     teamId?: SortOrder
+    personNumber?: SortOrder
+    name?: SortOrder
+    clubOnboarding?: SortOrder
+    gender?: SortOrder
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -15224,6 +14038,14 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedStringNullableFilter<$PrismaModel>
     _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type InstallCountOrderByAggregateInput = {
@@ -15370,11 +14192,6 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
-  export type BoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
-
   export type ClubRelationFilter = {
     is?: ClubWhereInput
     isNot?: ClubWhereInput
@@ -15407,14 +14224,6 @@ export namespace Prisma {
     dateUpdated?: SortOrder
   }
 
-  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
-  }
-
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[]
@@ -15424,63 +14233,6 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntFilter<$PrismaModel> | number
-  }
-
-  export type ActivityRelationFilter = {
-    is?: ActivityWhereInput
-    isNot?: ActivityWhereInput
-  }
-
-  export type UserRelationFilter = {
-    is?: UserWhereInput
-    isNot?: UserWhereInput
-  }
-
-  export type UserActivityActivityIdUserIdCompoundUniqueInput = {
-    activityId: string
-    userId: string
-  }
-
-  export type UserActivityCountOrderByAggregateInput = {
-    activityId?: SortOrder
-    userId?: SortOrder
-    totalTime?: SortOrder
-  }
-
-  export type UserActivityAvgOrderByAggregateInput = {
-    totalTime?: SortOrder
-  }
-
-  export type UserActivityMaxOrderByAggregateInput = {
-    activityId?: SortOrder
-    userId?: SortOrder
-    totalTime?: SortOrder
-  }
-
-  export type UserActivityMinOrderByAggregateInput = {
-    activityId?: SortOrder
-    userId?: SortOrder
-    totalTime?: SortOrder
-  }
-
-  export type UserActivitySumOrderByAggregateInput = {
-    totalTime?: SortOrder
-  }
-
-  export type IntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
   }
   export type JsonFilter<$PrismaModel = never> = 
     | PatchUndefined<
@@ -15510,23 +14262,17 @@ export namespace Prisma {
     isNot?: TeamWhereInput
   }
 
-  export type UserListRelationFilter = {
-    every?: UserWhereInput
-    some?: UserWhereInput
-    none?: UserWhereInput
-  }
-
-  export type UserOrderByRelationAggregateInput = {
-    _count?: SortOrder
+  export type UserRelationFilter = {
+    is?: UserWhereInput
+    isNot?: UserWhereInput
   }
 
   export type ActivityCountOrderByAggregateInput = {
     id?: SortOrder
     teamId?: SortOrder
-    activityUrl?: SortOrder
     clubId?: SortOrder
+    userId?: SortOrder
     noOfReg?: SortOrder
-    coach?: SortOrder
     activityDate?: SortOrder
     program?: SortOrder
     minAge?: SortOrder
@@ -15545,10 +14291,9 @@ export namespace Prisma {
   export type ActivityMaxOrderByAggregateInput = {
     id?: SortOrder
     teamId?: SortOrder
-    activityUrl?: SortOrder
     clubId?: SortOrder
+    userId?: SortOrder
     noOfReg?: SortOrder
-    coach?: SortOrder
     activityDate?: SortOrder
     program?: SortOrder
     minAge?: SortOrder
@@ -15560,10 +14305,9 @@ export namespace Prisma {
   export type ActivityMinOrderByAggregateInput = {
     id?: SortOrder
     teamId?: SortOrder
-    activityUrl?: SortOrder
     clubId?: SortOrder
+    userId?: SortOrder
     noOfReg?: SortOrder
-    coach?: SortOrder
     activityDate?: SortOrder
     program?: SortOrder
     minAge?: SortOrder
@@ -15576,6 +14320,22 @@ export namespace Prisma {
     noOfReg?: SortOrder
     minAge?: SortOrder
     maxAge?: SortOrder
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
   }
   export type JsonWithAggregatesFilter<$PrismaModel = never> = 
     | PatchUndefined<
@@ -15796,30 +14556,18 @@ export namespace Prisma {
     _max?: NestedEnumSubscriptionTypeFilter<$PrismaModel>
   }
 
-  export type ActivityCreateNestedManyWithoutPlayersInput = {
-    create?: XOR<ActivityCreateWithoutPlayersInput, ActivityUncheckedCreateWithoutPlayersInput> | ActivityCreateWithoutPlayersInput[] | ActivityUncheckedCreateWithoutPlayersInput[]
-    connectOrCreate?: ActivityCreateOrConnectWithoutPlayersInput | ActivityCreateOrConnectWithoutPlayersInput[]
+  export type ActivityCreateNestedManyWithoutCoachInput = {
+    create?: XOR<ActivityCreateWithoutCoachInput, ActivityUncheckedCreateWithoutCoachInput> | ActivityCreateWithoutCoachInput[] | ActivityUncheckedCreateWithoutCoachInput[]
+    connectOrCreate?: ActivityCreateOrConnectWithoutCoachInput | ActivityCreateOrConnectWithoutCoachInput[]
+    createMany?: ActivityCreateManyCoachInputEnvelope
     connect?: ActivityWhereUniqueInput | ActivityWhereUniqueInput[]
   }
 
-  export type UserActivityCreateNestedManyWithoutUserInput = {
-    create?: XOR<UserActivityCreateWithoutUserInput, UserActivityUncheckedCreateWithoutUserInput> | UserActivityCreateWithoutUserInput[] | UserActivityUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: UserActivityCreateOrConnectWithoutUserInput | UserActivityCreateOrConnectWithoutUserInput[]
-    createMany?: UserActivityCreateManyUserInputEnvelope
-    connect?: UserActivityWhereUniqueInput | UserActivityWhereUniqueInput[]
-  }
-
-  export type ActivityUncheckedCreateNestedManyWithoutPlayersInput = {
-    create?: XOR<ActivityCreateWithoutPlayersInput, ActivityUncheckedCreateWithoutPlayersInput> | ActivityCreateWithoutPlayersInput[] | ActivityUncheckedCreateWithoutPlayersInput[]
-    connectOrCreate?: ActivityCreateOrConnectWithoutPlayersInput | ActivityCreateOrConnectWithoutPlayersInput[]
+  export type ActivityUncheckedCreateNestedManyWithoutCoachInput = {
+    create?: XOR<ActivityCreateWithoutCoachInput, ActivityUncheckedCreateWithoutCoachInput> | ActivityCreateWithoutCoachInput[] | ActivityUncheckedCreateWithoutCoachInput[]
+    connectOrCreate?: ActivityCreateOrConnectWithoutCoachInput | ActivityCreateOrConnectWithoutCoachInput[]
+    createMany?: ActivityCreateManyCoachInputEnvelope
     connect?: ActivityWhereUniqueInput | ActivityWhereUniqueInput[]
-  }
-
-  export type UserActivityUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<UserActivityCreateWithoutUserInput, UserActivityUncheckedCreateWithoutUserInput> | UserActivityCreateWithoutUserInput[] | UserActivityUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: UserActivityCreateOrConnectWithoutUserInput | UserActivityCreateOrConnectWithoutUserInput[]
-    createMany?: UserActivityCreateManyUserInputEnvelope
-    connect?: UserActivityWhereUniqueInput | UserActivityWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -15834,58 +14582,36 @@ export namespace Prisma {
     set?: string | null
   }
 
-  export type ActivityUpdateManyWithoutPlayersNestedInput = {
-    create?: XOR<ActivityCreateWithoutPlayersInput, ActivityUncheckedCreateWithoutPlayersInput> | ActivityCreateWithoutPlayersInput[] | ActivityUncheckedCreateWithoutPlayersInput[]
-    connectOrCreate?: ActivityCreateOrConnectWithoutPlayersInput | ActivityCreateOrConnectWithoutPlayersInput[]
-    upsert?: ActivityUpsertWithWhereUniqueWithoutPlayersInput | ActivityUpsertWithWhereUniqueWithoutPlayersInput[]
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
+  }
+
+  export type ActivityUpdateManyWithoutCoachNestedInput = {
+    create?: XOR<ActivityCreateWithoutCoachInput, ActivityUncheckedCreateWithoutCoachInput> | ActivityCreateWithoutCoachInput[] | ActivityUncheckedCreateWithoutCoachInput[]
+    connectOrCreate?: ActivityCreateOrConnectWithoutCoachInput | ActivityCreateOrConnectWithoutCoachInput[]
+    upsert?: ActivityUpsertWithWhereUniqueWithoutCoachInput | ActivityUpsertWithWhereUniqueWithoutCoachInput[]
+    createMany?: ActivityCreateManyCoachInputEnvelope
     set?: ActivityWhereUniqueInput | ActivityWhereUniqueInput[]
     disconnect?: ActivityWhereUniqueInput | ActivityWhereUniqueInput[]
     delete?: ActivityWhereUniqueInput | ActivityWhereUniqueInput[]
     connect?: ActivityWhereUniqueInput | ActivityWhereUniqueInput[]
-    update?: ActivityUpdateWithWhereUniqueWithoutPlayersInput | ActivityUpdateWithWhereUniqueWithoutPlayersInput[]
-    updateMany?: ActivityUpdateManyWithWhereWithoutPlayersInput | ActivityUpdateManyWithWhereWithoutPlayersInput[]
+    update?: ActivityUpdateWithWhereUniqueWithoutCoachInput | ActivityUpdateWithWhereUniqueWithoutCoachInput[]
+    updateMany?: ActivityUpdateManyWithWhereWithoutCoachInput | ActivityUpdateManyWithWhereWithoutCoachInput[]
     deleteMany?: ActivityScalarWhereInput | ActivityScalarWhereInput[]
   }
 
-  export type UserActivityUpdateManyWithoutUserNestedInput = {
-    create?: XOR<UserActivityCreateWithoutUserInput, UserActivityUncheckedCreateWithoutUserInput> | UserActivityCreateWithoutUserInput[] | UserActivityUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: UserActivityCreateOrConnectWithoutUserInput | UserActivityCreateOrConnectWithoutUserInput[]
-    upsert?: UserActivityUpsertWithWhereUniqueWithoutUserInput | UserActivityUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: UserActivityCreateManyUserInputEnvelope
-    set?: UserActivityWhereUniqueInput | UserActivityWhereUniqueInput[]
-    disconnect?: UserActivityWhereUniqueInput | UserActivityWhereUniqueInput[]
-    delete?: UserActivityWhereUniqueInput | UserActivityWhereUniqueInput[]
-    connect?: UserActivityWhereUniqueInput | UserActivityWhereUniqueInput[]
-    update?: UserActivityUpdateWithWhereUniqueWithoutUserInput | UserActivityUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: UserActivityUpdateManyWithWhereWithoutUserInput | UserActivityUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: UserActivityScalarWhereInput | UserActivityScalarWhereInput[]
-  }
-
-  export type ActivityUncheckedUpdateManyWithoutPlayersNestedInput = {
-    create?: XOR<ActivityCreateWithoutPlayersInput, ActivityUncheckedCreateWithoutPlayersInput> | ActivityCreateWithoutPlayersInput[] | ActivityUncheckedCreateWithoutPlayersInput[]
-    connectOrCreate?: ActivityCreateOrConnectWithoutPlayersInput | ActivityCreateOrConnectWithoutPlayersInput[]
-    upsert?: ActivityUpsertWithWhereUniqueWithoutPlayersInput | ActivityUpsertWithWhereUniqueWithoutPlayersInput[]
+  export type ActivityUncheckedUpdateManyWithoutCoachNestedInput = {
+    create?: XOR<ActivityCreateWithoutCoachInput, ActivityUncheckedCreateWithoutCoachInput> | ActivityCreateWithoutCoachInput[] | ActivityUncheckedCreateWithoutCoachInput[]
+    connectOrCreate?: ActivityCreateOrConnectWithoutCoachInput | ActivityCreateOrConnectWithoutCoachInput[]
+    upsert?: ActivityUpsertWithWhereUniqueWithoutCoachInput | ActivityUpsertWithWhereUniqueWithoutCoachInput[]
+    createMany?: ActivityCreateManyCoachInputEnvelope
     set?: ActivityWhereUniqueInput | ActivityWhereUniqueInput[]
     disconnect?: ActivityWhereUniqueInput | ActivityWhereUniqueInput[]
     delete?: ActivityWhereUniqueInput | ActivityWhereUniqueInput[]
     connect?: ActivityWhereUniqueInput | ActivityWhereUniqueInput[]
-    update?: ActivityUpdateWithWhereUniqueWithoutPlayersInput | ActivityUpdateWithWhereUniqueWithoutPlayersInput[]
-    updateMany?: ActivityUpdateManyWithWhereWithoutPlayersInput | ActivityUpdateManyWithWhereWithoutPlayersInput[]
+    update?: ActivityUpdateWithWhereUniqueWithoutCoachInput | ActivityUpdateWithWhereUniqueWithoutCoachInput[]
+    updateMany?: ActivityUpdateManyWithWhereWithoutCoachInput | ActivityUpdateManyWithWhereWithoutCoachInput[]
     deleteMany?: ActivityScalarWhereInput | ActivityScalarWhereInput[]
-  }
-
-  export type UserActivityUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<UserActivityCreateWithoutUserInput, UserActivityUncheckedCreateWithoutUserInput> | UserActivityCreateWithoutUserInput[] | UserActivityUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: UserActivityCreateOrConnectWithoutUserInput | UserActivityCreateOrConnectWithoutUserInput[]
-    upsert?: UserActivityUpsertWithWhereUniqueWithoutUserInput | UserActivityUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: UserActivityCreateManyUserInputEnvelope
-    set?: UserActivityWhereUniqueInput | UserActivityWhereUniqueInput[]
-    disconnect?: UserActivityWhereUniqueInput | UserActivityWhereUniqueInput[]
-    delete?: UserActivityWhereUniqueInput | UserActivityWhereUniqueInput[]
-    connect?: UserActivityWhereUniqueInput | UserActivityWhereUniqueInput[]
-    update?: UserActivityUpdateWithWhereUniqueWithoutUserInput | UserActivityUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: UserActivityUpdateManyWithWhereWithoutUserInput | UserActivityUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: UserActivityScalarWhereInput | UserActivityScalarWhereInput[]
   }
 
   export type TeamCreateNestedManyWithoutClubInput = {
@@ -16000,10 +14726,6 @@ export namespace Prisma {
     connect?: ActivityWhereUniqueInput | ActivityWhereUniqueInput[]
   }
 
-  export type BoolFieldUpdateOperationsInput = {
-    set?: boolean
-  }
-
   export type ClubUpdateOneRequiredWithoutTeamsNestedInput = {
     create?: XOR<ClubCreateWithoutTeamsInput, ClubUncheckedCreateWithoutTeamsInput>
     connectOrCreate?: ClubCreateOrConnectWithoutTeamsInput
@@ -16040,42 +14762,6 @@ export namespace Prisma {
     deleteMany?: ActivityScalarWhereInput | ActivityScalarWhereInput[]
   }
 
-  export type ActivityCreateNestedOneWithoutUserActivityInput = {
-    create?: XOR<ActivityCreateWithoutUserActivityInput, ActivityUncheckedCreateWithoutUserActivityInput>
-    connectOrCreate?: ActivityCreateOrConnectWithoutUserActivityInput
-    connect?: ActivityWhereUniqueInput
-  }
-
-  export type UserCreateNestedOneWithoutUserActivityInput = {
-    create?: XOR<UserCreateWithoutUserActivityInput, UserUncheckedCreateWithoutUserActivityInput>
-    connectOrCreate?: UserCreateOrConnectWithoutUserActivityInput
-    connect?: UserWhereUniqueInput
-  }
-
-  export type IntFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
-  }
-
-  export type ActivityUpdateOneRequiredWithoutUserActivityNestedInput = {
-    create?: XOR<ActivityCreateWithoutUserActivityInput, ActivityUncheckedCreateWithoutUserActivityInput>
-    connectOrCreate?: ActivityCreateOrConnectWithoutUserActivityInput
-    upsert?: ActivityUpsertWithoutUserActivityInput
-    connect?: ActivityWhereUniqueInput
-    update?: XOR<XOR<ActivityUpdateToOneWithWhereWithoutUserActivityInput, ActivityUpdateWithoutUserActivityInput>, ActivityUncheckedUpdateWithoutUserActivityInput>
-  }
-
-  export type UserUpdateOneRequiredWithoutUserActivityNestedInput = {
-    create?: XOR<UserCreateWithoutUserActivityInput, UserUncheckedCreateWithoutUserActivityInput>
-    connectOrCreate?: UserCreateOrConnectWithoutUserActivityInput
-    upsert?: UserUpsertWithoutUserActivityInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutUserActivityInput, UserUpdateWithoutUserActivityInput>, UserUncheckedUpdateWithoutUserActivityInput>
-  }
-
   export type TeamCreateNestedOneWithoutActivityInput = {
     create?: XOR<TeamCreateWithoutActivityInput, TeamUncheckedCreateWithoutActivityInput>
     connectOrCreate?: TeamCreateOrConnectWithoutActivityInput
@@ -16088,30 +14774,18 @@ export namespace Prisma {
     connect?: ClubWhereUniqueInput
   }
 
-  export type UserCreateNestedManyWithoutActivitiesInput = {
-    create?: XOR<UserCreateWithoutActivitiesInput, UserUncheckedCreateWithoutActivitiesInput> | UserCreateWithoutActivitiesInput[] | UserUncheckedCreateWithoutActivitiesInput[]
-    connectOrCreate?: UserCreateOrConnectWithoutActivitiesInput | UserCreateOrConnectWithoutActivitiesInput[]
-    connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+  export type UserCreateNestedOneWithoutActivityInput = {
+    create?: XOR<UserCreateWithoutActivityInput, UserUncheckedCreateWithoutActivityInput>
+    connectOrCreate?: UserCreateOrConnectWithoutActivityInput
+    connect?: UserWhereUniqueInput
   }
 
-  export type UserActivityCreateNestedManyWithoutActivityInput = {
-    create?: XOR<UserActivityCreateWithoutActivityInput, UserActivityUncheckedCreateWithoutActivityInput> | UserActivityCreateWithoutActivityInput[] | UserActivityUncheckedCreateWithoutActivityInput[]
-    connectOrCreate?: UserActivityCreateOrConnectWithoutActivityInput | UserActivityCreateOrConnectWithoutActivityInput[]
-    createMany?: UserActivityCreateManyActivityInputEnvelope
-    connect?: UserActivityWhereUniqueInput | UserActivityWhereUniqueInput[]
-  }
-
-  export type UserUncheckedCreateNestedManyWithoutActivitiesInput = {
-    create?: XOR<UserCreateWithoutActivitiesInput, UserUncheckedCreateWithoutActivitiesInput> | UserCreateWithoutActivitiesInput[] | UserUncheckedCreateWithoutActivitiesInput[]
-    connectOrCreate?: UserCreateOrConnectWithoutActivitiesInput | UserCreateOrConnectWithoutActivitiesInput[]
-    connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
-  }
-
-  export type UserActivityUncheckedCreateNestedManyWithoutActivityInput = {
-    create?: XOR<UserActivityCreateWithoutActivityInput, UserActivityUncheckedCreateWithoutActivityInput> | UserActivityCreateWithoutActivityInput[] | UserActivityUncheckedCreateWithoutActivityInput[]
-    connectOrCreate?: UserActivityCreateOrConnectWithoutActivityInput | UserActivityCreateOrConnectWithoutActivityInput[]
-    createMany?: UserActivityCreateManyActivityInputEnvelope
-    connect?: UserActivityWhereUniqueInput | UserActivityWhereUniqueInput[]
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type TeamUpdateOneRequiredWithoutActivityNestedInput = {
@@ -16130,58 +14804,12 @@ export namespace Prisma {
     update?: XOR<XOR<ClubUpdateToOneWithWhereWithoutActivityInput, ClubUpdateWithoutActivityInput>, ClubUncheckedUpdateWithoutActivityInput>
   }
 
-  export type UserUpdateManyWithoutActivitiesNestedInput = {
-    create?: XOR<UserCreateWithoutActivitiesInput, UserUncheckedCreateWithoutActivitiesInput> | UserCreateWithoutActivitiesInput[] | UserUncheckedCreateWithoutActivitiesInput[]
-    connectOrCreate?: UserCreateOrConnectWithoutActivitiesInput | UserCreateOrConnectWithoutActivitiesInput[]
-    upsert?: UserUpsertWithWhereUniqueWithoutActivitiesInput | UserUpsertWithWhereUniqueWithoutActivitiesInput[]
-    set?: UserWhereUniqueInput | UserWhereUniqueInput[]
-    disconnect?: UserWhereUniqueInput | UserWhereUniqueInput[]
-    delete?: UserWhereUniqueInput | UserWhereUniqueInput[]
-    connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
-    update?: UserUpdateWithWhereUniqueWithoutActivitiesInput | UserUpdateWithWhereUniqueWithoutActivitiesInput[]
-    updateMany?: UserUpdateManyWithWhereWithoutActivitiesInput | UserUpdateManyWithWhereWithoutActivitiesInput[]
-    deleteMany?: UserScalarWhereInput | UserScalarWhereInput[]
-  }
-
-  export type UserActivityUpdateManyWithoutActivityNestedInput = {
-    create?: XOR<UserActivityCreateWithoutActivityInput, UserActivityUncheckedCreateWithoutActivityInput> | UserActivityCreateWithoutActivityInput[] | UserActivityUncheckedCreateWithoutActivityInput[]
-    connectOrCreate?: UserActivityCreateOrConnectWithoutActivityInput | UserActivityCreateOrConnectWithoutActivityInput[]
-    upsert?: UserActivityUpsertWithWhereUniqueWithoutActivityInput | UserActivityUpsertWithWhereUniqueWithoutActivityInput[]
-    createMany?: UserActivityCreateManyActivityInputEnvelope
-    set?: UserActivityWhereUniqueInput | UserActivityWhereUniqueInput[]
-    disconnect?: UserActivityWhereUniqueInput | UserActivityWhereUniqueInput[]
-    delete?: UserActivityWhereUniqueInput | UserActivityWhereUniqueInput[]
-    connect?: UserActivityWhereUniqueInput | UserActivityWhereUniqueInput[]
-    update?: UserActivityUpdateWithWhereUniqueWithoutActivityInput | UserActivityUpdateWithWhereUniqueWithoutActivityInput[]
-    updateMany?: UserActivityUpdateManyWithWhereWithoutActivityInput | UserActivityUpdateManyWithWhereWithoutActivityInput[]
-    deleteMany?: UserActivityScalarWhereInput | UserActivityScalarWhereInput[]
-  }
-
-  export type UserUncheckedUpdateManyWithoutActivitiesNestedInput = {
-    create?: XOR<UserCreateWithoutActivitiesInput, UserUncheckedCreateWithoutActivitiesInput> | UserCreateWithoutActivitiesInput[] | UserUncheckedCreateWithoutActivitiesInput[]
-    connectOrCreate?: UserCreateOrConnectWithoutActivitiesInput | UserCreateOrConnectWithoutActivitiesInput[]
-    upsert?: UserUpsertWithWhereUniqueWithoutActivitiesInput | UserUpsertWithWhereUniqueWithoutActivitiesInput[]
-    set?: UserWhereUniqueInput | UserWhereUniqueInput[]
-    disconnect?: UserWhereUniqueInput | UserWhereUniqueInput[]
-    delete?: UserWhereUniqueInput | UserWhereUniqueInput[]
-    connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
-    update?: UserUpdateWithWhereUniqueWithoutActivitiesInput | UserUpdateWithWhereUniqueWithoutActivitiesInput[]
-    updateMany?: UserUpdateManyWithWhereWithoutActivitiesInput | UserUpdateManyWithWhereWithoutActivitiesInput[]
-    deleteMany?: UserScalarWhereInput | UserScalarWhereInput[]
-  }
-
-  export type UserActivityUncheckedUpdateManyWithoutActivityNestedInput = {
-    create?: XOR<UserActivityCreateWithoutActivityInput, UserActivityUncheckedCreateWithoutActivityInput> | UserActivityCreateWithoutActivityInput[] | UserActivityUncheckedCreateWithoutActivityInput[]
-    connectOrCreate?: UserActivityCreateOrConnectWithoutActivityInput | UserActivityCreateOrConnectWithoutActivityInput[]
-    upsert?: UserActivityUpsertWithWhereUniqueWithoutActivityInput | UserActivityUpsertWithWhereUniqueWithoutActivityInput[]
-    createMany?: UserActivityCreateManyActivityInputEnvelope
-    set?: UserActivityWhereUniqueInput | UserActivityWhereUniqueInput[]
-    disconnect?: UserActivityWhereUniqueInput | UserActivityWhereUniqueInput[]
-    delete?: UserActivityWhereUniqueInput | UserActivityWhereUniqueInput[]
-    connect?: UserActivityWhereUniqueInput | UserActivityWhereUniqueInput[]
-    update?: UserActivityUpdateWithWhereUniqueWithoutActivityInput | UserActivityUpdateWithWhereUniqueWithoutActivityInput[]
-    updateMany?: UserActivityUpdateManyWithWhereWithoutActivityInput | UserActivityUpdateManyWithWhereWithoutActivityInput[]
-    deleteMany?: UserActivityScalarWhereInput | UserActivityScalarWhereInput[]
+  export type UserUpdateOneRequiredWithoutActivityNestedInput = {
+    create?: XOR<UserCreateWithoutActivityInput, UserUncheckedCreateWithoutActivityInput>
+    connectOrCreate?: UserCreateOrConnectWithoutActivityInput
+    upsert?: UserUpsertWithoutActivityInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutActivityInput, UserUpdateWithoutActivityInput>, UserUncheckedUpdateWithoutActivityInput>
   }
 
   export type EnumSubscriptionTypeFieldUpdateOperationsInput = {
@@ -16221,6 +14849,11 @@ export namespace Prisma {
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
@@ -16289,6 +14922,14 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
   export type NestedDateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[]
@@ -16337,19 +14978,6 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedDateTimeNullableFilter<$PrismaModel>
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
-  }
-
-  export type NestedBoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
-
-  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
@@ -16418,11 +15046,9 @@ export namespace Prisma {
     _max?: NestedEnumSubscriptionTypeFilter<$PrismaModel>
   }
 
-  export type ActivityCreateWithoutPlayersInput = {
+  export type ActivityCreateWithoutCoachInput = {
     id: string
-    activityUrl: string
     noOfReg: number
-    coach: string
     activityDate: Date | string
     program: string
     minAge: number
@@ -16432,16 +15058,13 @@ export namespace Prisma {
     dateUpdated?: Date | string | null
     team: TeamCreateNestedOneWithoutActivityInput
     club: ClubCreateNestedOneWithoutActivityInput
-    UserActivity?: UserActivityCreateNestedManyWithoutActivityInput
   }
 
-  export type ActivityUncheckedCreateWithoutPlayersInput = {
+  export type ActivityUncheckedCreateWithoutCoachInput = {
     id: string
     teamId: string
-    activityUrl: string
     clubId: string
     noOfReg: number
-    coach: string
     activityDate: Date | string
     program: string
     minAge: number
@@ -16449,48 +15072,32 @@ export namespace Prisma {
     equipments: JsonNullValueInput | InputJsonValue
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
-    UserActivity?: UserActivityUncheckedCreateNestedManyWithoutActivityInput
   }
 
-  export type ActivityCreateOrConnectWithoutPlayersInput = {
+  export type ActivityCreateOrConnectWithoutCoachInput = {
     where: ActivityWhereUniqueInput
-    create: XOR<ActivityCreateWithoutPlayersInput, ActivityUncheckedCreateWithoutPlayersInput>
+    create: XOR<ActivityCreateWithoutCoachInput, ActivityUncheckedCreateWithoutCoachInput>
   }
 
-  export type UserActivityCreateWithoutUserInput = {
-    totalTime: number
-    activity: ActivityCreateNestedOneWithoutUserActivityInput
-  }
-
-  export type UserActivityUncheckedCreateWithoutUserInput = {
-    activityId: string
-    totalTime: number
-  }
-
-  export type UserActivityCreateOrConnectWithoutUserInput = {
-    where: UserActivityWhereUniqueInput
-    create: XOR<UserActivityCreateWithoutUserInput, UserActivityUncheckedCreateWithoutUserInput>
-  }
-
-  export type UserActivityCreateManyUserInputEnvelope = {
-    data: UserActivityCreateManyUserInput | UserActivityCreateManyUserInput[]
+  export type ActivityCreateManyCoachInputEnvelope = {
+    data: ActivityCreateManyCoachInput | ActivityCreateManyCoachInput[]
     skipDuplicates?: boolean
   }
 
-  export type ActivityUpsertWithWhereUniqueWithoutPlayersInput = {
+  export type ActivityUpsertWithWhereUniqueWithoutCoachInput = {
     where: ActivityWhereUniqueInput
-    update: XOR<ActivityUpdateWithoutPlayersInput, ActivityUncheckedUpdateWithoutPlayersInput>
-    create: XOR<ActivityCreateWithoutPlayersInput, ActivityUncheckedCreateWithoutPlayersInput>
+    update: XOR<ActivityUpdateWithoutCoachInput, ActivityUncheckedUpdateWithoutCoachInput>
+    create: XOR<ActivityCreateWithoutCoachInput, ActivityUncheckedCreateWithoutCoachInput>
   }
 
-  export type ActivityUpdateWithWhereUniqueWithoutPlayersInput = {
+  export type ActivityUpdateWithWhereUniqueWithoutCoachInput = {
     where: ActivityWhereUniqueInput
-    data: XOR<ActivityUpdateWithoutPlayersInput, ActivityUncheckedUpdateWithoutPlayersInput>
+    data: XOR<ActivityUpdateWithoutCoachInput, ActivityUncheckedUpdateWithoutCoachInput>
   }
 
-  export type ActivityUpdateManyWithWhereWithoutPlayersInput = {
+  export type ActivityUpdateManyWithWhereWithoutCoachInput = {
     where: ActivityScalarWhereInput
-    data: XOR<ActivityUpdateManyMutationInput, ActivityUncheckedUpdateManyWithoutPlayersInput>
+    data: XOR<ActivityUpdateManyMutationInput, ActivityUncheckedUpdateManyWithoutCoachInput>
   }
 
   export type ActivityScalarWhereInput = {
@@ -16499,10 +15106,9 @@ export namespace Prisma {
     NOT?: ActivityScalarWhereInput | ActivityScalarWhereInput[]
     id?: StringFilter<"Activity"> | string
     teamId?: StringFilter<"Activity"> | string
-    activityUrl?: StringFilter<"Activity"> | string
     clubId?: StringFilter<"Activity"> | string
+    userId?: StringFilter<"Activity"> | string
     noOfReg?: IntFilter<"Activity"> | number
-    coach?: StringFilter<"Activity"> | string
     activityDate?: DateTimeFilter<"Activity"> | Date | string
     program?: StringFilter<"Activity"> | string
     minAge?: IntFilter<"Activity"> | number
@@ -16510,31 +15116,6 @@ export namespace Prisma {
     equipments?: JsonFilter<"Activity">
     dateCreated?: DateTimeFilter<"Activity"> | Date | string
     dateUpdated?: DateTimeNullableFilter<"Activity"> | Date | string | null
-  }
-
-  export type UserActivityUpsertWithWhereUniqueWithoutUserInput = {
-    where: UserActivityWhereUniqueInput
-    update: XOR<UserActivityUpdateWithoutUserInput, UserActivityUncheckedUpdateWithoutUserInput>
-    create: XOR<UserActivityCreateWithoutUserInput, UserActivityUncheckedCreateWithoutUserInput>
-  }
-
-  export type UserActivityUpdateWithWhereUniqueWithoutUserInput = {
-    where: UserActivityWhereUniqueInput
-    data: XOR<UserActivityUpdateWithoutUserInput, UserActivityUncheckedUpdateWithoutUserInput>
-  }
-
-  export type UserActivityUpdateManyWithWhereWithoutUserInput = {
-    where: UserActivityScalarWhereInput
-    data: XOR<UserActivityUpdateManyMutationInput, UserActivityUncheckedUpdateManyWithoutUserInput>
-  }
-
-  export type UserActivityScalarWhereInput = {
-    AND?: UserActivityScalarWhereInput | UserActivityScalarWhereInput[]
-    OR?: UserActivityScalarWhereInput[]
-    NOT?: UserActivityScalarWhereInput | UserActivityScalarWhereInput[]
-    activityId?: StringFilter<"UserActivity"> | string
-    userId?: StringFilter<"UserActivity"> | string
-    totalTime?: IntFilter<"UserActivity"> | number
   }
 
   export type TeamCreateWithoutClubInput = {
@@ -16567,9 +15148,7 @@ export namespace Prisma {
 
   export type ActivityCreateWithoutClubInput = {
     id: string
-    activityUrl: string
     noOfReg: number
-    coach: string
     activityDate: Date | string
     program: string
     minAge: number
@@ -16578,16 +15157,14 @@ export namespace Prisma {
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
     team: TeamCreateNestedOneWithoutActivityInput
-    players?: UserCreateNestedManyWithoutActivitiesInput
-    UserActivity?: UserActivityCreateNestedManyWithoutActivityInput
+    coach: UserCreateNestedOneWithoutActivityInput
   }
 
   export type ActivityUncheckedCreateWithoutClubInput = {
     id: string
     teamId: string
-    activityUrl: string
+    userId: string
     noOfReg: number
-    coach: string
     activityDate: Date | string
     program: string
     minAge: number
@@ -16595,8 +15172,6 @@ export namespace Prisma {
     equipments: JsonNullValueInput | InputJsonValue
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
-    players?: UserUncheckedCreateNestedManyWithoutActivitiesInput
-    UserActivity?: UserActivityUncheckedCreateNestedManyWithoutActivityInput
   }
 
   export type ActivityCreateOrConnectWithoutClubInput = {
@@ -16676,9 +15251,7 @@ export namespace Prisma {
 
   export type ActivityCreateWithoutTeamInput = {
     id: string
-    activityUrl: string
     noOfReg: number
-    coach: string
     activityDate: Date | string
     program: string
     minAge: number
@@ -16687,16 +15260,14 @@ export namespace Prisma {
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
     club: ClubCreateNestedOneWithoutActivityInput
-    players?: UserCreateNestedManyWithoutActivitiesInput
-    UserActivity?: UserActivityCreateNestedManyWithoutActivityInput
+    coach: UserCreateNestedOneWithoutActivityInput
   }
 
   export type ActivityUncheckedCreateWithoutTeamInput = {
     id: string
-    activityUrl: string
     clubId: string
+    userId: string
     noOfReg: number
-    coach: string
     activityDate: Date | string
     program: string
     minAge: number
@@ -16704,8 +15275,6 @@ export namespace Prisma {
     equipments: JsonNullValueInput | InputJsonValue
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
-    players?: UserUncheckedCreateNestedManyWithoutActivitiesInput
-    UserActivity?: UserActivityUncheckedCreateNestedManyWithoutActivityInput
   }
 
   export type ActivityCreateOrConnectWithoutTeamInput = {
@@ -16761,138 +15330,6 @@ export namespace Prisma {
     data: XOR<ActivityUpdateManyMutationInput, ActivityUncheckedUpdateManyWithoutTeamInput>
   }
 
-  export type ActivityCreateWithoutUserActivityInput = {
-    id: string
-    activityUrl: string
-    noOfReg: number
-    coach: string
-    activityDate: Date | string
-    program: string
-    minAge: number
-    maxAge: number
-    equipments: JsonNullValueInput | InputJsonValue
-    dateCreated?: Date | string
-    dateUpdated?: Date | string | null
-    team: TeamCreateNestedOneWithoutActivityInput
-    club: ClubCreateNestedOneWithoutActivityInput
-    players?: UserCreateNestedManyWithoutActivitiesInput
-  }
-
-  export type ActivityUncheckedCreateWithoutUserActivityInput = {
-    id: string
-    teamId: string
-    activityUrl: string
-    clubId: string
-    noOfReg: number
-    coach: string
-    activityDate: Date | string
-    program: string
-    minAge: number
-    maxAge: number
-    equipments: JsonNullValueInput | InputJsonValue
-    dateCreated?: Date | string
-    dateUpdated?: Date | string | null
-    players?: UserUncheckedCreateNestedManyWithoutActivitiesInput
-  }
-
-  export type ActivityCreateOrConnectWithoutUserActivityInput = {
-    where: ActivityWhereUniqueInput
-    create: XOR<ActivityCreateWithoutUserActivityInput, ActivityUncheckedCreateWithoutUserActivityInput>
-  }
-
-  export type UserCreateWithoutUserActivityInput = {
-    id: string
-    userType?: $Enums.UserType
-    clubId: string
-    teamId?: string | null
-    activities?: ActivityCreateNestedManyWithoutPlayersInput
-  }
-
-  export type UserUncheckedCreateWithoutUserActivityInput = {
-    id: string
-    userType?: $Enums.UserType
-    clubId: string
-    teamId?: string | null
-    activities?: ActivityUncheckedCreateNestedManyWithoutPlayersInput
-  }
-
-  export type UserCreateOrConnectWithoutUserActivityInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutUserActivityInput, UserUncheckedCreateWithoutUserActivityInput>
-  }
-
-  export type ActivityUpsertWithoutUserActivityInput = {
-    update: XOR<ActivityUpdateWithoutUserActivityInput, ActivityUncheckedUpdateWithoutUserActivityInput>
-    create: XOR<ActivityCreateWithoutUserActivityInput, ActivityUncheckedCreateWithoutUserActivityInput>
-    where?: ActivityWhereInput
-  }
-
-  export type ActivityUpdateToOneWithWhereWithoutUserActivityInput = {
-    where?: ActivityWhereInput
-    data: XOR<ActivityUpdateWithoutUserActivityInput, ActivityUncheckedUpdateWithoutUserActivityInput>
-  }
-
-  export type ActivityUpdateWithoutUserActivityInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    activityUrl?: StringFieldUpdateOperationsInput | string
-    noOfReg?: IntFieldUpdateOperationsInput | number
-    coach?: StringFieldUpdateOperationsInput | string
-    activityDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    program?: StringFieldUpdateOperationsInput | string
-    minAge?: IntFieldUpdateOperationsInput | number
-    maxAge?: IntFieldUpdateOperationsInput | number
-    equipments?: JsonNullValueInput | InputJsonValue
-    dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
-    dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    team?: TeamUpdateOneRequiredWithoutActivityNestedInput
-    club?: ClubUpdateOneRequiredWithoutActivityNestedInput
-    players?: UserUpdateManyWithoutActivitiesNestedInput
-  }
-
-  export type ActivityUncheckedUpdateWithoutUserActivityInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    teamId?: StringFieldUpdateOperationsInput | string
-    activityUrl?: StringFieldUpdateOperationsInput | string
-    clubId?: StringFieldUpdateOperationsInput | string
-    noOfReg?: IntFieldUpdateOperationsInput | number
-    coach?: StringFieldUpdateOperationsInput | string
-    activityDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    program?: StringFieldUpdateOperationsInput | string
-    minAge?: IntFieldUpdateOperationsInput | number
-    maxAge?: IntFieldUpdateOperationsInput | number
-    equipments?: JsonNullValueInput | InputJsonValue
-    dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
-    dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    players?: UserUncheckedUpdateManyWithoutActivitiesNestedInput
-  }
-
-  export type UserUpsertWithoutUserActivityInput = {
-    update: XOR<UserUpdateWithoutUserActivityInput, UserUncheckedUpdateWithoutUserActivityInput>
-    create: XOR<UserCreateWithoutUserActivityInput, UserUncheckedCreateWithoutUserActivityInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutUserActivityInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutUserActivityInput, UserUncheckedUpdateWithoutUserActivityInput>
-  }
-
-  export type UserUpdateWithoutUserActivityInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
-    clubId?: StringFieldUpdateOperationsInput | string
-    teamId?: NullableStringFieldUpdateOperationsInput | string | null
-    activities?: ActivityUpdateManyWithoutPlayersNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutUserActivityInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
-    clubId?: StringFieldUpdateOperationsInput | string
-    teamId?: NullableStringFieldUpdateOperationsInput | string | null
-    activities?: ActivityUncheckedUpdateManyWithoutPlayersNestedInput
-  }
-
   export type TeamCreateWithoutActivityInput = {
     id: string
     display: string
@@ -16937,45 +15374,31 @@ export namespace Prisma {
     create: XOR<ClubCreateWithoutActivityInput, ClubUncheckedCreateWithoutActivityInput>
   }
 
-  export type UserCreateWithoutActivitiesInput = {
+  export type UserCreateWithoutActivityInput = {
     id: string
     userType?: $Enums.UserType
     clubId: string
     teamId?: string | null
-    UserActivity?: UserActivityCreateNestedManyWithoutUserInput
+    personNumber?: string | null
+    name?: string | null
+    clubOnboarding?: boolean
+    gender?: string | null
   }
 
-  export type UserUncheckedCreateWithoutActivitiesInput = {
+  export type UserUncheckedCreateWithoutActivityInput = {
     id: string
     userType?: $Enums.UserType
     clubId: string
     teamId?: string | null
-    UserActivity?: UserActivityUncheckedCreateNestedManyWithoutUserInput
+    personNumber?: string | null
+    name?: string | null
+    clubOnboarding?: boolean
+    gender?: string | null
   }
 
-  export type UserCreateOrConnectWithoutActivitiesInput = {
+  export type UserCreateOrConnectWithoutActivityInput = {
     where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutActivitiesInput, UserUncheckedCreateWithoutActivitiesInput>
-  }
-
-  export type UserActivityCreateWithoutActivityInput = {
-    totalTime: number
-    user: UserCreateNestedOneWithoutUserActivityInput
-  }
-
-  export type UserActivityUncheckedCreateWithoutActivityInput = {
-    userId: string
-    totalTime: number
-  }
-
-  export type UserActivityCreateOrConnectWithoutActivityInput = {
-    where: UserActivityWhereUniqueInput
-    create: XOR<UserActivityCreateWithoutActivityInput, UserActivityUncheckedCreateWithoutActivityInput>
-  }
-
-  export type UserActivityCreateManyActivityInputEnvelope = {
-    data: UserActivityCreateManyActivityInput | UserActivityCreateManyActivityInput[]
-    skipDuplicates?: boolean
+    create: XOR<UserCreateWithoutActivityInput, UserUncheckedCreateWithoutActivityInput>
   }
 
   export type TeamUpsertWithoutActivityInput = {
@@ -17034,58 +15457,56 @@ export namespace Prisma {
     teams?: TeamUncheckedUpdateManyWithoutClubNestedInput
   }
 
-  export type UserUpsertWithWhereUniqueWithoutActivitiesInput = {
-    where: UserWhereUniqueInput
-    update: XOR<UserUpdateWithoutActivitiesInput, UserUncheckedUpdateWithoutActivitiesInput>
-    create: XOR<UserCreateWithoutActivitiesInput, UserUncheckedCreateWithoutActivitiesInput>
+  export type UserUpsertWithoutActivityInput = {
+    update: XOR<UserUpdateWithoutActivityInput, UserUncheckedUpdateWithoutActivityInput>
+    create: XOR<UserCreateWithoutActivityInput, UserUncheckedCreateWithoutActivityInput>
+    where?: UserWhereInput
   }
 
-  export type UserUpdateWithWhereUniqueWithoutActivitiesInput = {
-    where: UserWhereUniqueInput
-    data: XOR<UserUpdateWithoutActivitiesInput, UserUncheckedUpdateWithoutActivitiesInput>
+  export type UserUpdateToOneWithWhereWithoutActivityInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutActivityInput, UserUncheckedUpdateWithoutActivityInput>
   }
 
-  export type UserUpdateManyWithWhereWithoutActivitiesInput = {
-    where: UserScalarWhereInput
-    data: XOR<UserUpdateManyMutationInput, UserUncheckedUpdateManyWithoutActivitiesInput>
-  }
-
-  export type UserScalarWhereInput = {
-    AND?: UserScalarWhereInput | UserScalarWhereInput[]
-    OR?: UserScalarWhereInput[]
-    NOT?: UserScalarWhereInput | UserScalarWhereInput[]
-    id?: StringFilter<"User"> | string
-    userType?: EnumUserTypeFilter<"User"> | $Enums.UserType
-    clubId?: StringFilter<"User"> | string
-    teamId?: StringNullableFilter<"User"> | string | null
-  }
-
-  export type UserActivityUpsertWithWhereUniqueWithoutActivityInput = {
-    where: UserActivityWhereUniqueInput
-    update: XOR<UserActivityUpdateWithoutActivityInput, UserActivityUncheckedUpdateWithoutActivityInput>
-    create: XOR<UserActivityCreateWithoutActivityInput, UserActivityUncheckedCreateWithoutActivityInput>
-  }
-
-  export type UserActivityUpdateWithWhereUniqueWithoutActivityInput = {
-    where: UserActivityWhereUniqueInput
-    data: XOR<UserActivityUpdateWithoutActivityInput, UserActivityUncheckedUpdateWithoutActivityInput>
-  }
-
-  export type UserActivityUpdateManyWithWhereWithoutActivityInput = {
-    where: UserActivityScalarWhereInput
-    data: XOR<UserActivityUpdateManyMutationInput, UserActivityUncheckedUpdateManyWithoutActivityInput>
-  }
-
-  export type UserActivityCreateManyUserInput = {
-    activityId: string
-    totalTime: number
-  }
-
-  export type ActivityUpdateWithoutPlayersInput = {
+  export type UserUpdateWithoutActivityInput = {
     id?: StringFieldUpdateOperationsInput | string
-    activityUrl?: StringFieldUpdateOperationsInput | string
+    userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
+    clubId?: StringFieldUpdateOperationsInput | string
+    teamId?: NullableStringFieldUpdateOperationsInput | string | null
+    personNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    clubOnboarding?: BoolFieldUpdateOperationsInput | boolean
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type UserUncheckedUpdateWithoutActivityInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
+    clubId?: StringFieldUpdateOperationsInput | string
+    teamId?: NullableStringFieldUpdateOperationsInput | string | null
+    personNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    clubOnboarding?: BoolFieldUpdateOperationsInput | boolean
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type ActivityCreateManyCoachInput = {
+    id: string
+    teamId: string
+    clubId: string
+    noOfReg: number
+    activityDate: Date | string
+    program: string
+    minAge: number
+    maxAge: number
+    equipments: JsonNullValueInput | InputJsonValue
+    dateCreated?: Date | string
+    dateUpdated?: Date | string | null
+  }
+
+  export type ActivityUpdateWithoutCoachInput = {
+    id?: StringFieldUpdateOperationsInput | string
     noOfReg?: IntFieldUpdateOperationsInput | number
-    coach?: StringFieldUpdateOperationsInput | string
     activityDate?: DateTimeFieldUpdateOperationsInput | Date | string
     program?: StringFieldUpdateOperationsInput | string
     minAge?: IntFieldUpdateOperationsInput | number
@@ -17095,33 +15516,13 @@ export namespace Prisma {
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     team?: TeamUpdateOneRequiredWithoutActivityNestedInput
     club?: ClubUpdateOneRequiredWithoutActivityNestedInput
-    UserActivity?: UserActivityUpdateManyWithoutActivityNestedInput
   }
 
-  export type ActivityUncheckedUpdateWithoutPlayersInput = {
+  export type ActivityUncheckedUpdateWithoutCoachInput = {
     id?: StringFieldUpdateOperationsInput | string
     teamId?: StringFieldUpdateOperationsInput | string
-    activityUrl?: StringFieldUpdateOperationsInput | string
     clubId?: StringFieldUpdateOperationsInput | string
     noOfReg?: IntFieldUpdateOperationsInput | number
-    coach?: StringFieldUpdateOperationsInput | string
-    activityDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    program?: StringFieldUpdateOperationsInput | string
-    minAge?: IntFieldUpdateOperationsInput | number
-    maxAge?: IntFieldUpdateOperationsInput | number
-    equipments?: JsonNullValueInput | InputJsonValue
-    dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
-    dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    UserActivity?: UserActivityUncheckedUpdateManyWithoutActivityNestedInput
-  }
-
-  export type ActivityUncheckedUpdateManyWithoutPlayersInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    teamId?: StringFieldUpdateOperationsInput | string
-    activityUrl?: StringFieldUpdateOperationsInput | string
-    clubId?: StringFieldUpdateOperationsInput | string
-    noOfReg?: IntFieldUpdateOperationsInput | number
-    coach?: StringFieldUpdateOperationsInput | string
     activityDate?: DateTimeFieldUpdateOperationsInput | Date | string
     program?: StringFieldUpdateOperationsInput | string
     minAge?: IntFieldUpdateOperationsInput | number
@@ -17131,19 +15532,18 @@ export namespace Prisma {
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
-  export type UserActivityUpdateWithoutUserInput = {
-    totalTime?: IntFieldUpdateOperationsInput | number
-    activity?: ActivityUpdateOneRequiredWithoutUserActivityNestedInput
-  }
-
-  export type UserActivityUncheckedUpdateWithoutUserInput = {
-    activityId?: StringFieldUpdateOperationsInput | string
-    totalTime?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type UserActivityUncheckedUpdateManyWithoutUserInput = {
-    activityId?: StringFieldUpdateOperationsInput | string
-    totalTime?: IntFieldUpdateOperationsInput | number
+  export type ActivityUncheckedUpdateManyWithoutCoachInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    teamId?: StringFieldUpdateOperationsInput | string
+    clubId?: StringFieldUpdateOperationsInput | string
+    noOfReg?: IntFieldUpdateOperationsInput | number
+    activityDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    program?: StringFieldUpdateOperationsInput | string
+    minAge?: IntFieldUpdateOperationsInput | number
+    maxAge?: IntFieldUpdateOperationsInput | number
+    equipments?: JsonNullValueInput | InputJsonValue
+    dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type TeamCreateManyClubInput = {
@@ -17157,9 +15557,8 @@ export namespace Prisma {
   export type ActivityCreateManyClubInput = {
     id: string
     teamId: string
-    activityUrl: string
+    userId: string
     noOfReg: number
-    coach: string
     activityDate: Date | string
     program: string
     minAge: number
@@ -17197,9 +15596,7 @@ export namespace Prisma {
 
   export type ActivityUpdateWithoutClubInput = {
     id?: StringFieldUpdateOperationsInput | string
-    activityUrl?: StringFieldUpdateOperationsInput | string
     noOfReg?: IntFieldUpdateOperationsInput | number
-    coach?: StringFieldUpdateOperationsInput | string
     activityDate?: DateTimeFieldUpdateOperationsInput | Date | string
     program?: StringFieldUpdateOperationsInput | string
     minAge?: IntFieldUpdateOperationsInput | number
@@ -17208,16 +15605,14 @@ export namespace Prisma {
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     team?: TeamUpdateOneRequiredWithoutActivityNestedInput
-    players?: UserUpdateManyWithoutActivitiesNestedInput
-    UserActivity?: UserActivityUpdateManyWithoutActivityNestedInput
+    coach?: UserUpdateOneRequiredWithoutActivityNestedInput
   }
 
   export type ActivityUncheckedUpdateWithoutClubInput = {
     id?: StringFieldUpdateOperationsInput | string
     teamId?: StringFieldUpdateOperationsInput | string
-    activityUrl?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
     noOfReg?: IntFieldUpdateOperationsInput | number
-    coach?: StringFieldUpdateOperationsInput | string
     activityDate?: DateTimeFieldUpdateOperationsInput | Date | string
     program?: StringFieldUpdateOperationsInput | string
     minAge?: IntFieldUpdateOperationsInput | number
@@ -17225,16 +15620,13 @@ export namespace Prisma {
     equipments?: JsonNullValueInput | InputJsonValue
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    players?: UserUncheckedUpdateManyWithoutActivitiesNestedInput
-    UserActivity?: UserActivityUncheckedUpdateManyWithoutActivityNestedInput
   }
 
   export type ActivityUncheckedUpdateManyWithoutClubInput = {
     id?: StringFieldUpdateOperationsInput | string
     teamId?: StringFieldUpdateOperationsInput | string
-    activityUrl?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
     noOfReg?: IntFieldUpdateOperationsInput | number
-    coach?: StringFieldUpdateOperationsInput | string
     activityDate?: DateTimeFieldUpdateOperationsInput | Date | string
     program?: StringFieldUpdateOperationsInput | string
     minAge?: IntFieldUpdateOperationsInput | number
@@ -17246,10 +15638,9 @@ export namespace Prisma {
 
   export type ActivityCreateManyTeamInput = {
     id: string
-    activityUrl: string
     clubId: string
+    userId: string
     noOfReg: number
-    coach: string
     activityDate: Date | string
     program: string
     minAge: number
@@ -17261,9 +15652,7 @@ export namespace Prisma {
 
   export type ActivityUpdateWithoutTeamInput = {
     id?: StringFieldUpdateOperationsInput | string
-    activityUrl?: StringFieldUpdateOperationsInput | string
     noOfReg?: IntFieldUpdateOperationsInput | number
-    coach?: StringFieldUpdateOperationsInput | string
     activityDate?: DateTimeFieldUpdateOperationsInput | Date | string
     program?: StringFieldUpdateOperationsInput | string
     minAge?: IntFieldUpdateOperationsInput | number
@@ -17272,16 +15661,14 @@ export namespace Prisma {
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     club?: ClubUpdateOneRequiredWithoutActivityNestedInput
-    players?: UserUpdateManyWithoutActivitiesNestedInput
-    UserActivity?: UserActivityUpdateManyWithoutActivityNestedInput
+    coach?: UserUpdateOneRequiredWithoutActivityNestedInput
   }
 
   export type ActivityUncheckedUpdateWithoutTeamInput = {
     id?: StringFieldUpdateOperationsInput | string
-    activityUrl?: StringFieldUpdateOperationsInput | string
     clubId?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
     noOfReg?: IntFieldUpdateOperationsInput | number
-    coach?: StringFieldUpdateOperationsInput | string
     activityDate?: DateTimeFieldUpdateOperationsInput | Date | string
     program?: StringFieldUpdateOperationsInput | string
     minAge?: IntFieldUpdateOperationsInput | number
@@ -17289,16 +15676,13 @@ export namespace Prisma {
     equipments?: JsonNullValueInput | InputJsonValue
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    players?: UserUncheckedUpdateManyWithoutActivitiesNestedInput
-    UserActivity?: UserActivityUncheckedUpdateManyWithoutActivityNestedInput
   }
 
   export type ActivityUncheckedUpdateManyWithoutTeamInput = {
     id?: StringFieldUpdateOperationsInput | string
-    activityUrl?: StringFieldUpdateOperationsInput | string
     clubId?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
     noOfReg?: IntFieldUpdateOperationsInput | number
-    coach?: StringFieldUpdateOperationsInput | string
     activityDate?: DateTimeFieldUpdateOperationsInput | Date | string
     program?: StringFieldUpdateOperationsInput | string
     minAge?: IntFieldUpdateOperationsInput | number
@@ -17306,49 +15690,6 @@ export namespace Prisma {
     equipments?: JsonNullValueInput | InputJsonValue
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  }
-
-  export type UserActivityCreateManyActivityInput = {
-    userId: string
-    totalTime: number
-  }
-
-  export type UserUpdateWithoutActivitiesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
-    clubId?: StringFieldUpdateOperationsInput | string
-    teamId?: NullableStringFieldUpdateOperationsInput | string | null
-    UserActivity?: UserActivityUpdateManyWithoutUserNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutActivitiesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
-    clubId?: StringFieldUpdateOperationsInput | string
-    teamId?: NullableStringFieldUpdateOperationsInput | string | null
-    UserActivity?: UserActivityUncheckedUpdateManyWithoutUserNestedInput
-  }
-
-  export type UserUncheckedUpdateManyWithoutActivitiesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
-    clubId?: StringFieldUpdateOperationsInput | string
-    teamId?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type UserActivityUpdateWithoutActivityInput = {
-    totalTime?: IntFieldUpdateOperationsInput | number
-    user?: UserUpdateOneRequiredWithoutUserActivityNestedInput
-  }
-
-  export type UserActivityUncheckedUpdateWithoutActivityInput = {
-    userId?: StringFieldUpdateOperationsInput | string
-    totalTime?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type UserActivityUncheckedUpdateManyWithoutActivityInput = {
-    userId?: StringFieldUpdateOperationsInput | string
-    totalTime?: IntFieldUpdateOperationsInput | number
   }
 
 
@@ -17368,10 +15709,6 @@ export namespace Prisma {
      * @deprecated Use TeamCountOutputTypeDefaultArgs instead
      */
     export type TeamCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = TeamCountOutputTypeDefaultArgs<ExtArgs>
-    /**
-     * @deprecated Use ActivityCountOutputTypeDefaultArgs instead
-     */
-    export type ActivityCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ActivityCountOutputTypeDefaultArgs<ExtArgs>
     /**
      * @deprecated Use UserDefaultArgs instead
      */
@@ -17396,10 +15733,6 @@ export namespace Prisma {
      * @deprecated Use TeamDefaultArgs instead
      */
     export type TeamArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = TeamDefaultArgs<ExtArgs>
-    /**
-     * @deprecated Use UserActivityDefaultArgs instead
-     */
-    export type UserActivityArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = UserActivityDefaultArgs<ExtArgs>
     /**
      * @deprecated Use ActivityDefaultArgs instead
      */
