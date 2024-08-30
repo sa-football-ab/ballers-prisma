@@ -1754,11 +1754,13 @@ export namespace Prisma {
   export type ClubCountOutputType = {
     teams: number
     Activity: number
+    User: number
   }
 
   export type ClubCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     teams?: boolean | ClubCountOutputTypeCountTeamsArgs
     Activity?: boolean | ClubCountOutputTypeCountActivityArgs
+    User?: boolean | ClubCountOutputTypeCountUserArgs
   }
 
   // Custom InputTypes
@@ -1790,6 +1792,14 @@ export namespace Prisma {
   }
 
 
+  /**
+   * ClubCountOutputType without action
+   */
+  export type ClubCountOutputTypeCountUserArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UserWhereInput
+  }
+
+
 
   /**
    * Count Type TeamCountOutputType
@@ -1797,10 +1807,12 @@ export namespace Prisma {
 
   export type TeamCountOutputType = {
     Activity: number
+    User: number
   }
 
   export type TeamCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Activity?: boolean | TeamCountOutputTypeCountActivityArgs
+    User?: boolean | TeamCountOutputTypeCountUserArgs
   }
 
   // Custom InputTypes
@@ -1821,6 +1833,14 @@ export namespace Prisma {
    */
   export type TeamCountOutputTypeCountActivityArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ActivityWhereInput
+  }
+
+
+  /**
+   * TeamCountOutputType without action
+   */
+  export type TeamCountOutputTypeCountUserArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UserWhereInput
   }
 
 
@@ -2017,6 +2037,8 @@ export namespace Prisma {
     name?: boolean
     clubOnboarding?: boolean
     gender?: boolean
+    club?: boolean | ClubDefaultArgs<ExtArgs>
+    team?: boolean | User$teamArgs<ExtArgs>
     Activity?: boolean | User$ActivityArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
@@ -2033,6 +2055,8 @@ export namespace Prisma {
   }
 
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    club?: boolean | ClubDefaultArgs<ExtArgs>
+    team?: boolean | User$teamArgs<ExtArgs>
     Activity?: boolean | User$ActivityArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -2041,6 +2065,8 @@ export namespace Prisma {
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
     objects: {
+      club: Prisma.$ClubPayload<ExtArgs>
+      team: Prisma.$TeamPayload<ExtArgs> | null
       Activity: Prisma.$ActivityPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -2417,6 +2443,10 @@ export namespace Prisma {
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
+    club<T extends ClubDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ClubDefaultArgs<ExtArgs>>): Prisma__ClubClient<$Result.GetResult<Prisma.$ClubPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
+    team<T extends User$teamArgs<ExtArgs> = {}>(args?: Subset<T, User$teamArgs<ExtArgs>>): Prisma__TeamClient<$Result.GetResult<Prisma.$TeamPayload<ExtArgs>, T, 'findUniqueOrThrow'> | null, null, ExtArgs>;
+
     Activity<T extends User$ActivityArgs<ExtArgs> = {}>(args?: Subset<T, User$ActivityArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ActivityPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     /**
@@ -2763,6 +2793,22 @@ export namespace Prisma {
      * Filter which Users to delete
      */
     where?: UserWhereInput
+  }
+
+
+  /**
+   * User.team
+   */
+  export type User$teamArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Team
+     */
+    select?: TeamSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: TeamInclude<ExtArgs> | null
+    where?: TeamWhereInput
   }
 
 
@@ -5538,6 +5584,7 @@ export namespace Prisma {
     dateUpdated?: boolean
     teams?: boolean | Club$teamsArgs<ExtArgs>
     Activity?: boolean | Club$ActivityArgs<ExtArgs>
+    User?: boolean | Club$UserArgs<ExtArgs>
     _count?: boolean | ClubCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["club"]>
 
@@ -5551,6 +5598,7 @@ export namespace Prisma {
   export type ClubInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     teams?: boolean | Club$teamsArgs<ExtArgs>
     Activity?: boolean | Club$ActivityArgs<ExtArgs>
+    User?: boolean | Club$UserArgs<ExtArgs>
     _count?: boolean | ClubCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -5560,6 +5608,7 @@ export namespace Prisma {
     objects: {
       teams: Prisma.$TeamPayload<ExtArgs>[]
       Activity: Prisma.$ActivityPayload<ExtArgs>[]
+      User: Prisma.$UserPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -5934,6 +5983,8 @@ export namespace Prisma {
     teams<T extends Club$teamsArgs<ExtArgs> = {}>(args?: Subset<T, Club$teamsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TeamPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     Activity<T extends Club$ActivityArgs<ExtArgs> = {}>(args?: Subset<T, Club$ActivityArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ActivityPayload<ExtArgs>, T, 'findMany'> | Null>;
+
+    User<T extends Club$UserArgs<ExtArgs> = {}>(args?: Subset<T, Club$UserArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -6321,6 +6372,27 @@ export namespace Prisma {
 
 
   /**
+   * Club.User
+   */
+  export type Club$UserArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: UserInclude<ExtArgs> | null
+    where?: UserWhereInput
+    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
+    cursor?: UserWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
+  }
+
+
+  /**
    * Club without action
    */
   export type ClubDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6510,6 +6582,7 @@ export namespace Prisma {
     dateUpdated?: boolean
     club?: boolean | ClubDefaultArgs<ExtArgs>
     Activity?: boolean | Team$ActivityArgs<ExtArgs>
+    User?: boolean | Team$UserArgs<ExtArgs>
     _count?: boolean | TeamCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["team"]>
 
@@ -6525,6 +6598,7 @@ export namespace Prisma {
   export type TeamInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     club?: boolean | ClubDefaultArgs<ExtArgs>
     Activity?: boolean | Team$ActivityArgs<ExtArgs>
+    User?: boolean | Team$UserArgs<ExtArgs>
     _count?: boolean | TeamCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -6534,6 +6608,7 @@ export namespace Prisma {
     objects: {
       club: Prisma.$ClubPayload<ExtArgs>
       Activity: Prisma.$ActivityPayload<ExtArgs>[]
+      User: Prisma.$UserPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -6911,6 +6986,8 @@ export namespace Prisma {
 
     Activity<T extends Team$ActivityArgs<ExtArgs> = {}>(args?: Subset<T, Team$ActivityArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ActivityPayload<ExtArgs>, T, 'findMany'> | Null>;
 
+    User<T extends Team$UserArgs<ExtArgs> = {}>(args?: Subset<T, Team$UserArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findMany'> | Null>;
+
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7278,6 +7355,27 @@ export namespace Prisma {
 
 
   /**
+   * Team.User
+   */
+  export type Team$UserArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: UserInclude<ExtArgs> | null
+    where?: UserWhereInput
+    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
+    cursor?: UserWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
+  }
+
+
+  /**
    * Team without action
    */
   export type TeamDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7321,7 +7419,8 @@ export namespace Prisma {
     id: string | null
     teamId: string | null
     clubId: string | null
-    userId: string | null
+    coachUserId: string | null
+    description: string | null
     noOfReg: number | null
     activityDate: Date | null
     program: string | null
@@ -7335,7 +7434,8 @@ export namespace Prisma {
     id: string | null
     teamId: string | null
     clubId: string | null
-    userId: string | null
+    coachUserId: string | null
+    description: string | null
     noOfReg: number | null
     activityDate: Date | null
     program: string | null
@@ -7349,7 +7449,8 @@ export namespace Prisma {
     id: number
     teamId: number
     clubId: number
-    userId: number
+    coachUserId: number
+    description: number
     noOfReg: number
     activityDate: number
     program: number
@@ -7378,7 +7479,8 @@ export namespace Prisma {
     id?: true
     teamId?: true
     clubId?: true
-    userId?: true
+    coachUserId?: true
+    description?: true
     noOfReg?: true
     activityDate?: true
     program?: true
@@ -7392,7 +7494,8 @@ export namespace Prisma {
     id?: true
     teamId?: true
     clubId?: true
-    userId?: true
+    coachUserId?: true
+    description?: true
     noOfReg?: true
     activityDate?: true
     program?: true
@@ -7406,7 +7509,8 @@ export namespace Prisma {
     id?: true
     teamId?: true
     clubId?: true
-    userId?: true
+    coachUserId?: true
+    description?: true
     noOfReg?: true
     activityDate?: true
     program?: true
@@ -7506,9 +7610,10 @@ export namespace Prisma {
 
   export type ActivityGroupByOutputType = {
     id: string
-    teamId: string
+    teamId: string | null
     clubId: string
-    userId: string
+    coachUserId: string
+    description: string
     noOfReg: number
     activityDate: Date
     program: string
@@ -7542,7 +7647,8 @@ export namespace Prisma {
     id?: boolean
     teamId?: boolean
     clubId?: boolean
-    userId?: boolean
+    coachUserId?: boolean
+    description?: boolean
     noOfReg?: boolean
     activityDate?: boolean
     program?: boolean
@@ -7551,16 +7657,17 @@ export namespace Prisma {
     equipments?: boolean
     dateCreated?: boolean
     dateUpdated?: boolean
-    team?: boolean | TeamDefaultArgs<ExtArgs>
+    team?: boolean | Activity$teamArgs<ExtArgs>
     club?: boolean | ClubDefaultArgs<ExtArgs>
-    coach?: boolean | UserDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["activity"]>
 
   export type ActivitySelectScalar = {
     id?: boolean
     teamId?: boolean
     clubId?: boolean
-    userId?: boolean
+    coachUserId?: boolean
+    description?: boolean
     noOfReg?: boolean
     activityDate?: boolean
     program?: boolean
@@ -7572,24 +7679,25 @@ export namespace Prisma {
   }
 
   export type ActivityInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    team?: boolean | TeamDefaultArgs<ExtArgs>
+    team?: boolean | Activity$teamArgs<ExtArgs>
     club?: boolean | ClubDefaultArgs<ExtArgs>
-    coach?: boolean | UserDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }
 
 
   export type $ActivityPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Activity"
     objects: {
-      team: Prisma.$TeamPayload<ExtArgs>
+      team: Prisma.$TeamPayload<ExtArgs> | null
       club: Prisma.$ClubPayload<ExtArgs>
-      coach: Prisma.$UserPayload<ExtArgs>
+      user: Prisma.$UserPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      teamId: string
+      teamId: string | null
       clubId: string
-      userId: string
+      coachUserId: string
+      description: string
       noOfReg: number
       activityDate: Date
       program: string
@@ -7963,11 +8071,11 @@ export namespace Prisma {
   export interface Prisma__ActivityClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
-    team<T extends TeamDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TeamDefaultArgs<ExtArgs>>): Prisma__TeamClient<$Result.GetResult<Prisma.$TeamPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+    team<T extends Activity$teamArgs<ExtArgs> = {}>(args?: Subset<T, Activity$teamArgs<ExtArgs>>): Prisma__TeamClient<$Result.GetResult<Prisma.$TeamPayload<ExtArgs>, T, 'findUniqueOrThrow'> | null, null, ExtArgs>;
 
     club<T extends ClubDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ClubDefaultArgs<ExtArgs>>): Prisma__ClubClient<$Result.GetResult<Prisma.$ClubPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
 
-    coach<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -8000,7 +8108,8 @@ export namespace Prisma {
     readonly id: FieldRef<"Activity", 'String'>
     readonly teamId: FieldRef<"Activity", 'String'>
     readonly clubId: FieldRef<"Activity", 'String'>
-    readonly userId: FieldRef<"Activity", 'String'>
+    readonly coachUserId: FieldRef<"Activity", 'String'>
+    readonly description: FieldRef<"Activity", 'String'>
     readonly noOfReg: FieldRef<"Activity", 'Int'>
     readonly activityDate: FieldRef<"Activity", 'DateTime'>
     readonly program: FieldRef<"Activity", 'String'>
@@ -8317,6 +8426,22 @@ export namespace Prisma {
      * Filter which Activities to delete
      */
     where?: ActivityWhereInput
+  }
+
+
+  /**
+   * Activity.team
+   */
+  export type Activity$teamArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Team
+     */
+    select?: TeamSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: TeamInclude<ExtArgs> | null
+    where?: TeamWhereInput
   }
 
 
@@ -12204,7 +12329,8 @@ export namespace Prisma {
     id: 'id',
     teamId: 'teamId',
     clubId: 'clubId',
-    userId: 'userId',
+    coachUserId: 'coachUserId',
+    description: 'description',
     noOfReg: 'noOfReg',
     activityDate: 'activityDate',
     program: 'program',
@@ -12388,6 +12514,8 @@ export namespace Prisma {
     name?: StringNullableFilter<"User"> | string | null
     clubOnboarding?: BoolFilter<"User"> | boolean
     gender?: StringNullableFilter<"User"> | string | null
+    club?: XOR<ClubRelationFilter, ClubWhereInput>
+    team?: XOR<TeamNullableRelationFilter, TeamWhereInput> | null
     Activity?: ActivityListRelationFilter
   }
 
@@ -12400,6 +12528,8 @@ export namespace Prisma {
     name?: SortOrderInput | SortOrder
     clubOnboarding?: SortOrder
     gender?: SortOrderInput | SortOrder
+    club?: ClubOrderByWithRelationInput
+    team?: TeamOrderByWithRelationInput
     Activity?: ActivityOrderByRelationAggregateInput
   }
 
@@ -12415,6 +12545,8 @@ export namespace Prisma {
     name?: StringNullableFilter<"User"> | string | null
     clubOnboarding?: BoolFilter<"User"> | boolean
     gender?: StringNullableFilter<"User"> | string | null
+    club?: XOR<ClubRelationFilter, ClubWhereInput>
+    team?: XOR<TeamNullableRelationFilter, TeamWhereInput> | null
     Activity?: ActivityListRelationFilter
   }, "id">
 
@@ -12597,6 +12729,7 @@ export namespace Prisma {
     dateUpdated?: DateTimeNullableFilter<"Club"> | Date | string | null
     teams?: TeamListRelationFilter
     Activity?: ActivityListRelationFilter
+    User?: UserListRelationFilter
   }
 
   export type ClubOrderByWithRelationInput = {
@@ -12606,6 +12739,7 @@ export namespace Prisma {
     dateUpdated?: SortOrderInput | SortOrder
     teams?: TeamOrderByRelationAggregateInput
     Activity?: ActivityOrderByRelationAggregateInput
+    User?: UserOrderByRelationAggregateInput
   }
 
   export type ClubWhereUniqueInput = Prisma.AtLeast<{
@@ -12618,6 +12752,7 @@ export namespace Prisma {
     dateUpdated?: DateTimeNullableFilter<"Club"> | Date | string | null
     teams?: TeamListRelationFilter
     Activity?: ActivityListRelationFilter
+    User?: UserListRelationFilter
   }, "id">
 
   export type ClubOrderByWithAggregationInput = {
@@ -12652,6 +12787,7 @@ export namespace Prisma {
     dateUpdated?: DateTimeNullableFilter<"Team"> | Date | string | null
     club?: XOR<ClubRelationFilter, ClubWhereInput>
     Activity?: ActivityListRelationFilter
+    User?: UserListRelationFilter
   }
 
   export type TeamOrderByWithRelationInput = {
@@ -12663,6 +12799,7 @@ export namespace Prisma {
     dateUpdated?: SortOrderInput | SortOrder
     club?: ClubOrderByWithRelationInput
     Activity?: ActivityOrderByRelationAggregateInput
+    User?: UserOrderByRelationAggregateInput
   }
 
   export type TeamWhereUniqueInput = Prisma.AtLeast<{
@@ -12677,6 +12814,7 @@ export namespace Prisma {
     dateUpdated?: DateTimeNullableFilter<"Team"> | Date | string | null
     club?: XOR<ClubRelationFilter, ClubWhereInput>
     Activity?: ActivityListRelationFilter
+    User?: UserListRelationFilter
   }, "id">
 
   export type TeamOrderByWithAggregationInput = {
@@ -12708,9 +12846,10 @@ export namespace Prisma {
     OR?: ActivityWhereInput[]
     NOT?: ActivityWhereInput | ActivityWhereInput[]
     id?: StringFilter<"Activity"> | string
-    teamId?: StringFilter<"Activity"> | string
+    teamId?: StringNullableFilter<"Activity"> | string | null
     clubId?: StringFilter<"Activity"> | string
-    userId?: StringFilter<"Activity"> | string
+    coachUserId?: StringFilter<"Activity"> | string
+    description?: StringFilter<"Activity"> | string
     noOfReg?: IntFilter<"Activity"> | number
     activityDate?: DateTimeFilter<"Activity"> | Date | string
     program?: StringFilter<"Activity"> | string
@@ -12719,16 +12858,17 @@ export namespace Prisma {
     equipments?: JsonFilter<"Activity">
     dateCreated?: DateTimeFilter<"Activity"> | Date | string
     dateUpdated?: DateTimeNullableFilter<"Activity"> | Date | string | null
-    team?: XOR<TeamRelationFilter, TeamWhereInput>
+    team?: XOR<TeamNullableRelationFilter, TeamWhereInput> | null
     club?: XOR<ClubRelationFilter, ClubWhereInput>
-    coach?: XOR<UserRelationFilter, UserWhereInput>
+    user?: XOR<UserRelationFilter, UserWhereInput>
   }
 
   export type ActivityOrderByWithRelationInput = {
     id?: SortOrder
-    teamId?: SortOrder
+    teamId?: SortOrderInput | SortOrder
     clubId?: SortOrder
-    userId?: SortOrder
+    coachUserId?: SortOrder
+    description?: SortOrder
     noOfReg?: SortOrder
     activityDate?: SortOrder
     program?: SortOrder
@@ -12739,7 +12879,7 @@ export namespace Prisma {
     dateUpdated?: SortOrderInput | SortOrder
     team?: TeamOrderByWithRelationInput
     club?: ClubOrderByWithRelationInput
-    coach?: UserOrderByWithRelationInput
+    user?: UserOrderByWithRelationInput
   }
 
   export type ActivityWhereUniqueInput = Prisma.AtLeast<{
@@ -12747,9 +12887,10 @@ export namespace Prisma {
     AND?: ActivityWhereInput | ActivityWhereInput[]
     OR?: ActivityWhereInput[]
     NOT?: ActivityWhereInput | ActivityWhereInput[]
-    teamId?: StringFilter<"Activity"> | string
+    teamId?: StringNullableFilter<"Activity"> | string | null
     clubId?: StringFilter<"Activity"> | string
-    userId?: StringFilter<"Activity"> | string
+    coachUserId?: StringFilter<"Activity"> | string
+    description?: StringFilter<"Activity"> | string
     noOfReg?: IntFilter<"Activity"> | number
     activityDate?: DateTimeFilter<"Activity"> | Date | string
     program?: StringFilter<"Activity"> | string
@@ -12758,16 +12899,17 @@ export namespace Prisma {
     equipments?: JsonFilter<"Activity">
     dateCreated?: DateTimeFilter<"Activity"> | Date | string
     dateUpdated?: DateTimeNullableFilter<"Activity"> | Date | string | null
-    team?: XOR<TeamRelationFilter, TeamWhereInput>
+    team?: XOR<TeamNullableRelationFilter, TeamWhereInput> | null
     club?: XOR<ClubRelationFilter, ClubWhereInput>
-    coach?: XOR<UserRelationFilter, UserWhereInput>
+    user?: XOR<UserRelationFilter, UserWhereInput>
   }, "id">
 
   export type ActivityOrderByWithAggregationInput = {
     id?: SortOrder
-    teamId?: SortOrder
+    teamId?: SortOrderInput | SortOrder
     clubId?: SortOrder
-    userId?: SortOrder
+    coachUserId?: SortOrder
+    description?: SortOrder
     noOfReg?: SortOrder
     activityDate?: SortOrder
     program?: SortOrder
@@ -12788,9 +12930,10 @@ export namespace Prisma {
     OR?: ActivityScalarWhereWithAggregatesInput[]
     NOT?: ActivityScalarWhereWithAggregatesInput | ActivityScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Activity"> | string
-    teamId?: StringWithAggregatesFilter<"Activity"> | string
+    teamId?: StringNullableWithAggregatesFilter<"Activity"> | string | null
     clubId?: StringWithAggregatesFilter<"Activity"> | string
-    userId?: StringWithAggregatesFilter<"Activity"> | string
+    coachUserId?: StringWithAggregatesFilter<"Activity"> | string
+    description?: StringWithAggregatesFilter<"Activity"> | string
     noOfReg?: IntWithAggregatesFilter<"Activity"> | number
     activityDate?: DateTimeWithAggregatesFilter<"Activity"> | Date | string
     program?: StringWithAggregatesFilter<"Activity"> | string
@@ -13108,13 +13251,13 @@ export namespace Prisma {
   export type UserCreateInput = {
     id: string
     userType?: $Enums.UserType
-    clubId: string
-    teamId?: string | null
     personNumber?: string | null
     name?: string | null
     clubOnboarding?: boolean
     gender?: string | null
-    Activity?: ActivityCreateNestedManyWithoutCoachInput
+    club: ClubCreateNestedOneWithoutUserInput
+    team?: TeamCreateNestedOneWithoutUserInput
+    Activity?: ActivityCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -13126,19 +13269,19 @@ export namespace Prisma {
     name?: string | null
     clubOnboarding?: boolean
     gender?: string | null
-    Activity?: ActivityUncheckedCreateNestedManyWithoutCoachInput
+    Activity?: ActivityUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
-    clubId?: StringFieldUpdateOperationsInput | string
-    teamId?: NullableStringFieldUpdateOperationsInput | string | null
     personNumber?: NullableStringFieldUpdateOperationsInput | string | null
     name?: NullableStringFieldUpdateOperationsInput | string | null
     clubOnboarding?: BoolFieldUpdateOperationsInput | boolean
     gender?: NullableStringFieldUpdateOperationsInput | string | null
-    Activity?: ActivityUpdateManyWithoutCoachNestedInput
+    club?: ClubUpdateOneRequiredWithoutUserNestedInput
+    team?: TeamUpdateOneWithoutUserNestedInput
+    Activity?: ActivityUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -13150,7 +13293,7 @@ export namespace Prisma {
     name?: NullableStringFieldUpdateOperationsInput | string | null
     clubOnboarding?: BoolFieldUpdateOperationsInput | boolean
     gender?: NullableStringFieldUpdateOperationsInput | string | null
-    Activity?: ActivityUncheckedUpdateManyWithoutCoachNestedInput
+    Activity?: ActivityUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -13167,8 +13310,6 @@ export namespace Prisma {
   export type UserUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
-    clubId?: StringFieldUpdateOperationsInput | string
-    teamId?: NullableStringFieldUpdateOperationsInput | string | null
     personNumber?: NullableStringFieldUpdateOperationsInput | string | null
     name?: NullableStringFieldUpdateOperationsInput | string | null
     clubOnboarding?: BoolFieldUpdateOperationsInput | boolean
@@ -13340,6 +13481,7 @@ export namespace Prisma {
     dateUpdated?: Date | string | null
     teams?: TeamCreateNestedManyWithoutClubInput
     Activity?: ActivityCreateNestedManyWithoutClubInput
+    User?: UserCreateNestedManyWithoutClubInput
   }
 
   export type ClubUncheckedCreateInput = {
@@ -13349,6 +13491,7 @@ export namespace Prisma {
     dateUpdated?: Date | string | null
     teams?: TeamUncheckedCreateNestedManyWithoutClubInput
     Activity?: ActivityUncheckedCreateNestedManyWithoutClubInput
+    User?: UserUncheckedCreateNestedManyWithoutClubInput
   }
 
   export type ClubUpdateInput = {
@@ -13358,6 +13501,7 @@ export namespace Prisma {
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     teams?: TeamUpdateManyWithoutClubNestedInput
     Activity?: ActivityUpdateManyWithoutClubNestedInput
+    User?: UserUpdateManyWithoutClubNestedInput
   }
 
   export type ClubUncheckedUpdateInput = {
@@ -13367,6 +13511,7 @@ export namespace Prisma {
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     teams?: TeamUncheckedUpdateManyWithoutClubNestedInput
     Activity?: ActivityUncheckedUpdateManyWithoutClubNestedInput
+    User?: UserUncheckedUpdateManyWithoutClubNestedInput
   }
 
   export type ClubCreateManyInput = {
@@ -13398,6 +13543,7 @@ export namespace Prisma {
     dateUpdated?: Date | string | null
     club: ClubCreateNestedOneWithoutTeamsInput
     Activity?: ActivityCreateNestedManyWithoutTeamInput
+    User?: UserCreateNestedManyWithoutTeamInput
   }
 
   export type TeamUncheckedCreateInput = {
@@ -13408,6 +13554,7 @@ export namespace Prisma {
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
     Activity?: ActivityUncheckedCreateNestedManyWithoutTeamInput
+    User?: UserUncheckedCreateNestedManyWithoutTeamInput
   }
 
   export type TeamUpdateInput = {
@@ -13418,6 +13565,7 @@ export namespace Prisma {
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     club?: ClubUpdateOneRequiredWithoutTeamsNestedInput
     Activity?: ActivityUpdateManyWithoutTeamNestedInput
+    User?: UserUpdateManyWithoutTeamNestedInput
   }
 
   export type TeamUncheckedUpdateInput = {
@@ -13428,6 +13576,7 @@ export namespace Prisma {
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     Activity?: ActivityUncheckedUpdateManyWithoutTeamNestedInput
+    User?: UserUncheckedUpdateManyWithoutTeamNestedInput
   }
 
   export type TeamCreateManyInput = {
@@ -13458,6 +13607,7 @@ export namespace Prisma {
 
   export type ActivityCreateInput = {
     id: string
+    description: string
     noOfReg: number
     activityDate: Date | string
     program: string
@@ -13466,16 +13616,17 @@ export namespace Prisma {
     equipments: JsonNullValueInput | InputJsonValue
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
-    team: TeamCreateNestedOneWithoutActivityInput
+    team?: TeamCreateNestedOneWithoutActivityInput
     club: ClubCreateNestedOneWithoutActivityInput
-    coach: UserCreateNestedOneWithoutActivityInput
+    user: UserCreateNestedOneWithoutActivityInput
   }
 
   export type ActivityUncheckedCreateInput = {
     id: string
-    teamId: string
+    teamId?: string | null
     clubId: string
-    userId: string
+    coachUserId: string
+    description: string
     noOfReg: number
     activityDate: Date | string
     program: string
@@ -13488,6 +13639,7 @@ export namespace Prisma {
 
   export type ActivityUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
     noOfReg?: IntFieldUpdateOperationsInput | number
     activityDate?: DateTimeFieldUpdateOperationsInput | Date | string
     program?: StringFieldUpdateOperationsInput | string
@@ -13496,16 +13648,17 @@ export namespace Prisma {
     equipments?: JsonNullValueInput | InputJsonValue
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    team?: TeamUpdateOneRequiredWithoutActivityNestedInput
+    team?: TeamUpdateOneWithoutActivityNestedInput
     club?: ClubUpdateOneRequiredWithoutActivityNestedInput
-    coach?: UserUpdateOneRequiredWithoutActivityNestedInput
+    user?: UserUpdateOneRequiredWithoutActivityNestedInput
   }
 
   export type ActivityUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    teamId?: StringFieldUpdateOperationsInput | string
+    teamId?: NullableStringFieldUpdateOperationsInput | string | null
     clubId?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
+    coachUserId?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
     noOfReg?: IntFieldUpdateOperationsInput | number
     activityDate?: DateTimeFieldUpdateOperationsInput | Date | string
     program?: StringFieldUpdateOperationsInput | string
@@ -13518,9 +13671,10 @@ export namespace Prisma {
 
   export type ActivityCreateManyInput = {
     id: string
-    teamId: string
+    teamId?: string | null
     clubId: string
-    userId: string
+    coachUserId: string
+    description: string
     noOfReg: number
     activityDate: Date | string
     program: string
@@ -13533,6 +13687,7 @@ export namespace Prisma {
 
   export type ActivityUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
     noOfReg?: IntFieldUpdateOperationsInput | number
     activityDate?: DateTimeFieldUpdateOperationsInput | Date | string
     program?: StringFieldUpdateOperationsInput | string
@@ -13545,9 +13700,10 @@ export namespace Prisma {
 
   export type ActivityUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    teamId?: StringFieldUpdateOperationsInput | string
+    teamId?: NullableStringFieldUpdateOperationsInput | string | null
     clubId?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
+    coachUserId?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
     noOfReg?: IntFieldUpdateOperationsInput | number
     activityDate?: DateTimeFieldUpdateOperationsInput | Date | string
     program?: StringFieldUpdateOperationsInput | string
@@ -13948,6 +14104,16 @@ export namespace Prisma {
     not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
+  export type ClubRelationFilter = {
+    is?: ClubWhereInput
+    isNot?: ClubWhereInput
+  }
+
+  export type TeamNullableRelationFilter = {
+    is?: TeamWhereInput | null
+    isNot?: TeamWhereInput | null
+  }
+
   export type ActivityListRelationFilter = {
     every?: ActivityWhereInput
     some?: ActivityWhereInput
@@ -14139,7 +14305,17 @@ export namespace Prisma {
     none?: TeamWhereInput
   }
 
+  export type UserListRelationFilter = {
+    every?: UserWhereInput
+    some?: UserWhereInput
+    none?: UserWhereInput
+  }
+
   export type TeamOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type UserOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -14190,11 +14366,6 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedDateTimeNullableFilter<$PrismaModel>
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
-  }
-
-  export type ClubRelationFilter = {
-    is?: ClubWhereInput
-    isNot?: ClubWhereInput
   }
 
   export type TeamCountOrderByAggregateInput = {
@@ -14257,11 +14428,6 @@ export namespace Prisma {
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
-  export type TeamRelationFilter = {
-    is?: TeamWhereInput
-    isNot?: TeamWhereInput
-  }
-
   export type UserRelationFilter = {
     is?: UserWhereInput
     isNot?: UserWhereInput
@@ -14271,7 +14437,8 @@ export namespace Prisma {
     id?: SortOrder
     teamId?: SortOrder
     clubId?: SortOrder
-    userId?: SortOrder
+    coachUserId?: SortOrder
+    description?: SortOrder
     noOfReg?: SortOrder
     activityDate?: SortOrder
     program?: SortOrder
@@ -14292,7 +14459,8 @@ export namespace Prisma {
     id?: SortOrder
     teamId?: SortOrder
     clubId?: SortOrder
-    userId?: SortOrder
+    coachUserId?: SortOrder
+    description?: SortOrder
     noOfReg?: SortOrder
     activityDate?: SortOrder
     program?: SortOrder
@@ -14306,7 +14474,8 @@ export namespace Prisma {
     id?: SortOrder
     teamId?: SortOrder
     clubId?: SortOrder
-    userId?: SortOrder
+    coachUserId?: SortOrder
+    description?: SortOrder
     noOfReg?: SortOrder
     activityDate?: SortOrder
     program?: SortOrder
@@ -14556,17 +14725,29 @@ export namespace Prisma {
     _max?: NestedEnumSubscriptionTypeFilter<$PrismaModel>
   }
 
-  export type ActivityCreateNestedManyWithoutCoachInput = {
-    create?: XOR<ActivityCreateWithoutCoachInput, ActivityUncheckedCreateWithoutCoachInput> | ActivityCreateWithoutCoachInput[] | ActivityUncheckedCreateWithoutCoachInput[]
-    connectOrCreate?: ActivityCreateOrConnectWithoutCoachInput | ActivityCreateOrConnectWithoutCoachInput[]
-    createMany?: ActivityCreateManyCoachInputEnvelope
+  export type ClubCreateNestedOneWithoutUserInput = {
+    create?: XOR<ClubCreateWithoutUserInput, ClubUncheckedCreateWithoutUserInput>
+    connectOrCreate?: ClubCreateOrConnectWithoutUserInput
+    connect?: ClubWhereUniqueInput
+  }
+
+  export type TeamCreateNestedOneWithoutUserInput = {
+    create?: XOR<TeamCreateWithoutUserInput, TeamUncheckedCreateWithoutUserInput>
+    connectOrCreate?: TeamCreateOrConnectWithoutUserInput
+    connect?: TeamWhereUniqueInput
+  }
+
+  export type ActivityCreateNestedManyWithoutUserInput = {
+    create?: XOR<ActivityCreateWithoutUserInput, ActivityUncheckedCreateWithoutUserInput> | ActivityCreateWithoutUserInput[] | ActivityUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ActivityCreateOrConnectWithoutUserInput | ActivityCreateOrConnectWithoutUserInput[]
+    createMany?: ActivityCreateManyUserInputEnvelope
     connect?: ActivityWhereUniqueInput | ActivityWhereUniqueInput[]
   }
 
-  export type ActivityUncheckedCreateNestedManyWithoutCoachInput = {
-    create?: XOR<ActivityCreateWithoutCoachInput, ActivityUncheckedCreateWithoutCoachInput> | ActivityCreateWithoutCoachInput[] | ActivityUncheckedCreateWithoutCoachInput[]
-    connectOrCreate?: ActivityCreateOrConnectWithoutCoachInput | ActivityCreateOrConnectWithoutCoachInput[]
-    createMany?: ActivityCreateManyCoachInputEnvelope
+  export type ActivityUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<ActivityCreateWithoutUserInput, ActivityUncheckedCreateWithoutUserInput> | ActivityCreateWithoutUserInput[] | ActivityUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ActivityCreateOrConnectWithoutUserInput | ActivityCreateOrConnectWithoutUserInput[]
+    createMany?: ActivityCreateManyUserInputEnvelope
     connect?: ActivityWhereUniqueInput | ActivityWhereUniqueInput[]
   }
 
@@ -14586,31 +14767,49 @@ export namespace Prisma {
     set?: boolean
   }
 
-  export type ActivityUpdateManyWithoutCoachNestedInput = {
-    create?: XOR<ActivityCreateWithoutCoachInput, ActivityUncheckedCreateWithoutCoachInput> | ActivityCreateWithoutCoachInput[] | ActivityUncheckedCreateWithoutCoachInput[]
-    connectOrCreate?: ActivityCreateOrConnectWithoutCoachInput | ActivityCreateOrConnectWithoutCoachInput[]
-    upsert?: ActivityUpsertWithWhereUniqueWithoutCoachInput | ActivityUpsertWithWhereUniqueWithoutCoachInput[]
-    createMany?: ActivityCreateManyCoachInputEnvelope
+  export type ClubUpdateOneRequiredWithoutUserNestedInput = {
+    create?: XOR<ClubCreateWithoutUserInput, ClubUncheckedCreateWithoutUserInput>
+    connectOrCreate?: ClubCreateOrConnectWithoutUserInput
+    upsert?: ClubUpsertWithoutUserInput
+    connect?: ClubWhereUniqueInput
+    update?: XOR<XOR<ClubUpdateToOneWithWhereWithoutUserInput, ClubUpdateWithoutUserInput>, ClubUncheckedUpdateWithoutUserInput>
+  }
+
+  export type TeamUpdateOneWithoutUserNestedInput = {
+    create?: XOR<TeamCreateWithoutUserInput, TeamUncheckedCreateWithoutUserInput>
+    connectOrCreate?: TeamCreateOrConnectWithoutUserInput
+    upsert?: TeamUpsertWithoutUserInput
+    disconnect?: TeamWhereInput | boolean
+    delete?: TeamWhereInput | boolean
+    connect?: TeamWhereUniqueInput
+    update?: XOR<XOR<TeamUpdateToOneWithWhereWithoutUserInput, TeamUpdateWithoutUserInput>, TeamUncheckedUpdateWithoutUserInput>
+  }
+
+  export type ActivityUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ActivityCreateWithoutUserInput, ActivityUncheckedCreateWithoutUserInput> | ActivityCreateWithoutUserInput[] | ActivityUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ActivityCreateOrConnectWithoutUserInput | ActivityCreateOrConnectWithoutUserInput[]
+    upsert?: ActivityUpsertWithWhereUniqueWithoutUserInput | ActivityUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ActivityCreateManyUserInputEnvelope
     set?: ActivityWhereUniqueInput | ActivityWhereUniqueInput[]
     disconnect?: ActivityWhereUniqueInput | ActivityWhereUniqueInput[]
     delete?: ActivityWhereUniqueInput | ActivityWhereUniqueInput[]
     connect?: ActivityWhereUniqueInput | ActivityWhereUniqueInput[]
-    update?: ActivityUpdateWithWhereUniqueWithoutCoachInput | ActivityUpdateWithWhereUniqueWithoutCoachInput[]
-    updateMany?: ActivityUpdateManyWithWhereWithoutCoachInput | ActivityUpdateManyWithWhereWithoutCoachInput[]
+    update?: ActivityUpdateWithWhereUniqueWithoutUserInput | ActivityUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ActivityUpdateManyWithWhereWithoutUserInput | ActivityUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: ActivityScalarWhereInput | ActivityScalarWhereInput[]
   }
 
-  export type ActivityUncheckedUpdateManyWithoutCoachNestedInput = {
-    create?: XOR<ActivityCreateWithoutCoachInput, ActivityUncheckedCreateWithoutCoachInput> | ActivityCreateWithoutCoachInput[] | ActivityUncheckedCreateWithoutCoachInput[]
-    connectOrCreate?: ActivityCreateOrConnectWithoutCoachInput | ActivityCreateOrConnectWithoutCoachInput[]
-    upsert?: ActivityUpsertWithWhereUniqueWithoutCoachInput | ActivityUpsertWithWhereUniqueWithoutCoachInput[]
-    createMany?: ActivityCreateManyCoachInputEnvelope
+  export type ActivityUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ActivityCreateWithoutUserInput, ActivityUncheckedCreateWithoutUserInput> | ActivityCreateWithoutUserInput[] | ActivityUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ActivityCreateOrConnectWithoutUserInput | ActivityCreateOrConnectWithoutUserInput[]
+    upsert?: ActivityUpsertWithWhereUniqueWithoutUserInput | ActivityUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ActivityCreateManyUserInputEnvelope
     set?: ActivityWhereUniqueInput | ActivityWhereUniqueInput[]
     disconnect?: ActivityWhereUniqueInput | ActivityWhereUniqueInput[]
     delete?: ActivityWhereUniqueInput | ActivityWhereUniqueInput[]
     connect?: ActivityWhereUniqueInput | ActivityWhereUniqueInput[]
-    update?: ActivityUpdateWithWhereUniqueWithoutCoachInput | ActivityUpdateWithWhereUniqueWithoutCoachInput[]
-    updateMany?: ActivityUpdateManyWithWhereWithoutCoachInput | ActivityUpdateManyWithWhereWithoutCoachInput[]
+    update?: ActivityUpdateWithWhereUniqueWithoutUserInput | ActivityUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ActivityUpdateManyWithWhereWithoutUserInput | ActivityUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: ActivityScalarWhereInput | ActivityScalarWhereInput[]
   }
 
@@ -14628,6 +14827,13 @@ export namespace Prisma {
     connect?: ActivityWhereUniqueInput | ActivityWhereUniqueInput[]
   }
 
+  export type UserCreateNestedManyWithoutClubInput = {
+    create?: XOR<UserCreateWithoutClubInput, UserUncheckedCreateWithoutClubInput> | UserCreateWithoutClubInput[] | UserUncheckedCreateWithoutClubInput[]
+    connectOrCreate?: UserCreateOrConnectWithoutClubInput | UserCreateOrConnectWithoutClubInput[]
+    createMany?: UserCreateManyClubInputEnvelope
+    connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+  }
+
   export type TeamUncheckedCreateNestedManyWithoutClubInput = {
     create?: XOR<TeamCreateWithoutClubInput, TeamUncheckedCreateWithoutClubInput> | TeamCreateWithoutClubInput[] | TeamUncheckedCreateWithoutClubInput[]
     connectOrCreate?: TeamCreateOrConnectWithoutClubInput | TeamCreateOrConnectWithoutClubInput[]
@@ -14640,6 +14846,13 @@ export namespace Prisma {
     connectOrCreate?: ActivityCreateOrConnectWithoutClubInput | ActivityCreateOrConnectWithoutClubInput[]
     createMany?: ActivityCreateManyClubInputEnvelope
     connect?: ActivityWhereUniqueInput | ActivityWhereUniqueInput[]
+  }
+
+  export type UserUncheckedCreateNestedManyWithoutClubInput = {
+    create?: XOR<UserCreateWithoutClubInput, UserUncheckedCreateWithoutClubInput> | UserCreateWithoutClubInput[] | UserUncheckedCreateWithoutClubInput[]
+    connectOrCreate?: UserCreateOrConnectWithoutClubInput | UserCreateOrConnectWithoutClubInput[]
+    createMany?: UserCreateManyClubInputEnvelope
+    connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
   }
 
   export type DateTimeFieldUpdateOperationsInput = {
@@ -14678,6 +14891,20 @@ export namespace Prisma {
     deleteMany?: ActivityScalarWhereInput | ActivityScalarWhereInput[]
   }
 
+  export type UserUpdateManyWithoutClubNestedInput = {
+    create?: XOR<UserCreateWithoutClubInput, UserUncheckedCreateWithoutClubInput> | UserCreateWithoutClubInput[] | UserUncheckedCreateWithoutClubInput[]
+    connectOrCreate?: UserCreateOrConnectWithoutClubInput | UserCreateOrConnectWithoutClubInput[]
+    upsert?: UserUpsertWithWhereUniqueWithoutClubInput | UserUpsertWithWhereUniqueWithoutClubInput[]
+    createMany?: UserCreateManyClubInputEnvelope
+    set?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    disconnect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    delete?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    update?: UserUpdateWithWhereUniqueWithoutClubInput | UserUpdateWithWhereUniqueWithoutClubInput[]
+    updateMany?: UserUpdateManyWithWhereWithoutClubInput | UserUpdateManyWithWhereWithoutClubInput[]
+    deleteMany?: UserScalarWhereInput | UserScalarWhereInput[]
+  }
+
   export type TeamUncheckedUpdateManyWithoutClubNestedInput = {
     create?: XOR<TeamCreateWithoutClubInput, TeamUncheckedCreateWithoutClubInput> | TeamCreateWithoutClubInput[] | TeamUncheckedCreateWithoutClubInput[]
     connectOrCreate?: TeamCreateOrConnectWithoutClubInput | TeamCreateOrConnectWithoutClubInput[]
@@ -14706,6 +14933,20 @@ export namespace Prisma {
     deleteMany?: ActivityScalarWhereInput | ActivityScalarWhereInput[]
   }
 
+  export type UserUncheckedUpdateManyWithoutClubNestedInput = {
+    create?: XOR<UserCreateWithoutClubInput, UserUncheckedCreateWithoutClubInput> | UserCreateWithoutClubInput[] | UserUncheckedCreateWithoutClubInput[]
+    connectOrCreate?: UserCreateOrConnectWithoutClubInput | UserCreateOrConnectWithoutClubInput[]
+    upsert?: UserUpsertWithWhereUniqueWithoutClubInput | UserUpsertWithWhereUniqueWithoutClubInput[]
+    createMany?: UserCreateManyClubInputEnvelope
+    set?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    disconnect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    delete?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    update?: UserUpdateWithWhereUniqueWithoutClubInput | UserUpdateWithWhereUniqueWithoutClubInput[]
+    updateMany?: UserUpdateManyWithWhereWithoutClubInput | UserUpdateManyWithWhereWithoutClubInput[]
+    deleteMany?: UserScalarWhereInput | UserScalarWhereInput[]
+  }
+
   export type ClubCreateNestedOneWithoutTeamsInput = {
     create?: XOR<ClubCreateWithoutTeamsInput, ClubUncheckedCreateWithoutTeamsInput>
     connectOrCreate?: ClubCreateOrConnectWithoutTeamsInput
@@ -14719,11 +14960,25 @@ export namespace Prisma {
     connect?: ActivityWhereUniqueInput | ActivityWhereUniqueInput[]
   }
 
+  export type UserCreateNestedManyWithoutTeamInput = {
+    create?: XOR<UserCreateWithoutTeamInput, UserUncheckedCreateWithoutTeamInput> | UserCreateWithoutTeamInput[] | UserUncheckedCreateWithoutTeamInput[]
+    connectOrCreate?: UserCreateOrConnectWithoutTeamInput | UserCreateOrConnectWithoutTeamInput[]
+    createMany?: UserCreateManyTeamInputEnvelope
+    connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+  }
+
   export type ActivityUncheckedCreateNestedManyWithoutTeamInput = {
     create?: XOR<ActivityCreateWithoutTeamInput, ActivityUncheckedCreateWithoutTeamInput> | ActivityCreateWithoutTeamInput[] | ActivityUncheckedCreateWithoutTeamInput[]
     connectOrCreate?: ActivityCreateOrConnectWithoutTeamInput | ActivityCreateOrConnectWithoutTeamInput[]
     createMany?: ActivityCreateManyTeamInputEnvelope
     connect?: ActivityWhereUniqueInput | ActivityWhereUniqueInput[]
+  }
+
+  export type UserUncheckedCreateNestedManyWithoutTeamInput = {
+    create?: XOR<UserCreateWithoutTeamInput, UserUncheckedCreateWithoutTeamInput> | UserCreateWithoutTeamInput[] | UserUncheckedCreateWithoutTeamInput[]
+    connectOrCreate?: UserCreateOrConnectWithoutTeamInput | UserCreateOrConnectWithoutTeamInput[]
+    createMany?: UserCreateManyTeamInputEnvelope
+    connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
   }
 
   export type ClubUpdateOneRequiredWithoutTeamsNestedInput = {
@@ -14748,6 +15003,20 @@ export namespace Prisma {
     deleteMany?: ActivityScalarWhereInput | ActivityScalarWhereInput[]
   }
 
+  export type UserUpdateManyWithoutTeamNestedInput = {
+    create?: XOR<UserCreateWithoutTeamInput, UserUncheckedCreateWithoutTeamInput> | UserCreateWithoutTeamInput[] | UserUncheckedCreateWithoutTeamInput[]
+    connectOrCreate?: UserCreateOrConnectWithoutTeamInput | UserCreateOrConnectWithoutTeamInput[]
+    upsert?: UserUpsertWithWhereUniqueWithoutTeamInput | UserUpsertWithWhereUniqueWithoutTeamInput[]
+    createMany?: UserCreateManyTeamInputEnvelope
+    set?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    disconnect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    delete?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    update?: UserUpdateWithWhereUniqueWithoutTeamInput | UserUpdateWithWhereUniqueWithoutTeamInput[]
+    updateMany?: UserUpdateManyWithWhereWithoutTeamInput | UserUpdateManyWithWhereWithoutTeamInput[]
+    deleteMany?: UserScalarWhereInput | UserScalarWhereInput[]
+  }
+
   export type ActivityUncheckedUpdateManyWithoutTeamNestedInput = {
     create?: XOR<ActivityCreateWithoutTeamInput, ActivityUncheckedCreateWithoutTeamInput> | ActivityCreateWithoutTeamInput[] | ActivityUncheckedCreateWithoutTeamInput[]
     connectOrCreate?: ActivityCreateOrConnectWithoutTeamInput | ActivityCreateOrConnectWithoutTeamInput[]
@@ -14760,6 +15029,20 @@ export namespace Prisma {
     update?: ActivityUpdateWithWhereUniqueWithoutTeamInput | ActivityUpdateWithWhereUniqueWithoutTeamInput[]
     updateMany?: ActivityUpdateManyWithWhereWithoutTeamInput | ActivityUpdateManyWithWhereWithoutTeamInput[]
     deleteMany?: ActivityScalarWhereInput | ActivityScalarWhereInput[]
+  }
+
+  export type UserUncheckedUpdateManyWithoutTeamNestedInput = {
+    create?: XOR<UserCreateWithoutTeamInput, UserUncheckedCreateWithoutTeamInput> | UserCreateWithoutTeamInput[] | UserUncheckedCreateWithoutTeamInput[]
+    connectOrCreate?: UserCreateOrConnectWithoutTeamInput | UserCreateOrConnectWithoutTeamInput[]
+    upsert?: UserUpsertWithWhereUniqueWithoutTeamInput | UserUpsertWithWhereUniqueWithoutTeamInput[]
+    createMany?: UserCreateManyTeamInputEnvelope
+    set?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    disconnect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    delete?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    update?: UserUpdateWithWhereUniqueWithoutTeamInput | UserUpdateWithWhereUniqueWithoutTeamInput[]
+    updateMany?: UserUpdateManyWithWhereWithoutTeamInput | UserUpdateManyWithWhereWithoutTeamInput[]
+    deleteMany?: UserScalarWhereInput | UserScalarWhereInput[]
   }
 
   export type TeamCreateNestedOneWithoutActivityInput = {
@@ -14788,10 +15071,12 @@ export namespace Prisma {
     divide?: number
   }
 
-  export type TeamUpdateOneRequiredWithoutActivityNestedInput = {
+  export type TeamUpdateOneWithoutActivityNestedInput = {
     create?: XOR<TeamCreateWithoutActivityInput, TeamUncheckedCreateWithoutActivityInput>
     connectOrCreate?: TeamCreateOrConnectWithoutActivityInput
     upsert?: TeamUpsertWithoutActivityInput
+    disconnect?: TeamWhereInput | boolean
+    delete?: TeamWhereInput | boolean
     connect?: TeamWhereUniqueInput
     update?: XOR<XOR<TeamUpdateToOneWithWhereWithoutActivityInput, TeamUpdateWithoutActivityInput>, TeamUncheckedUpdateWithoutActivityInput>
   }
@@ -15046,8 +15331,57 @@ export namespace Prisma {
     _max?: NestedEnumSubscriptionTypeFilter<$PrismaModel>
   }
 
-  export type ActivityCreateWithoutCoachInput = {
+  export type ClubCreateWithoutUserInput = {
     id: string
+    display: string
+    dateCreated?: Date | string
+    dateUpdated?: Date | string | null
+    teams?: TeamCreateNestedManyWithoutClubInput
+    Activity?: ActivityCreateNestedManyWithoutClubInput
+  }
+
+  export type ClubUncheckedCreateWithoutUserInput = {
+    id: string
+    display: string
+    dateCreated?: Date | string
+    dateUpdated?: Date | string | null
+    teams?: TeamUncheckedCreateNestedManyWithoutClubInput
+    Activity?: ActivityUncheckedCreateNestedManyWithoutClubInput
+  }
+
+  export type ClubCreateOrConnectWithoutUserInput = {
+    where: ClubWhereUniqueInput
+    create: XOR<ClubCreateWithoutUserInput, ClubUncheckedCreateWithoutUserInput>
+  }
+
+  export type TeamCreateWithoutUserInput = {
+    id: string
+    display: string
+    voided?: boolean
+    dateCreated?: Date | string
+    dateUpdated?: Date | string | null
+    club: ClubCreateNestedOneWithoutTeamsInput
+    Activity?: ActivityCreateNestedManyWithoutTeamInput
+  }
+
+  export type TeamUncheckedCreateWithoutUserInput = {
+    id: string
+    display: string
+    clubId: string
+    voided?: boolean
+    dateCreated?: Date | string
+    dateUpdated?: Date | string | null
+    Activity?: ActivityUncheckedCreateNestedManyWithoutTeamInput
+  }
+
+  export type TeamCreateOrConnectWithoutUserInput = {
+    where: TeamWhereUniqueInput
+    create: XOR<TeamCreateWithoutUserInput, TeamUncheckedCreateWithoutUserInput>
+  }
+
+  export type ActivityCreateWithoutUserInput = {
+    id: string
+    description: string
     noOfReg: number
     activityDate: Date | string
     program: string
@@ -15056,14 +15390,15 @@ export namespace Prisma {
     equipments: JsonNullValueInput | InputJsonValue
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
-    team: TeamCreateNestedOneWithoutActivityInput
+    team?: TeamCreateNestedOneWithoutActivityInput
     club: ClubCreateNestedOneWithoutActivityInput
   }
 
-  export type ActivityUncheckedCreateWithoutCoachInput = {
+  export type ActivityUncheckedCreateWithoutUserInput = {
     id: string
-    teamId: string
+    teamId?: string | null
     clubId: string
+    description: string
     noOfReg: number
     activityDate: Date | string
     program: string
@@ -15074,30 +15409,90 @@ export namespace Prisma {
     dateUpdated?: Date | string | null
   }
 
-  export type ActivityCreateOrConnectWithoutCoachInput = {
+  export type ActivityCreateOrConnectWithoutUserInput = {
     where: ActivityWhereUniqueInput
-    create: XOR<ActivityCreateWithoutCoachInput, ActivityUncheckedCreateWithoutCoachInput>
+    create: XOR<ActivityCreateWithoutUserInput, ActivityUncheckedCreateWithoutUserInput>
   }
 
-  export type ActivityCreateManyCoachInputEnvelope = {
-    data: ActivityCreateManyCoachInput | ActivityCreateManyCoachInput[]
+  export type ActivityCreateManyUserInputEnvelope = {
+    data: ActivityCreateManyUserInput | ActivityCreateManyUserInput[]
     skipDuplicates?: boolean
   }
 
-  export type ActivityUpsertWithWhereUniqueWithoutCoachInput = {
-    where: ActivityWhereUniqueInput
-    update: XOR<ActivityUpdateWithoutCoachInput, ActivityUncheckedUpdateWithoutCoachInput>
-    create: XOR<ActivityCreateWithoutCoachInput, ActivityUncheckedCreateWithoutCoachInput>
+  export type ClubUpsertWithoutUserInput = {
+    update: XOR<ClubUpdateWithoutUserInput, ClubUncheckedUpdateWithoutUserInput>
+    create: XOR<ClubCreateWithoutUserInput, ClubUncheckedCreateWithoutUserInput>
+    where?: ClubWhereInput
   }
 
-  export type ActivityUpdateWithWhereUniqueWithoutCoachInput = {
-    where: ActivityWhereUniqueInput
-    data: XOR<ActivityUpdateWithoutCoachInput, ActivityUncheckedUpdateWithoutCoachInput>
+  export type ClubUpdateToOneWithWhereWithoutUserInput = {
+    where?: ClubWhereInput
+    data: XOR<ClubUpdateWithoutUserInput, ClubUncheckedUpdateWithoutUserInput>
   }
 
-  export type ActivityUpdateManyWithWhereWithoutCoachInput = {
+  export type ClubUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    display?: StringFieldUpdateOperationsInput | string
+    dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    teams?: TeamUpdateManyWithoutClubNestedInput
+    Activity?: ActivityUpdateManyWithoutClubNestedInput
+  }
+
+  export type ClubUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    display?: StringFieldUpdateOperationsInput | string
+    dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    teams?: TeamUncheckedUpdateManyWithoutClubNestedInput
+    Activity?: ActivityUncheckedUpdateManyWithoutClubNestedInput
+  }
+
+  export type TeamUpsertWithoutUserInput = {
+    update: XOR<TeamUpdateWithoutUserInput, TeamUncheckedUpdateWithoutUserInput>
+    create: XOR<TeamCreateWithoutUserInput, TeamUncheckedCreateWithoutUserInput>
+    where?: TeamWhereInput
+  }
+
+  export type TeamUpdateToOneWithWhereWithoutUserInput = {
+    where?: TeamWhereInput
+    data: XOR<TeamUpdateWithoutUserInput, TeamUncheckedUpdateWithoutUserInput>
+  }
+
+  export type TeamUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    display?: StringFieldUpdateOperationsInput | string
+    voided?: BoolFieldUpdateOperationsInput | boolean
+    dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    club?: ClubUpdateOneRequiredWithoutTeamsNestedInput
+    Activity?: ActivityUpdateManyWithoutTeamNestedInput
+  }
+
+  export type TeamUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    display?: StringFieldUpdateOperationsInput | string
+    clubId?: StringFieldUpdateOperationsInput | string
+    voided?: BoolFieldUpdateOperationsInput | boolean
+    dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    Activity?: ActivityUncheckedUpdateManyWithoutTeamNestedInput
+  }
+
+  export type ActivityUpsertWithWhereUniqueWithoutUserInput = {
+    where: ActivityWhereUniqueInput
+    update: XOR<ActivityUpdateWithoutUserInput, ActivityUncheckedUpdateWithoutUserInput>
+    create: XOR<ActivityCreateWithoutUserInput, ActivityUncheckedCreateWithoutUserInput>
+  }
+
+  export type ActivityUpdateWithWhereUniqueWithoutUserInput = {
+    where: ActivityWhereUniqueInput
+    data: XOR<ActivityUpdateWithoutUserInput, ActivityUncheckedUpdateWithoutUserInput>
+  }
+
+  export type ActivityUpdateManyWithWhereWithoutUserInput = {
     where: ActivityScalarWhereInput
-    data: XOR<ActivityUpdateManyMutationInput, ActivityUncheckedUpdateManyWithoutCoachInput>
+    data: XOR<ActivityUpdateManyMutationInput, ActivityUncheckedUpdateManyWithoutUserInput>
   }
 
   export type ActivityScalarWhereInput = {
@@ -15105,9 +15500,10 @@ export namespace Prisma {
     OR?: ActivityScalarWhereInput[]
     NOT?: ActivityScalarWhereInput | ActivityScalarWhereInput[]
     id?: StringFilter<"Activity"> | string
-    teamId?: StringFilter<"Activity"> | string
+    teamId?: StringNullableFilter<"Activity"> | string | null
     clubId?: StringFilter<"Activity"> | string
-    userId?: StringFilter<"Activity"> | string
+    coachUserId?: StringFilter<"Activity"> | string
+    description?: StringFilter<"Activity"> | string
     noOfReg?: IntFilter<"Activity"> | number
     activityDate?: DateTimeFilter<"Activity"> | Date | string
     program?: StringFilter<"Activity"> | string
@@ -15125,6 +15521,7 @@ export namespace Prisma {
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
     Activity?: ActivityCreateNestedManyWithoutTeamInput
+    User?: UserCreateNestedManyWithoutTeamInput
   }
 
   export type TeamUncheckedCreateWithoutClubInput = {
@@ -15134,6 +15531,7 @@ export namespace Prisma {
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
     Activity?: ActivityUncheckedCreateNestedManyWithoutTeamInput
+    User?: UserUncheckedCreateNestedManyWithoutTeamInput
   }
 
   export type TeamCreateOrConnectWithoutClubInput = {
@@ -15148,6 +15546,7 @@ export namespace Prisma {
 
   export type ActivityCreateWithoutClubInput = {
     id: string
+    description: string
     noOfReg: number
     activityDate: Date | string
     program: string
@@ -15156,14 +15555,15 @@ export namespace Prisma {
     equipments: JsonNullValueInput | InputJsonValue
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
-    team: TeamCreateNestedOneWithoutActivityInput
-    coach: UserCreateNestedOneWithoutActivityInput
+    team?: TeamCreateNestedOneWithoutActivityInput
+    user: UserCreateNestedOneWithoutActivityInput
   }
 
   export type ActivityUncheckedCreateWithoutClubInput = {
     id: string
-    teamId: string
-    userId: string
+    teamId?: string | null
+    coachUserId: string
+    description: string
     noOfReg: number
     activityDate: Date | string
     program: string
@@ -15181,6 +15581,38 @@ export namespace Prisma {
 
   export type ActivityCreateManyClubInputEnvelope = {
     data: ActivityCreateManyClubInput | ActivityCreateManyClubInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type UserCreateWithoutClubInput = {
+    id: string
+    userType?: $Enums.UserType
+    personNumber?: string | null
+    name?: string | null
+    clubOnboarding?: boolean
+    gender?: string | null
+    team?: TeamCreateNestedOneWithoutUserInput
+    Activity?: ActivityCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutClubInput = {
+    id: string
+    userType?: $Enums.UserType
+    teamId?: string | null
+    personNumber?: string | null
+    name?: string | null
+    clubOnboarding?: boolean
+    gender?: string | null
+    Activity?: ActivityUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutClubInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutClubInput, UserUncheckedCreateWithoutClubInput>
+  }
+
+  export type UserCreateManyClubInputEnvelope = {
+    data: UserCreateManyClubInput | UserCreateManyClubInput[]
     skipDuplicates?: boolean
   }
 
@@ -15228,12 +15660,43 @@ export namespace Prisma {
     data: XOR<ActivityUpdateManyMutationInput, ActivityUncheckedUpdateManyWithoutClubInput>
   }
 
+  export type UserUpsertWithWhereUniqueWithoutClubInput = {
+    where: UserWhereUniqueInput
+    update: XOR<UserUpdateWithoutClubInput, UserUncheckedUpdateWithoutClubInput>
+    create: XOR<UserCreateWithoutClubInput, UserUncheckedCreateWithoutClubInput>
+  }
+
+  export type UserUpdateWithWhereUniqueWithoutClubInput = {
+    where: UserWhereUniqueInput
+    data: XOR<UserUpdateWithoutClubInput, UserUncheckedUpdateWithoutClubInput>
+  }
+
+  export type UserUpdateManyWithWhereWithoutClubInput = {
+    where: UserScalarWhereInput
+    data: XOR<UserUpdateManyMutationInput, UserUncheckedUpdateManyWithoutClubInput>
+  }
+
+  export type UserScalarWhereInput = {
+    AND?: UserScalarWhereInput | UserScalarWhereInput[]
+    OR?: UserScalarWhereInput[]
+    NOT?: UserScalarWhereInput | UserScalarWhereInput[]
+    id?: StringFilter<"User"> | string
+    userType?: EnumUserTypeFilter<"User"> | $Enums.UserType
+    clubId?: StringFilter<"User"> | string
+    teamId?: StringNullableFilter<"User"> | string | null
+    personNumber?: StringNullableFilter<"User"> | string | null
+    name?: StringNullableFilter<"User"> | string | null
+    clubOnboarding?: BoolFilter<"User"> | boolean
+    gender?: StringNullableFilter<"User"> | string | null
+  }
+
   export type ClubCreateWithoutTeamsInput = {
     id: string
     display: string
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
     Activity?: ActivityCreateNestedManyWithoutClubInput
+    User?: UserCreateNestedManyWithoutClubInput
   }
 
   export type ClubUncheckedCreateWithoutTeamsInput = {
@@ -15242,6 +15705,7 @@ export namespace Prisma {
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
     Activity?: ActivityUncheckedCreateNestedManyWithoutClubInput
+    User?: UserUncheckedCreateNestedManyWithoutClubInput
   }
 
   export type ClubCreateOrConnectWithoutTeamsInput = {
@@ -15251,6 +15715,7 @@ export namespace Prisma {
 
   export type ActivityCreateWithoutTeamInput = {
     id: string
+    description: string
     noOfReg: number
     activityDate: Date | string
     program: string
@@ -15260,13 +15725,14 @@ export namespace Prisma {
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
     club: ClubCreateNestedOneWithoutActivityInput
-    coach: UserCreateNestedOneWithoutActivityInput
+    user: UserCreateNestedOneWithoutActivityInput
   }
 
   export type ActivityUncheckedCreateWithoutTeamInput = {
     id: string
     clubId: string
-    userId: string
+    coachUserId: string
+    description: string
     noOfReg: number
     activityDate: Date | string
     program: string
@@ -15287,6 +15753,38 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type UserCreateWithoutTeamInput = {
+    id: string
+    userType?: $Enums.UserType
+    personNumber?: string | null
+    name?: string | null
+    clubOnboarding?: boolean
+    gender?: string | null
+    club: ClubCreateNestedOneWithoutUserInput
+    Activity?: ActivityCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutTeamInput = {
+    id: string
+    userType?: $Enums.UserType
+    clubId: string
+    personNumber?: string | null
+    name?: string | null
+    clubOnboarding?: boolean
+    gender?: string | null
+    Activity?: ActivityUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutTeamInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutTeamInput, UserUncheckedCreateWithoutTeamInput>
+  }
+
+  export type UserCreateManyTeamInputEnvelope = {
+    data: UserCreateManyTeamInput | UserCreateManyTeamInput[]
+    skipDuplicates?: boolean
+  }
+
   export type ClubUpsertWithoutTeamsInput = {
     update: XOR<ClubUpdateWithoutTeamsInput, ClubUncheckedUpdateWithoutTeamsInput>
     create: XOR<ClubCreateWithoutTeamsInput, ClubUncheckedCreateWithoutTeamsInput>
@@ -15304,6 +15802,7 @@ export namespace Prisma {
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     Activity?: ActivityUpdateManyWithoutClubNestedInput
+    User?: UserUpdateManyWithoutClubNestedInput
   }
 
   export type ClubUncheckedUpdateWithoutTeamsInput = {
@@ -15312,6 +15811,7 @@ export namespace Prisma {
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     Activity?: ActivityUncheckedUpdateManyWithoutClubNestedInput
+    User?: UserUncheckedUpdateManyWithoutClubNestedInput
   }
 
   export type ActivityUpsertWithWhereUniqueWithoutTeamInput = {
@@ -15330,6 +15830,22 @@ export namespace Prisma {
     data: XOR<ActivityUpdateManyMutationInput, ActivityUncheckedUpdateManyWithoutTeamInput>
   }
 
+  export type UserUpsertWithWhereUniqueWithoutTeamInput = {
+    where: UserWhereUniqueInput
+    update: XOR<UserUpdateWithoutTeamInput, UserUncheckedUpdateWithoutTeamInput>
+    create: XOR<UserCreateWithoutTeamInput, UserUncheckedCreateWithoutTeamInput>
+  }
+
+  export type UserUpdateWithWhereUniqueWithoutTeamInput = {
+    where: UserWhereUniqueInput
+    data: XOR<UserUpdateWithoutTeamInput, UserUncheckedUpdateWithoutTeamInput>
+  }
+
+  export type UserUpdateManyWithWhereWithoutTeamInput = {
+    where: UserScalarWhereInput
+    data: XOR<UserUpdateManyMutationInput, UserUncheckedUpdateManyWithoutTeamInput>
+  }
+
   export type TeamCreateWithoutActivityInput = {
     id: string
     display: string
@@ -15337,6 +15853,7 @@ export namespace Prisma {
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
     club: ClubCreateNestedOneWithoutTeamsInput
+    User?: UserCreateNestedManyWithoutTeamInput
   }
 
   export type TeamUncheckedCreateWithoutActivityInput = {
@@ -15346,6 +15863,7 @@ export namespace Prisma {
     voided?: boolean
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
+    User?: UserUncheckedCreateNestedManyWithoutTeamInput
   }
 
   export type TeamCreateOrConnectWithoutActivityInput = {
@@ -15359,6 +15877,7 @@ export namespace Prisma {
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
     teams?: TeamCreateNestedManyWithoutClubInput
+    User?: UserCreateNestedManyWithoutClubInput
   }
 
   export type ClubUncheckedCreateWithoutActivityInput = {
@@ -15367,6 +15886,7 @@ export namespace Prisma {
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
     teams?: TeamUncheckedCreateNestedManyWithoutClubInput
+    User?: UserUncheckedCreateNestedManyWithoutClubInput
   }
 
   export type ClubCreateOrConnectWithoutActivityInput = {
@@ -15377,12 +15897,12 @@ export namespace Prisma {
   export type UserCreateWithoutActivityInput = {
     id: string
     userType?: $Enums.UserType
-    clubId: string
-    teamId?: string | null
     personNumber?: string | null
     name?: string | null
     clubOnboarding?: boolean
     gender?: string | null
+    club: ClubCreateNestedOneWithoutUserInput
+    team?: TeamCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutActivityInput = {
@@ -15419,6 +15939,7 @@ export namespace Prisma {
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     club?: ClubUpdateOneRequiredWithoutTeamsNestedInput
+    User?: UserUpdateManyWithoutTeamNestedInput
   }
 
   export type TeamUncheckedUpdateWithoutActivityInput = {
@@ -15428,6 +15949,7 @@ export namespace Prisma {
     voided?: BoolFieldUpdateOperationsInput | boolean
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    User?: UserUncheckedUpdateManyWithoutTeamNestedInput
   }
 
   export type ClubUpsertWithoutActivityInput = {
@@ -15447,6 +15969,7 @@ export namespace Prisma {
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     teams?: TeamUpdateManyWithoutClubNestedInput
+    User?: UserUpdateManyWithoutClubNestedInput
   }
 
   export type ClubUncheckedUpdateWithoutActivityInput = {
@@ -15455,6 +15978,7 @@ export namespace Prisma {
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     teams?: TeamUncheckedUpdateManyWithoutClubNestedInput
+    User?: UserUncheckedUpdateManyWithoutClubNestedInput
   }
 
   export type UserUpsertWithoutActivityInput = {
@@ -15471,12 +15995,12 @@ export namespace Prisma {
   export type UserUpdateWithoutActivityInput = {
     id?: StringFieldUpdateOperationsInput | string
     userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
-    clubId?: StringFieldUpdateOperationsInput | string
-    teamId?: NullableStringFieldUpdateOperationsInput | string | null
     personNumber?: NullableStringFieldUpdateOperationsInput | string | null
     name?: NullableStringFieldUpdateOperationsInput | string | null
     clubOnboarding?: BoolFieldUpdateOperationsInput | boolean
     gender?: NullableStringFieldUpdateOperationsInput | string | null
+    club?: ClubUpdateOneRequiredWithoutUserNestedInput
+    team?: TeamUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutActivityInput = {
@@ -15490,10 +16014,11 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type ActivityCreateManyCoachInput = {
+  export type ActivityCreateManyUserInput = {
     id: string
-    teamId: string
+    teamId?: string | null
     clubId: string
+    description: string
     noOfReg: number
     activityDate: Date | string
     program: string
@@ -15504,8 +16029,9 @@ export namespace Prisma {
     dateUpdated?: Date | string | null
   }
 
-  export type ActivityUpdateWithoutCoachInput = {
+  export type ActivityUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
     noOfReg?: IntFieldUpdateOperationsInput | number
     activityDate?: DateTimeFieldUpdateOperationsInput | Date | string
     program?: StringFieldUpdateOperationsInput | string
@@ -15514,14 +16040,15 @@ export namespace Prisma {
     equipments?: JsonNullValueInput | InputJsonValue
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    team?: TeamUpdateOneRequiredWithoutActivityNestedInput
+    team?: TeamUpdateOneWithoutActivityNestedInput
     club?: ClubUpdateOneRequiredWithoutActivityNestedInput
   }
 
-  export type ActivityUncheckedUpdateWithoutCoachInput = {
+  export type ActivityUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    teamId?: StringFieldUpdateOperationsInput | string
+    teamId?: NullableStringFieldUpdateOperationsInput | string | null
     clubId?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
     noOfReg?: IntFieldUpdateOperationsInput | number
     activityDate?: DateTimeFieldUpdateOperationsInput | Date | string
     program?: StringFieldUpdateOperationsInput | string
@@ -15532,10 +16059,11 @@ export namespace Prisma {
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
-  export type ActivityUncheckedUpdateManyWithoutCoachInput = {
+  export type ActivityUncheckedUpdateManyWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    teamId?: StringFieldUpdateOperationsInput | string
+    teamId?: NullableStringFieldUpdateOperationsInput | string | null
     clubId?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
     noOfReg?: IntFieldUpdateOperationsInput | number
     activityDate?: DateTimeFieldUpdateOperationsInput | Date | string
     program?: StringFieldUpdateOperationsInput | string
@@ -15556,8 +16084,9 @@ export namespace Prisma {
 
   export type ActivityCreateManyClubInput = {
     id: string
-    teamId: string
-    userId: string
+    teamId?: string | null
+    coachUserId: string
+    description: string
     noOfReg: number
     activityDate: Date | string
     program: string
@@ -15568,6 +16097,16 @@ export namespace Prisma {
     dateUpdated?: Date | string | null
   }
 
+  export type UserCreateManyClubInput = {
+    id: string
+    userType?: $Enums.UserType
+    teamId?: string | null
+    personNumber?: string | null
+    name?: string | null
+    clubOnboarding?: boolean
+    gender?: string | null
+  }
+
   export type TeamUpdateWithoutClubInput = {
     id?: StringFieldUpdateOperationsInput | string
     display?: StringFieldUpdateOperationsInput | string
@@ -15575,6 +16114,7 @@ export namespace Prisma {
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     Activity?: ActivityUpdateManyWithoutTeamNestedInput
+    User?: UserUpdateManyWithoutTeamNestedInput
   }
 
   export type TeamUncheckedUpdateWithoutClubInput = {
@@ -15584,6 +16124,7 @@ export namespace Prisma {
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     Activity?: ActivityUncheckedUpdateManyWithoutTeamNestedInput
+    User?: UserUncheckedUpdateManyWithoutTeamNestedInput
   }
 
   export type TeamUncheckedUpdateManyWithoutClubInput = {
@@ -15596,6 +16137,7 @@ export namespace Prisma {
 
   export type ActivityUpdateWithoutClubInput = {
     id?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
     noOfReg?: IntFieldUpdateOperationsInput | number
     activityDate?: DateTimeFieldUpdateOperationsInput | Date | string
     program?: StringFieldUpdateOperationsInput | string
@@ -15604,14 +16146,15 @@ export namespace Prisma {
     equipments?: JsonNullValueInput | InputJsonValue
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    team?: TeamUpdateOneRequiredWithoutActivityNestedInput
-    coach?: UserUpdateOneRequiredWithoutActivityNestedInput
+    team?: TeamUpdateOneWithoutActivityNestedInput
+    user?: UserUpdateOneRequiredWithoutActivityNestedInput
   }
 
   export type ActivityUncheckedUpdateWithoutClubInput = {
     id?: StringFieldUpdateOperationsInput | string
-    teamId?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
+    teamId?: NullableStringFieldUpdateOperationsInput | string | null
+    coachUserId?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
     noOfReg?: IntFieldUpdateOperationsInput | number
     activityDate?: DateTimeFieldUpdateOperationsInput | Date | string
     program?: StringFieldUpdateOperationsInput | string
@@ -15624,8 +16167,9 @@ export namespace Prisma {
 
   export type ActivityUncheckedUpdateManyWithoutClubInput = {
     id?: StringFieldUpdateOperationsInput | string
-    teamId?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
+    teamId?: NullableStringFieldUpdateOperationsInput | string | null
+    coachUserId?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
     noOfReg?: IntFieldUpdateOperationsInput | number
     activityDate?: DateTimeFieldUpdateOperationsInput | Date | string
     program?: StringFieldUpdateOperationsInput | string
@@ -15636,10 +16180,43 @@ export namespace Prisma {
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
+  export type UserUpdateWithoutClubInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
+    personNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    clubOnboarding?: BoolFieldUpdateOperationsInput | boolean
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
+    team?: TeamUpdateOneWithoutUserNestedInput
+    Activity?: ActivityUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutClubInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
+    teamId?: NullableStringFieldUpdateOperationsInput | string | null
+    personNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    clubOnboarding?: BoolFieldUpdateOperationsInput | boolean
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
+    Activity?: ActivityUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateManyWithoutClubInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
+    teamId?: NullableStringFieldUpdateOperationsInput | string | null
+    personNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    clubOnboarding?: BoolFieldUpdateOperationsInput | boolean
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
   export type ActivityCreateManyTeamInput = {
     id: string
     clubId: string
-    userId: string
+    coachUserId: string
+    description: string
     noOfReg: number
     activityDate: Date | string
     program: string
@@ -15650,8 +16227,19 @@ export namespace Prisma {
     dateUpdated?: Date | string | null
   }
 
+  export type UserCreateManyTeamInput = {
+    id: string
+    userType?: $Enums.UserType
+    clubId: string
+    personNumber?: string | null
+    name?: string | null
+    clubOnboarding?: boolean
+    gender?: string | null
+  }
+
   export type ActivityUpdateWithoutTeamInput = {
     id?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
     noOfReg?: IntFieldUpdateOperationsInput | number
     activityDate?: DateTimeFieldUpdateOperationsInput | Date | string
     program?: StringFieldUpdateOperationsInput | string
@@ -15661,13 +16249,14 @@ export namespace Prisma {
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     club?: ClubUpdateOneRequiredWithoutActivityNestedInput
-    coach?: UserUpdateOneRequiredWithoutActivityNestedInput
+    user?: UserUpdateOneRequiredWithoutActivityNestedInput
   }
 
   export type ActivityUncheckedUpdateWithoutTeamInput = {
     id?: StringFieldUpdateOperationsInput | string
     clubId?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
+    coachUserId?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
     noOfReg?: IntFieldUpdateOperationsInput | number
     activityDate?: DateTimeFieldUpdateOperationsInput | Date | string
     program?: StringFieldUpdateOperationsInput | string
@@ -15681,7 +16270,8 @@ export namespace Prisma {
   export type ActivityUncheckedUpdateManyWithoutTeamInput = {
     id?: StringFieldUpdateOperationsInput | string
     clubId?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
+    coachUserId?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
     noOfReg?: IntFieldUpdateOperationsInput | number
     activityDate?: DateTimeFieldUpdateOperationsInput | Date | string
     program?: StringFieldUpdateOperationsInput | string
@@ -15690,6 +16280,38 @@ export namespace Prisma {
     equipments?: JsonNullValueInput | InputJsonValue
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type UserUpdateWithoutTeamInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
+    personNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    clubOnboarding?: BoolFieldUpdateOperationsInput | boolean
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
+    club?: ClubUpdateOneRequiredWithoutUserNestedInput
+    Activity?: ActivityUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutTeamInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
+    clubId?: StringFieldUpdateOperationsInput | string
+    personNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    clubOnboarding?: BoolFieldUpdateOperationsInput | boolean
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
+    Activity?: ActivityUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateManyWithoutTeamInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
+    clubId?: StringFieldUpdateOperationsInput | string
+    personNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    clubOnboarding?: BoolFieldUpdateOperationsInput | boolean
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
 

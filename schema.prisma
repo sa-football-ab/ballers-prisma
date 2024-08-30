@@ -19,7 +19,9 @@ enum UserType {
 model User {
     id             String     @id
     userType       UserType   @default(PLAYER)
+    club           Club       @relation(fields: [clubId], references: [id])
     clubId         String
+    team           Team?      @relation(fields: [teamId], references: [id])
     teamId         String?
     personNumber   String?
     name           String?
@@ -60,6 +62,7 @@ model Club {
     dateUpdated DateTime?
     teams       Team[]
     Activity    Activity[]
+    User        User[]
 }
 
 // Team Table defination
@@ -72,18 +75,19 @@ model Team {
     dateCreated DateTime   @default(now())
     dateUpdated DateTime?
     Activity    Activity[]
+    User        User[]
 }
 
 model Activity {
-    id      String @id
-    team    Team   @relation(fields: [teamId], references: [id])
-    teamId  String
-    club    Club   @relation(fields: [clubId], references: [id])
-    clubId  String
-    coach   User   @relation(fields: [userId], references: [id])
-    userId  String
-    noOfReg Int
-
+    id           String    @id
+    team         Team?     @relation(fields: [teamId], references: [id])
+    teamId       String?
+    club         Club      @relation(fields: [clubId], references: [id])
+    clubId       String
+    user         User      @relation(fields: [coachUserId], references: [id])
+    coachUserId  String
+    description  String
+    noOfReg      Int
     activityDate DateTime
     program      String
     minAge       Int
