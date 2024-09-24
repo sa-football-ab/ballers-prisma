@@ -1,6 +1,6 @@
 {
   "name": "ballers-prisma",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "Package for Ballers app",
   "main": "index.js",
   "scripts": {

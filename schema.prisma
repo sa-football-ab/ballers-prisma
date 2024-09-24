@@ -23,6 +23,7 @@ model User {
     clubId         String
     team           Team?      @relation(fields: [teamId], references: [id])
     teamId         String?
+    disability     Boolean    @default(false)
     personNumber   String?
     name           String?
     clubOnboarding Boolean    @default(true)
@@ -151,6 +152,7 @@ enum SubscriptionType {
     FREE
     CLUB
     AI
+    ACTIVITY
 }
 
 // PlayerTrainingProgram Table defination

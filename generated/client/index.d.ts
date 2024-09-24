@@ -86,7 +86,8 @@ export const SubscriptionType: {
   ONE_OFF: 'ONE_OFF',
   FREE: 'FREE',
   CLUB: 'CLUB',
-  AI: 'AI'
+  AI: 'AI',
+  ACTIVITY: 'ACTIVITY'
 };
 
 export type SubscriptionType = (typeof SubscriptionType)[keyof typeof SubscriptionType]
@@ -1864,6 +1865,7 @@ export namespace Prisma {
     userType: $Enums.UserType | null
     clubId: string | null
     teamId: string | null
+    disability: boolean | null
     personNumber: string | null
     name: string | null
     clubOnboarding: boolean | null
@@ -1875,6 +1877,7 @@ export namespace Prisma {
     userType: $Enums.UserType | null
     clubId: string | null
     teamId: string | null
+    disability: boolean | null
     personNumber: string | null
     name: string | null
     clubOnboarding: boolean | null
@@ -1886,6 +1889,7 @@ export namespace Prisma {
     userType: number
     clubId: number
     teamId: number
+    disability: number
     personNumber: number
     name: number
     clubOnboarding: number
@@ -1899,6 +1903,7 @@ export namespace Prisma {
     userType?: true
     clubId?: true
     teamId?: true
+    disability?: true
     personNumber?: true
     name?: true
     clubOnboarding?: true
@@ -1910,6 +1915,7 @@ export namespace Prisma {
     userType?: true
     clubId?: true
     teamId?: true
+    disability?: true
     personNumber?: true
     name?: true
     clubOnboarding?: true
@@ -1921,6 +1927,7 @@ export namespace Prisma {
     userType?: true
     clubId?: true
     teamId?: true
+    disability?: true
     personNumber?: true
     name?: true
     clubOnboarding?: true
@@ -2005,6 +2012,7 @@ export namespace Prisma {
     userType: $Enums.UserType
     clubId: string
     teamId: string | null
+    disability: boolean
     personNumber: string | null
     name: string | null
     clubOnboarding: boolean
@@ -2033,6 +2041,7 @@ export namespace Prisma {
     userType?: boolean
     clubId?: boolean
     teamId?: boolean
+    disability?: boolean
     personNumber?: boolean
     name?: boolean
     clubOnboarding?: boolean
@@ -2048,6 +2057,7 @@ export namespace Prisma {
     userType?: boolean
     clubId?: boolean
     teamId?: boolean
+    disability?: boolean
     personNumber?: boolean
     name?: boolean
     clubOnboarding?: boolean
@@ -2074,6 +2084,7 @@ export namespace Prisma {
       userType: $Enums.UserType
       clubId: string
       teamId: string | null
+      disability: boolean
       personNumber: string | null
       name: string | null
       clubOnboarding: boolean
@@ -2481,6 +2492,7 @@ export namespace Prisma {
     readonly userType: FieldRef<"User", 'UserType'>
     readonly clubId: FieldRef<"User", 'String'>
     readonly teamId: FieldRef<"User", 'String'>
+    readonly disability: FieldRef<"User", 'Boolean'>
     readonly personNumber: FieldRef<"User", 'String'>
     readonly name: FieldRef<"User", 'String'>
     readonly clubOnboarding: FieldRef<"User", 'Boolean'>
@@ -12264,6 +12276,7 @@ export namespace Prisma {
     userType: 'userType',
     clubId: 'clubId',
     teamId: 'teamId',
+    disability: 'disability',
     personNumber: 'personNumber',
     name: 'name',
     clubOnboarding: 'clubOnboarding',
@@ -12510,6 +12523,7 @@ export namespace Prisma {
     userType?: EnumUserTypeFilter<"User"> | $Enums.UserType
     clubId?: StringFilter<"User"> | string
     teamId?: StringNullableFilter<"User"> | string | null
+    disability?: BoolFilter<"User"> | boolean
     personNumber?: StringNullableFilter<"User"> | string | null
     name?: StringNullableFilter<"User"> | string | null
     clubOnboarding?: BoolFilter<"User"> | boolean
@@ -12524,6 +12538,7 @@ export namespace Prisma {
     userType?: SortOrder
     clubId?: SortOrder
     teamId?: SortOrderInput | SortOrder
+    disability?: SortOrder
     personNumber?: SortOrderInput | SortOrder
     name?: SortOrderInput | SortOrder
     clubOnboarding?: SortOrder
@@ -12541,6 +12556,7 @@ export namespace Prisma {
     userType?: EnumUserTypeFilter<"User"> | $Enums.UserType
     clubId?: StringFilter<"User"> | string
     teamId?: StringNullableFilter<"User"> | string | null
+    disability?: BoolFilter<"User"> | boolean
     personNumber?: StringNullableFilter<"User"> | string | null
     name?: StringNullableFilter<"User"> | string | null
     clubOnboarding?: BoolFilter<"User"> | boolean
@@ -12555,6 +12571,7 @@ export namespace Prisma {
     userType?: SortOrder
     clubId?: SortOrder
     teamId?: SortOrderInput | SortOrder
+    disability?: SortOrder
     personNumber?: SortOrderInput | SortOrder
     name?: SortOrderInput | SortOrder
     clubOnboarding?: SortOrder
@@ -12572,6 +12589,7 @@ export namespace Prisma {
     userType?: EnumUserTypeWithAggregatesFilter<"User"> | $Enums.UserType
     clubId?: StringWithAggregatesFilter<"User"> | string
     teamId?: StringNullableWithAggregatesFilter<"User"> | string | null
+    disability?: BoolWithAggregatesFilter<"User"> | boolean
     personNumber?: StringNullableWithAggregatesFilter<"User"> | string | null
     name?: StringNullableWithAggregatesFilter<"User"> | string | null
     clubOnboarding?: BoolWithAggregatesFilter<"User"> | boolean
@@ -13251,6 +13269,7 @@ export namespace Prisma {
   export type UserCreateInput = {
     id: string
     userType?: $Enums.UserType
+    disability?: boolean
     personNumber?: string | null
     name?: string | null
     clubOnboarding?: boolean
@@ -13265,6 +13284,7 @@ export namespace Prisma {
     userType?: $Enums.UserType
     clubId: string
     teamId?: string | null
+    disability?: boolean
     personNumber?: string | null
     name?: string | null
     clubOnboarding?: boolean
@@ -13275,6 +13295,7 @@ export namespace Prisma {
   export type UserUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
+    disability?: BoolFieldUpdateOperationsInput | boolean
     personNumber?: NullableStringFieldUpdateOperationsInput | string | null
     name?: NullableStringFieldUpdateOperationsInput | string | null
     clubOnboarding?: BoolFieldUpdateOperationsInput | boolean
@@ -13289,6 +13310,7 @@ export namespace Prisma {
     userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
     clubId?: StringFieldUpdateOperationsInput | string
     teamId?: NullableStringFieldUpdateOperationsInput | string | null
+    disability?: BoolFieldUpdateOperationsInput | boolean
     personNumber?: NullableStringFieldUpdateOperationsInput | string | null
     name?: NullableStringFieldUpdateOperationsInput | string | null
     clubOnboarding?: BoolFieldUpdateOperationsInput | boolean
@@ -13301,6 +13323,7 @@ export namespace Prisma {
     userType?: $Enums.UserType
     clubId: string
     teamId?: string | null
+    disability?: boolean
     personNumber?: string | null
     name?: string | null
     clubOnboarding?: boolean
@@ -13310,6 +13333,7 @@ export namespace Prisma {
   export type UserUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
+    disability?: BoolFieldUpdateOperationsInput | boolean
     personNumber?: NullableStringFieldUpdateOperationsInput | string | null
     name?: NullableStringFieldUpdateOperationsInput | string | null
     clubOnboarding?: BoolFieldUpdateOperationsInput | boolean
@@ -13321,6 +13345,7 @@ export namespace Prisma {
     userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
     clubId?: StringFieldUpdateOperationsInput | string
     teamId?: NullableStringFieldUpdateOperationsInput | string | null
+    disability?: BoolFieldUpdateOperationsInput | boolean
     personNumber?: NullableStringFieldUpdateOperationsInput | string | null
     name?: NullableStringFieldUpdateOperationsInput | string | null
     clubOnboarding?: BoolFieldUpdateOperationsInput | boolean
@@ -14134,6 +14159,7 @@ export namespace Prisma {
     userType?: SortOrder
     clubId?: SortOrder
     teamId?: SortOrder
+    disability?: SortOrder
     personNumber?: SortOrder
     name?: SortOrder
     clubOnboarding?: SortOrder
@@ -14145,6 +14171,7 @@ export namespace Prisma {
     userType?: SortOrder
     clubId?: SortOrder
     teamId?: SortOrder
+    disability?: SortOrder
     personNumber?: SortOrder
     name?: SortOrder
     clubOnboarding?: SortOrder
@@ -14156,6 +14183,7 @@ export namespace Prisma {
     userType?: SortOrder
     clubId?: SortOrder
     teamId?: SortOrder
+    disability?: SortOrder
     personNumber?: SortOrder
     name?: SortOrder
     clubOnboarding?: SortOrder
@@ -14759,12 +14787,12 @@ export namespace Prisma {
     set?: $Enums.UserType
   }
 
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
-  }
-
   export type BoolFieldUpdateOperationsInput = {
     set?: boolean
+  }
+
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
   }
 
   export type ClubUpdateOneRequiredWithoutUserNestedInput = {
@@ -15587,6 +15615,7 @@ export namespace Prisma {
   export type UserCreateWithoutClubInput = {
     id: string
     userType?: $Enums.UserType
+    disability?: boolean
     personNumber?: string | null
     name?: string | null
     clubOnboarding?: boolean
@@ -15599,6 +15628,7 @@ export namespace Prisma {
     id: string
     userType?: $Enums.UserType
     teamId?: string | null
+    disability?: boolean
     personNumber?: string | null
     name?: string | null
     clubOnboarding?: boolean
@@ -15684,6 +15714,7 @@ export namespace Prisma {
     userType?: EnumUserTypeFilter<"User"> | $Enums.UserType
     clubId?: StringFilter<"User"> | string
     teamId?: StringNullableFilter<"User"> | string | null
+    disability?: BoolFilter<"User"> | boolean
     personNumber?: StringNullableFilter<"User"> | string | null
     name?: StringNullableFilter<"User"> | string | null
     clubOnboarding?: BoolFilter<"User"> | boolean
@@ -15756,6 +15787,7 @@ export namespace Prisma {
   export type UserCreateWithoutTeamInput = {
     id: string
     userType?: $Enums.UserType
+    disability?: boolean
     personNumber?: string | null
     name?: string | null
     clubOnboarding?: boolean
@@ -15768,6 +15800,7 @@ export namespace Prisma {
     id: string
     userType?: $Enums.UserType
     clubId: string
+    disability?: boolean
     personNumber?: string | null
     name?: string | null
     clubOnboarding?: boolean
@@ -15897,6 +15930,7 @@ export namespace Prisma {
   export type UserCreateWithoutActivityInput = {
     id: string
     userType?: $Enums.UserType
+    disability?: boolean
     personNumber?: string | null
     name?: string | null
     clubOnboarding?: boolean
@@ -15910,6 +15944,7 @@ export namespace Prisma {
     userType?: $Enums.UserType
     clubId: string
     teamId?: string | null
+    disability?: boolean
     personNumber?: string | null
     name?: string | null
     clubOnboarding?: boolean
@@ -15995,6 +16030,7 @@ export namespace Prisma {
   export type UserUpdateWithoutActivityInput = {
     id?: StringFieldUpdateOperationsInput | string
     userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
+    disability?: BoolFieldUpdateOperationsInput | boolean
     personNumber?: NullableStringFieldUpdateOperationsInput | string | null
     name?: NullableStringFieldUpdateOperationsInput | string | null
     clubOnboarding?: BoolFieldUpdateOperationsInput | boolean
@@ -16008,6 +16044,7 @@ export namespace Prisma {
     userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
     clubId?: StringFieldUpdateOperationsInput | string
     teamId?: NullableStringFieldUpdateOperationsInput | string | null
+    disability?: BoolFieldUpdateOperationsInput | boolean
     personNumber?: NullableStringFieldUpdateOperationsInput | string | null
     name?: NullableStringFieldUpdateOperationsInput | string | null
     clubOnboarding?: BoolFieldUpdateOperationsInput | boolean
@@ -16101,6 +16138,7 @@ export namespace Prisma {
     id: string
     userType?: $Enums.UserType
     teamId?: string | null
+    disability?: boolean
     personNumber?: string | null
     name?: string | null
     clubOnboarding?: boolean
@@ -16183,6 +16221,7 @@ export namespace Prisma {
   export type UserUpdateWithoutClubInput = {
     id?: StringFieldUpdateOperationsInput | string
     userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
+    disability?: BoolFieldUpdateOperationsInput | boolean
     personNumber?: NullableStringFieldUpdateOperationsInput | string | null
     name?: NullableStringFieldUpdateOperationsInput | string | null
     clubOnboarding?: BoolFieldUpdateOperationsInput | boolean
@@ -16195,6 +16234,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
     teamId?: NullableStringFieldUpdateOperationsInput | string | null
+    disability?: BoolFieldUpdateOperationsInput | boolean
     personNumber?: NullableStringFieldUpdateOperationsInput | string | null
     name?: NullableStringFieldUpdateOperationsInput | string | null
     clubOnboarding?: BoolFieldUpdateOperationsInput | boolean
@@ -16206,6 +16246,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
     teamId?: NullableStringFieldUpdateOperationsInput | string | null
+    disability?: BoolFieldUpdateOperationsInput | boolean
     personNumber?: NullableStringFieldUpdateOperationsInput | string | null
     name?: NullableStringFieldUpdateOperationsInput | string | null
     clubOnboarding?: BoolFieldUpdateOperationsInput | boolean
@@ -16231,6 +16272,7 @@ export namespace Prisma {
     id: string
     userType?: $Enums.UserType
     clubId: string
+    disability?: boolean
     personNumber?: string | null
     name?: string | null
     clubOnboarding?: boolean
@@ -16285,6 +16327,7 @@ export namespace Prisma {
   export type UserUpdateWithoutTeamInput = {
     id?: StringFieldUpdateOperationsInput | string
     userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
+    disability?: BoolFieldUpdateOperationsInput | boolean
     personNumber?: NullableStringFieldUpdateOperationsInput | string | null
     name?: NullableStringFieldUpdateOperationsInput | string | null
     clubOnboarding?: BoolFieldUpdateOperationsInput | boolean
@@ -16297,6 +16340,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
     clubId?: StringFieldUpdateOperationsInput | string
+    disability?: BoolFieldUpdateOperationsInput | boolean
     personNumber?: NullableStringFieldUpdateOperationsInput | string | null
     name?: NullableStringFieldUpdateOperationsInput | string | null
     clubOnboarding?: BoolFieldUpdateOperationsInput | boolean
@@ -16308,6 +16352,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
     clubId?: StringFieldUpdateOperationsInput | string
+    disability?: BoolFieldUpdateOperationsInput | boolean
     personNumber?: NullableStringFieldUpdateOperationsInput | string | null
     name?: NullableStringFieldUpdateOperationsInput | string | null
     clubOnboarding?: BoolFieldUpdateOperationsInput | boolean

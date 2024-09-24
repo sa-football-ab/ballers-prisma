@@ -124,6 +124,7 @@ exports.Prisma.UserScalarFieldEnum = {
   userType: 'userType',
   clubId: 'clubId',
   teamId: 'teamId',
+  disability: 'disability',
   personNumber: 'personNumber',
   name: 'name',
   clubOnboarding: 'clubOnboarding',
@@ -262,7 +263,8 @@ exports.SubscriptionType = exports.$Enums.SubscriptionType = {
   ONE_OFF: 'ONE_OFF',
   FREE: 'FREE',
   CLUB: 'CLUB',
-  AI: 'AI'
+  AI: 'AI',
+  ACTIVITY: 'ACTIVITY'
 };
 
 exports.Prisma.ModelName = {
