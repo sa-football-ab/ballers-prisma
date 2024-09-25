@@ -128,7 +128,9 @@ exports.Prisma.UserScalarFieldEnum = {
   personNumber: 'personNumber',
   name: 'name',
   clubOnboarding: 'clubOnboarding',
-  gender: 'gender'
+  gender: 'gender',
+  dateCreated: 'dateCreated',
+  dateUpdated: 'dateUpdated'
 };
 
 exports.Prisma.InstallScalarFieldEnum = {
@@ -156,6 +158,7 @@ exports.Prisma.ClubScalarFieldEnum = {
   id: 'id',
   display: 'display',
   location: 'location',
+  income: 'income',
   organizationNumber: 'organizationNumber',
   dateCreated: 'dateCreated',
   dateUpdated: 'dateUpdated'

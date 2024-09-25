@@ -1870,6 +1870,8 @@ export namespace Prisma {
     name: string | null
     clubOnboarding: boolean | null
     gender: string | null
+    dateCreated: Date | null
+    dateUpdated: Date | null
   }
 
   export type UserMaxAggregateOutputType = {
@@ -1882,6 +1884,8 @@ export namespace Prisma {
     name: string | null
     clubOnboarding: boolean | null
     gender: string | null
+    dateCreated: Date | null
+    dateUpdated: Date | null
   }
 
   export type UserCountAggregateOutputType = {
@@ -1894,6 +1898,8 @@ export namespace Prisma {
     name: number
     clubOnboarding: number
     gender: number
+    dateCreated: number
+    dateUpdated: number
     _all: number
   }
 
@@ -1908,6 +1914,8 @@ export namespace Prisma {
     name?: true
     clubOnboarding?: true
     gender?: true
+    dateCreated?: true
+    dateUpdated?: true
   }
 
   export type UserMaxAggregateInputType = {
@@ -1920,6 +1928,8 @@ export namespace Prisma {
     name?: true
     clubOnboarding?: true
     gender?: true
+    dateCreated?: true
+    dateUpdated?: true
   }
 
   export type UserCountAggregateInputType = {
@@ -1932,6 +1942,8 @@ export namespace Prisma {
     name?: true
     clubOnboarding?: true
     gender?: true
+    dateCreated?: true
+    dateUpdated?: true
     _all?: true
   }
 
@@ -2017,6 +2029,8 @@ export namespace Prisma {
     name: string | null
     clubOnboarding: boolean
     gender: string | null
+    dateCreated: Date
+    dateUpdated: Date | null
     _count: UserCountAggregateOutputType | null
     _min: UserMinAggregateOutputType | null
     _max: UserMaxAggregateOutputType | null
@@ -2046,6 +2060,8 @@ export namespace Prisma {
     name?: boolean
     clubOnboarding?: boolean
     gender?: boolean
+    dateCreated?: boolean
+    dateUpdated?: boolean
     club?: boolean | ClubDefaultArgs<ExtArgs>
     team?: boolean | User$teamArgs<ExtArgs>
     Activity?: boolean | User$ActivityArgs<ExtArgs>
@@ -2062,6 +2078,8 @@ export namespace Prisma {
     name?: boolean
     clubOnboarding?: boolean
     gender?: boolean
+    dateCreated?: boolean
+    dateUpdated?: boolean
   }
 
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2089,6 +2107,8 @@ export namespace Prisma {
       name: string | null
       clubOnboarding: boolean
       gender: string | null
+      dateCreated: Date
+      dateUpdated: Date | null
     }, ExtArgs["result"]["user"]>
     composites: {}
   }
@@ -2497,6 +2517,8 @@ export namespace Prisma {
     readonly name: FieldRef<"User", 'String'>
     readonly clubOnboarding: FieldRef<"User", 'Boolean'>
     readonly gender: FieldRef<"User", 'String'>
+    readonly dateCreated: FieldRef<"User", 'DateTime'>
+    readonly dateUpdated: FieldRef<"User", 'DateTime'>
   }
     
 
@@ -5444,14 +5466,25 @@ export namespace Prisma {
 
   export type AggregateClub = {
     _count: ClubCountAggregateOutputType | null
+    _avg: ClubAvgAggregateOutputType | null
+    _sum: ClubSumAggregateOutputType | null
     _min: ClubMinAggregateOutputType | null
     _max: ClubMaxAggregateOutputType | null
+  }
+
+  export type ClubAvgAggregateOutputType = {
+    income: number | null
+  }
+
+  export type ClubSumAggregateOutputType = {
+    income: number | null
   }
 
   export type ClubMinAggregateOutputType = {
     id: string | null
     display: string | null
     location: string | null
+    income: number | null
     organizationNumber: string | null
     dateCreated: Date | null
     dateUpdated: Date | null
@@ -5461,6 +5494,7 @@ export namespace Prisma {
     id: string | null
     display: string | null
     location: string | null
+    income: number | null
     organizationNumber: string | null
     dateCreated: Date | null
     dateUpdated: Date | null
@@ -5470,6 +5504,7 @@ export namespace Prisma {
     id: number
     display: number
     location: number
+    income: number
     organizationNumber: number
     dateCreated: number
     dateUpdated: number
@@ -5477,10 +5512,19 @@ export namespace Prisma {
   }
 
 
+  export type ClubAvgAggregateInputType = {
+    income?: true
+  }
+
+  export type ClubSumAggregateInputType = {
+    income?: true
+  }
+
   export type ClubMinAggregateInputType = {
     id?: true
     display?: true
     location?: true
+    income?: true
     organizationNumber?: true
     dateCreated?: true
     dateUpdated?: true
@@ -5490,6 +5534,7 @@ export namespace Prisma {
     id?: true
     display?: true
     location?: true
+    income?: true
     organizationNumber?: true
     dateCreated?: true
     dateUpdated?: true
@@ -5499,6 +5544,7 @@ export namespace Prisma {
     id?: true
     display?: true
     location?: true
+    income?: true
     organizationNumber?: true
     dateCreated?: true
     dateUpdated?: true
@@ -5543,6 +5589,18 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
+     * Select which fields to average
+    **/
+    _avg?: ClubAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ClubSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
      * Select which fields to find the minimum value
     **/
     _min?: ClubMinAggregateInputType
@@ -5573,6 +5631,8 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: ClubCountAggregateInputType | true
+    _avg?: ClubAvgAggregateInputType
+    _sum?: ClubSumAggregateInputType
     _min?: ClubMinAggregateInputType
     _max?: ClubMaxAggregateInputType
   }
@@ -5581,10 +5641,13 @@ export namespace Prisma {
     id: string
     display: string
     location: string | null
+    income: number
     organizationNumber: string | null
     dateCreated: Date
     dateUpdated: Date | null
     _count: ClubCountAggregateOutputType | null
+    _avg: ClubAvgAggregateOutputType | null
+    _sum: ClubSumAggregateOutputType | null
     _min: ClubMinAggregateOutputType | null
     _max: ClubMaxAggregateOutputType | null
   }
@@ -5607,6 +5670,7 @@ export namespace Prisma {
     id?: boolean
     display?: boolean
     location?: boolean
+    income?: boolean
     organizationNumber?: boolean
     dateCreated?: boolean
     dateUpdated?: boolean
@@ -5620,6 +5684,7 @@ export namespace Prisma {
     id?: boolean
     display?: boolean
     location?: boolean
+    income?: boolean
     organizationNumber?: boolean
     dateCreated?: boolean
     dateUpdated?: boolean
@@ -5644,6 +5709,7 @@ export namespace Prisma {
       id: string
       display: string
       location: string | null
+      income: number
       organizationNumber: string | null
       dateCreated: Date
       dateUpdated: Date | null
@@ -6049,6 +6115,7 @@ export namespace Prisma {
     readonly id: FieldRef<"Club", 'String'>
     readonly display: FieldRef<"Club", 'String'>
     readonly location: FieldRef<"Club", 'String'>
+    readonly income: FieldRef<"Club", 'Int'>
     readonly organizationNumber: FieldRef<"Club", 'String'>
     readonly dateCreated: FieldRef<"Club", 'DateTime'>
     readonly dateUpdated: FieldRef<"Club", 'DateTime'>
@@ -12302,7 +12369,9 @@ export namespace Prisma {
     personNumber: 'personNumber',
     name: 'name',
     clubOnboarding: 'clubOnboarding',
-    gender: 'gender'
+    gender: 'gender',
+    dateCreated: 'dateCreated',
+    dateUpdated: 'dateUpdated'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -12342,6 +12411,7 @@ export namespace Prisma {
     id: 'id',
     display: 'display',
     location: 'location',
+    income: 'income',
     organizationNumber: 'organizationNumber',
     dateCreated: 'dateCreated',
     dateUpdated: 'dateUpdated'
@@ -12552,6 +12622,8 @@ export namespace Prisma {
     name?: StringNullableFilter<"User"> | string | null
     clubOnboarding?: BoolFilter<"User"> | boolean
     gender?: StringNullableFilter<"User"> | string | null
+    dateCreated?: DateTimeFilter<"User"> | Date | string
+    dateUpdated?: DateTimeNullableFilter<"User"> | Date | string | null
     club?: XOR<ClubRelationFilter, ClubWhereInput>
     team?: XOR<TeamNullableRelationFilter, TeamWhereInput> | null
     Activity?: ActivityListRelationFilter
@@ -12567,6 +12639,8 @@ export namespace Prisma {
     name?: SortOrderInput | SortOrder
     clubOnboarding?: SortOrder
     gender?: SortOrderInput | SortOrder
+    dateCreated?: SortOrder
+    dateUpdated?: SortOrderInput | SortOrder
     club?: ClubOrderByWithRelationInput
     team?: TeamOrderByWithRelationInput
     Activity?: ActivityOrderByRelationAggregateInput
@@ -12585,6 +12659,8 @@ export namespace Prisma {
     name?: StringNullableFilter<"User"> | string | null
     clubOnboarding?: BoolFilter<"User"> | boolean
     gender?: StringNullableFilter<"User"> | string | null
+    dateCreated?: DateTimeFilter<"User"> | Date | string
+    dateUpdated?: DateTimeNullableFilter<"User"> | Date | string | null
     club?: XOR<ClubRelationFilter, ClubWhereInput>
     team?: XOR<TeamNullableRelationFilter, TeamWhereInput> | null
     Activity?: ActivityListRelationFilter
@@ -12600,6 +12676,8 @@ export namespace Prisma {
     name?: SortOrderInput | SortOrder
     clubOnboarding?: SortOrder
     gender?: SortOrderInput | SortOrder
+    dateCreated?: SortOrder
+    dateUpdated?: SortOrderInput | SortOrder
     _count?: UserCountOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
     _min?: UserMinOrderByAggregateInput
@@ -12618,6 +12696,8 @@ export namespace Prisma {
     name?: StringNullableWithAggregatesFilter<"User"> | string | null
     clubOnboarding?: BoolWithAggregatesFilter<"User"> | boolean
     gender?: StringNullableWithAggregatesFilter<"User"> | string | null
+    dateCreated?: DateTimeWithAggregatesFilter<"User"> | Date | string
+    dateUpdated?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
   }
 
   export type InstallWhereInput = {
@@ -12768,6 +12848,7 @@ export namespace Prisma {
     id?: StringFilter<"Club"> | string
     display?: StringFilter<"Club"> | string
     location?: StringNullableFilter<"Club"> | string | null
+    income?: IntFilter<"Club"> | number
     organizationNumber?: StringNullableFilter<"Club"> | string | null
     dateCreated?: DateTimeFilter<"Club"> | Date | string
     dateUpdated?: DateTimeNullableFilter<"Club"> | Date | string | null
@@ -12780,6 +12861,7 @@ export namespace Prisma {
     id?: SortOrder
     display?: SortOrder
     location?: SortOrderInput | SortOrder
+    income?: SortOrder
     organizationNumber?: SortOrderInput | SortOrder
     dateCreated?: SortOrder
     dateUpdated?: SortOrderInput | SortOrder
@@ -12795,6 +12877,7 @@ export namespace Prisma {
     NOT?: ClubWhereInput | ClubWhereInput[]
     display?: StringFilter<"Club"> | string
     location?: StringNullableFilter<"Club"> | string | null
+    income?: IntFilter<"Club"> | number
     organizationNumber?: StringNullableFilter<"Club"> | string | null
     dateCreated?: DateTimeFilter<"Club"> | Date | string
     dateUpdated?: DateTimeNullableFilter<"Club"> | Date | string | null
@@ -12807,12 +12890,15 @@ export namespace Prisma {
     id?: SortOrder
     display?: SortOrder
     location?: SortOrderInput | SortOrder
+    income?: SortOrder
     organizationNumber?: SortOrderInput | SortOrder
     dateCreated?: SortOrder
     dateUpdated?: SortOrderInput | SortOrder
     _count?: ClubCountOrderByAggregateInput
+    _avg?: ClubAvgOrderByAggregateInput
     _max?: ClubMaxOrderByAggregateInput
     _min?: ClubMinOrderByAggregateInput
+    _sum?: ClubSumOrderByAggregateInput
   }
 
   export type ClubScalarWhereWithAggregatesInput = {
@@ -12822,6 +12908,7 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Club"> | string
     display?: StringWithAggregatesFilter<"Club"> | string
     location?: StringNullableWithAggregatesFilter<"Club"> | string | null
+    income?: IntWithAggregatesFilter<"Club"> | number
     organizationNumber?: StringNullableWithAggregatesFilter<"Club"> | string | null
     dateCreated?: DateTimeWithAggregatesFilter<"Club"> | Date | string
     dateUpdated?: DateTimeNullableWithAggregatesFilter<"Club"> | Date | string | null
@@ -13308,6 +13395,8 @@ export namespace Prisma {
     name?: string | null
     clubOnboarding?: boolean
     gender?: string | null
+    dateCreated?: Date | string
+    dateUpdated?: Date | string | null
     club: ClubCreateNestedOneWithoutUserInput
     team?: TeamCreateNestedOneWithoutUserInput
     Activity?: ActivityCreateNestedManyWithoutUserInput
@@ -13323,6 +13412,8 @@ export namespace Prisma {
     name?: string | null
     clubOnboarding?: boolean
     gender?: string | null
+    dateCreated?: Date | string
+    dateUpdated?: Date | string | null
     Activity?: ActivityUncheckedCreateNestedManyWithoutUserInput
   }
 
@@ -13334,6 +13425,8 @@ export namespace Prisma {
     name?: NullableStringFieldUpdateOperationsInput | string | null
     clubOnboarding?: BoolFieldUpdateOperationsInput | boolean
     gender?: NullableStringFieldUpdateOperationsInput | string | null
+    dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     club?: ClubUpdateOneRequiredWithoutUserNestedInput
     team?: TeamUpdateOneWithoutUserNestedInput
     Activity?: ActivityUpdateManyWithoutUserNestedInput
@@ -13349,6 +13442,8 @@ export namespace Prisma {
     name?: NullableStringFieldUpdateOperationsInput | string | null
     clubOnboarding?: BoolFieldUpdateOperationsInput | boolean
     gender?: NullableStringFieldUpdateOperationsInput | string | null
+    dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     Activity?: ActivityUncheckedUpdateManyWithoutUserNestedInput
   }
 
@@ -13362,6 +13457,8 @@ export namespace Prisma {
     name?: string | null
     clubOnboarding?: boolean
     gender?: string | null
+    dateCreated?: Date | string
+    dateUpdated?: Date | string | null
   }
 
   export type UserUpdateManyMutationInput = {
@@ -13372,6 +13469,8 @@ export namespace Prisma {
     name?: NullableStringFieldUpdateOperationsInput | string | null
     clubOnboarding?: BoolFieldUpdateOperationsInput | boolean
     gender?: NullableStringFieldUpdateOperationsInput | string | null
+    dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type UserUncheckedUpdateManyInput = {
@@ -13384,6 +13483,8 @@ export namespace Prisma {
     name?: NullableStringFieldUpdateOperationsInput | string | null
     clubOnboarding?: BoolFieldUpdateOperationsInput | boolean
     gender?: NullableStringFieldUpdateOperationsInput | string | null
+    dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type InstallCreateInput = {
@@ -13537,6 +13638,7 @@ export namespace Prisma {
     id: string
     display: string
     location?: string | null
+    income?: number
     organizationNumber?: string | null
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
@@ -13549,6 +13651,7 @@ export namespace Prisma {
     id: string
     display: string
     location?: string | null
+    income?: number
     organizationNumber?: string | null
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
@@ -13561,6 +13664,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     display?: StringFieldUpdateOperationsInput | string
     location?: NullableStringFieldUpdateOperationsInput | string | null
+    income?: IntFieldUpdateOperationsInput | number
     organizationNumber?: NullableStringFieldUpdateOperationsInput | string | null
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -13573,6 +13677,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     display?: StringFieldUpdateOperationsInput | string
     location?: NullableStringFieldUpdateOperationsInput | string | null
+    income?: IntFieldUpdateOperationsInput | number
     organizationNumber?: NullableStringFieldUpdateOperationsInput | string | null
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -13585,6 +13690,7 @@ export namespace Prisma {
     id: string
     display: string
     location?: string | null
+    income?: number
     organizationNumber?: string | null
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
@@ -13594,6 +13700,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     display?: StringFieldUpdateOperationsInput | string
     location?: NullableStringFieldUpdateOperationsInput | string | null
+    income?: IntFieldUpdateOperationsInput | number
     organizationNumber?: NullableStringFieldUpdateOperationsInput | string | null
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -13603,6 +13710,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     display?: StringFieldUpdateOperationsInput | string
     location?: NullableStringFieldUpdateOperationsInput | string | null
+    income?: IntFieldUpdateOperationsInput | number
     organizationNumber?: NullableStringFieldUpdateOperationsInput | string | null
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -14177,6 +14285,28 @@ export namespace Prisma {
     not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
+  export type DateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
   export type ClubRelationFilter = {
     is?: ClubWhereInput
     isNot?: ClubWhereInput
@@ -14212,6 +14342,8 @@ export namespace Prisma {
     name?: SortOrder
     clubOnboarding?: SortOrder
     gender?: SortOrder
+    dateCreated?: SortOrder
+    dateUpdated?: SortOrder
   }
 
   export type UserMaxOrderByAggregateInput = {
@@ -14224,6 +14356,8 @@ export namespace Prisma {
     name?: SortOrder
     clubOnboarding?: SortOrder
     gender?: SortOrder
+    dateCreated?: SortOrder
+    dateUpdated?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
@@ -14236,6 +14370,8 @@ export namespace Prisma {
     name?: SortOrder
     clubOnboarding?: SortOrder
     gender?: SortOrder
+    dateCreated?: SortOrder
+    dateUpdated?: SortOrder
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -14288,6 +14424,34 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedBoolFilter<$PrismaModel>
     _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type InstallCountOrderByAggregateInput = {
@@ -14353,26 +14517,15 @@ export namespace Prisma {
     externalAccountId?: SortOrder
   }
 
-  export type DateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[]
-    notIn?: Date[] | string[]
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
-  }
-
-  export type DateTimeNullableFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | null
-    notIn?: Date[] | string[] | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
   }
 
   export type TeamListRelationFilter = {
@@ -14399,15 +14552,21 @@ export namespace Prisma {
     id?: SortOrder
     display?: SortOrder
     location?: SortOrder
+    income?: SortOrder
     organizationNumber?: SortOrder
     dateCreated?: SortOrder
     dateUpdated?: SortOrder
+  }
+
+  export type ClubAvgOrderByAggregateInput = {
+    income?: SortOrder
   }
 
   export type ClubMaxOrderByAggregateInput = {
     id?: SortOrder
     display?: SortOrder
     location?: SortOrder
+    income?: SortOrder
     organizationNumber?: SortOrder
     dateCreated?: SortOrder
     dateUpdated?: SortOrder
@@ -14417,37 +14576,30 @@ export namespace Prisma {
     id?: SortOrder
     display?: SortOrder
     location?: SortOrder
+    income?: SortOrder
     organizationNumber?: SortOrder
     dateCreated?: SortOrder
     dateUpdated?: SortOrder
   }
 
-  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[]
-    notIn?: Date[] | string[]
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
+  export type ClubSumOrderByAggregateInput = {
+    income?: SortOrder
   }
 
-  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | null
-    notIn?: Date[] | string[] | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedDateTimeNullableFilter<$PrismaModel>
-    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
   }
 
   export type TeamCountOrderByAggregateInput = {
@@ -14475,17 +14627,6 @@ export namespace Prisma {
     voided?: SortOrder
     dateCreated?: SortOrder
     dateUpdated?: SortOrder
-  }
-
-  export type IntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
   }
   export type JsonFilter<$PrismaModel = never> = 
     | PatchUndefined<
@@ -14571,22 +14712,6 @@ export namespace Prisma {
     noOfReg?: SortOrder
     minAge?: SortOrder
     maxAge?: SortOrder
-  }
-
-  export type IntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
   }
   export type JsonWithAggregatesFilter<$PrismaModel = never> = 
     | PatchUndefined<
@@ -14849,6 +14974,14 @@ export namespace Prisma {
     set?: string | null
   }
 
+  export type DateTimeFieldUpdateOperationsInput = {
+    set?: Date | string
+  }
+
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
+  }
+
   export type ClubUpdateOneRequiredWithoutUserNestedInput = {
     create?: XOR<ClubCreateWithoutUserInput, ClubUncheckedCreateWithoutUserInput>
     connectOrCreate?: ClubCreateOrConnectWithoutUserInput
@@ -14937,12 +15070,12 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
   }
 
-  export type DateTimeFieldUpdateOperationsInput = {
-    set?: Date | string
-  }
-
-  export type NullableDateTimeFieldUpdateOperationsInput = {
-    set?: Date | string | null
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type TeamUpdateManyWithoutClubNestedInput = {
@@ -15145,14 +15278,6 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput
   }
 
-  export type IntFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
-  }
-
   export type TeamUpdateOneWithoutActivityNestedInput = {
     create?: XOR<TeamCreateWithoutActivityInput, TeamUncheckedCreateWithoutActivityInput>
     connectOrCreate?: TeamCreateOrConnectWithoutActivityInput
@@ -15221,6 +15346,28 @@ export namespace Prisma {
   export type NestedBoolFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel>
     not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type NestedDateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
@@ -15295,28 +15442,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedBoolFilter<$PrismaModel>
     _max?: NestedBoolFilter<$PrismaModel>
-  }
-
-  export type NestedDateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[]
-    notIn?: Date[] | string[]
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
-  }
-
-  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | null
-    notIn?: Date[] | string[] | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -15417,6 +15542,7 @@ export namespace Prisma {
     id: string
     display: string
     location?: string | null
+    income?: number
     organizationNumber?: string | null
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
@@ -15428,6 +15554,7 @@ export namespace Prisma {
     id: string
     display: string
     location?: string | null
+    income?: number
     organizationNumber?: string | null
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
@@ -15520,6 +15647,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     display?: StringFieldUpdateOperationsInput | string
     location?: NullableStringFieldUpdateOperationsInput | string | null
+    income?: IntFieldUpdateOperationsInput | number
     organizationNumber?: NullableStringFieldUpdateOperationsInput | string | null
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -15531,6 +15659,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     display?: StringFieldUpdateOperationsInput | string
     location?: NullableStringFieldUpdateOperationsInput | string | null
+    income?: IntFieldUpdateOperationsInput | number
     organizationNumber?: NullableStringFieldUpdateOperationsInput | string | null
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -15682,6 +15811,8 @@ export namespace Prisma {
     name?: string | null
     clubOnboarding?: boolean
     gender?: string | null
+    dateCreated?: Date | string
+    dateUpdated?: Date | string | null
     team?: TeamCreateNestedOneWithoutUserInput
     Activity?: ActivityCreateNestedManyWithoutUserInput
   }
@@ -15695,6 +15826,8 @@ export namespace Prisma {
     name?: string | null
     clubOnboarding?: boolean
     gender?: string | null
+    dateCreated?: Date | string
+    dateUpdated?: Date | string | null
     Activity?: ActivityUncheckedCreateNestedManyWithoutUserInput
   }
 
@@ -15781,12 +15914,15 @@ export namespace Prisma {
     name?: StringNullableFilter<"User"> | string | null
     clubOnboarding?: BoolFilter<"User"> | boolean
     gender?: StringNullableFilter<"User"> | string | null
+    dateCreated?: DateTimeFilter<"User"> | Date | string
+    dateUpdated?: DateTimeNullableFilter<"User"> | Date | string | null
   }
 
   export type ClubCreateWithoutTeamsInput = {
     id: string
     display: string
     location?: string | null
+    income?: number
     organizationNumber?: string | null
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
@@ -15798,6 +15934,7 @@ export namespace Prisma {
     id: string
     display: string
     location?: string | null
+    income?: number
     organizationNumber?: string | null
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
@@ -15858,6 +15995,8 @@ export namespace Prisma {
     name?: string | null
     clubOnboarding?: boolean
     gender?: string | null
+    dateCreated?: Date | string
+    dateUpdated?: Date | string | null
     club: ClubCreateNestedOneWithoutUserInput
     Activity?: ActivityCreateNestedManyWithoutUserInput
   }
@@ -15871,6 +16010,8 @@ export namespace Prisma {
     name?: string | null
     clubOnboarding?: boolean
     gender?: string | null
+    dateCreated?: Date | string
+    dateUpdated?: Date | string | null
     Activity?: ActivityUncheckedCreateNestedManyWithoutUserInput
   }
 
@@ -15899,6 +16040,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     display?: StringFieldUpdateOperationsInput | string
     location?: NullableStringFieldUpdateOperationsInput | string | null
+    income?: IntFieldUpdateOperationsInput | number
     organizationNumber?: NullableStringFieldUpdateOperationsInput | string | null
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -15910,6 +16052,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     display?: StringFieldUpdateOperationsInput | string
     location?: NullableStringFieldUpdateOperationsInput | string | null
+    income?: IntFieldUpdateOperationsInput | number
     organizationNumber?: NullableStringFieldUpdateOperationsInput | string | null
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -15978,6 +16121,7 @@ export namespace Prisma {
     id: string
     display: string
     location?: string | null
+    income?: number
     organizationNumber?: string | null
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
@@ -15989,6 +16133,7 @@ export namespace Prisma {
     id: string
     display: string
     location?: string | null
+    income?: number
     organizationNumber?: string | null
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
@@ -16009,6 +16154,8 @@ export namespace Prisma {
     name?: string | null
     clubOnboarding?: boolean
     gender?: string | null
+    dateCreated?: Date | string
+    dateUpdated?: Date | string | null
     club: ClubCreateNestedOneWithoutUserInput
     team?: TeamCreateNestedOneWithoutUserInput
   }
@@ -16023,6 +16170,8 @@ export namespace Prisma {
     name?: string | null
     clubOnboarding?: boolean
     gender?: string | null
+    dateCreated?: Date | string
+    dateUpdated?: Date | string | null
   }
 
   export type UserCreateOrConnectWithoutActivityInput = {
@@ -16076,6 +16225,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     display?: StringFieldUpdateOperationsInput | string
     location?: NullableStringFieldUpdateOperationsInput | string | null
+    income?: IntFieldUpdateOperationsInput | number
     organizationNumber?: NullableStringFieldUpdateOperationsInput | string | null
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -16087,6 +16237,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     display?: StringFieldUpdateOperationsInput | string
     location?: NullableStringFieldUpdateOperationsInput | string | null
+    income?: IntFieldUpdateOperationsInput | number
     organizationNumber?: NullableStringFieldUpdateOperationsInput | string | null
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -16113,6 +16264,8 @@ export namespace Prisma {
     name?: NullableStringFieldUpdateOperationsInput | string | null
     clubOnboarding?: BoolFieldUpdateOperationsInput | boolean
     gender?: NullableStringFieldUpdateOperationsInput | string | null
+    dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     club?: ClubUpdateOneRequiredWithoutUserNestedInput
     team?: TeamUpdateOneWithoutUserNestedInput
   }
@@ -16127,6 +16280,8 @@ export namespace Prisma {
     name?: NullableStringFieldUpdateOperationsInput | string | null
     clubOnboarding?: BoolFieldUpdateOperationsInput | boolean
     gender?: NullableStringFieldUpdateOperationsInput | string | null
+    dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type ActivityCreateManyUserInput = {
@@ -16221,6 +16376,8 @@ export namespace Prisma {
     name?: string | null
     clubOnboarding?: boolean
     gender?: string | null
+    dateCreated?: Date | string
+    dateUpdated?: Date | string | null
   }
 
   export type TeamUpdateWithoutClubInput = {
@@ -16304,6 +16461,8 @@ export namespace Prisma {
     name?: NullableStringFieldUpdateOperationsInput | string | null
     clubOnboarding?: BoolFieldUpdateOperationsInput | boolean
     gender?: NullableStringFieldUpdateOperationsInput | string | null
+    dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     team?: TeamUpdateOneWithoutUserNestedInput
     Activity?: ActivityUpdateManyWithoutUserNestedInput
   }
@@ -16317,6 +16476,8 @@ export namespace Prisma {
     name?: NullableStringFieldUpdateOperationsInput | string | null
     clubOnboarding?: BoolFieldUpdateOperationsInput | boolean
     gender?: NullableStringFieldUpdateOperationsInput | string | null
+    dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     Activity?: ActivityUncheckedUpdateManyWithoutUserNestedInput
   }
 
@@ -16329,6 +16490,8 @@ export namespace Prisma {
     name?: NullableStringFieldUpdateOperationsInput | string | null
     clubOnboarding?: BoolFieldUpdateOperationsInput | boolean
     gender?: NullableStringFieldUpdateOperationsInput | string | null
+    dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type ActivityCreateManyTeamInput = {
@@ -16355,6 +16518,8 @@ export namespace Prisma {
     name?: string | null
     clubOnboarding?: boolean
     gender?: string | null
+    dateCreated?: Date | string
+    dateUpdated?: Date | string | null
   }
 
   export type ActivityUpdateWithoutTeamInput = {
@@ -16410,6 +16575,8 @@ export namespace Prisma {
     name?: NullableStringFieldUpdateOperationsInput | string | null
     clubOnboarding?: BoolFieldUpdateOperationsInput | boolean
     gender?: NullableStringFieldUpdateOperationsInput | string | null
+    dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     club?: ClubUpdateOneRequiredWithoutUserNestedInput
     Activity?: ActivityUpdateManyWithoutUserNestedInput
   }
@@ -16423,6 +16590,8 @@ export namespace Prisma {
     name?: NullableStringFieldUpdateOperationsInput | string | null
     clubOnboarding?: BoolFieldUpdateOperationsInput | boolean
     gender?: NullableStringFieldUpdateOperationsInput | string | null
+    dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     Activity?: ActivityUncheckedUpdateManyWithoutUserNestedInput
   }
 
@@ -16435,6 +16604,8 @@ export namespace Prisma {
     name?: NullableStringFieldUpdateOperationsInput | string | null
     clubOnboarding?: BoolFieldUpdateOperationsInput | boolean
     gender?: NullableStringFieldUpdateOperationsInput | string | null
+    dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
 
