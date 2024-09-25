@@ -155,6 +155,8 @@ exports.Prisma.LinkedAccountsScalarFieldEnum = {
 exports.Prisma.ClubScalarFieldEnum = {
   id: 'id',
   display: 'display',
+  location: 'location',
+  organizationNumber: 'organizationNumber',
   dateCreated: 'dateCreated',
   dateUpdated: 'dateUpdated'
 };

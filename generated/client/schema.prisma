@@ -57,13 +57,15 @@ model LinkedAccounts {
 
 // Club Table defination
 model Club {
-    id          String     @id
-    display     String
-    dateCreated DateTime   @default(now())
-    dateUpdated DateTime?
-    teams       Team[]
-    Activity    Activity[]
-    User        User[]
+    id                 String     @id
+    display            String
+    location           String?
+    organizationNumber String?
+    dateCreated        DateTime   @default(now())
+    dateUpdated        DateTime?
+    teams              Team[]
+    Activity           Activity[]
+    User               User[]
 }
 
 // Team Table defination

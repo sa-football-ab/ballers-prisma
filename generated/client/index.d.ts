@@ -5451,6 +5451,8 @@ export namespace Prisma {
   export type ClubMinAggregateOutputType = {
     id: string | null
     display: string | null
+    location: string | null
+    organizationNumber: string | null
     dateCreated: Date | null
     dateUpdated: Date | null
   }
@@ -5458,6 +5460,8 @@ export namespace Prisma {
   export type ClubMaxAggregateOutputType = {
     id: string | null
     display: string | null
+    location: string | null
+    organizationNumber: string | null
     dateCreated: Date | null
     dateUpdated: Date | null
   }
@@ -5465,6 +5469,8 @@ export namespace Prisma {
   export type ClubCountAggregateOutputType = {
     id: number
     display: number
+    location: number
+    organizationNumber: number
     dateCreated: number
     dateUpdated: number
     _all: number
@@ -5474,6 +5480,8 @@ export namespace Prisma {
   export type ClubMinAggregateInputType = {
     id?: true
     display?: true
+    location?: true
+    organizationNumber?: true
     dateCreated?: true
     dateUpdated?: true
   }
@@ -5481,6 +5489,8 @@ export namespace Prisma {
   export type ClubMaxAggregateInputType = {
     id?: true
     display?: true
+    location?: true
+    organizationNumber?: true
     dateCreated?: true
     dateUpdated?: true
   }
@@ -5488,6 +5498,8 @@ export namespace Prisma {
   export type ClubCountAggregateInputType = {
     id?: true
     display?: true
+    location?: true
+    organizationNumber?: true
     dateCreated?: true
     dateUpdated?: true
     _all?: true
@@ -5568,6 +5580,8 @@ export namespace Prisma {
   export type ClubGroupByOutputType = {
     id: string
     display: string
+    location: string | null
+    organizationNumber: string | null
     dateCreated: Date
     dateUpdated: Date | null
     _count: ClubCountAggregateOutputType | null
@@ -5592,6 +5606,8 @@ export namespace Prisma {
   export type ClubSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     display?: boolean
+    location?: boolean
+    organizationNumber?: boolean
     dateCreated?: boolean
     dateUpdated?: boolean
     teams?: boolean | Club$teamsArgs<ExtArgs>
@@ -5603,6 +5619,8 @@ export namespace Prisma {
   export type ClubSelectScalar = {
     id?: boolean
     display?: boolean
+    location?: boolean
+    organizationNumber?: boolean
     dateCreated?: boolean
     dateUpdated?: boolean
   }
@@ -5625,6 +5643,8 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       display: string
+      location: string | null
+      organizationNumber: string | null
       dateCreated: Date
       dateUpdated: Date | null
     }, ExtArgs["result"]["club"]>
@@ -6028,6 +6048,8 @@ export namespace Prisma {
   interface ClubFieldRefs {
     readonly id: FieldRef<"Club", 'String'>
     readonly display: FieldRef<"Club", 'String'>
+    readonly location: FieldRef<"Club", 'String'>
+    readonly organizationNumber: FieldRef<"Club", 'String'>
     readonly dateCreated: FieldRef<"Club", 'DateTime'>
     readonly dateUpdated: FieldRef<"Club", 'DateTime'>
   }
@@ -12319,6 +12341,8 @@ export namespace Prisma {
   export const ClubScalarFieldEnum: {
     id: 'id',
     display: 'display',
+    location: 'location',
+    organizationNumber: 'organizationNumber',
     dateCreated: 'dateCreated',
     dateUpdated: 'dateUpdated'
   };
@@ -12743,6 +12767,8 @@ export namespace Prisma {
     NOT?: ClubWhereInput | ClubWhereInput[]
     id?: StringFilter<"Club"> | string
     display?: StringFilter<"Club"> | string
+    location?: StringNullableFilter<"Club"> | string | null
+    organizationNumber?: StringNullableFilter<"Club"> | string | null
     dateCreated?: DateTimeFilter<"Club"> | Date | string
     dateUpdated?: DateTimeNullableFilter<"Club"> | Date | string | null
     teams?: TeamListRelationFilter
@@ -12753,6 +12779,8 @@ export namespace Prisma {
   export type ClubOrderByWithRelationInput = {
     id?: SortOrder
     display?: SortOrder
+    location?: SortOrderInput | SortOrder
+    organizationNumber?: SortOrderInput | SortOrder
     dateCreated?: SortOrder
     dateUpdated?: SortOrderInput | SortOrder
     teams?: TeamOrderByRelationAggregateInput
@@ -12766,6 +12794,8 @@ export namespace Prisma {
     OR?: ClubWhereInput[]
     NOT?: ClubWhereInput | ClubWhereInput[]
     display?: StringFilter<"Club"> | string
+    location?: StringNullableFilter<"Club"> | string | null
+    organizationNumber?: StringNullableFilter<"Club"> | string | null
     dateCreated?: DateTimeFilter<"Club"> | Date | string
     dateUpdated?: DateTimeNullableFilter<"Club"> | Date | string | null
     teams?: TeamListRelationFilter
@@ -12776,6 +12806,8 @@ export namespace Prisma {
   export type ClubOrderByWithAggregationInput = {
     id?: SortOrder
     display?: SortOrder
+    location?: SortOrderInput | SortOrder
+    organizationNumber?: SortOrderInput | SortOrder
     dateCreated?: SortOrder
     dateUpdated?: SortOrderInput | SortOrder
     _count?: ClubCountOrderByAggregateInput
@@ -12789,6 +12821,8 @@ export namespace Prisma {
     NOT?: ClubScalarWhereWithAggregatesInput | ClubScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Club"> | string
     display?: StringWithAggregatesFilter<"Club"> | string
+    location?: StringNullableWithAggregatesFilter<"Club"> | string | null
+    organizationNumber?: StringNullableWithAggregatesFilter<"Club"> | string | null
     dateCreated?: DateTimeWithAggregatesFilter<"Club"> | Date | string
     dateUpdated?: DateTimeNullableWithAggregatesFilter<"Club"> | Date | string | null
   }
@@ -13502,6 +13536,8 @@ export namespace Prisma {
   export type ClubCreateInput = {
     id: string
     display: string
+    location?: string | null
+    organizationNumber?: string | null
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
     teams?: TeamCreateNestedManyWithoutClubInput
@@ -13512,6 +13548,8 @@ export namespace Prisma {
   export type ClubUncheckedCreateInput = {
     id: string
     display: string
+    location?: string | null
+    organizationNumber?: string | null
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
     teams?: TeamUncheckedCreateNestedManyWithoutClubInput
@@ -13522,6 +13560,8 @@ export namespace Prisma {
   export type ClubUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     display?: StringFieldUpdateOperationsInput | string
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    organizationNumber?: NullableStringFieldUpdateOperationsInput | string | null
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     teams?: TeamUpdateManyWithoutClubNestedInput
@@ -13532,6 +13572,8 @@ export namespace Prisma {
   export type ClubUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     display?: StringFieldUpdateOperationsInput | string
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    organizationNumber?: NullableStringFieldUpdateOperationsInput | string | null
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     teams?: TeamUncheckedUpdateManyWithoutClubNestedInput
@@ -13542,6 +13584,8 @@ export namespace Prisma {
   export type ClubCreateManyInput = {
     id: string
     display: string
+    location?: string | null
+    organizationNumber?: string | null
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
   }
@@ -13549,6 +13593,8 @@ export namespace Prisma {
   export type ClubUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     display?: StringFieldUpdateOperationsInput | string
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    organizationNumber?: NullableStringFieldUpdateOperationsInput | string | null
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -13556,6 +13602,8 @@ export namespace Prisma {
   export type ClubUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     display?: StringFieldUpdateOperationsInput | string
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    organizationNumber?: NullableStringFieldUpdateOperationsInput | string | null
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -14350,6 +14398,8 @@ export namespace Prisma {
   export type ClubCountOrderByAggregateInput = {
     id?: SortOrder
     display?: SortOrder
+    location?: SortOrder
+    organizationNumber?: SortOrder
     dateCreated?: SortOrder
     dateUpdated?: SortOrder
   }
@@ -14357,6 +14407,8 @@ export namespace Prisma {
   export type ClubMaxOrderByAggregateInput = {
     id?: SortOrder
     display?: SortOrder
+    location?: SortOrder
+    organizationNumber?: SortOrder
     dateCreated?: SortOrder
     dateUpdated?: SortOrder
   }
@@ -14364,6 +14416,8 @@ export namespace Prisma {
   export type ClubMinOrderByAggregateInput = {
     id?: SortOrder
     display?: SortOrder
+    location?: SortOrder
+    organizationNumber?: SortOrder
     dateCreated?: SortOrder
     dateUpdated?: SortOrder
   }
@@ -15362,6 +15416,8 @@ export namespace Prisma {
   export type ClubCreateWithoutUserInput = {
     id: string
     display: string
+    location?: string | null
+    organizationNumber?: string | null
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
     teams?: TeamCreateNestedManyWithoutClubInput
@@ -15371,6 +15427,8 @@ export namespace Prisma {
   export type ClubUncheckedCreateWithoutUserInput = {
     id: string
     display: string
+    location?: string | null
+    organizationNumber?: string | null
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
     teams?: TeamUncheckedCreateNestedManyWithoutClubInput
@@ -15461,6 +15519,8 @@ export namespace Prisma {
   export type ClubUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     display?: StringFieldUpdateOperationsInput | string
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    organizationNumber?: NullableStringFieldUpdateOperationsInput | string | null
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     teams?: TeamUpdateManyWithoutClubNestedInput
@@ -15470,6 +15530,8 @@ export namespace Prisma {
   export type ClubUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     display?: StringFieldUpdateOperationsInput | string
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    organizationNumber?: NullableStringFieldUpdateOperationsInput | string | null
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     teams?: TeamUncheckedUpdateManyWithoutClubNestedInput
@@ -15724,6 +15786,8 @@ export namespace Prisma {
   export type ClubCreateWithoutTeamsInput = {
     id: string
     display: string
+    location?: string | null
+    organizationNumber?: string | null
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
     Activity?: ActivityCreateNestedManyWithoutClubInput
@@ -15733,6 +15797,8 @@ export namespace Prisma {
   export type ClubUncheckedCreateWithoutTeamsInput = {
     id: string
     display: string
+    location?: string | null
+    organizationNumber?: string | null
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
     Activity?: ActivityUncheckedCreateNestedManyWithoutClubInput
@@ -15832,6 +15898,8 @@ export namespace Prisma {
   export type ClubUpdateWithoutTeamsInput = {
     id?: StringFieldUpdateOperationsInput | string
     display?: StringFieldUpdateOperationsInput | string
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    organizationNumber?: NullableStringFieldUpdateOperationsInput | string | null
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     Activity?: ActivityUpdateManyWithoutClubNestedInput
@@ -15841,6 +15909,8 @@ export namespace Prisma {
   export type ClubUncheckedUpdateWithoutTeamsInput = {
     id?: StringFieldUpdateOperationsInput | string
     display?: StringFieldUpdateOperationsInput | string
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    organizationNumber?: NullableStringFieldUpdateOperationsInput | string | null
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     Activity?: ActivityUncheckedUpdateManyWithoutClubNestedInput
@@ -15907,6 +15977,8 @@ export namespace Prisma {
   export type ClubCreateWithoutActivityInput = {
     id: string
     display: string
+    location?: string | null
+    organizationNumber?: string | null
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
     teams?: TeamCreateNestedManyWithoutClubInput
@@ -15916,6 +15988,8 @@ export namespace Prisma {
   export type ClubUncheckedCreateWithoutActivityInput = {
     id: string
     display: string
+    location?: string | null
+    organizationNumber?: string | null
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
     teams?: TeamUncheckedCreateNestedManyWithoutClubInput
@@ -16001,6 +16075,8 @@ export namespace Prisma {
   export type ClubUpdateWithoutActivityInput = {
     id?: StringFieldUpdateOperationsInput | string
     display?: StringFieldUpdateOperationsInput | string
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    organizationNumber?: NullableStringFieldUpdateOperationsInput | string | null
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     teams?: TeamUpdateManyWithoutClubNestedInput
@@ -16010,6 +16086,8 @@ export namespace Prisma {
   export type ClubUncheckedUpdateWithoutActivityInput = {
     id?: StringFieldUpdateOperationsInput | string
     display?: StringFieldUpdateOperationsInput | string
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    organizationNumber?: NullableStringFieldUpdateOperationsInput | string | null
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     teams?: TeamUncheckedUpdateManyWithoutClubNestedInput
