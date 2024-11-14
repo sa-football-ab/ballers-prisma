@@ -81,6 +81,14 @@ export namespace $Enums {
 export type UserType = (typeof UserType)[keyof typeof UserType]
 
 
+export const VisibilityType: {
+  RESTRICTED: 'RESTRICTED',
+  RECOMMENDED: 'RECOMMENDED'
+};
+
+export type VisibilityType = (typeof VisibilityType)[keyof typeof VisibilityType]
+
+
 export const SubscriptionType: {
   RECURRING: 'RECURRING',
   ONE_OFF: 'ONE_OFF',
@@ -97,6 +105,10 @@ export type SubscriptionType = (typeof SubscriptionType)[keyof typeof Subscripti
 export type UserType = $Enums.UserType
 
 export const UserType: typeof $Enums.UserType
+
+export type VisibilityType = $Enums.VisibilityType
+
+export const VisibilityType: typeof $Enums.VisibilityType
 
 export type SubscriptionType = $Enums.SubscriptionType
 
@@ -7527,6 +7539,7 @@ export namespace Prisma {
     program: string | null
     minAge: number | null
     maxAge: number | null
+    visibilityType: $Enums.VisibilityType | null
     dateCreated: Date | null
     dateUpdated: Date | null
   }
@@ -7542,6 +7555,7 @@ export namespace Prisma {
     program: string | null
     minAge: number | null
     maxAge: number | null
+    visibilityType: $Enums.VisibilityType | null
     dateCreated: Date | null
     dateUpdated: Date | null
   }
@@ -7557,6 +7571,7 @@ export namespace Prisma {
     program: number
     minAge: number
     maxAge: number
+    visibilityType: number
     equipments: number
     dateCreated: number
     dateUpdated: number
@@ -7587,6 +7602,7 @@ export namespace Prisma {
     program?: true
     minAge?: true
     maxAge?: true
+    visibilityType?: true
     dateCreated?: true
     dateUpdated?: true
   }
@@ -7602,6 +7618,7 @@ export namespace Prisma {
     program?: true
     minAge?: true
     maxAge?: true
+    visibilityType?: true
     dateCreated?: true
     dateUpdated?: true
   }
@@ -7617,6 +7634,7 @@ export namespace Prisma {
     program?: true
     minAge?: true
     maxAge?: true
+    visibilityType?: true
     equipments?: true
     dateCreated?: true
     dateUpdated?: true
@@ -7720,6 +7738,7 @@ export namespace Prisma {
     program: string
     minAge: number
     maxAge: number
+    visibilityType: $Enums.VisibilityType
     equipments: JsonValue
     dateCreated: Date
     dateUpdated: Date | null
@@ -7755,6 +7774,7 @@ export namespace Prisma {
     program?: boolean
     minAge?: boolean
     maxAge?: boolean
+    visibilityType?: boolean
     equipments?: boolean
     dateCreated?: boolean
     dateUpdated?: boolean
@@ -7774,6 +7794,7 @@ export namespace Prisma {
     program?: boolean
     minAge?: boolean
     maxAge?: boolean
+    visibilityType?: boolean
     equipments?: boolean
     dateCreated?: boolean
     dateUpdated?: boolean
@@ -7804,6 +7825,7 @@ export namespace Prisma {
       program: string
       minAge: number
       maxAge: number
+      visibilityType: $Enums.VisibilityType
       equipments: Prisma.JsonValue
       dateCreated: Date
       dateUpdated: Date | null
@@ -8216,6 +8238,7 @@ export namespace Prisma {
     readonly program: FieldRef<"Activity", 'String'>
     readonly minAge: FieldRef<"Activity", 'Int'>
     readonly maxAge: FieldRef<"Activity", 'Int'>
+    readonly visibilityType: FieldRef<"Activity", 'VisibilityType'>
     readonly equipments: FieldRef<"Activity", 'Json'>
     readonly dateCreated: FieldRef<"Activity", 'DateTime'>
     readonly dateUpdated: FieldRef<"Activity", 'DateTime'>
@@ -11437,6 +11460,7 @@ export namespace Prisma {
     trainingProgramId: string | null
     isCompleted: boolean | null
     isLocked: boolean | null
+    isLiked: boolean | null
     isPremium: boolean | null
     subscriptionType: $Enums.SubscriptionType | null
     subscriptionId: string | null
@@ -11450,6 +11474,7 @@ export namespace Prisma {
     trainingProgramId: string | null
     isCompleted: boolean | null
     isLocked: boolean | null
+    isLiked: boolean | null
     isPremium: boolean | null
     subscriptionType: $Enums.SubscriptionType | null
     subscriptionId: string | null
@@ -11463,6 +11488,7 @@ export namespace Prisma {
     trainingProgramId: number
     isCompleted: number
     isLocked: number
+    isLiked: number
     isPremium: number
     subscriptionType: number
     subscriptionId: number
@@ -11478,6 +11504,7 @@ export namespace Prisma {
     trainingProgramId?: true
     isCompleted?: true
     isLocked?: true
+    isLiked?: true
     isPremium?: true
     subscriptionType?: true
     subscriptionId?: true
@@ -11491,6 +11518,7 @@ export namespace Prisma {
     trainingProgramId?: true
     isCompleted?: true
     isLocked?: true
+    isLiked?: true
     isPremium?: true
     subscriptionType?: true
     subscriptionId?: true
@@ -11504,6 +11532,7 @@ export namespace Prisma {
     trainingProgramId?: true
     isCompleted?: true
     isLocked?: true
+    isLiked?: true
     isPremium?: true
     subscriptionType?: true
     subscriptionId?: true
@@ -11590,6 +11619,7 @@ export namespace Prisma {
     trainingProgramId: string
     isCompleted: boolean
     isLocked: boolean
+    isLiked: boolean
     isPremium: boolean
     subscriptionType: $Enums.SubscriptionType
     subscriptionId: string | null
@@ -11620,6 +11650,7 @@ export namespace Prisma {
     trainingProgramId?: boolean
     isCompleted?: boolean
     isLocked?: boolean
+    isLiked?: boolean
     isPremium?: boolean
     subscriptionType?: boolean
     subscriptionId?: boolean
@@ -11633,6 +11664,7 @@ export namespace Prisma {
     trainingProgramId?: boolean
     isCompleted?: boolean
     isLocked?: boolean
+    isLiked?: boolean
     isPremium?: boolean
     subscriptionType?: boolean
     subscriptionId?: boolean
@@ -11650,6 +11682,7 @@ export namespace Prisma {
       trainingProgramId: string
       isCompleted: boolean
       isLocked: boolean
+      isLiked: boolean
       isPremium: boolean
       subscriptionType: $Enums.SubscriptionType
       subscriptionId: string | null
@@ -12054,6 +12087,7 @@ export namespace Prisma {
     readonly trainingProgramId: FieldRef<"PlayerTrainingProgram", 'String'>
     readonly isCompleted: FieldRef<"PlayerTrainingProgram", 'Boolean'>
     readonly isLocked: FieldRef<"PlayerTrainingProgram", 'Boolean'>
+    readonly isLiked: FieldRef<"PlayerTrainingProgram", 'Boolean'>
     readonly isPremium: FieldRef<"PlayerTrainingProgram", 'Boolean'>
     readonly subscriptionType: FieldRef<"PlayerTrainingProgram", 'SubscriptionType'>
     readonly subscriptionId: FieldRef<"PlayerTrainingProgram", 'String'>
@@ -12443,6 +12477,7 @@ export namespace Prisma {
     program: 'program',
     minAge: 'minAge',
     maxAge: 'maxAge',
+    visibilityType: 'visibilityType',
     equipments: 'equipments',
     dateCreated: 'dateCreated',
     dateUpdated: 'dateUpdated'
@@ -12503,6 +12538,7 @@ export namespace Prisma {
     trainingProgramId: 'trainingProgramId',
     isCompleted: 'isCompleted',
     isLocked: 'isLocked',
+    isLiked: 'isLiked',
     isPremium: 'isPremium',
     subscriptionType: 'subscriptionType',
     subscriptionId: 'subscriptionId',
@@ -12582,6 +12618,13 @@ export namespace Prisma {
    * Reference to a field of type 'Int'
    */
   export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+    
+
+
+  /**
+   * Reference to a field of type 'VisibilityType'
+   */
+  export type EnumVisibilityTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'VisibilityType'>
     
 
 
@@ -12994,6 +13037,7 @@ export namespace Prisma {
     program?: StringFilter<"Activity"> | string
     minAge?: IntFilter<"Activity"> | number
     maxAge?: IntFilter<"Activity"> | number
+    visibilityType?: EnumVisibilityTypeFilter<"Activity"> | $Enums.VisibilityType
     equipments?: JsonFilter<"Activity">
     dateCreated?: DateTimeFilter<"Activity"> | Date | string
     dateUpdated?: DateTimeNullableFilter<"Activity"> | Date | string | null
@@ -13013,6 +13057,7 @@ export namespace Prisma {
     program?: SortOrder
     minAge?: SortOrder
     maxAge?: SortOrder
+    visibilityType?: SortOrder
     equipments?: SortOrder
     dateCreated?: SortOrder
     dateUpdated?: SortOrderInput | SortOrder
@@ -13035,6 +13080,7 @@ export namespace Prisma {
     program?: StringFilter<"Activity"> | string
     minAge?: IntFilter<"Activity"> | number
     maxAge?: IntFilter<"Activity"> | number
+    visibilityType?: EnumVisibilityTypeFilter<"Activity"> | $Enums.VisibilityType
     equipments?: JsonFilter<"Activity">
     dateCreated?: DateTimeFilter<"Activity"> | Date | string
     dateUpdated?: DateTimeNullableFilter<"Activity"> | Date | string | null
@@ -13054,6 +13100,7 @@ export namespace Prisma {
     program?: SortOrder
     minAge?: SortOrder
     maxAge?: SortOrder
+    visibilityType?: SortOrder
     equipments?: SortOrder
     dateCreated?: SortOrder
     dateUpdated?: SortOrderInput | SortOrder
@@ -13078,6 +13125,7 @@ export namespace Prisma {
     program?: StringWithAggregatesFilter<"Activity"> | string
     minAge?: IntWithAggregatesFilter<"Activity"> | number
     maxAge?: IntWithAggregatesFilter<"Activity"> | number
+    visibilityType?: EnumVisibilityTypeWithAggregatesFilter<"Activity"> | $Enums.VisibilityType
     equipments?: JsonWithAggregatesFilter<"Activity">
     dateCreated?: DateTimeWithAggregatesFilter<"Activity"> | Date | string
     dateUpdated?: DateTimeNullableWithAggregatesFilter<"Activity"> | Date | string | null
@@ -13319,6 +13367,7 @@ export namespace Prisma {
     trainingProgramId?: StringFilter<"PlayerTrainingProgram"> | string
     isCompleted?: BoolFilter<"PlayerTrainingProgram"> | boolean
     isLocked?: BoolFilter<"PlayerTrainingProgram"> | boolean
+    isLiked?: BoolFilter<"PlayerTrainingProgram"> | boolean
     isPremium?: BoolFilter<"PlayerTrainingProgram"> | boolean
     subscriptionType?: EnumSubscriptionTypeFilter<"PlayerTrainingProgram"> | $Enums.SubscriptionType
     subscriptionId?: StringNullableFilter<"PlayerTrainingProgram"> | string | null
@@ -13332,6 +13381,7 @@ export namespace Prisma {
     trainingProgramId?: SortOrder
     isCompleted?: SortOrder
     isLocked?: SortOrder
+    isLiked?: SortOrder
     isPremium?: SortOrder
     subscriptionType?: SortOrder
     subscriptionId?: SortOrderInput | SortOrder
@@ -13348,6 +13398,7 @@ export namespace Prisma {
     trainingProgramId?: StringFilter<"PlayerTrainingProgram"> | string
     isCompleted?: BoolFilter<"PlayerTrainingProgram"> | boolean
     isLocked?: BoolFilter<"PlayerTrainingProgram"> | boolean
+    isLiked?: BoolFilter<"PlayerTrainingProgram"> | boolean
     isPremium?: BoolFilter<"PlayerTrainingProgram"> | boolean
     subscriptionType?: EnumSubscriptionTypeFilter<"PlayerTrainingProgram"> | $Enums.SubscriptionType
     subscriptionId?: StringNullableFilter<"PlayerTrainingProgram"> | string | null
@@ -13361,6 +13412,7 @@ export namespace Prisma {
     trainingProgramId?: SortOrder
     isCompleted?: SortOrder
     isLocked?: SortOrder
+    isLiked?: SortOrder
     isPremium?: SortOrder
     subscriptionType?: SortOrder
     subscriptionId?: SortOrderInput | SortOrder
@@ -13380,6 +13432,7 @@ export namespace Prisma {
     trainingProgramId?: StringWithAggregatesFilter<"PlayerTrainingProgram"> | string
     isCompleted?: BoolWithAggregatesFilter<"PlayerTrainingProgram"> | boolean
     isLocked?: BoolWithAggregatesFilter<"PlayerTrainingProgram"> | boolean
+    isLiked?: BoolWithAggregatesFilter<"PlayerTrainingProgram"> | boolean
     isPremium?: BoolWithAggregatesFilter<"PlayerTrainingProgram"> | boolean
     subscriptionType?: EnumSubscriptionTypeWithAggregatesFilter<"PlayerTrainingProgram"> | $Enums.SubscriptionType
     subscriptionId?: StringNullableWithAggregatesFilter<"PlayerTrainingProgram"> | string | null
@@ -13794,6 +13847,7 @@ export namespace Prisma {
     program: string
     minAge: number
     maxAge: number
+    visibilityType?: $Enums.VisibilityType
     equipments: JsonNullValueInput | InputJsonValue
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
@@ -13813,6 +13867,7 @@ export namespace Prisma {
     program: string
     minAge: number
     maxAge: number
+    visibilityType?: $Enums.VisibilityType
     equipments: JsonNullValueInput | InputJsonValue
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
@@ -13826,6 +13881,7 @@ export namespace Prisma {
     program?: StringFieldUpdateOperationsInput | string
     minAge?: IntFieldUpdateOperationsInput | number
     maxAge?: IntFieldUpdateOperationsInput | number
+    visibilityType?: EnumVisibilityTypeFieldUpdateOperationsInput | $Enums.VisibilityType
     equipments?: JsonNullValueInput | InputJsonValue
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -13845,6 +13901,7 @@ export namespace Prisma {
     program?: StringFieldUpdateOperationsInput | string
     minAge?: IntFieldUpdateOperationsInput | number
     maxAge?: IntFieldUpdateOperationsInput | number
+    visibilityType?: EnumVisibilityTypeFieldUpdateOperationsInput | $Enums.VisibilityType
     equipments?: JsonNullValueInput | InputJsonValue
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -13861,6 +13918,7 @@ export namespace Prisma {
     program: string
     minAge: number
     maxAge: number
+    visibilityType?: $Enums.VisibilityType
     equipments: JsonNullValueInput | InputJsonValue
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
@@ -13874,6 +13932,7 @@ export namespace Prisma {
     program?: StringFieldUpdateOperationsInput | string
     minAge?: IntFieldUpdateOperationsInput | number
     maxAge?: IntFieldUpdateOperationsInput | number
+    visibilityType?: EnumVisibilityTypeFieldUpdateOperationsInput | $Enums.VisibilityType
     equipments?: JsonNullValueInput | InputJsonValue
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -13890,6 +13949,7 @@ export namespace Prisma {
     program?: StringFieldUpdateOperationsInput | string
     minAge?: IntFieldUpdateOperationsInput | number
     maxAge?: IntFieldUpdateOperationsInput | number
+    visibilityType?: EnumVisibilityTypeFieldUpdateOperationsInput | $Enums.VisibilityType
     equipments?: JsonNullValueInput | InputJsonValue
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -14160,6 +14220,7 @@ export namespace Prisma {
     trainingProgramId: string
     isCompleted: boolean
     isLocked: boolean
+    isLiked?: boolean
     isPremium: boolean
     subscriptionType: $Enums.SubscriptionType
     subscriptionId?: string | null
@@ -14173,6 +14234,7 @@ export namespace Prisma {
     trainingProgramId: string
     isCompleted: boolean
     isLocked: boolean
+    isLiked?: boolean
     isPremium: boolean
     subscriptionType: $Enums.SubscriptionType
     subscriptionId?: string | null
@@ -14186,6 +14248,7 @@ export namespace Prisma {
     trainingProgramId?: StringFieldUpdateOperationsInput | string
     isCompleted?: BoolFieldUpdateOperationsInput | boolean
     isLocked?: BoolFieldUpdateOperationsInput | boolean
+    isLiked?: BoolFieldUpdateOperationsInput | boolean
     isPremium?: BoolFieldUpdateOperationsInput | boolean
     subscriptionType?: EnumSubscriptionTypeFieldUpdateOperationsInput | $Enums.SubscriptionType
     subscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -14199,6 +14262,7 @@ export namespace Prisma {
     trainingProgramId?: StringFieldUpdateOperationsInput | string
     isCompleted?: BoolFieldUpdateOperationsInput | boolean
     isLocked?: BoolFieldUpdateOperationsInput | boolean
+    isLiked?: BoolFieldUpdateOperationsInput | boolean
     isPremium?: BoolFieldUpdateOperationsInput | boolean
     subscriptionType?: EnumSubscriptionTypeFieldUpdateOperationsInput | $Enums.SubscriptionType
     subscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -14212,6 +14276,7 @@ export namespace Prisma {
     trainingProgramId: string
     isCompleted: boolean
     isLocked: boolean
+    isLiked?: boolean
     isPremium: boolean
     subscriptionType: $Enums.SubscriptionType
     subscriptionId?: string | null
@@ -14225,6 +14290,7 @@ export namespace Prisma {
     trainingProgramId?: StringFieldUpdateOperationsInput | string
     isCompleted?: BoolFieldUpdateOperationsInput | boolean
     isLocked?: BoolFieldUpdateOperationsInput | boolean
+    isLiked?: BoolFieldUpdateOperationsInput | boolean
     isPremium?: BoolFieldUpdateOperationsInput | boolean
     subscriptionType?: EnumSubscriptionTypeFieldUpdateOperationsInput | $Enums.SubscriptionType
     subscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -14238,6 +14304,7 @@ export namespace Prisma {
     trainingProgramId?: StringFieldUpdateOperationsInput | string
     isCompleted?: BoolFieldUpdateOperationsInput | boolean
     isLocked?: BoolFieldUpdateOperationsInput | boolean
+    isLiked?: BoolFieldUpdateOperationsInput | boolean
     isPremium?: BoolFieldUpdateOperationsInput | boolean
     subscriptionType?: EnumSubscriptionTypeFieldUpdateOperationsInput | $Enums.SubscriptionType
     subscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -14628,6 +14695,13 @@ export namespace Prisma {
     dateCreated?: SortOrder
     dateUpdated?: SortOrder
   }
+
+  export type EnumVisibilityTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.VisibilityType | EnumVisibilityTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.VisibilityType[]
+    notIn?: $Enums.VisibilityType[]
+    not?: NestedEnumVisibilityTypeFilter<$PrismaModel> | $Enums.VisibilityType
+  }
   export type JsonFilter<$PrismaModel = never> = 
     | PatchUndefined<
         Either<Required<JsonFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonFilterBase<$PrismaModel>>, 'path'>>,
@@ -14667,6 +14741,7 @@ export namespace Prisma {
     program?: SortOrder
     minAge?: SortOrder
     maxAge?: SortOrder
+    visibilityType?: SortOrder
     equipments?: SortOrder
     dateCreated?: SortOrder
     dateUpdated?: SortOrder
@@ -14689,6 +14764,7 @@ export namespace Prisma {
     program?: SortOrder
     minAge?: SortOrder
     maxAge?: SortOrder
+    visibilityType?: SortOrder
     dateCreated?: SortOrder
     dateUpdated?: SortOrder
   }
@@ -14704,6 +14780,7 @@ export namespace Prisma {
     program?: SortOrder
     minAge?: SortOrder
     maxAge?: SortOrder
+    visibilityType?: SortOrder
     dateCreated?: SortOrder
     dateUpdated?: SortOrder
   }
@@ -14712,6 +14789,16 @@ export namespace Prisma {
     noOfReg?: SortOrder
     minAge?: SortOrder
     maxAge?: SortOrder
+  }
+
+  export type EnumVisibilityTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.VisibilityType | EnumVisibilityTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.VisibilityType[]
+    notIn?: $Enums.VisibilityType[]
+    not?: NestedEnumVisibilityTypeWithAggregatesFilter<$PrismaModel> | $Enums.VisibilityType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumVisibilityTypeFilter<$PrismaModel>
+    _max?: NestedEnumVisibilityTypeFilter<$PrismaModel>
   }
   export type JsonWithAggregatesFilter<$PrismaModel = never> = 
     | PatchUndefined<
@@ -14889,6 +14976,7 @@ export namespace Prisma {
     trainingProgramId?: SortOrder
     isCompleted?: SortOrder
     isLocked?: SortOrder
+    isLiked?: SortOrder
     isPremium?: SortOrder
     subscriptionType?: SortOrder
     subscriptionId?: SortOrder
@@ -14902,6 +14990,7 @@ export namespace Prisma {
     trainingProgramId?: SortOrder
     isCompleted?: SortOrder
     isLocked?: SortOrder
+    isLiked?: SortOrder
     isPremium?: SortOrder
     subscriptionType?: SortOrder
     subscriptionId?: SortOrder
@@ -14915,6 +15004,7 @@ export namespace Prisma {
     trainingProgramId?: SortOrder
     isCompleted?: SortOrder
     isLocked?: SortOrder
+    isLiked?: SortOrder
     isPremium?: SortOrder
     subscriptionType?: SortOrder
     subscriptionId?: SortOrder
@@ -15278,6 +15368,10 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput
   }
 
+  export type EnumVisibilityTypeFieldUpdateOperationsInput = {
+    set?: $Enums.VisibilityType
+  }
+
   export type TeamUpdateOneWithoutActivityNestedInput = {
     create?: XOR<TeamCreateWithoutActivityInput, TeamUncheckedCreateWithoutActivityInput>
     connectOrCreate?: TeamCreateOrConnectWithoutActivityInput
@@ -15498,6 +15592,23 @@ export namespace Prisma {
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatFilter<$PrismaModel> | number
   }
+
+  export type NestedEnumVisibilityTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.VisibilityType | EnumVisibilityTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.VisibilityType[]
+    notIn?: $Enums.VisibilityType[]
+    not?: NestedEnumVisibilityTypeFilter<$PrismaModel> | $Enums.VisibilityType
+  }
+
+  export type NestedEnumVisibilityTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.VisibilityType | EnumVisibilityTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.VisibilityType[]
+    notIn?: $Enums.VisibilityType[]
+    not?: NestedEnumVisibilityTypeWithAggregatesFilter<$PrismaModel> | $Enums.VisibilityType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumVisibilityTypeFilter<$PrismaModel>
+    _max?: NestedEnumVisibilityTypeFilter<$PrismaModel>
+  }
   export type NestedJsonFilter<$PrismaModel = never> = 
     | PatchUndefined<
         Either<Required<NestedJsonFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>,
@@ -15600,6 +15711,7 @@ export namespace Prisma {
     program: string
     minAge: number
     maxAge: number
+    visibilityType?: $Enums.VisibilityType
     equipments: JsonNullValueInput | InputJsonValue
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
@@ -15617,6 +15729,7 @@ export namespace Prisma {
     program: string
     minAge: number
     maxAge: number
+    visibilityType?: $Enums.VisibilityType
     equipments: JsonNullValueInput | InputJsonValue
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
@@ -15728,6 +15841,7 @@ export namespace Prisma {
     program?: StringFilter<"Activity"> | string
     minAge?: IntFilter<"Activity"> | number
     maxAge?: IntFilter<"Activity"> | number
+    visibilityType?: EnumVisibilityTypeFilter<"Activity"> | $Enums.VisibilityType
     equipments?: JsonFilter<"Activity">
     dateCreated?: DateTimeFilter<"Activity"> | Date | string
     dateUpdated?: DateTimeNullableFilter<"Activity"> | Date | string | null
@@ -15771,6 +15885,7 @@ export namespace Prisma {
     program: string
     minAge: number
     maxAge: number
+    visibilityType?: $Enums.VisibilityType
     equipments: JsonNullValueInput | InputJsonValue
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
@@ -15788,6 +15903,7 @@ export namespace Prisma {
     program: string
     minAge: number
     maxAge: number
+    visibilityType?: $Enums.VisibilityType
     equipments: JsonNullValueInput | InputJsonValue
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
@@ -15955,6 +16071,7 @@ export namespace Prisma {
     program: string
     minAge: number
     maxAge: number
+    visibilityType?: $Enums.VisibilityType
     equipments: JsonNullValueInput | InputJsonValue
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
@@ -15972,6 +16089,7 @@ export namespace Prisma {
     program: string
     minAge: number
     maxAge: number
+    visibilityType?: $Enums.VisibilityType
     equipments: JsonNullValueInput | InputJsonValue
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
@@ -16294,6 +16412,7 @@ export namespace Prisma {
     program: string
     minAge: number
     maxAge: number
+    visibilityType?: $Enums.VisibilityType
     equipments: JsonNullValueInput | InputJsonValue
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
@@ -16307,6 +16426,7 @@ export namespace Prisma {
     program?: StringFieldUpdateOperationsInput | string
     minAge?: IntFieldUpdateOperationsInput | number
     maxAge?: IntFieldUpdateOperationsInput | number
+    visibilityType?: EnumVisibilityTypeFieldUpdateOperationsInput | $Enums.VisibilityType
     equipments?: JsonNullValueInput | InputJsonValue
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -16324,6 +16444,7 @@ export namespace Prisma {
     program?: StringFieldUpdateOperationsInput | string
     minAge?: IntFieldUpdateOperationsInput | number
     maxAge?: IntFieldUpdateOperationsInput | number
+    visibilityType?: EnumVisibilityTypeFieldUpdateOperationsInput | $Enums.VisibilityType
     equipments?: JsonNullValueInput | InputJsonValue
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -16339,6 +16460,7 @@ export namespace Prisma {
     program?: StringFieldUpdateOperationsInput | string
     minAge?: IntFieldUpdateOperationsInput | number
     maxAge?: IntFieldUpdateOperationsInput | number
+    visibilityType?: EnumVisibilityTypeFieldUpdateOperationsInput | $Enums.VisibilityType
     equipments?: JsonNullValueInput | InputJsonValue
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -16362,6 +16484,7 @@ export namespace Prisma {
     program: string
     minAge: number
     maxAge: number
+    visibilityType?: $Enums.VisibilityType
     equipments: JsonNullValueInput | InputJsonValue
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
@@ -16416,6 +16539,7 @@ export namespace Prisma {
     program?: StringFieldUpdateOperationsInput | string
     minAge?: IntFieldUpdateOperationsInput | number
     maxAge?: IntFieldUpdateOperationsInput | number
+    visibilityType?: EnumVisibilityTypeFieldUpdateOperationsInput | $Enums.VisibilityType
     equipments?: JsonNullValueInput | InputJsonValue
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -16433,6 +16557,7 @@ export namespace Prisma {
     program?: StringFieldUpdateOperationsInput | string
     minAge?: IntFieldUpdateOperationsInput | number
     maxAge?: IntFieldUpdateOperationsInput | number
+    visibilityType?: EnumVisibilityTypeFieldUpdateOperationsInput | $Enums.VisibilityType
     equipments?: JsonNullValueInput | InputJsonValue
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -16448,6 +16573,7 @@ export namespace Prisma {
     program?: StringFieldUpdateOperationsInput | string
     minAge?: IntFieldUpdateOperationsInput | number
     maxAge?: IntFieldUpdateOperationsInput | number
+    visibilityType?: EnumVisibilityTypeFieldUpdateOperationsInput | $Enums.VisibilityType
     equipments?: JsonNullValueInput | InputJsonValue
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -16504,6 +16630,7 @@ export namespace Prisma {
     program: string
     minAge: number
     maxAge: number
+    visibilityType?: $Enums.VisibilityType
     equipments: JsonNullValueInput | InputJsonValue
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
@@ -16530,6 +16657,7 @@ export namespace Prisma {
     program?: StringFieldUpdateOperationsInput | string
     minAge?: IntFieldUpdateOperationsInput | number
     maxAge?: IntFieldUpdateOperationsInput | number
+    visibilityType?: EnumVisibilityTypeFieldUpdateOperationsInput | $Enums.VisibilityType
     equipments?: JsonNullValueInput | InputJsonValue
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -16547,6 +16675,7 @@ export namespace Prisma {
     program?: StringFieldUpdateOperationsInput | string
     minAge?: IntFieldUpdateOperationsInput | number
     maxAge?: IntFieldUpdateOperationsInput | number
+    visibilityType?: EnumVisibilityTypeFieldUpdateOperationsInput | $Enums.VisibilityType
     equipments?: JsonNullValueInput | InputJsonValue
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -16562,6 +16691,7 @@ export namespace Prisma {
     program?: StringFieldUpdateOperationsInput | string
     minAge?: IntFieldUpdateOperationsInput | number
     maxAge?: IntFieldUpdateOperationsInput | number
+    visibilityType?: EnumVisibilityTypeFieldUpdateOperationsInput | $Enums.VisibilityType
     equipments?: JsonNullValueInput | InputJsonValue
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null

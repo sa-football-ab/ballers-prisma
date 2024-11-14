@@ -184,6 +184,7 @@ exports.Prisma.ActivityScalarFieldEnum = {
   program: 'program',
   minAge: 'minAge',
   maxAge: 'maxAge',
+  visibilityType: 'visibilityType',
   equipments: 'equipments',
   dateCreated: 'dateCreated',
   dateUpdated: 'dateUpdated'
@@ -232,6 +233,7 @@ exports.Prisma.PlayerTrainingProgramScalarFieldEnum = {
   trainingProgramId: 'trainingProgramId',
   isCompleted: 'isCompleted',
   isLocked: 'isLocked',
+  isLiked: 'isLiked',
   isPremium: 'isPremium',
   subscriptionType: 'subscriptionType',
   subscriptionId: 'subscriptionId',
@@ -261,6 +263,11 @@ exports.Prisma.JsonNullValueFilter = {
 exports.UserType = exports.$Enums.UserType = {
   PLAYER: 'PLAYER',
   COACH: 'COACH'
+};
+
+exports.VisibilityType = exports.$Enums.VisibilityType = {
+  RESTRICTED: 'RESTRICTED',
+  RECOMMENDED: 'RECOMMENDED'
 };
 
 exports.SubscriptionType = exports.$Enums.SubscriptionType = {

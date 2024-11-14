@@ -16,6 +16,11 @@ enum UserType {
     COACH
 }
 
+enum VisibilityType {
+    RESTRICTED
+    RECOMMENDED
+}
+
 model User {
     id             String     @id
     userType       UserType   @default(PLAYER)
@@ -85,22 +90,23 @@ model Team {
 }
 
 model Activity {
-    id           String    @id
-    team         Team?     @relation(fields: [teamId], references: [id])
-    teamId       String?
-    club         Club      @relation(fields: [clubId], references: [id])
-    clubId       String
-    user         User      @relation(fields: [coachUserId], references: [id])
-    coachUserId  String
-    description  String
-    noOfReg      Int
-    activityDate DateTime
-    program      String
-    minAge       Int
-    maxAge       Int
-    equipments   Json
-    dateCreated  DateTime  @default(now())
-    dateUpdated  DateTime?
+    id             String         @id
+    team           Team?          @relation(fields: [teamId], references: [id])
+    teamId         String?
+    club           Club           @relation(fields: [clubId], references: [id])
+    clubId         String
+    user           User           @relation(fields: [coachUserId], references: [id])
+    coachUserId    String
+    description    String
+    noOfReg        Int
+    activityDate   DateTime
+    program        String
+    minAge         Int
+    maxAge         Int
+    visibilityType VisibilityType @default(RECOMMENDED)
+    equipments     Json
+    dateCreated    DateTime       @default(now())
+    dateUpdated    DateTime?
 }
 
 // ---------------------------- Training Program Service ------------------------------------- //
@@ -167,6 +173,7 @@ model PlayerTrainingProgram {
     trainingProgramId String
     isCompleted       Boolean
     isLocked          Boolean
+    isLiked           Boolean          @default(false)
     isPremium         Boolean
     subscriptionType  SubscriptionType
     subscriptionId    String?
