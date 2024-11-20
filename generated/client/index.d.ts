@@ -7518,12 +7518,14 @@ export namespace Prisma {
 
   export type ActivityAvgAggregateOutputType = {
     noOfReg: number | null
+    income: number | null
     minAge: number | null
     maxAge: number | null
   }
 
   export type ActivitySumAggregateOutputType = {
     noOfReg: number | null
+    income: number | null
     minAge: number | null
     maxAge: number | null
   }
@@ -7536,6 +7538,7 @@ export namespace Prisma {
     description: string | null
     noOfReg: number | null
     activityDate: Date | null
+    income: number | null
     program: string | null
     minAge: number | null
     maxAge: number | null
@@ -7552,6 +7555,7 @@ export namespace Prisma {
     description: string | null
     noOfReg: number | null
     activityDate: Date | null
+    income: number | null
     program: string | null
     minAge: number | null
     maxAge: number | null
@@ -7568,6 +7572,7 @@ export namespace Prisma {
     description: number
     noOfReg: number
     activityDate: number
+    income: number
     program: number
     minAge: number
     maxAge: number
@@ -7581,12 +7586,14 @@ export namespace Prisma {
 
   export type ActivityAvgAggregateInputType = {
     noOfReg?: true
+    income?: true
     minAge?: true
     maxAge?: true
   }
 
   export type ActivitySumAggregateInputType = {
     noOfReg?: true
+    income?: true
     minAge?: true
     maxAge?: true
   }
@@ -7599,6 +7606,7 @@ export namespace Prisma {
     description?: true
     noOfReg?: true
     activityDate?: true
+    income?: true
     program?: true
     minAge?: true
     maxAge?: true
@@ -7615,6 +7623,7 @@ export namespace Prisma {
     description?: true
     noOfReg?: true
     activityDate?: true
+    income?: true
     program?: true
     minAge?: true
     maxAge?: true
@@ -7631,6 +7640,7 @@ export namespace Prisma {
     description?: true
     noOfReg?: true
     activityDate?: true
+    income?: true
     program?: true
     minAge?: true
     maxAge?: true
@@ -7735,6 +7745,7 @@ export namespace Prisma {
     description: string
     noOfReg: number
     activityDate: Date
+    income: number
     program: string
     minAge: number
     maxAge: number
@@ -7771,6 +7782,7 @@ export namespace Prisma {
     description?: boolean
     noOfReg?: boolean
     activityDate?: boolean
+    income?: boolean
     program?: boolean
     minAge?: boolean
     maxAge?: boolean
@@ -7791,6 +7803,7 @@ export namespace Prisma {
     description?: boolean
     noOfReg?: boolean
     activityDate?: boolean
+    income?: boolean
     program?: boolean
     minAge?: boolean
     maxAge?: boolean
@@ -7822,6 +7835,7 @@ export namespace Prisma {
       description: string
       noOfReg: number
       activityDate: Date
+      income: number
       program: string
       minAge: number
       maxAge: number
@@ -8235,6 +8249,7 @@ export namespace Prisma {
     readonly description: FieldRef<"Activity", 'String'>
     readonly noOfReg: FieldRef<"Activity", 'Int'>
     readonly activityDate: FieldRef<"Activity", 'DateTime'>
+    readonly income: FieldRef<"Activity", 'Int'>
     readonly program: FieldRef<"Activity", 'String'>
     readonly minAge: FieldRef<"Activity", 'Int'>
     readonly maxAge: FieldRef<"Activity", 'Int'>
@@ -12474,6 +12489,7 @@ export namespace Prisma {
     description: 'description',
     noOfReg: 'noOfReg',
     activityDate: 'activityDate',
+    income: 'income',
     program: 'program',
     minAge: 'minAge',
     maxAge: 'maxAge',
@@ -13034,6 +13050,7 @@ export namespace Prisma {
     description?: StringFilter<"Activity"> | string
     noOfReg?: IntFilter<"Activity"> | number
     activityDate?: DateTimeFilter<"Activity"> | Date | string
+    income?: IntFilter<"Activity"> | number
     program?: StringFilter<"Activity"> | string
     minAge?: IntFilter<"Activity"> | number
     maxAge?: IntFilter<"Activity"> | number
@@ -13054,6 +13071,7 @@ export namespace Prisma {
     description?: SortOrder
     noOfReg?: SortOrder
     activityDate?: SortOrder
+    income?: SortOrder
     program?: SortOrder
     minAge?: SortOrder
     maxAge?: SortOrder
@@ -13077,6 +13095,7 @@ export namespace Prisma {
     description?: StringFilter<"Activity"> | string
     noOfReg?: IntFilter<"Activity"> | number
     activityDate?: DateTimeFilter<"Activity"> | Date | string
+    income?: IntFilter<"Activity"> | number
     program?: StringFilter<"Activity"> | string
     minAge?: IntFilter<"Activity"> | number
     maxAge?: IntFilter<"Activity"> | number
@@ -13097,6 +13116,7 @@ export namespace Prisma {
     description?: SortOrder
     noOfReg?: SortOrder
     activityDate?: SortOrder
+    income?: SortOrder
     program?: SortOrder
     minAge?: SortOrder
     maxAge?: SortOrder
@@ -13122,6 +13142,7 @@ export namespace Prisma {
     description?: StringWithAggregatesFilter<"Activity"> | string
     noOfReg?: IntWithAggregatesFilter<"Activity"> | number
     activityDate?: DateTimeWithAggregatesFilter<"Activity"> | Date | string
+    income?: IntWithAggregatesFilter<"Activity"> | number
     program?: StringWithAggregatesFilter<"Activity"> | string
     minAge?: IntWithAggregatesFilter<"Activity"> | number
     maxAge?: IntWithAggregatesFilter<"Activity"> | number
@@ -13844,6 +13865,7 @@ export namespace Prisma {
     description: string
     noOfReg: number
     activityDate: Date | string
+    income?: number
     program: string
     minAge: number
     maxAge: number
@@ -13864,6 +13886,7 @@ export namespace Prisma {
     description: string
     noOfReg: number
     activityDate: Date | string
+    income?: number
     program: string
     minAge: number
     maxAge: number
@@ -13878,6 +13901,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     noOfReg?: IntFieldUpdateOperationsInput | number
     activityDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    income?: IntFieldUpdateOperationsInput | number
     program?: StringFieldUpdateOperationsInput | string
     minAge?: IntFieldUpdateOperationsInput | number
     maxAge?: IntFieldUpdateOperationsInput | number
@@ -13898,6 +13922,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     noOfReg?: IntFieldUpdateOperationsInput | number
     activityDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    income?: IntFieldUpdateOperationsInput | number
     program?: StringFieldUpdateOperationsInput | string
     minAge?: IntFieldUpdateOperationsInput | number
     maxAge?: IntFieldUpdateOperationsInput | number
@@ -13915,6 +13940,7 @@ export namespace Prisma {
     description: string
     noOfReg: number
     activityDate: Date | string
+    income?: number
     program: string
     minAge: number
     maxAge: number
@@ -13929,6 +13955,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     noOfReg?: IntFieldUpdateOperationsInput | number
     activityDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    income?: IntFieldUpdateOperationsInput | number
     program?: StringFieldUpdateOperationsInput | string
     minAge?: IntFieldUpdateOperationsInput | number
     maxAge?: IntFieldUpdateOperationsInput | number
@@ -13946,6 +13973,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     noOfReg?: IntFieldUpdateOperationsInput | number
     activityDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    income?: IntFieldUpdateOperationsInput | number
     program?: StringFieldUpdateOperationsInput | string
     minAge?: IntFieldUpdateOperationsInput | number
     maxAge?: IntFieldUpdateOperationsInput | number
@@ -14738,6 +14766,7 @@ export namespace Prisma {
     description?: SortOrder
     noOfReg?: SortOrder
     activityDate?: SortOrder
+    income?: SortOrder
     program?: SortOrder
     minAge?: SortOrder
     maxAge?: SortOrder
@@ -14749,6 +14778,7 @@ export namespace Prisma {
 
   export type ActivityAvgOrderByAggregateInput = {
     noOfReg?: SortOrder
+    income?: SortOrder
     minAge?: SortOrder
     maxAge?: SortOrder
   }
@@ -14761,6 +14791,7 @@ export namespace Prisma {
     description?: SortOrder
     noOfReg?: SortOrder
     activityDate?: SortOrder
+    income?: SortOrder
     program?: SortOrder
     minAge?: SortOrder
     maxAge?: SortOrder
@@ -14777,6 +14808,7 @@ export namespace Prisma {
     description?: SortOrder
     noOfReg?: SortOrder
     activityDate?: SortOrder
+    income?: SortOrder
     program?: SortOrder
     minAge?: SortOrder
     maxAge?: SortOrder
@@ -14787,6 +14819,7 @@ export namespace Prisma {
 
   export type ActivitySumOrderByAggregateInput = {
     noOfReg?: SortOrder
+    income?: SortOrder
     minAge?: SortOrder
     maxAge?: SortOrder
   }
@@ -15708,6 +15741,7 @@ export namespace Prisma {
     description: string
     noOfReg: number
     activityDate: Date | string
+    income?: number
     program: string
     minAge: number
     maxAge: number
@@ -15726,6 +15760,7 @@ export namespace Prisma {
     description: string
     noOfReg: number
     activityDate: Date | string
+    income?: number
     program: string
     minAge: number
     maxAge: number
@@ -15838,6 +15873,7 @@ export namespace Prisma {
     description?: StringFilter<"Activity"> | string
     noOfReg?: IntFilter<"Activity"> | number
     activityDate?: DateTimeFilter<"Activity"> | Date | string
+    income?: IntFilter<"Activity"> | number
     program?: StringFilter<"Activity"> | string
     minAge?: IntFilter<"Activity"> | number
     maxAge?: IntFilter<"Activity"> | number
@@ -15882,6 +15918,7 @@ export namespace Prisma {
     description: string
     noOfReg: number
     activityDate: Date | string
+    income?: number
     program: string
     minAge: number
     maxAge: number
@@ -15900,6 +15937,7 @@ export namespace Prisma {
     description: string
     noOfReg: number
     activityDate: Date | string
+    income?: number
     program: string
     minAge: number
     maxAge: number
@@ -16068,6 +16106,7 @@ export namespace Prisma {
     description: string
     noOfReg: number
     activityDate: Date | string
+    income?: number
     program: string
     minAge: number
     maxAge: number
@@ -16086,6 +16125,7 @@ export namespace Prisma {
     description: string
     noOfReg: number
     activityDate: Date | string
+    income?: number
     program: string
     minAge: number
     maxAge: number
@@ -16409,6 +16449,7 @@ export namespace Prisma {
     description: string
     noOfReg: number
     activityDate: Date | string
+    income?: number
     program: string
     minAge: number
     maxAge: number
@@ -16423,6 +16464,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     noOfReg?: IntFieldUpdateOperationsInput | number
     activityDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    income?: IntFieldUpdateOperationsInput | number
     program?: StringFieldUpdateOperationsInput | string
     minAge?: IntFieldUpdateOperationsInput | number
     maxAge?: IntFieldUpdateOperationsInput | number
@@ -16441,6 +16483,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     noOfReg?: IntFieldUpdateOperationsInput | number
     activityDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    income?: IntFieldUpdateOperationsInput | number
     program?: StringFieldUpdateOperationsInput | string
     minAge?: IntFieldUpdateOperationsInput | number
     maxAge?: IntFieldUpdateOperationsInput | number
@@ -16457,6 +16500,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     noOfReg?: IntFieldUpdateOperationsInput | number
     activityDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    income?: IntFieldUpdateOperationsInput | number
     program?: StringFieldUpdateOperationsInput | string
     minAge?: IntFieldUpdateOperationsInput | number
     maxAge?: IntFieldUpdateOperationsInput | number
@@ -16481,6 +16525,7 @@ export namespace Prisma {
     description: string
     noOfReg: number
     activityDate: Date | string
+    income?: number
     program: string
     minAge: number
     maxAge: number
@@ -16536,6 +16581,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     noOfReg?: IntFieldUpdateOperationsInput | number
     activityDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    income?: IntFieldUpdateOperationsInput | number
     program?: StringFieldUpdateOperationsInput | string
     minAge?: IntFieldUpdateOperationsInput | number
     maxAge?: IntFieldUpdateOperationsInput | number
@@ -16554,6 +16600,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     noOfReg?: IntFieldUpdateOperationsInput | number
     activityDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    income?: IntFieldUpdateOperationsInput | number
     program?: StringFieldUpdateOperationsInput | string
     minAge?: IntFieldUpdateOperationsInput | number
     maxAge?: IntFieldUpdateOperationsInput | number
@@ -16570,6 +16617,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     noOfReg?: IntFieldUpdateOperationsInput | number
     activityDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    income?: IntFieldUpdateOperationsInput | number
     program?: StringFieldUpdateOperationsInput | string
     minAge?: IntFieldUpdateOperationsInput | number
     maxAge?: IntFieldUpdateOperationsInput | number
@@ -16627,6 +16675,7 @@ export namespace Prisma {
     description: string
     noOfReg: number
     activityDate: Date | string
+    income?: number
     program: string
     minAge: number
     maxAge: number
@@ -16654,6 +16703,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     noOfReg?: IntFieldUpdateOperationsInput | number
     activityDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    income?: IntFieldUpdateOperationsInput | number
     program?: StringFieldUpdateOperationsInput | string
     minAge?: IntFieldUpdateOperationsInput | number
     maxAge?: IntFieldUpdateOperationsInput | number
@@ -16672,6 +16722,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     noOfReg?: IntFieldUpdateOperationsInput | number
     activityDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    income?: IntFieldUpdateOperationsInput | number
     program?: StringFieldUpdateOperationsInput | string
     minAge?: IntFieldUpdateOperationsInput | number
     maxAge?: IntFieldUpdateOperationsInput | number
@@ -16688,6 +16739,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     noOfReg?: IntFieldUpdateOperationsInput | number
     activityDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    income?: IntFieldUpdateOperationsInput | number
     program?: StringFieldUpdateOperationsInput | string
     minAge?: IntFieldUpdateOperationsInput | number
     maxAge?: IntFieldUpdateOperationsInput | number

@@ -181,6 +181,7 @@ exports.Prisma.ActivityScalarFieldEnum = {
   description: 'description',
   noOfReg: 'noOfReg',
   activityDate: 'activityDate',
+  income: 'income',
   program: 'program',
   minAge: 'minAge',
   maxAge: 'maxAge',
