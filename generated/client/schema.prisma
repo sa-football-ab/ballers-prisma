@@ -8,12 +8,12 @@ generator client {
 
 // ---------------------------- Auth Service ------------------------------------- //
 
-//TODO: We should add date created and date updated in these tables too
-
 // SubscriptionType Enum defination
 enum UserType {
     PLAYER
     COACH
+    CLUB_ADMIN
+    ADMIN
 }
 
 enum VisibilityType {
@@ -21,6 +21,7 @@ enum VisibilityType {
     RECOMMENDED
 }
 
+// User model
 model User {
     id             String     @id
     userType       UserType   @default(PLAYER)
@@ -30,36 +31,13 @@ model User {
     teamId         String?
     disability     Boolean    @default(false)
     personNumber   String?
-    name           String?
+    firstName      String?
+    lastName       String?
     clubOnboarding Boolean    @default(true)
     gender         String?
     Activity       Activity[]
     dateCreated    DateTime   @default(now())
     dateUpdated    DateTime?
-}
-
-// Install Table defination
-model Install {
-    id           String  @id
-    userId       String
-    deviceId     String
-    deviceName   String?
-    latestUserId String
-}
-
-// LinkedUserId Table defination
-model LinkedUserId {
-    id           String @id
-    userId       String
-    linkedUserId String
-}
-
-// LinkedAccounts Table defination
-model LinkedAccounts {
-    id                  String @id
-    userId              String
-    externalAccountType String
-    externalAccountId   String
 }
 
 // Club Table defination
@@ -76,13 +54,13 @@ model Club {
     User               User[]
 }
 
-// Team Table defination
+// Team model
 model Team {
     id          String     @id
     display     String
     club        Club       @relation(fields: [clubId], references: [id])
     clubId      String
-    voided      Boolean    @default(false) //  default value false
+    voided      Boolean    @default(false) // Default value false
     dateCreated DateTime   @default(now())
     dateUpdated DateTime?
     Activity    Activity[]

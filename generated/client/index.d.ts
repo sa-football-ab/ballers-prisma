@@ -19,21 +19,6 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
  */
 export type User = $Result.DefaultSelection<Prisma.$UserPayload>
 /**
- * Model Install
- * 
- */
-export type Install = $Result.DefaultSelection<Prisma.$InstallPayload>
-/**
- * Model LinkedUserId
- * 
- */
-export type LinkedUserId = $Result.DefaultSelection<Prisma.$LinkedUserIdPayload>
-/**
- * Model LinkedAccounts
- * 
- */
-export type LinkedAccounts = $Result.DefaultSelection<Prisma.$LinkedAccountsPayload>
-/**
  * Model Club
  * 
  */
@@ -75,7 +60,9 @@ export type PlayerTrainingProgram = $Result.DefaultSelection<Prisma.$PlayerTrain
 export namespace $Enums {
   export const UserType: {
   PLAYER: 'PLAYER',
-  COACH: 'COACH'
+  COACH: 'COACH',
+  CLUB_ADMIN: 'CLUB_ADMIN',
+  ADMIN: 'ADMIN'
 };
 
 export type UserType = (typeof UserType)[keyof typeof UserType]
@@ -245,36 +232,6 @@ export class PrismaClient<
     * ```
     */
   get user(): Prisma.UserDelegate<ExtArgs>;
-
-  /**
-   * `prisma.install`: Exposes CRUD operations for the **Install** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Installs
-    * const installs = await prisma.install.findMany()
-    * ```
-    */
-  get install(): Prisma.InstallDelegate<ExtArgs>;
-
-  /**
-   * `prisma.linkedUserId`: Exposes CRUD operations for the **LinkedUserId** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more LinkedUserIds
-    * const linkedUserIds = await prisma.linkedUserId.findMany()
-    * ```
-    */
-  get linkedUserId(): Prisma.LinkedUserIdDelegate<ExtArgs>;
-
-  /**
-   * `prisma.linkedAccounts`: Exposes CRUD operations for the **LinkedAccounts** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more LinkedAccounts
-    * const linkedAccounts = await prisma.linkedAccounts.findMany()
-    * ```
-    */
-  get linkedAccounts(): Prisma.LinkedAccountsDelegate<ExtArgs>;
 
   /**
    * `prisma.club`: Exposes CRUD operations for the **Club** model.
@@ -816,9 +773,6 @@ export namespace Prisma {
 
   export const ModelName: {
     User: 'User',
-    Install: 'Install',
-    LinkedUserId: 'LinkedUserId',
-    LinkedAccounts: 'LinkedAccounts',
     Club: 'Club',
     Team: 'Team',
     Activity: 'Activity',
@@ -842,7 +796,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     meta: {
-      modelProps: 'user' | 'install' | 'linkedUserId' | 'linkedAccounts' | 'club' | 'team' | 'activity' | 'playerTraining' | 'playerTrainingWeek' | 'playerTrainingLevel' | 'playerTrainingProgram'
+      modelProps: 'user' | 'club' | 'team' | 'activity' | 'playerTraining' | 'playerTrainingWeek' | 'playerTrainingLevel' | 'playerTrainingProgram'
       txIsolationLevel: Prisma.TransactionIsolationLevel
     },
     model: {
@@ -909,204 +863,6 @@ export namespace Prisma {
           count: {
             args: Prisma.UserCountArgs<ExtArgs>,
             result: $Utils.Optional<UserCountAggregateOutputType> | number
-          }
-        }
-      }
-      Install: {
-        payload: Prisma.$InstallPayload<ExtArgs>
-        fields: Prisma.InstallFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.InstallFindUniqueArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$InstallPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.InstallFindUniqueOrThrowArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$InstallPayload>
-          }
-          findFirst: {
-            args: Prisma.InstallFindFirstArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$InstallPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.InstallFindFirstOrThrowArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$InstallPayload>
-          }
-          findMany: {
-            args: Prisma.InstallFindManyArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$InstallPayload>[]
-          }
-          create: {
-            args: Prisma.InstallCreateArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$InstallPayload>
-          }
-          createMany: {
-            args: Prisma.InstallCreateManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
-          }
-          delete: {
-            args: Prisma.InstallDeleteArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$InstallPayload>
-          }
-          update: {
-            args: Prisma.InstallUpdateArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$InstallPayload>
-          }
-          deleteMany: {
-            args: Prisma.InstallDeleteManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
-          }
-          updateMany: {
-            args: Prisma.InstallUpdateManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
-          }
-          upsert: {
-            args: Prisma.InstallUpsertArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$InstallPayload>
-          }
-          aggregate: {
-            args: Prisma.InstallAggregateArgs<ExtArgs>,
-            result: $Utils.Optional<AggregateInstall>
-          }
-          groupBy: {
-            args: Prisma.InstallGroupByArgs<ExtArgs>,
-            result: $Utils.Optional<InstallGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.InstallCountArgs<ExtArgs>,
-            result: $Utils.Optional<InstallCountAggregateOutputType> | number
-          }
-        }
-      }
-      LinkedUserId: {
-        payload: Prisma.$LinkedUserIdPayload<ExtArgs>
-        fields: Prisma.LinkedUserIdFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.LinkedUserIdFindUniqueArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$LinkedUserIdPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.LinkedUserIdFindUniqueOrThrowArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$LinkedUserIdPayload>
-          }
-          findFirst: {
-            args: Prisma.LinkedUserIdFindFirstArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$LinkedUserIdPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.LinkedUserIdFindFirstOrThrowArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$LinkedUserIdPayload>
-          }
-          findMany: {
-            args: Prisma.LinkedUserIdFindManyArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$LinkedUserIdPayload>[]
-          }
-          create: {
-            args: Prisma.LinkedUserIdCreateArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$LinkedUserIdPayload>
-          }
-          createMany: {
-            args: Prisma.LinkedUserIdCreateManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
-          }
-          delete: {
-            args: Prisma.LinkedUserIdDeleteArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$LinkedUserIdPayload>
-          }
-          update: {
-            args: Prisma.LinkedUserIdUpdateArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$LinkedUserIdPayload>
-          }
-          deleteMany: {
-            args: Prisma.LinkedUserIdDeleteManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
-          }
-          updateMany: {
-            args: Prisma.LinkedUserIdUpdateManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
-          }
-          upsert: {
-            args: Prisma.LinkedUserIdUpsertArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$LinkedUserIdPayload>
-          }
-          aggregate: {
-            args: Prisma.LinkedUserIdAggregateArgs<ExtArgs>,
-            result: $Utils.Optional<AggregateLinkedUserId>
-          }
-          groupBy: {
-            args: Prisma.LinkedUserIdGroupByArgs<ExtArgs>,
-            result: $Utils.Optional<LinkedUserIdGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.LinkedUserIdCountArgs<ExtArgs>,
-            result: $Utils.Optional<LinkedUserIdCountAggregateOutputType> | number
-          }
-        }
-      }
-      LinkedAccounts: {
-        payload: Prisma.$LinkedAccountsPayload<ExtArgs>
-        fields: Prisma.LinkedAccountsFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.LinkedAccountsFindUniqueArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$LinkedAccountsPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.LinkedAccountsFindUniqueOrThrowArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$LinkedAccountsPayload>
-          }
-          findFirst: {
-            args: Prisma.LinkedAccountsFindFirstArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$LinkedAccountsPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.LinkedAccountsFindFirstOrThrowArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$LinkedAccountsPayload>
-          }
-          findMany: {
-            args: Prisma.LinkedAccountsFindManyArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$LinkedAccountsPayload>[]
-          }
-          create: {
-            args: Prisma.LinkedAccountsCreateArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$LinkedAccountsPayload>
-          }
-          createMany: {
-            args: Prisma.LinkedAccountsCreateManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
-          }
-          delete: {
-            args: Prisma.LinkedAccountsDeleteArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$LinkedAccountsPayload>
-          }
-          update: {
-            args: Prisma.LinkedAccountsUpdateArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$LinkedAccountsPayload>
-          }
-          deleteMany: {
-            args: Prisma.LinkedAccountsDeleteManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
-          }
-          updateMany: {
-            args: Prisma.LinkedAccountsUpdateManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
-          }
-          upsert: {
-            args: Prisma.LinkedAccountsUpsertArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$LinkedAccountsPayload>
-          }
-          aggregate: {
-            args: Prisma.LinkedAccountsAggregateArgs<ExtArgs>,
-            result: $Utils.Optional<AggregateLinkedAccounts>
-          }
-          groupBy: {
-            args: Prisma.LinkedAccountsGroupByArgs<ExtArgs>,
-            result: $Utils.Optional<LinkedAccountsGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.LinkedAccountsCountArgs<ExtArgs>,
-            result: $Utils.Optional<LinkedAccountsCountAggregateOutputType> | number
           }
         }
       }
@@ -1879,7 +1635,8 @@ export namespace Prisma {
     teamId: string | null
     disability: boolean | null
     personNumber: string | null
-    name: string | null
+    firstName: string | null
+    lastName: string | null
     clubOnboarding: boolean | null
     gender: string | null
     dateCreated: Date | null
@@ -1893,7 +1650,8 @@ export namespace Prisma {
     teamId: string | null
     disability: boolean | null
     personNumber: string | null
-    name: string | null
+    firstName: string | null
+    lastName: string | null
     clubOnboarding: boolean | null
     gender: string | null
     dateCreated: Date | null
@@ -1907,7 +1665,8 @@ export namespace Prisma {
     teamId: number
     disability: number
     personNumber: number
-    name: number
+    firstName: number
+    lastName: number
     clubOnboarding: number
     gender: number
     dateCreated: number
@@ -1923,7 +1682,8 @@ export namespace Prisma {
     teamId?: true
     disability?: true
     personNumber?: true
-    name?: true
+    firstName?: true
+    lastName?: true
     clubOnboarding?: true
     gender?: true
     dateCreated?: true
@@ -1937,7 +1697,8 @@ export namespace Prisma {
     teamId?: true
     disability?: true
     personNumber?: true
-    name?: true
+    firstName?: true
+    lastName?: true
     clubOnboarding?: true
     gender?: true
     dateCreated?: true
@@ -1951,7 +1712,8 @@ export namespace Prisma {
     teamId?: true
     disability?: true
     personNumber?: true
-    name?: true
+    firstName?: true
+    lastName?: true
     clubOnboarding?: true
     gender?: true
     dateCreated?: true
@@ -2038,7 +1800,8 @@ export namespace Prisma {
     teamId: string | null
     disability: boolean
     personNumber: string | null
-    name: string | null
+    firstName: string | null
+    lastName: string | null
     clubOnboarding: boolean
     gender: string | null
     dateCreated: Date
@@ -2069,7 +1832,8 @@ export namespace Prisma {
     teamId?: boolean
     disability?: boolean
     personNumber?: boolean
-    name?: boolean
+    firstName?: boolean
+    lastName?: boolean
     clubOnboarding?: boolean
     gender?: boolean
     dateCreated?: boolean
@@ -2087,7 +1851,8 @@ export namespace Prisma {
     teamId?: boolean
     disability?: boolean
     personNumber?: boolean
-    name?: boolean
+    firstName?: boolean
+    lastName?: boolean
     clubOnboarding?: boolean
     gender?: boolean
     dateCreated?: boolean
@@ -2116,7 +1881,8 @@ export namespace Prisma {
       teamId: string | null
       disability: boolean
       personNumber: string | null
-      name: string | null
+      firstName: string | null
+      lastName: string | null
       clubOnboarding: boolean
       gender: string | null
       dateCreated: Date
@@ -2526,7 +2292,8 @@ export namespace Prisma {
     readonly teamId: FieldRef<"User", 'String'>
     readonly disability: FieldRef<"User", 'Boolean'>
     readonly personNumber: FieldRef<"User", 'String'>
-    readonly name: FieldRef<"User", 'String'>
+    readonly firstName: FieldRef<"User", 'String'>
+    readonly lastName: FieldRef<"User", 'String'>
     readonly clubOnboarding: FieldRef<"User", 'Boolean'>
     readonly gender: FieldRef<"User", 'String'>
     readonly dateCreated: FieldRef<"User", 'DateTime'>
@@ -2891,2583 +2658,6 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well.
      */
     include?: UserInclude<ExtArgs> | null
-  }
-
-
-
-  /**
-   * Model Install
-   */
-
-  export type AggregateInstall = {
-    _count: InstallCountAggregateOutputType | null
-    _min: InstallMinAggregateOutputType | null
-    _max: InstallMaxAggregateOutputType | null
-  }
-
-  export type InstallMinAggregateOutputType = {
-    id: string | null
-    userId: string | null
-    deviceId: string | null
-    deviceName: string | null
-    latestUserId: string | null
-  }
-
-  export type InstallMaxAggregateOutputType = {
-    id: string | null
-    userId: string | null
-    deviceId: string | null
-    deviceName: string | null
-    latestUserId: string | null
-  }
-
-  export type InstallCountAggregateOutputType = {
-    id: number
-    userId: number
-    deviceId: number
-    deviceName: number
-    latestUserId: number
-    _all: number
-  }
-
-
-  export type InstallMinAggregateInputType = {
-    id?: true
-    userId?: true
-    deviceId?: true
-    deviceName?: true
-    latestUserId?: true
-  }
-
-  export type InstallMaxAggregateInputType = {
-    id?: true
-    userId?: true
-    deviceId?: true
-    deviceName?: true
-    latestUserId?: true
-  }
-
-  export type InstallCountAggregateInputType = {
-    id?: true
-    userId?: true
-    deviceId?: true
-    deviceName?: true
-    latestUserId?: true
-    _all?: true
-  }
-
-  export type InstallAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Install to aggregate.
-     */
-    where?: InstallWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Installs to fetch.
-     */
-    orderBy?: InstallOrderByWithRelationInput | InstallOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: InstallWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Installs from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Installs.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned Installs
-    **/
-    _count?: true | InstallCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: InstallMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: InstallMaxAggregateInputType
-  }
-
-  export type GetInstallAggregateType<T extends InstallAggregateArgs> = {
-        [P in keyof T & keyof AggregateInstall]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateInstall[P]>
-      : GetScalarType<T[P], AggregateInstall[P]>
-  }
-
-
-
-
-  export type InstallGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: InstallWhereInput
-    orderBy?: InstallOrderByWithAggregationInput | InstallOrderByWithAggregationInput[]
-    by: InstallScalarFieldEnum[] | InstallScalarFieldEnum
-    having?: InstallScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: InstallCountAggregateInputType | true
-    _min?: InstallMinAggregateInputType
-    _max?: InstallMaxAggregateInputType
-  }
-
-  export type InstallGroupByOutputType = {
-    id: string
-    userId: string
-    deviceId: string
-    deviceName: string | null
-    latestUserId: string
-    _count: InstallCountAggregateOutputType | null
-    _min: InstallMinAggregateOutputType | null
-    _max: InstallMaxAggregateOutputType | null
-  }
-
-  type GetInstallGroupByPayload<T extends InstallGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<InstallGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof InstallGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], InstallGroupByOutputType[P]>
-            : GetScalarType<T[P], InstallGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type InstallSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    userId?: boolean
-    deviceId?: boolean
-    deviceName?: boolean
-    latestUserId?: boolean
-  }, ExtArgs["result"]["install"]>
-
-  export type InstallSelectScalar = {
-    id?: boolean
-    userId?: boolean
-    deviceId?: boolean
-    deviceName?: boolean
-    latestUserId?: boolean
-  }
-
-
-  export type $InstallPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Install"
-    objects: {}
-    scalars: $Extensions.GetPayloadResult<{
-      id: string
-      userId: string
-      deviceId: string
-      deviceName: string | null
-      latestUserId: string
-    }, ExtArgs["result"]["install"]>
-    composites: {}
-  }
-
-
-  type InstallGetPayload<S extends boolean | null | undefined | InstallDefaultArgs> = $Result.GetResult<Prisma.$InstallPayload, S>
-
-  type InstallCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<InstallFindManyArgs, 'select' | 'include' | 'distinct'> & {
-      select?: InstallCountAggregateInputType | true
-    }
-
-  export interface InstallDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Install'], meta: { name: 'Install' } }
-    /**
-     * Find zero or one Install that matches the filter.
-     * @param {InstallFindUniqueArgs} args - Arguments to find a Install
-     * @example
-     * // Get one Install
-     * const install = await prisma.install.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findUnique<T extends InstallFindUniqueArgs<ExtArgs>>(
-      args: SelectSubset<T, InstallFindUniqueArgs<ExtArgs>>
-    ): Prisma__InstallClient<$Result.GetResult<Prisma.$InstallPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
-
-    /**
-     * Find one Install that matches the filter or throw an error  with `error.code='P2025'` 
-     *     if no matches were found.
-     * @param {InstallFindUniqueOrThrowArgs} args - Arguments to find a Install
-     * @example
-     * // Get one Install
-     * const install = await prisma.install.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findUniqueOrThrow<T extends InstallFindUniqueOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, InstallFindUniqueOrThrowArgs<ExtArgs>>
-    ): Prisma__InstallClient<$Result.GetResult<Prisma.$InstallPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
-
-    /**
-     * Find the first Install that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {InstallFindFirstArgs} args - Arguments to find a Install
-     * @example
-     * // Get one Install
-     * const install = await prisma.install.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findFirst<T extends InstallFindFirstArgs<ExtArgs>>(
-      args?: SelectSubset<T, InstallFindFirstArgs<ExtArgs>>
-    ): Prisma__InstallClient<$Result.GetResult<Prisma.$InstallPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
-
-    /**
-     * Find the first Install that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {InstallFindFirstOrThrowArgs} args - Arguments to find a Install
-     * @example
-     * // Get one Install
-     * const install = await prisma.install.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findFirstOrThrow<T extends InstallFindFirstOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, InstallFindFirstOrThrowArgs<ExtArgs>>
-    ): Prisma__InstallClient<$Result.GetResult<Prisma.$InstallPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
-
-    /**
-     * Find zero or more Installs that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {InstallFindManyArgs=} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all Installs
-     * const installs = await prisma.install.findMany()
-     * 
-     * // Get first 10 Installs
-     * const installs = await prisma.install.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const installWithIdOnly = await prisma.install.findMany({ select: { id: true } })
-     * 
-    **/
-    findMany<T extends InstallFindManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, InstallFindManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InstallPayload<ExtArgs>, T, 'findMany'>>
-
-    /**
-     * Create a Install.
-     * @param {InstallCreateArgs} args - Arguments to create a Install.
-     * @example
-     * // Create one Install
-     * const Install = await prisma.install.create({
-     *   data: {
-     *     // ... data to create a Install
-     *   }
-     * })
-     * 
-    **/
-    create<T extends InstallCreateArgs<ExtArgs>>(
-      args: SelectSubset<T, InstallCreateArgs<ExtArgs>>
-    ): Prisma__InstallClient<$Result.GetResult<Prisma.$InstallPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
-
-    /**
-     * Create many Installs.
-     *     @param {InstallCreateManyArgs} args - Arguments to create many Installs.
-     *     @example
-     *     // Create many Installs
-     *     const install = await prisma.install.createMany({
-     *       data: {
-     *         // ... provide data here
-     *       }
-     *     })
-     *     
-    **/
-    createMany<T extends InstallCreateManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, InstallCreateManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Delete a Install.
-     * @param {InstallDeleteArgs} args - Arguments to delete one Install.
-     * @example
-     * // Delete one Install
-     * const Install = await prisma.install.delete({
-     *   where: {
-     *     // ... filter to delete one Install
-     *   }
-     * })
-     * 
-    **/
-    delete<T extends InstallDeleteArgs<ExtArgs>>(
-      args: SelectSubset<T, InstallDeleteArgs<ExtArgs>>
-    ): Prisma__InstallClient<$Result.GetResult<Prisma.$InstallPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
-
-    /**
-     * Update one Install.
-     * @param {InstallUpdateArgs} args - Arguments to update one Install.
-     * @example
-     * // Update one Install
-     * const install = await prisma.install.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-    **/
-    update<T extends InstallUpdateArgs<ExtArgs>>(
-      args: SelectSubset<T, InstallUpdateArgs<ExtArgs>>
-    ): Prisma__InstallClient<$Result.GetResult<Prisma.$InstallPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
-
-    /**
-     * Delete zero or more Installs.
-     * @param {InstallDeleteManyArgs} args - Arguments to filter Installs to delete.
-     * @example
-     * // Delete a few Installs
-     * const { count } = await prisma.install.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-    **/
-    deleteMany<T extends InstallDeleteManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, InstallDeleteManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Installs.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {InstallUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many Installs
-     * const install = await prisma.install.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-    **/
-    updateMany<T extends InstallUpdateManyArgs<ExtArgs>>(
-      args: SelectSubset<T, InstallUpdateManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create or update one Install.
-     * @param {InstallUpsertArgs} args - Arguments to update or create a Install.
-     * @example
-     * // Update or create a Install
-     * const install = await prisma.install.upsert({
-     *   create: {
-     *     // ... data to create a Install
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the Install we want to update
-     *   }
-     * })
-    **/
-    upsert<T extends InstallUpsertArgs<ExtArgs>>(
-      args: SelectSubset<T, InstallUpsertArgs<ExtArgs>>
-    ): Prisma__InstallClient<$Result.GetResult<Prisma.$InstallPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
-
-    /**
-     * Count the number of Installs.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {InstallCountArgs} args - Arguments to filter Installs to count.
-     * @example
-     * // Count the number of Installs
-     * const count = await prisma.install.count({
-     *   where: {
-     *     // ... the filter for the Installs we want to count
-     *   }
-     * })
-    **/
-    count<T extends InstallCountArgs>(
-      args?: Subset<T, InstallCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], InstallCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a Install.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {InstallAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends InstallAggregateArgs>(args: Subset<T, InstallAggregateArgs>): Prisma.PrismaPromise<GetInstallAggregateType<T>>
-
-    /**
-     * Group by Install.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {InstallGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends InstallGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: InstallGroupByArgs['orderBy'] }
-        : { orderBy?: InstallGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, InstallGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetInstallGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the Install model
-   */
-  readonly fields: InstallFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for Install.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__InstallClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: 'PrismaPromise';
-
-
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
-  }
-
-
-
-  /**
-   * Fields of the Install model
-   */ 
-  interface InstallFieldRefs {
-    readonly id: FieldRef<"Install", 'String'>
-    readonly userId: FieldRef<"Install", 'String'>
-    readonly deviceId: FieldRef<"Install", 'String'>
-    readonly deviceName: FieldRef<"Install", 'String'>
-    readonly latestUserId: FieldRef<"Install", 'String'>
-  }
-    
-
-  // Custom InputTypes
-
-  /**
-   * Install findUnique
-   */
-  export type InstallFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Install
-     */
-    select?: InstallSelect<ExtArgs> | null
-    /**
-     * Filter, which Install to fetch.
-     */
-    where: InstallWhereUniqueInput
-  }
-
-
-  /**
-   * Install findUniqueOrThrow
-   */
-  export type InstallFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Install
-     */
-    select?: InstallSelect<ExtArgs> | null
-    /**
-     * Filter, which Install to fetch.
-     */
-    where: InstallWhereUniqueInput
-  }
-
-
-  /**
-   * Install findFirst
-   */
-  export type InstallFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Install
-     */
-    select?: InstallSelect<ExtArgs> | null
-    /**
-     * Filter, which Install to fetch.
-     */
-    where?: InstallWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Installs to fetch.
-     */
-    orderBy?: InstallOrderByWithRelationInput | InstallOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Installs.
-     */
-    cursor?: InstallWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Installs from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Installs.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Installs.
-     */
-    distinct?: InstallScalarFieldEnum | InstallScalarFieldEnum[]
-  }
-
-
-  /**
-   * Install findFirstOrThrow
-   */
-  export type InstallFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Install
-     */
-    select?: InstallSelect<ExtArgs> | null
-    /**
-     * Filter, which Install to fetch.
-     */
-    where?: InstallWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Installs to fetch.
-     */
-    orderBy?: InstallOrderByWithRelationInput | InstallOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Installs.
-     */
-    cursor?: InstallWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Installs from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Installs.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Installs.
-     */
-    distinct?: InstallScalarFieldEnum | InstallScalarFieldEnum[]
-  }
-
-
-  /**
-   * Install findMany
-   */
-  export type InstallFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Install
-     */
-    select?: InstallSelect<ExtArgs> | null
-    /**
-     * Filter, which Installs to fetch.
-     */
-    where?: InstallWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Installs to fetch.
-     */
-    orderBy?: InstallOrderByWithRelationInput | InstallOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing Installs.
-     */
-    cursor?: InstallWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Installs from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Installs.
-     */
-    skip?: number
-    distinct?: InstallScalarFieldEnum | InstallScalarFieldEnum[]
-  }
-
-
-  /**
-   * Install create
-   */
-  export type InstallCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Install
-     */
-    select?: InstallSelect<ExtArgs> | null
-    /**
-     * The data needed to create a Install.
-     */
-    data: XOR<InstallCreateInput, InstallUncheckedCreateInput>
-  }
-
-
-  /**
-   * Install createMany
-   */
-  export type InstallCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many Installs.
-     */
-    data: InstallCreateManyInput | InstallCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-
-  /**
-   * Install update
-   */
-  export type InstallUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Install
-     */
-    select?: InstallSelect<ExtArgs> | null
-    /**
-     * The data needed to update a Install.
-     */
-    data: XOR<InstallUpdateInput, InstallUncheckedUpdateInput>
-    /**
-     * Choose, which Install to update.
-     */
-    where: InstallWhereUniqueInput
-  }
-
-
-  /**
-   * Install updateMany
-   */
-  export type InstallUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update Installs.
-     */
-    data: XOR<InstallUpdateManyMutationInput, InstallUncheckedUpdateManyInput>
-    /**
-     * Filter which Installs to update
-     */
-    where?: InstallWhereInput
-  }
-
-
-  /**
-   * Install upsert
-   */
-  export type InstallUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Install
-     */
-    select?: InstallSelect<ExtArgs> | null
-    /**
-     * The filter to search for the Install to update in case it exists.
-     */
-    where: InstallWhereUniqueInput
-    /**
-     * In case the Install found by the `where` argument doesn't exist, create a new Install with this data.
-     */
-    create: XOR<InstallCreateInput, InstallUncheckedCreateInput>
-    /**
-     * In case the Install was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<InstallUpdateInput, InstallUncheckedUpdateInput>
-  }
-
-
-  /**
-   * Install delete
-   */
-  export type InstallDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Install
-     */
-    select?: InstallSelect<ExtArgs> | null
-    /**
-     * Filter which Install to delete.
-     */
-    where: InstallWhereUniqueInput
-  }
-
-
-  /**
-   * Install deleteMany
-   */
-  export type InstallDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Installs to delete
-     */
-    where?: InstallWhereInput
-  }
-
-
-  /**
-   * Install without action
-   */
-  export type InstallDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Install
-     */
-    select?: InstallSelect<ExtArgs> | null
-  }
-
-
-
-  /**
-   * Model LinkedUserId
-   */
-
-  export type AggregateLinkedUserId = {
-    _count: LinkedUserIdCountAggregateOutputType | null
-    _min: LinkedUserIdMinAggregateOutputType | null
-    _max: LinkedUserIdMaxAggregateOutputType | null
-  }
-
-  export type LinkedUserIdMinAggregateOutputType = {
-    id: string | null
-    userId: string | null
-    linkedUserId: string | null
-  }
-
-  export type LinkedUserIdMaxAggregateOutputType = {
-    id: string | null
-    userId: string | null
-    linkedUserId: string | null
-  }
-
-  export type LinkedUserIdCountAggregateOutputType = {
-    id: number
-    userId: number
-    linkedUserId: number
-    _all: number
-  }
-
-
-  export type LinkedUserIdMinAggregateInputType = {
-    id?: true
-    userId?: true
-    linkedUserId?: true
-  }
-
-  export type LinkedUserIdMaxAggregateInputType = {
-    id?: true
-    userId?: true
-    linkedUserId?: true
-  }
-
-  export type LinkedUserIdCountAggregateInputType = {
-    id?: true
-    userId?: true
-    linkedUserId?: true
-    _all?: true
-  }
-
-  export type LinkedUserIdAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which LinkedUserId to aggregate.
-     */
-    where?: LinkedUserIdWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of LinkedUserIds to fetch.
-     */
-    orderBy?: LinkedUserIdOrderByWithRelationInput | LinkedUserIdOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: LinkedUserIdWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` LinkedUserIds from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` LinkedUserIds.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned LinkedUserIds
-    **/
-    _count?: true | LinkedUserIdCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: LinkedUserIdMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: LinkedUserIdMaxAggregateInputType
-  }
-
-  export type GetLinkedUserIdAggregateType<T extends LinkedUserIdAggregateArgs> = {
-        [P in keyof T & keyof AggregateLinkedUserId]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateLinkedUserId[P]>
-      : GetScalarType<T[P], AggregateLinkedUserId[P]>
-  }
-
-
-
-
-  export type LinkedUserIdGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: LinkedUserIdWhereInput
-    orderBy?: LinkedUserIdOrderByWithAggregationInput | LinkedUserIdOrderByWithAggregationInput[]
-    by: LinkedUserIdScalarFieldEnum[] | LinkedUserIdScalarFieldEnum
-    having?: LinkedUserIdScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: LinkedUserIdCountAggregateInputType | true
-    _min?: LinkedUserIdMinAggregateInputType
-    _max?: LinkedUserIdMaxAggregateInputType
-  }
-
-  export type LinkedUserIdGroupByOutputType = {
-    id: string
-    userId: string
-    linkedUserId: string
-    _count: LinkedUserIdCountAggregateOutputType | null
-    _min: LinkedUserIdMinAggregateOutputType | null
-    _max: LinkedUserIdMaxAggregateOutputType | null
-  }
-
-  type GetLinkedUserIdGroupByPayload<T extends LinkedUserIdGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<LinkedUserIdGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof LinkedUserIdGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], LinkedUserIdGroupByOutputType[P]>
-            : GetScalarType<T[P], LinkedUserIdGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type LinkedUserIdSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    userId?: boolean
-    linkedUserId?: boolean
-  }, ExtArgs["result"]["linkedUserId"]>
-
-  export type LinkedUserIdSelectScalar = {
-    id?: boolean
-    userId?: boolean
-    linkedUserId?: boolean
-  }
-
-
-  export type $LinkedUserIdPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "LinkedUserId"
-    objects: {}
-    scalars: $Extensions.GetPayloadResult<{
-      id: string
-      userId: string
-      linkedUserId: string
-    }, ExtArgs["result"]["linkedUserId"]>
-    composites: {}
-  }
-
-
-  type LinkedUserIdGetPayload<S extends boolean | null | undefined | LinkedUserIdDefaultArgs> = $Result.GetResult<Prisma.$LinkedUserIdPayload, S>
-
-  type LinkedUserIdCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<LinkedUserIdFindManyArgs, 'select' | 'include' | 'distinct'> & {
-      select?: LinkedUserIdCountAggregateInputType | true
-    }
-
-  export interface LinkedUserIdDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['LinkedUserId'], meta: { name: 'LinkedUserId' } }
-    /**
-     * Find zero or one LinkedUserId that matches the filter.
-     * @param {LinkedUserIdFindUniqueArgs} args - Arguments to find a LinkedUserId
-     * @example
-     * // Get one LinkedUserId
-     * const linkedUserId = await prisma.linkedUserId.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findUnique<T extends LinkedUserIdFindUniqueArgs<ExtArgs>>(
-      args: SelectSubset<T, LinkedUserIdFindUniqueArgs<ExtArgs>>
-    ): Prisma__LinkedUserIdClient<$Result.GetResult<Prisma.$LinkedUserIdPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
-
-    /**
-     * Find one LinkedUserId that matches the filter or throw an error  with `error.code='P2025'` 
-     *     if no matches were found.
-     * @param {LinkedUserIdFindUniqueOrThrowArgs} args - Arguments to find a LinkedUserId
-     * @example
-     * // Get one LinkedUserId
-     * const linkedUserId = await prisma.linkedUserId.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findUniqueOrThrow<T extends LinkedUserIdFindUniqueOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, LinkedUserIdFindUniqueOrThrowArgs<ExtArgs>>
-    ): Prisma__LinkedUserIdClient<$Result.GetResult<Prisma.$LinkedUserIdPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
-
-    /**
-     * Find the first LinkedUserId that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {LinkedUserIdFindFirstArgs} args - Arguments to find a LinkedUserId
-     * @example
-     * // Get one LinkedUserId
-     * const linkedUserId = await prisma.linkedUserId.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findFirst<T extends LinkedUserIdFindFirstArgs<ExtArgs>>(
-      args?: SelectSubset<T, LinkedUserIdFindFirstArgs<ExtArgs>>
-    ): Prisma__LinkedUserIdClient<$Result.GetResult<Prisma.$LinkedUserIdPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
-
-    /**
-     * Find the first LinkedUserId that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {LinkedUserIdFindFirstOrThrowArgs} args - Arguments to find a LinkedUserId
-     * @example
-     * // Get one LinkedUserId
-     * const linkedUserId = await prisma.linkedUserId.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findFirstOrThrow<T extends LinkedUserIdFindFirstOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, LinkedUserIdFindFirstOrThrowArgs<ExtArgs>>
-    ): Prisma__LinkedUserIdClient<$Result.GetResult<Prisma.$LinkedUserIdPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
-
-    /**
-     * Find zero or more LinkedUserIds that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {LinkedUserIdFindManyArgs=} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all LinkedUserIds
-     * const linkedUserIds = await prisma.linkedUserId.findMany()
-     * 
-     * // Get first 10 LinkedUserIds
-     * const linkedUserIds = await prisma.linkedUserId.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const linkedUserIdWithIdOnly = await prisma.linkedUserId.findMany({ select: { id: true } })
-     * 
-    **/
-    findMany<T extends LinkedUserIdFindManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, LinkedUserIdFindManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LinkedUserIdPayload<ExtArgs>, T, 'findMany'>>
-
-    /**
-     * Create a LinkedUserId.
-     * @param {LinkedUserIdCreateArgs} args - Arguments to create a LinkedUserId.
-     * @example
-     * // Create one LinkedUserId
-     * const LinkedUserId = await prisma.linkedUserId.create({
-     *   data: {
-     *     // ... data to create a LinkedUserId
-     *   }
-     * })
-     * 
-    **/
-    create<T extends LinkedUserIdCreateArgs<ExtArgs>>(
-      args: SelectSubset<T, LinkedUserIdCreateArgs<ExtArgs>>
-    ): Prisma__LinkedUserIdClient<$Result.GetResult<Prisma.$LinkedUserIdPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
-
-    /**
-     * Create many LinkedUserIds.
-     *     @param {LinkedUserIdCreateManyArgs} args - Arguments to create many LinkedUserIds.
-     *     @example
-     *     // Create many LinkedUserIds
-     *     const linkedUserId = await prisma.linkedUserId.createMany({
-     *       data: {
-     *         // ... provide data here
-     *       }
-     *     })
-     *     
-    **/
-    createMany<T extends LinkedUserIdCreateManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, LinkedUserIdCreateManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Delete a LinkedUserId.
-     * @param {LinkedUserIdDeleteArgs} args - Arguments to delete one LinkedUserId.
-     * @example
-     * // Delete one LinkedUserId
-     * const LinkedUserId = await prisma.linkedUserId.delete({
-     *   where: {
-     *     // ... filter to delete one LinkedUserId
-     *   }
-     * })
-     * 
-    **/
-    delete<T extends LinkedUserIdDeleteArgs<ExtArgs>>(
-      args: SelectSubset<T, LinkedUserIdDeleteArgs<ExtArgs>>
-    ): Prisma__LinkedUserIdClient<$Result.GetResult<Prisma.$LinkedUserIdPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
-
-    /**
-     * Update one LinkedUserId.
-     * @param {LinkedUserIdUpdateArgs} args - Arguments to update one LinkedUserId.
-     * @example
-     * // Update one LinkedUserId
-     * const linkedUserId = await prisma.linkedUserId.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-    **/
-    update<T extends LinkedUserIdUpdateArgs<ExtArgs>>(
-      args: SelectSubset<T, LinkedUserIdUpdateArgs<ExtArgs>>
-    ): Prisma__LinkedUserIdClient<$Result.GetResult<Prisma.$LinkedUserIdPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
-
-    /**
-     * Delete zero or more LinkedUserIds.
-     * @param {LinkedUserIdDeleteManyArgs} args - Arguments to filter LinkedUserIds to delete.
-     * @example
-     * // Delete a few LinkedUserIds
-     * const { count } = await prisma.linkedUserId.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-    **/
-    deleteMany<T extends LinkedUserIdDeleteManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, LinkedUserIdDeleteManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more LinkedUserIds.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {LinkedUserIdUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many LinkedUserIds
-     * const linkedUserId = await prisma.linkedUserId.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-    **/
-    updateMany<T extends LinkedUserIdUpdateManyArgs<ExtArgs>>(
-      args: SelectSubset<T, LinkedUserIdUpdateManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create or update one LinkedUserId.
-     * @param {LinkedUserIdUpsertArgs} args - Arguments to update or create a LinkedUserId.
-     * @example
-     * // Update or create a LinkedUserId
-     * const linkedUserId = await prisma.linkedUserId.upsert({
-     *   create: {
-     *     // ... data to create a LinkedUserId
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the LinkedUserId we want to update
-     *   }
-     * })
-    **/
-    upsert<T extends LinkedUserIdUpsertArgs<ExtArgs>>(
-      args: SelectSubset<T, LinkedUserIdUpsertArgs<ExtArgs>>
-    ): Prisma__LinkedUserIdClient<$Result.GetResult<Prisma.$LinkedUserIdPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
-
-    /**
-     * Count the number of LinkedUserIds.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {LinkedUserIdCountArgs} args - Arguments to filter LinkedUserIds to count.
-     * @example
-     * // Count the number of LinkedUserIds
-     * const count = await prisma.linkedUserId.count({
-     *   where: {
-     *     // ... the filter for the LinkedUserIds we want to count
-     *   }
-     * })
-    **/
-    count<T extends LinkedUserIdCountArgs>(
-      args?: Subset<T, LinkedUserIdCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], LinkedUserIdCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a LinkedUserId.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {LinkedUserIdAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends LinkedUserIdAggregateArgs>(args: Subset<T, LinkedUserIdAggregateArgs>): Prisma.PrismaPromise<GetLinkedUserIdAggregateType<T>>
-
-    /**
-     * Group by LinkedUserId.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {LinkedUserIdGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends LinkedUserIdGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: LinkedUserIdGroupByArgs['orderBy'] }
-        : { orderBy?: LinkedUserIdGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, LinkedUserIdGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetLinkedUserIdGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the LinkedUserId model
-   */
-  readonly fields: LinkedUserIdFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for LinkedUserId.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__LinkedUserIdClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: 'PrismaPromise';
-
-
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
-  }
-
-
-
-  /**
-   * Fields of the LinkedUserId model
-   */ 
-  interface LinkedUserIdFieldRefs {
-    readonly id: FieldRef<"LinkedUserId", 'String'>
-    readonly userId: FieldRef<"LinkedUserId", 'String'>
-    readonly linkedUserId: FieldRef<"LinkedUserId", 'String'>
-  }
-    
-
-  // Custom InputTypes
-
-  /**
-   * LinkedUserId findUnique
-   */
-  export type LinkedUserIdFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the LinkedUserId
-     */
-    select?: LinkedUserIdSelect<ExtArgs> | null
-    /**
-     * Filter, which LinkedUserId to fetch.
-     */
-    where: LinkedUserIdWhereUniqueInput
-  }
-
-
-  /**
-   * LinkedUserId findUniqueOrThrow
-   */
-  export type LinkedUserIdFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the LinkedUserId
-     */
-    select?: LinkedUserIdSelect<ExtArgs> | null
-    /**
-     * Filter, which LinkedUserId to fetch.
-     */
-    where: LinkedUserIdWhereUniqueInput
-  }
-
-
-  /**
-   * LinkedUserId findFirst
-   */
-  export type LinkedUserIdFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the LinkedUserId
-     */
-    select?: LinkedUserIdSelect<ExtArgs> | null
-    /**
-     * Filter, which LinkedUserId to fetch.
-     */
-    where?: LinkedUserIdWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of LinkedUserIds to fetch.
-     */
-    orderBy?: LinkedUserIdOrderByWithRelationInput | LinkedUserIdOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for LinkedUserIds.
-     */
-    cursor?: LinkedUserIdWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` LinkedUserIds from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` LinkedUserIds.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of LinkedUserIds.
-     */
-    distinct?: LinkedUserIdScalarFieldEnum | LinkedUserIdScalarFieldEnum[]
-  }
-
-
-  /**
-   * LinkedUserId findFirstOrThrow
-   */
-  export type LinkedUserIdFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the LinkedUserId
-     */
-    select?: LinkedUserIdSelect<ExtArgs> | null
-    /**
-     * Filter, which LinkedUserId to fetch.
-     */
-    where?: LinkedUserIdWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of LinkedUserIds to fetch.
-     */
-    orderBy?: LinkedUserIdOrderByWithRelationInput | LinkedUserIdOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for LinkedUserIds.
-     */
-    cursor?: LinkedUserIdWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` LinkedUserIds from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` LinkedUserIds.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of LinkedUserIds.
-     */
-    distinct?: LinkedUserIdScalarFieldEnum | LinkedUserIdScalarFieldEnum[]
-  }
-
-
-  /**
-   * LinkedUserId findMany
-   */
-  export type LinkedUserIdFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the LinkedUserId
-     */
-    select?: LinkedUserIdSelect<ExtArgs> | null
-    /**
-     * Filter, which LinkedUserIds to fetch.
-     */
-    where?: LinkedUserIdWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of LinkedUserIds to fetch.
-     */
-    orderBy?: LinkedUserIdOrderByWithRelationInput | LinkedUserIdOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing LinkedUserIds.
-     */
-    cursor?: LinkedUserIdWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` LinkedUserIds from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` LinkedUserIds.
-     */
-    skip?: number
-    distinct?: LinkedUserIdScalarFieldEnum | LinkedUserIdScalarFieldEnum[]
-  }
-
-
-  /**
-   * LinkedUserId create
-   */
-  export type LinkedUserIdCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the LinkedUserId
-     */
-    select?: LinkedUserIdSelect<ExtArgs> | null
-    /**
-     * The data needed to create a LinkedUserId.
-     */
-    data: XOR<LinkedUserIdCreateInput, LinkedUserIdUncheckedCreateInput>
-  }
-
-
-  /**
-   * LinkedUserId createMany
-   */
-  export type LinkedUserIdCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many LinkedUserIds.
-     */
-    data: LinkedUserIdCreateManyInput | LinkedUserIdCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-
-  /**
-   * LinkedUserId update
-   */
-  export type LinkedUserIdUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the LinkedUserId
-     */
-    select?: LinkedUserIdSelect<ExtArgs> | null
-    /**
-     * The data needed to update a LinkedUserId.
-     */
-    data: XOR<LinkedUserIdUpdateInput, LinkedUserIdUncheckedUpdateInput>
-    /**
-     * Choose, which LinkedUserId to update.
-     */
-    where: LinkedUserIdWhereUniqueInput
-  }
-
-
-  /**
-   * LinkedUserId updateMany
-   */
-  export type LinkedUserIdUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update LinkedUserIds.
-     */
-    data: XOR<LinkedUserIdUpdateManyMutationInput, LinkedUserIdUncheckedUpdateManyInput>
-    /**
-     * Filter which LinkedUserIds to update
-     */
-    where?: LinkedUserIdWhereInput
-  }
-
-
-  /**
-   * LinkedUserId upsert
-   */
-  export type LinkedUserIdUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the LinkedUserId
-     */
-    select?: LinkedUserIdSelect<ExtArgs> | null
-    /**
-     * The filter to search for the LinkedUserId to update in case it exists.
-     */
-    where: LinkedUserIdWhereUniqueInput
-    /**
-     * In case the LinkedUserId found by the `where` argument doesn't exist, create a new LinkedUserId with this data.
-     */
-    create: XOR<LinkedUserIdCreateInput, LinkedUserIdUncheckedCreateInput>
-    /**
-     * In case the LinkedUserId was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<LinkedUserIdUpdateInput, LinkedUserIdUncheckedUpdateInput>
-  }
-
-
-  /**
-   * LinkedUserId delete
-   */
-  export type LinkedUserIdDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the LinkedUserId
-     */
-    select?: LinkedUserIdSelect<ExtArgs> | null
-    /**
-     * Filter which LinkedUserId to delete.
-     */
-    where: LinkedUserIdWhereUniqueInput
-  }
-
-
-  /**
-   * LinkedUserId deleteMany
-   */
-  export type LinkedUserIdDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which LinkedUserIds to delete
-     */
-    where?: LinkedUserIdWhereInput
-  }
-
-
-  /**
-   * LinkedUserId without action
-   */
-  export type LinkedUserIdDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the LinkedUserId
-     */
-    select?: LinkedUserIdSelect<ExtArgs> | null
-  }
-
-
-
-  /**
-   * Model LinkedAccounts
-   */
-
-  export type AggregateLinkedAccounts = {
-    _count: LinkedAccountsCountAggregateOutputType | null
-    _min: LinkedAccountsMinAggregateOutputType | null
-    _max: LinkedAccountsMaxAggregateOutputType | null
-  }
-
-  export type LinkedAccountsMinAggregateOutputType = {
-    id: string | null
-    userId: string | null
-    externalAccountType: string | null
-    externalAccountId: string | null
-  }
-
-  export type LinkedAccountsMaxAggregateOutputType = {
-    id: string | null
-    userId: string | null
-    externalAccountType: string | null
-    externalAccountId: string | null
-  }
-
-  export type LinkedAccountsCountAggregateOutputType = {
-    id: number
-    userId: number
-    externalAccountType: number
-    externalAccountId: number
-    _all: number
-  }
-
-
-  export type LinkedAccountsMinAggregateInputType = {
-    id?: true
-    userId?: true
-    externalAccountType?: true
-    externalAccountId?: true
-  }
-
-  export type LinkedAccountsMaxAggregateInputType = {
-    id?: true
-    userId?: true
-    externalAccountType?: true
-    externalAccountId?: true
-  }
-
-  export type LinkedAccountsCountAggregateInputType = {
-    id?: true
-    userId?: true
-    externalAccountType?: true
-    externalAccountId?: true
-    _all?: true
-  }
-
-  export type LinkedAccountsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which LinkedAccounts to aggregate.
-     */
-    where?: LinkedAccountsWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of LinkedAccounts to fetch.
-     */
-    orderBy?: LinkedAccountsOrderByWithRelationInput | LinkedAccountsOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: LinkedAccountsWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` LinkedAccounts from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` LinkedAccounts.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned LinkedAccounts
-    **/
-    _count?: true | LinkedAccountsCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: LinkedAccountsMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: LinkedAccountsMaxAggregateInputType
-  }
-
-  export type GetLinkedAccountsAggregateType<T extends LinkedAccountsAggregateArgs> = {
-        [P in keyof T & keyof AggregateLinkedAccounts]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateLinkedAccounts[P]>
-      : GetScalarType<T[P], AggregateLinkedAccounts[P]>
-  }
-
-
-
-
-  export type LinkedAccountsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: LinkedAccountsWhereInput
-    orderBy?: LinkedAccountsOrderByWithAggregationInput | LinkedAccountsOrderByWithAggregationInput[]
-    by: LinkedAccountsScalarFieldEnum[] | LinkedAccountsScalarFieldEnum
-    having?: LinkedAccountsScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: LinkedAccountsCountAggregateInputType | true
-    _min?: LinkedAccountsMinAggregateInputType
-    _max?: LinkedAccountsMaxAggregateInputType
-  }
-
-  export type LinkedAccountsGroupByOutputType = {
-    id: string
-    userId: string
-    externalAccountType: string
-    externalAccountId: string
-    _count: LinkedAccountsCountAggregateOutputType | null
-    _min: LinkedAccountsMinAggregateOutputType | null
-    _max: LinkedAccountsMaxAggregateOutputType | null
-  }
-
-  type GetLinkedAccountsGroupByPayload<T extends LinkedAccountsGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<LinkedAccountsGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof LinkedAccountsGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], LinkedAccountsGroupByOutputType[P]>
-            : GetScalarType<T[P], LinkedAccountsGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type LinkedAccountsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    userId?: boolean
-    externalAccountType?: boolean
-    externalAccountId?: boolean
-  }, ExtArgs["result"]["linkedAccounts"]>
-
-  export type LinkedAccountsSelectScalar = {
-    id?: boolean
-    userId?: boolean
-    externalAccountType?: boolean
-    externalAccountId?: boolean
-  }
-
-
-  export type $LinkedAccountsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "LinkedAccounts"
-    objects: {}
-    scalars: $Extensions.GetPayloadResult<{
-      id: string
-      userId: string
-      externalAccountType: string
-      externalAccountId: string
-    }, ExtArgs["result"]["linkedAccounts"]>
-    composites: {}
-  }
-
-
-  type LinkedAccountsGetPayload<S extends boolean | null | undefined | LinkedAccountsDefaultArgs> = $Result.GetResult<Prisma.$LinkedAccountsPayload, S>
-
-  type LinkedAccountsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<LinkedAccountsFindManyArgs, 'select' | 'include' | 'distinct'> & {
-      select?: LinkedAccountsCountAggregateInputType | true
-    }
-
-  export interface LinkedAccountsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['LinkedAccounts'], meta: { name: 'LinkedAccounts' } }
-    /**
-     * Find zero or one LinkedAccounts that matches the filter.
-     * @param {LinkedAccountsFindUniqueArgs} args - Arguments to find a LinkedAccounts
-     * @example
-     * // Get one LinkedAccounts
-     * const linkedAccounts = await prisma.linkedAccounts.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findUnique<T extends LinkedAccountsFindUniqueArgs<ExtArgs>>(
-      args: SelectSubset<T, LinkedAccountsFindUniqueArgs<ExtArgs>>
-    ): Prisma__LinkedAccountsClient<$Result.GetResult<Prisma.$LinkedAccountsPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
-
-    /**
-     * Find one LinkedAccounts that matches the filter or throw an error  with `error.code='P2025'` 
-     *     if no matches were found.
-     * @param {LinkedAccountsFindUniqueOrThrowArgs} args - Arguments to find a LinkedAccounts
-     * @example
-     * // Get one LinkedAccounts
-     * const linkedAccounts = await prisma.linkedAccounts.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findUniqueOrThrow<T extends LinkedAccountsFindUniqueOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, LinkedAccountsFindUniqueOrThrowArgs<ExtArgs>>
-    ): Prisma__LinkedAccountsClient<$Result.GetResult<Prisma.$LinkedAccountsPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
-
-    /**
-     * Find the first LinkedAccounts that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {LinkedAccountsFindFirstArgs} args - Arguments to find a LinkedAccounts
-     * @example
-     * // Get one LinkedAccounts
-     * const linkedAccounts = await prisma.linkedAccounts.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findFirst<T extends LinkedAccountsFindFirstArgs<ExtArgs>>(
-      args?: SelectSubset<T, LinkedAccountsFindFirstArgs<ExtArgs>>
-    ): Prisma__LinkedAccountsClient<$Result.GetResult<Prisma.$LinkedAccountsPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
-
-    /**
-     * Find the first LinkedAccounts that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {LinkedAccountsFindFirstOrThrowArgs} args - Arguments to find a LinkedAccounts
-     * @example
-     * // Get one LinkedAccounts
-     * const linkedAccounts = await prisma.linkedAccounts.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findFirstOrThrow<T extends LinkedAccountsFindFirstOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, LinkedAccountsFindFirstOrThrowArgs<ExtArgs>>
-    ): Prisma__LinkedAccountsClient<$Result.GetResult<Prisma.$LinkedAccountsPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
-
-    /**
-     * Find zero or more LinkedAccounts that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {LinkedAccountsFindManyArgs=} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all LinkedAccounts
-     * const linkedAccounts = await prisma.linkedAccounts.findMany()
-     * 
-     * // Get first 10 LinkedAccounts
-     * const linkedAccounts = await prisma.linkedAccounts.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const linkedAccountsWithIdOnly = await prisma.linkedAccounts.findMany({ select: { id: true } })
-     * 
-    **/
-    findMany<T extends LinkedAccountsFindManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, LinkedAccountsFindManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LinkedAccountsPayload<ExtArgs>, T, 'findMany'>>
-
-    /**
-     * Create a LinkedAccounts.
-     * @param {LinkedAccountsCreateArgs} args - Arguments to create a LinkedAccounts.
-     * @example
-     * // Create one LinkedAccounts
-     * const LinkedAccounts = await prisma.linkedAccounts.create({
-     *   data: {
-     *     // ... data to create a LinkedAccounts
-     *   }
-     * })
-     * 
-    **/
-    create<T extends LinkedAccountsCreateArgs<ExtArgs>>(
-      args: SelectSubset<T, LinkedAccountsCreateArgs<ExtArgs>>
-    ): Prisma__LinkedAccountsClient<$Result.GetResult<Prisma.$LinkedAccountsPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
-
-    /**
-     * Create many LinkedAccounts.
-     *     @param {LinkedAccountsCreateManyArgs} args - Arguments to create many LinkedAccounts.
-     *     @example
-     *     // Create many LinkedAccounts
-     *     const linkedAccounts = await prisma.linkedAccounts.createMany({
-     *       data: {
-     *         // ... provide data here
-     *       }
-     *     })
-     *     
-    **/
-    createMany<T extends LinkedAccountsCreateManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, LinkedAccountsCreateManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Delete a LinkedAccounts.
-     * @param {LinkedAccountsDeleteArgs} args - Arguments to delete one LinkedAccounts.
-     * @example
-     * // Delete one LinkedAccounts
-     * const LinkedAccounts = await prisma.linkedAccounts.delete({
-     *   where: {
-     *     // ... filter to delete one LinkedAccounts
-     *   }
-     * })
-     * 
-    **/
-    delete<T extends LinkedAccountsDeleteArgs<ExtArgs>>(
-      args: SelectSubset<T, LinkedAccountsDeleteArgs<ExtArgs>>
-    ): Prisma__LinkedAccountsClient<$Result.GetResult<Prisma.$LinkedAccountsPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
-
-    /**
-     * Update one LinkedAccounts.
-     * @param {LinkedAccountsUpdateArgs} args - Arguments to update one LinkedAccounts.
-     * @example
-     * // Update one LinkedAccounts
-     * const linkedAccounts = await prisma.linkedAccounts.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-    **/
-    update<T extends LinkedAccountsUpdateArgs<ExtArgs>>(
-      args: SelectSubset<T, LinkedAccountsUpdateArgs<ExtArgs>>
-    ): Prisma__LinkedAccountsClient<$Result.GetResult<Prisma.$LinkedAccountsPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
-
-    /**
-     * Delete zero or more LinkedAccounts.
-     * @param {LinkedAccountsDeleteManyArgs} args - Arguments to filter LinkedAccounts to delete.
-     * @example
-     * // Delete a few LinkedAccounts
-     * const { count } = await prisma.linkedAccounts.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-    **/
-    deleteMany<T extends LinkedAccountsDeleteManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, LinkedAccountsDeleteManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more LinkedAccounts.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {LinkedAccountsUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many LinkedAccounts
-     * const linkedAccounts = await prisma.linkedAccounts.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-    **/
-    updateMany<T extends LinkedAccountsUpdateManyArgs<ExtArgs>>(
-      args: SelectSubset<T, LinkedAccountsUpdateManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create or update one LinkedAccounts.
-     * @param {LinkedAccountsUpsertArgs} args - Arguments to update or create a LinkedAccounts.
-     * @example
-     * // Update or create a LinkedAccounts
-     * const linkedAccounts = await prisma.linkedAccounts.upsert({
-     *   create: {
-     *     // ... data to create a LinkedAccounts
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the LinkedAccounts we want to update
-     *   }
-     * })
-    **/
-    upsert<T extends LinkedAccountsUpsertArgs<ExtArgs>>(
-      args: SelectSubset<T, LinkedAccountsUpsertArgs<ExtArgs>>
-    ): Prisma__LinkedAccountsClient<$Result.GetResult<Prisma.$LinkedAccountsPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
-
-    /**
-     * Count the number of LinkedAccounts.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {LinkedAccountsCountArgs} args - Arguments to filter LinkedAccounts to count.
-     * @example
-     * // Count the number of LinkedAccounts
-     * const count = await prisma.linkedAccounts.count({
-     *   where: {
-     *     // ... the filter for the LinkedAccounts we want to count
-     *   }
-     * })
-    **/
-    count<T extends LinkedAccountsCountArgs>(
-      args?: Subset<T, LinkedAccountsCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], LinkedAccountsCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a LinkedAccounts.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {LinkedAccountsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends LinkedAccountsAggregateArgs>(args: Subset<T, LinkedAccountsAggregateArgs>): Prisma.PrismaPromise<GetLinkedAccountsAggregateType<T>>
-
-    /**
-     * Group by LinkedAccounts.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {LinkedAccountsGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends LinkedAccountsGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: LinkedAccountsGroupByArgs['orderBy'] }
-        : { orderBy?: LinkedAccountsGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, LinkedAccountsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetLinkedAccountsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the LinkedAccounts model
-   */
-  readonly fields: LinkedAccountsFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for LinkedAccounts.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__LinkedAccountsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: 'PrismaPromise';
-
-
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
-  }
-
-
-
-  /**
-   * Fields of the LinkedAccounts model
-   */ 
-  interface LinkedAccountsFieldRefs {
-    readonly id: FieldRef<"LinkedAccounts", 'String'>
-    readonly userId: FieldRef<"LinkedAccounts", 'String'>
-    readonly externalAccountType: FieldRef<"LinkedAccounts", 'String'>
-    readonly externalAccountId: FieldRef<"LinkedAccounts", 'String'>
-  }
-    
-
-  // Custom InputTypes
-
-  /**
-   * LinkedAccounts findUnique
-   */
-  export type LinkedAccountsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the LinkedAccounts
-     */
-    select?: LinkedAccountsSelect<ExtArgs> | null
-    /**
-     * Filter, which LinkedAccounts to fetch.
-     */
-    where: LinkedAccountsWhereUniqueInput
-  }
-
-
-  /**
-   * LinkedAccounts findUniqueOrThrow
-   */
-  export type LinkedAccountsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the LinkedAccounts
-     */
-    select?: LinkedAccountsSelect<ExtArgs> | null
-    /**
-     * Filter, which LinkedAccounts to fetch.
-     */
-    where: LinkedAccountsWhereUniqueInput
-  }
-
-
-  /**
-   * LinkedAccounts findFirst
-   */
-  export type LinkedAccountsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the LinkedAccounts
-     */
-    select?: LinkedAccountsSelect<ExtArgs> | null
-    /**
-     * Filter, which LinkedAccounts to fetch.
-     */
-    where?: LinkedAccountsWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of LinkedAccounts to fetch.
-     */
-    orderBy?: LinkedAccountsOrderByWithRelationInput | LinkedAccountsOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for LinkedAccounts.
-     */
-    cursor?: LinkedAccountsWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` LinkedAccounts from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` LinkedAccounts.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of LinkedAccounts.
-     */
-    distinct?: LinkedAccountsScalarFieldEnum | LinkedAccountsScalarFieldEnum[]
-  }
-
-
-  /**
-   * LinkedAccounts findFirstOrThrow
-   */
-  export type LinkedAccountsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the LinkedAccounts
-     */
-    select?: LinkedAccountsSelect<ExtArgs> | null
-    /**
-     * Filter, which LinkedAccounts to fetch.
-     */
-    where?: LinkedAccountsWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of LinkedAccounts to fetch.
-     */
-    orderBy?: LinkedAccountsOrderByWithRelationInput | LinkedAccountsOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for LinkedAccounts.
-     */
-    cursor?: LinkedAccountsWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` LinkedAccounts from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` LinkedAccounts.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of LinkedAccounts.
-     */
-    distinct?: LinkedAccountsScalarFieldEnum | LinkedAccountsScalarFieldEnum[]
-  }
-
-
-  /**
-   * LinkedAccounts findMany
-   */
-  export type LinkedAccountsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the LinkedAccounts
-     */
-    select?: LinkedAccountsSelect<ExtArgs> | null
-    /**
-     * Filter, which LinkedAccounts to fetch.
-     */
-    where?: LinkedAccountsWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of LinkedAccounts to fetch.
-     */
-    orderBy?: LinkedAccountsOrderByWithRelationInput | LinkedAccountsOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing LinkedAccounts.
-     */
-    cursor?: LinkedAccountsWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` LinkedAccounts from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` LinkedAccounts.
-     */
-    skip?: number
-    distinct?: LinkedAccountsScalarFieldEnum | LinkedAccountsScalarFieldEnum[]
-  }
-
-
-  /**
-   * LinkedAccounts create
-   */
-  export type LinkedAccountsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the LinkedAccounts
-     */
-    select?: LinkedAccountsSelect<ExtArgs> | null
-    /**
-     * The data needed to create a LinkedAccounts.
-     */
-    data: XOR<LinkedAccountsCreateInput, LinkedAccountsUncheckedCreateInput>
-  }
-
-
-  /**
-   * LinkedAccounts createMany
-   */
-  export type LinkedAccountsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many LinkedAccounts.
-     */
-    data: LinkedAccountsCreateManyInput | LinkedAccountsCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-
-  /**
-   * LinkedAccounts update
-   */
-  export type LinkedAccountsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the LinkedAccounts
-     */
-    select?: LinkedAccountsSelect<ExtArgs> | null
-    /**
-     * The data needed to update a LinkedAccounts.
-     */
-    data: XOR<LinkedAccountsUpdateInput, LinkedAccountsUncheckedUpdateInput>
-    /**
-     * Choose, which LinkedAccounts to update.
-     */
-    where: LinkedAccountsWhereUniqueInput
-  }
-
-
-  /**
-   * LinkedAccounts updateMany
-   */
-  export type LinkedAccountsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update LinkedAccounts.
-     */
-    data: XOR<LinkedAccountsUpdateManyMutationInput, LinkedAccountsUncheckedUpdateManyInput>
-    /**
-     * Filter which LinkedAccounts to update
-     */
-    where?: LinkedAccountsWhereInput
-  }
-
-
-  /**
-   * LinkedAccounts upsert
-   */
-  export type LinkedAccountsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the LinkedAccounts
-     */
-    select?: LinkedAccountsSelect<ExtArgs> | null
-    /**
-     * The filter to search for the LinkedAccounts to update in case it exists.
-     */
-    where: LinkedAccountsWhereUniqueInput
-    /**
-     * In case the LinkedAccounts found by the `where` argument doesn't exist, create a new LinkedAccounts with this data.
-     */
-    create: XOR<LinkedAccountsCreateInput, LinkedAccountsUncheckedCreateInput>
-    /**
-     * In case the LinkedAccounts was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<LinkedAccountsUpdateInput, LinkedAccountsUncheckedUpdateInput>
-  }
-
-
-  /**
-   * LinkedAccounts delete
-   */
-  export type LinkedAccountsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the LinkedAccounts
-     */
-    select?: LinkedAccountsSelect<ExtArgs> | null
-    /**
-     * Filter which LinkedAccounts to delete.
-     */
-    where: LinkedAccountsWhereUniqueInput
-  }
-
-
-  /**
-   * LinkedAccounts deleteMany
-   */
-  export type LinkedAccountsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which LinkedAccounts to delete
-     */
-    where?: LinkedAccountsWhereInput
-  }
-
-
-  /**
-   * LinkedAccounts without action
-   */
-  export type LinkedAccountsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the LinkedAccounts
-     */
-    select?: LinkedAccountsSelect<ExtArgs> | null
   }
 
 
@@ -12416,7 +9606,8 @@ export namespace Prisma {
     teamId: 'teamId',
     disability: 'disability',
     personNumber: 'personNumber',
-    name: 'name',
+    firstName: 'firstName',
+    lastName: 'lastName',
     clubOnboarding: 'clubOnboarding',
     gender: 'gender',
     dateCreated: 'dateCreated',
@@ -12424,36 +9615,6 @@ export namespace Prisma {
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
-
-
-  export const InstallScalarFieldEnum: {
-    id: 'id',
-    userId: 'userId',
-    deviceId: 'deviceId',
-    deviceName: 'deviceName',
-    latestUserId: 'latestUserId'
-  };
-
-  export type InstallScalarFieldEnum = (typeof InstallScalarFieldEnum)[keyof typeof InstallScalarFieldEnum]
-
-
-  export const LinkedUserIdScalarFieldEnum: {
-    id: 'id',
-    userId: 'userId',
-    linkedUserId: 'linkedUserId'
-  };
-
-  export type LinkedUserIdScalarFieldEnum = (typeof LinkedUserIdScalarFieldEnum)[keyof typeof LinkedUserIdScalarFieldEnum]
-
-
-  export const LinkedAccountsScalarFieldEnum: {
-    id: 'id',
-    userId: 'userId',
-    externalAccountType: 'externalAccountType',
-    externalAccountId: 'externalAccountId'
-  };
-
-  export type LinkedAccountsScalarFieldEnum = (typeof LinkedAccountsScalarFieldEnum)[keyof typeof LinkedAccountsScalarFieldEnum]
 
 
   export const ClubScalarFieldEnum: {
@@ -12678,7 +9839,8 @@ export namespace Prisma {
     teamId?: StringNullableFilter<"User"> | string | null
     disability?: BoolFilter<"User"> | boolean
     personNumber?: StringNullableFilter<"User"> | string | null
-    name?: StringNullableFilter<"User"> | string | null
+    firstName?: StringNullableFilter<"User"> | string | null
+    lastName?: StringNullableFilter<"User"> | string | null
     clubOnboarding?: BoolFilter<"User"> | boolean
     gender?: StringNullableFilter<"User"> | string | null
     dateCreated?: DateTimeFilter<"User"> | Date | string
@@ -12695,7 +9857,8 @@ export namespace Prisma {
     teamId?: SortOrderInput | SortOrder
     disability?: SortOrder
     personNumber?: SortOrderInput | SortOrder
-    name?: SortOrderInput | SortOrder
+    firstName?: SortOrderInput | SortOrder
+    lastName?: SortOrderInput | SortOrder
     clubOnboarding?: SortOrder
     gender?: SortOrderInput | SortOrder
     dateCreated?: SortOrder
@@ -12715,7 +9878,8 @@ export namespace Prisma {
     teamId?: StringNullableFilter<"User"> | string | null
     disability?: BoolFilter<"User"> | boolean
     personNumber?: StringNullableFilter<"User"> | string | null
-    name?: StringNullableFilter<"User"> | string | null
+    firstName?: StringNullableFilter<"User"> | string | null
+    lastName?: StringNullableFilter<"User"> | string | null
     clubOnboarding?: BoolFilter<"User"> | boolean
     gender?: StringNullableFilter<"User"> | string | null
     dateCreated?: DateTimeFilter<"User"> | Date | string
@@ -12732,7 +9896,8 @@ export namespace Prisma {
     teamId?: SortOrderInput | SortOrder
     disability?: SortOrder
     personNumber?: SortOrderInput | SortOrder
-    name?: SortOrderInput | SortOrder
+    firstName?: SortOrderInput | SortOrder
+    lastName?: SortOrderInput | SortOrder
     clubOnboarding?: SortOrder
     gender?: SortOrderInput | SortOrder
     dateCreated?: SortOrder
@@ -12752,152 +9917,12 @@ export namespace Prisma {
     teamId?: StringNullableWithAggregatesFilter<"User"> | string | null
     disability?: BoolWithAggregatesFilter<"User"> | boolean
     personNumber?: StringNullableWithAggregatesFilter<"User"> | string | null
-    name?: StringNullableWithAggregatesFilter<"User"> | string | null
+    firstName?: StringNullableWithAggregatesFilter<"User"> | string | null
+    lastName?: StringNullableWithAggregatesFilter<"User"> | string | null
     clubOnboarding?: BoolWithAggregatesFilter<"User"> | boolean
     gender?: StringNullableWithAggregatesFilter<"User"> | string | null
     dateCreated?: DateTimeWithAggregatesFilter<"User"> | Date | string
     dateUpdated?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
-  }
-
-  export type InstallWhereInput = {
-    AND?: InstallWhereInput | InstallWhereInput[]
-    OR?: InstallWhereInput[]
-    NOT?: InstallWhereInput | InstallWhereInput[]
-    id?: StringFilter<"Install"> | string
-    userId?: StringFilter<"Install"> | string
-    deviceId?: StringFilter<"Install"> | string
-    deviceName?: StringNullableFilter<"Install"> | string | null
-    latestUserId?: StringFilter<"Install"> | string
-  }
-
-  export type InstallOrderByWithRelationInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    deviceId?: SortOrder
-    deviceName?: SortOrderInput | SortOrder
-    latestUserId?: SortOrder
-  }
-
-  export type InstallWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    AND?: InstallWhereInput | InstallWhereInput[]
-    OR?: InstallWhereInput[]
-    NOT?: InstallWhereInput | InstallWhereInput[]
-    userId?: StringFilter<"Install"> | string
-    deviceId?: StringFilter<"Install"> | string
-    deviceName?: StringNullableFilter<"Install"> | string | null
-    latestUserId?: StringFilter<"Install"> | string
-  }, "id">
-
-  export type InstallOrderByWithAggregationInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    deviceId?: SortOrder
-    deviceName?: SortOrderInput | SortOrder
-    latestUserId?: SortOrder
-    _count?: InstallCountOrderByAggregateInput
-    _max?: InstallMaxOrderByAggregateInput
-    _min?: InstallMinOrderByAggregateInput
-  }
-
-  export type InstallScalarWhereWithAggregatesInput = {
-    AND?: InstallScalarWhereWithAggregatesInput | InstallScalarWhereWithAggregatesInput[]
-    OR?: InstallScalarWhereWithAggregatesInput[]
-    NOT?: InstallScalarWhereWithAggregatesInput | InstallScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"Install"> | string
-    userId?: StringWithAggregatesFilter<"Install"> | string
-    deviceId?: StringWithAggregatesFilter<"Install"> | string
-    deviceName?: StringNullableWithAggregatesFilter<"Install"> | string | null
-    latestUserId?: StringWithAggregatesFilter<"Install"> | string
-  }
-
-  export type LinkedUserIdWhereInput = {
-    AND?: LinkedUserIdWhereInput | LinkedUserIdWhereInput[]
-    OR?: LinkedUserIdWhereInput[]
-    NOT?: LinkedUserIdWhereInput | LinkedUserIdWhereInput[]
-    id?: StringFilter<"LinkedUserId"> | string
-    userId?: StringFilter<"LinkedUserId"> | string
-    linkedUserId?: StringFilter<"LinkedUserId"> | string
-  }
-
-  export type LinkedUserIdOrderByWithRelationInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    linkedUserId?: SortOrder
-  }
-
-  export type LinkedUserIdWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    AND?: LinkedUserIdWhereInput | LinkedUserIdWhereInput[]
-    OR?: LinkedUserIdWhereInput[]
-    NOT?: LinkedUserIdWhereInput | LinkedUserIdWhereInput[]
-    userId?: StringFilter<"LinkedUserId"> | string
-    linkedUserId?: StringFilter<"LinkedUserId"> | string
-  }, "id">
-
-  export type LinkedUserIdOrderByWithAggregationInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    linkedUserId?: SortOrder
-    _count?: LinkedUserIdCountOrderByAggregateInput
-    _max?: LinkedUserIdMaxOrderByAggregateInput
-    _min?: LinkedUserIdMinOrderByAggregateInput
-  }
-
-  export type LinkedUserIdScalarWhereWithAggregatesInput = {
-    AND?: LinkedUserIdScalarWhereWithAggregatesInput | LinkedUserIdScalarWhereWithAggregatesInput[]
-    OR?: LinkedUserIdScalarWhereWithAggregatesInput[]
-    NOT?: LinkedUserIdScalarWhereWithAggregatesInput | LinkedUserIdScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"LinkedUserId"> | string
-    userId?: StringWithAggregatesFilter<"LinkedUserId"> | string
-    linkedUserId?: StringWithAggregatesFilter<"LinkedUserId"> | string
-  }
-
-  export type LinkedAccountsWhereInput = {
-    AND?: LinkedAccountsWhereInput | LinkedAccountsWhereInput[]
-    OR?: LinkedAccountsWhereInput[]
-    NOT?: LinkedAccountsWhereInput | LinkedAccountsWhereInput[]
-    id?: StringFilter<"LinkedAccounts"> | string
-    userId?: StringFilter<"LinkedAccounts"> | string
-    externalAccountType?: StringFilter<"LinkedAccounts"> | string
-    externalAccountId?: StringFilter<"LinkedAccounts"> | string
-  }
-
-  export type LinkedAccountsOrderByWithRelationInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    externalAccountType?: SortOrder
-    externalAccountId?: SortOrder
-  }
-
-  export type LinkedAccountsWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    AND?: LinkedAccountsWhereInput | LinkedAccountsWhereInput[]
-    OR?: LinkedAccountsWhereInput[]
-    NOT?: LinkedAccountsWhereInput | LinkedAccountsWhereInput[]
-    userId?: StringFilter<"LinkedAccounts"> | string
-    externalAccountType?: StringFilter<"LinkedAccounts"> | string
-    externalAccountId?: StringFilter<"LinkedAccounts"> | string
-  }, "id">
-
-  export type LinkedAccountsOrderByWithAggregationInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    externalAccountType?: SortOrder
-    externalAccountId?: SortOrder
-    _count?: LinkedAccountsCountOrderByAggregateInput
-    _max?: LinkedAccountsMaxOrderByAggregateInput
-    _min?: LinkedAccountsMinOrderByAggregateInput
-  }
-
-  export type LinkedAccountsScalarWhereWithAggregatesInput = {
-    AND?: LinkedAccountsScalarWhereWithAggregatesInput | LinkedAccountsScalarWhereWithAggregatesInput[]
-    OR?: LinkedAccountsScalarWhereWithAggregatesInput[]
-    NOT?: LinkedAccountsScalarWhereWithAggregatesInput | LinkedAccountsScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"LinkedAccounts"> | string
-    userId?: StringWithAggregatesFilter<"LinkedAccounts"> | string
-    externalAccountType?: StringWithAggregatesFilter<"LinkedAccounts"> | string
-    externalAccountId?: StringWithAggregatesFilter<"LinkedAccounts"> | string
   }
 
   export type ClubWhereInput = {
@@ -13466,7 +10491,8 @@ export namespace Prisma {
     userType?: $Enums.UserType
     disability?: boolean
     personNumber?: string | null
-    name?: string | null
+    firstName?: string | null
+    lastName?: string | null
     clubOnboarding?: boolean
     gender?: string | null
     dateCreated?: Date | string
@@ -13483,7 +10509,8 @@ export namespace Prisma {
     teamId?: string | null
     disability?: boolean
     personNumber?: string | null
-    name?: string | null
+    firstName?: string | null
+    lastName?: string | null
     clubOnboarding?: boolean
     gender?: string | null
     dateCreated?: Date | string
@@ -13496,7 +10523,8 @@ export namespace Prisma {
     userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
     disability?: BoolFieldUpdateOperationsInput | boolean
     personNumber?: NullableStringFieldUpdateOperationsInput | string | null
-    name?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
     clubOnboarding?: BoolFieldUpdateOperationsInput | boolean
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13513,7 +10541,8 @@ export namespace Prisma {
     teamId?: NullableStringFieldUpdateOperationsInput | string | null
     disability?: BoolFieldUpdateOperationsInput | boolean
     personNumber?: NullableStringFieldUpdateOperationsInput | string | null
-    name?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
     clubOnboarding?: BoolFieldUpdateOperationsInput | boolean
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13528,7 +10557,8 @@ export namespace Prisma {
     teamId?: string | null
     disability?: boolean
     personNumber?: string | null
-    name?: string | null
+    firstName?: string | null
+    lastName?: string | null
     clubOnboarding?: boolean
     gender?: string | null
     dateCreated?: Date | string
@@ -13540,7 +10570,8 @@ export namespace Prisma {
     userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
     disability?: BoolFieldUpdateOperationsInput | boolean
     personNumber?: NullableStringFieldUpdateOperationsInput | string | null
-    name?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
     clubOnboarding?: BoolFieldUpdateOperationsInput | boolean
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13554,158 +10585,12 @@ export namespace Prisma {
     teamId?: NullableStringFieldUpdateOperationsInput | string | null
     disability?: BoolFieldUpdateOperationsInput | boolean
     personNumber?: NullableStringFieldUpdateOperationsInput | string | null
-    name?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
     clubOnboarding?: BoolFieldUpdateOperationsInput | boolean
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  }
-
-  export type InstallCreateInput = {
-    id: string
-    userId: string
-    deviceId: string
-    deviceName?: string | null
-    latestUserId: string
-  }
-
-  export type InstallUncheckedCreateInput = {
-    id: string
-    userId: string
-    deviceId: string
-    deviceName?: string | null
-    latestUserId: string
-  }
-
-  export type InstallUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
-    deviceId?: StringFieldUpdateOperationsInput | string
-    deviceName?: NullableStringFieldUpdateOperationsInput | string | null
-    latestUserId?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type InstallUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
-    deviceId?: StringFieldUpdateOperationsInput | string
-    deviceName?: NullableStringFieldUpdateOperationsInput | string | null
-    latestUserId?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type InstallCreateManyInput = {
-    id: string
-    userId: string
-    deviceId: string
-    deviceName?: string | null
-    latestUserId: string
-  }
-
-  export type InstallUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
-    deviceId?: StringFieldUpdateOperationsInput | string
-    deviceName?: NullableStringFieldUpdateOperationsInput | string | null
-    latestUserId?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type InstallUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
-    deviceId?: StringFieldUpdateOperationsInput | string
-    deviceName?: NullableStringFieldUpdateOperationsInput | string | null
-    latestUserId?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type LinkedUserIdCreateInput = {
-    id: string
-    userId: string
-    linkedUserId: string
-  }
-
-  export type LinkedUserIdUncheckedCreateInput = {
-    id: string
-    userId: string
-    linkedUserId: string
-  }
-
-  export type LinkedUserIdUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
-    linkedUserId?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type LinkedUserIdUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
-    linkedUserId?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type LinkedUserIdCreateManyInput = {
-    id: string
-    userId: string
-    linkedUserId: string
-  }
-
-  export type LinkedUserIdUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
-    linkedUserId?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type LinkedUserIdUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
-    linkedUserId?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type LinkedAccountsCreateInput = {
-    id: string
-    userId: string
-    externalAccountType: string
-    externalAccountId: string
-  }
-
-  export type LinkedAccountsUncheckedCreateInput = {
-    id: string
-    userId: string
-    externalAccountType: string
-    externalAccountId: string
-  }
-
-  export type LinkedAccountsUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
-    externalAccountType?: StringFieldUpdateOperationsInput | string
-    externalAccountId?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type LinkedAccountsUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
-    externalAccountType?: StringFieldUpdateOperationsInput | string
-    externalAccountId?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type LinkedAccountsCreateManyInput = {
-    id: string
-    userId: string
-    externalAccountType: string
-    externalAccountId: string
-  }
-
-  export type LinkedAccountsUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
-    externalAccountType?: StringFieldUpdateOperationsInput | string
-    externalAccountId?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type LinkedAccountsUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
-    externalAccountType?: StringFieldUpdateOperationsInput | string
-    externalAccountId?: StringFieldUpdateOperationsInput | string
   }
 
   export type ClubCreateInput = {
@@ -14434,7 +11319,8 @@ export namespace Prisma {
     teamId?: SortOrder
     disability?: SortOrder
     personNumber?: SortOrder
-    name?: SortOrder
+    firstName?: SortOrder
+    lastName?: SortOrder
     clubOnboarding?: SortOrder
     gender?: SortOrder
     dateCreated?: SortOrder
@@ -14448,7 +11334,8 @@ export namespace Prisma {
     teamId?: SortOrder
     disability?: SortOrder
     personNumber?: SortOrder
-    name?: SortOrder
+    firstName?: SortOrder
+    lastName?: SortOrder
     clubOnboarding?: SortOrder
     gender?: SortOrder
     dateCreated?: SortOrder
@@ -14462,7 +11349,8 @@ export namespace Prisma {
     teamId?: SortOrder
     disability?: SortOrder
     personNumber?: SortOrder
-    name?: SortOrder
+    firstName?: SortOrder
+    lastName?: SortOrder
     clubOnboarding?: SortOrder
     gender?: SortOrder
     dateCreated?: SortOrder
@@ -14547,69 +11435,6 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedDateTimeNullableFilter<$PrismaModel>
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
-  }
-
-  export type InstallCountOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    deviceId?: SortOrder
-    deviceName?: SortOrder
-    latestUserId?: SortOrder
-  }
-
-  export type InstallMaxOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    deviceId?: SortOrder
-    deviceName?: SortOrder
-    latestUserId?: SortOrder
-  }
-
-  export type InstallMinOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    deviceId?: SortOrder
-    deviceName?: SortOrder
-    latestUserId?: SortOrder
-  }
-
-  export type LinkedUserIdCountOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    linkedUserId?: SortOrder
-  }
-
-  export type LinkedUserIdMaxOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    linkedUserId?: SortOrder
-  }
-
-  export type LinkedUserIdMinOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    linkedUserId?: SortOrder
-  }
-
-  export type LinkedAccountsCountOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    externalAccountType?: SortOrder
-    externalAccountId?: SortOrder
-  }
-
-  export type LinkedAccountsMaxOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    externalAccountType?: SortOrder
-    externalAccountId?: SortOrder
-  }
-
-  export type LinkedAccountsMinOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    externalAccountType?: SortOrder
-    externalAccountId?: SortOrder
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -15962,7 +12787,8 @@ export namespace Prisma {
     userType?: $Enums.UserType
     disability?: boolean
     personNumber?: string | null
-    name?: string | null
+    firstName?: string | null
+    lastName?: string | null
     clubOnboarding?: boolean
     gender?: string | null
     dateCreated?: Date | string
@@ -15977,7 +12803,8 @@ export namespace Prisma {
     teamId?: string | null
     disability?: boolean
     personNumber?: string | null
-    name?: string | null
+    firstName?: string | null
+    lastName?: string | null
     clubOnboarding?: boolean
     gender?: string | null
     dateCreated?: Date | string
@@ -16065,7 +12892,8 @@ export namespace Prisma {
     teamId?: StringNullableFilter<"User"> | string | null
     disability?: BoolFilter<"User"> | boolean
     personNumber?: StringNullableFilter<"User"> | string | null
-    name?: StringNullableFilter<"User"> | string | null
+    firstName?: StringNullableFilter<"User"> | string | null
+    lastName?: StringNullableFilter<"User"> | string | null
     clubOnboarding?: BoolFilter<"User"> | boolean
     gender?: StringNullableFilter<"User"> | string | null
     dateCreated?: DateTimeFilter<"User"> | Date | string
@@ -16150,7 +12978,8 @@ export namespace Prisma {
     userType?: $Enums.UserType
     disability?: boolean
     personNumber?: string | null
-    name?: string | null
+    firstName?: string | null
+    lastName?: string | null
     clubOnboarding?: boolean
     gender?: string | null
     dateCreated?: Date | string
@@ -16165,7 +12994,8 @@ export namespace Prisma {
     clubId: string
     disability?: boolean
     personNumber?: string | null
-    name?: string | null
+    firstName?: string | null
+    lastName?: string | null
     clubOnboarding?: boolean
     gender?: string | null
     dateCreated?: Date | string
@@ -16309,7 +13139,8 @@ export namespace Prisma {
     userType?: $Enums.UserType
     disability?: boolean
     personNumber?: string | null
-    name?: string | null
+    firstName?: string | null
+    lastName?: string | null
     clubOnboarding?: boolean
     gender?: string | null
     dateCreated?: Date | string
@@ -16325,7 +13156,8 @@ export namespace Prisma {
     teamId?: string | null
     disability?: boolean
     personNumber?: string | null
-    name?: string | null
+    firstName?: string | null
+    lastName?: string | null
     clubOnboarding?: boolean
     gender?: string | null
     dateCreated?: Date | string
@@ -16419,7 +13251,8 @@ export namespace Prisma {
     userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
     disability?: BoolFieldUpdateOperationsInput | boolean
     personNumber?: NullableStringFieldUpdateOperationsInput | string | null
-    name?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
     clubOnboarding?: BoolFieldUpdateOperationsInput | boolean
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -16435,7 +13268,8 @@ export namespace Prisma {
     teamId?: NullableStringFieldUpdateOperationsInput | string | null
     disability?: BoolFieldUpdateOperationsInput | boolean
     personNumber?: NullableStringFieldUpdateOperationsInput | string | null
-    name?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
     clubOnboarding?: BoolFieldUpdateOperationsInput | boolean
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -16541,7 +13375,8 @@ export namespace Prisma {
     teamId?: string | null
     disability?: boolean
     personNumber?: string | null
-    name?: string | null
+    firstName?: string | null
+    lastName?: string | null
     clubOnboarding?: boolean
     gender?: string | null
     dateCreated?: Date | string
@@ -16632,7 +13467,8 @@ export namespace Prisma {
     userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
     disability?: BoolFieldUpdateOperationsInput | boolean
     personNumber?: NullableStringFieldUpdateOperationsInput | string | null
-    name?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
     clubOnboarding?: BoolFieldUpdateOperationsInput | boolean
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -16647,7 +13483,8 @@ export namespace Prisma {
     teamId?: NullableStringFieldUpdateOperationsInput | string | null
     disability?: BoolFieldUpdateOperationsInput | boolean
     personNumber?: NullableStringFieldUpdateOperationsInput | string | null
-    name?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
     clubOnboarding?: BoolFieldUpdateOperationsInput | boolean
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -16661,7 +13498,8 @@ export namespace Prisma {
     teamId?: NullableStringFieldUpdateOperationsInput | string | null
     disability?: BoolFieldUpdateOperationsInput | boolean
     personNumber?: NullableStringFieldUpdateOperationsInput | string | null
-    name?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
     clubOnboarding?: BoolFieldUpdateOperationsInput | boolean
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -16691,7 +13529,8 @@ export namespace Prisma {
     clubId: string
     disability?: boolean
     personNumber?: string | null
-    name?: string | null
+    firstName?: string | null
+    lastName?: string | null
     clubOnboarding?: boolean
     gender?: string | null
     dateCreated?: Date | string
@@ -16754,7 +13593,8 @@ export namespace Prisma {
     userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
     disability?: BoolFieldUpdateOperationsInput | boolean
     personNumber?: NullableStringFieldUpdateOperationsInput | string | null
-    name?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
     clubOnboarding?: BoolFieldUpdateOperationsInput | boolean
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -16769,7 +13609,8 @@ export namespace Prisma {
     clubId?: StringFieldUpdateOperationsInput | string
     disability?: BoolFieldUpdateOperationsInput | boolean
     personNumber?: NullableStringFieldUpdateOperationsInput | string | null
-    name?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
     clubOnboarding?: BoolFieldUpdateOperationsInput | boolean
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -16783,7 +13624,8 @@ export namespace Prisma {
     clubId?: StringFieldUpdateOperationsInput | string
     disability?: BoolFieldUpdateOperationsInput | boolean
     personNumber?: NullableStringFieldUpdateOperationsInput | string | null
-    name?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
     clubOnboarding?: BoolFieldUpdateOperationsInput | boolean
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -16811,18 +13653,6 @@ export namespace Prisma {
      * @deprecated Use UserDefaultArgs instead
      */
     export type UserArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = UserDefaultArgs<ExtArgs>
-    /**
-     * @deprecated Use InstallDefaultArgs instead
-     */
-    export type InstallArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = InstallDefaultArgs<ExtArgs>
-    /**
-     * @deprecated Use LinkedUserIdDefaultArgs instead
-     */
-    export type LinkedUserIdArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = LinkedUserIdDefaultArgs<ExtArgs>
-    /**
-     * @deprecated Use LinkedAccountsDefaultArgs instead
-     */
-    export type LinkedAccountsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = LinkedAccountsDefaultArgs<ExtArgs>
     /**
      * @deprecated Use ClubDefaultArgs instead
      */

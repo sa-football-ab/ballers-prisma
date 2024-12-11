@@ -126,32 +126,12 @@ exports.Prisma.UserScalarFieldEnum = {
   teamId: 'teamId',
   disability: 'disability',
   personNumber: 'personNumber',
-  name: 'name',
+  firstName: 'firstName',
+  lastName: 'lastName',
   clubOnboarding: 'clubOnboarding',
   gender: 'gender',
   dateCreated: 'dateCreated',
   dateUpdated: 'dateUpdated'
-};
-
-exports.Prisma.InstallScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  deviceId: 'deviceId',
-  deviceName: 'deviceName',
-  latestUserId: 'latestUserId'
-};
-
-exports.Prisma.LinkedUserIdScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  linkedUserId: 'linkedUserId'
-};
-
-exports.Prisma.LinkedAccountsScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  externalAccountType: 'externalAccountType',
-  externalAccountId: 'externalAccountId'
 };
 
 exports.Prisma.ClubScalarFieldEnum = {
@@ -263,7 +243,9 @@ exports.Prisma.JsonNullValueFilter = {
 };
 exports.UserType = exports.$Enums.UserType = {
   PLAYER: 'PLAYER',
-  COACH: 'COACH'
+  COACH: 'COACH',
+  CLUB_ADMIN: 'CLUB_ADMIN',
+  ADMIN: 'ADMIN'
 };
 
 exports.VisibilityType = exports.$Enums.VisibilityType = {
@@ -282,9 +264,6 @@ exports.SubscriptionType = exports.$Enums.SubscriptionType = {
 
 exports.Prisma.ModelName = {
   User: 'User',
-  Install: 'Install',
-  LinkedUserId: 'LinkedUserId',
-  LinkedAccounts: 'LinkedAccounts',
   Club: 'Club',
   Team: 'Team',
   Activity: 'Activity',
