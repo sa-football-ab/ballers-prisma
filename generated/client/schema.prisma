@@ -38,6 +38,9 @@ model User {
     Activity       Activity[]
     dateCreated    DateTime   @default(now())
     dateUpdated    DateTime?
+
+    @@index([clubId])
+    @@index([teamId])
 }
 
 // Club Table defination
@@ -86,6 +89,9 @@ model Activity {
     equipments     Json
     dateCreated    DateTime       @default(now())
     dateUpdated    DateTime?
+
+    @@index([coachUserId])
+    @@index([clubId])
 }
 
 // ---------------------------- Training Program Service ------------------------------------- //
@@ -120,6 +126,9 @@ model PlayerTrainingWeek {
     isCompleted                  Boolean
     dateCompleted                DateTime?
     dateCreated                  DateTime  @default(now())
+
+    @@index([playerTrainingProgramLevelId])
+    @@index([playerTrainingProgramLevelId, isCompleted])
 }
 
 // PlayerTrainingLevel Table defination
@@ -133,6 +142,10 @@ model PlayerTrainingLevel {
     isCompleted               Boolean
     dateCompleted             DateTime?
     dateCreated               DateTime  @default(now())
+
+    @@index([playerTrainingProgramId])
+    @@index([trainingProgramLevelIndex])
+    @@index([playerTrainingProgramId, trainingProgramLevelIndex, userId])
 }
 
 // SubscriptionType Enum defination
@@ -158,6 +171,10 @@ model PlayerTrainingProgram {
     subscriptionId    String?
     dateCompleted     DateTime?
     dateCreated       DateTime         @default(now())
+
+    @@index([userId])
+    @@index([trainingProgramId])
+    @@index([userId, isLocked])
 }
 
 datasource db {
