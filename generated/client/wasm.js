@@ -126,10 +126,12 @@ exports.Prisma.UserScalarFieldEnum = {
   teamId: 'teamId',
   disability: 'disability',
   personNumber: 'personNumber',
+  email: 'email',
   firstName: 'firstName',
   lastName: 'lastName',
   clubOnboarding: 'clubOnboarding',
   gender: 'gender',
+  createdBy: 'createdBy',
   dateCreated: 'dateCreated',
   dateUpdated: 'dateUpdated'
 };
@@ -167,6 +169,7 @@ exports.Prisma.ActivityScalarFieldEnum = {
   maxAge: 'maxAge',
   visibilityType: 'visibilityType',
   equipments: 'equipments',
+  type: 'type',
   dateCreated: 'dateCreated',
   dateUpdated: 'dateUpdated'
 };
@@ -244,8 +247,13 @@ exports.Prisma.JsonNullValueFilter = {
 exports.UserType = exports.$Enums.UserType = {
   PLAYER: 'PLAYER',
   COACH: 'COACH',
-  CLUB_ADMIN: 'CLUB_ADMIN',
   ADMIN: 'ADMIN'
+};
+
+exports.AdminRole = exports.$Enums.AdminRole = {
+  GENERAL: 'GENERAL',
+  BALLERS: 'BALLERS',
+  LOK: 'LOK'
 };
 
 exports.VisibilityType = exports.$Enums.VisibilityType = {

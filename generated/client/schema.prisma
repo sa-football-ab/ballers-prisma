@@ -12,13 +12,18 @@ generator client {
 enum UserType {
     PLAYER
     COACH
-    CLUB_ADMIN
     ADMIN
 }
 
 enum VisibilityType {
     RESTRICTED
     RECOMMENDED
+}
+
+enum AdminRole {
+    GENERAL
+    BALLERS
+    LOK
 }
 
 // User model
@@ -31,11 +36,13 @@ model User {
     teamId         String?
     disability     Boolean    @default(false)
     personNumber   String?
+    email          String?
     firstName      String?
     lastName       String?
     clubOnboarding Boolean    @default(true)
     gender         String?
     Activity       Activity[]
+    createdBy      AdminRole  @default(LOK) // This tracks who created the user
     dateCreated    DateTime   @default(now())
     dateUpdated    DateTime?
 
@@ -87,6 +94,7 @@ model Activity {
     maxAge         Int
     visibilityType VisibilityType @default(RECOMMENDED)
     equipments     Json
+    type           AdminRole      @default(LOK)
     dateCreated    DateTime       @default(now())
     dateUpdated    DateTime?
 

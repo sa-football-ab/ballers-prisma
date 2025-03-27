@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE `Activity` ADD COLUMN `type` ENUM('BALLERS', 'LOK') NOT NULL DEFAULT 'LOK';

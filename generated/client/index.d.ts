@@ -61,11 +61,19 @@ export namespace $Enums {
   export const UserType: {
   PLAYER: 'PLAYER',
   COACH: 'COACH',
-  CLUB_ADMIN: 'CLUB_ADMIN',
   ADMIN: 'ADMIN'
 };
 
 export type UserType = (typeof UserType)[keyof typeof UserType]
+
+
+export const AdminRole: {
+  GENERAL: 'GENERAL',
+  BALLERS: 'BALLERS',
+  LOK: 'LOK'
+};
+
+export type AdminRole = (typeof AdminRole)[keyof typeof AdminRole]
 
 
 export const VisibilityType: {
@@ -92,6 +100,10 @@ export type SubscriptionType = (typeof SubscriptionType)[keyof typeof Subscripti
 export type UserType = $Enums.UserType
 
 export const UserType: typeof $Enums.UserType
+
+export type AdminRole = $Enums.AdminRole
+
+export const AdminRole: typeof $Enums.AdminRole
 
 export type VisibilityType = $Enums.VisibilityType
 
@@ -1635,10 +1647,12 @@ export namespace Prisma {
     teamId: string | null
     disability: boolean | null
     personNumber: string | null
+    email: string | null
     firstName: string | null
     lastName: string | null
     clubOnboarding: boolean | null
     gender: string | null
+    createdBy: $Enums.AdminRole | null
     dateCreated: Date | null
     dateUpdated: Date | null
   }
@@ -1650,10 +1664,12 @@ export namespace Prisma {
     teamId: string | null
     disability: boolean | null
     personNumber: string | null
+    email: string | null
     firstName: string | null
     lastName: string | null
     clubOnboarding: boolean | null
     gender: string | null
+    createdBy: $Enums.AdminRole | null
     dateCreated: Date | null
     dateUpdated: Date | null
   }
@@ -1665,10 +1681,12 @@ export namespace Prisma {
     teamId: number
     disability: number
     personNumber: number
+    email: number
     firstName: number
     lastName: number
     clubOnboarding: number
     gender: number
+    createdBy: number
     dateCreated: number
     dateUpdated: number
     _all: number
@@ -1682,10 +1700,12 @@ export namespace Prisma {
     teamId?: true
     disability?: true
     personNumber?: true
+    email?: true
     firstName?: true
     lastName?: true
     clubOnboarding?: true
     gender?: true
+    createdBy?: true
     dateCreated?: true
     dateUpdated?: true
   }
@@ -1697,10 +1717,12 @@ export namespace Prisma {
     teamId?: true
     disability?: true
     personNumber?: true
+    email?: true
     firstName?: true
     lastName?: true
     clubOnboarding?: true
     gender?: true
+    createdBy?: true
     dateCreated?: true
     dateUpdated?: true
   }
@@ -1712,10 +1734,12 @@ export namespace Prisma {
     teamId?: true
     disability?: true
     personNumber?: true
+    email?: true
     firstName?: true
     lastName?: true
     clubOnboarding?: true
     gender?: true
+    createdBy?: true
     dateCreated?: true
     dateUpdated?: true
     _all?: true
@@ -1800,10 +1824,12 @@ export namespace Prisma {
     teamId: string | null
     disability: boolean
     personNumber: string | null
+    email: string | null
     firstName: string | null
     lastName: string | null
     clubOnboarding: boolean
     gender: string | null
+    createdBy: $Enums.AdminRole
     dateCreated: Date
     dateUpdated: Date | null
     _count: UserCountAggregateOutputType | null
@@ -1832,10 +1858,12 @@ export namespace Prisma {
     teamId?: boolean
     disability?: boolean
     personNumber?: boolean
+    email?: boolean
     firstName?: boolean
     lastName?: boolean
     clubOnboarding?: boolean
     gender?: boolean
+    createdBy?: boolean
     dateCreated?: boolean
     dateUpdated?: boolean
     club?: boolean | ClubDefaultArgs<ExtArgs>
@@ -1851,10 +1879,12 @@ export namespace Prisma {
     teamId?: boolean
     disability?: boolean
     personNumber?: boolean
+    email?: boolean
     firstName?: boolean
     lastName?: boolean
     clubOnboarding?: boolean
     gender?: boolean
+    createdBy?: boolean
     dateCreated?: boolean
     dateUpdated?: boolean
   }
@@ -1881,10 +1911,12 @@ export namespace Prisma {
       teamId: string | null
       disability: boolean
       personNumber: string | null
+      email: string | null
       firstName: string | null
       lastName: string | null
       clubOnboarding: boolean
       gender: string | null
+      createdBy: $Enums.AdminRole
       dateCreated: Date
       dateUpdated: Date | null
     }, ExtArgs["result"]["user"]>
@@ -2292,10 +2324,12 @@ export namespace Prisma {
     readonly teamId: FieldRef<"User", 'String'>
     readonly disability: FieldRef<"User", 'Boolean'>
     readonly personNumber: FieldRef<"User", 'String'>
+    readonly email: FieldRef<"User", 'String'>
     readonly firstName: FieldRef<"User", 'String'>
     readonly lastName: FieldRef<"User", 'String'>
     readonly clubOnboarding: FieldRef<"User", 'Boolean'>
     readonly gender: FieldRef<"User", 'String'>
+    readonly createdBy: FieldRef<"User", 'AdminRole'>
     readonly dateCreated: FieldRef<"User", 'DateTime'>
     readonly dateUpdated: FieldRef<"User", 'DateTime'>
   }
@@ -4733,6 +4767,7 @@ export namespace Prisma {
     minAge: number | null
     maxAge: number | null
     visibilityType: $Enums.VisibilityType | null
+    type: $Enums.AdminRole | null
     dateCreated: Date | null
     dateUpdated: Date | null
   }
@@ -4750,6 +4785,7 @@ export namespace Prisma {
     minAge: number | null
     maxAge: number | null
     visibilityType: $Enums.VisibilityType | null
+    type: $Enums.AdminRole | null
     dateCreated: Date | null
     dateUpdated: Date | null
   }
@@ -4768,6 +4804,7 @@ export namespace Prisma {
     maxAge: number
     visibilityType: number
     equipments: number
+    type: number
     dateCreated: number
     dateUpdated: number
     _all: number
@@ -4801,6 +4838,7 @@ export namespace Prisma {
     minAge?: true
     maxAge?: true
     visibilityType?: true
+    type?: true
     dateCreated?: true
     dateUpdated?: true
   }
@@ -4818,6 +4856,7 @@ export namespace Prisma {
     minAge?: true
     maxAge?: true
     visibilityType?: true
+    type?: true
     dateCreated?: true
     dateUpdated?: true
   }
@@ -4836,6 +4875,7 @@ export namespace Prisma {
     maxAge?: true
     visibilityType?: true
     equipments?: true
+    type?: true
     dateCreated?: true
     dateUpdated?: true
     _all?: true
@@ -4941,6 +4981,7 @@ export namespace Prisma {
     maxAge: number
     visibilityType: $Enums.VisibilityType
     equipments: JsonValue
+    type: $Enums.AdminRole
     dateCreated: Date
     dateUpdated: Date | null
     _count: ActivityCountAggregateOutputType | null
@@ -4978,6 +5019,7 @@ export namespace Prisma {
     maxAge?: boolean
     visibilityType?: boolean
     equipments?: boolean
+    type?: boolean
     dateCreated?: boolean
     dateUpdated?: boolean
     team?: boolean | Activity$teamArgs<ExtArgs>
@@ -4999,6 +5041,7 @@ export namespace Prisma {
     maxAge?: boolean
     visibilityType?: boolean
     equipments?: boolean
+    type?: boolean
     dateCreated?: boolean
     dateUpdated?: boolean
   }
@@ -5031,6 +5074,7 @@ export namespace Prisma {
       maxAge: number
       visibilityType: $Enums.VisibilityType
       equipments: Prisma.JsonValue
+      type: $Enums.AdminRole
       dateCreated: Date
       dateUpdated: Date | null
     }, ExtArgs["result"]["activity"]>
@@ -5445,6 +5489,7 @@ export namespace Prisma {
     readonly maxAge: FieldRef<"Activity", 'Int'>
     readonly visibilityType: FieldRef<"Activity", 'VisibilityType'>
     readonly equipments: FieldRef<"Activity", 'Json'>
+    readonly type: FieldRef<"Activity", 'AdminRole'>
     readonly dateCreated: FieldRef<"Activity", 'DateTime'>
     readonly dateUpdated: FieldRef<"Activity", 'DateTime'>
   }
@@ -9606,10 +9651,12 @@ export namespace Prisma {
     teamId: 'teamId',
     disability: 'disability',
     personNumber: 'personNumber',
+    email: 'email',
     firstName: 'firstName',
     lastName: 'lastName',
     clubOnboarding: 'clubOnboarding',
     gender: 'gender',
+    createdBy: 'createdBy',
     dateCreated: 'dateCreated',
     dateUpdated: 'dateUpdated'
   };
@@ -9656,6 +9703,7 @@ export namespace Prisma {
     maxAge: 'maxAge',
     visibilityType: 'visibilityType',
     equipments: 'equipments',
+    type: 'type',
     dateCreated: 'dateCreated',
     dateUpdated: 'dateUpdated'
   };
@@ -9785,6 +9833,13 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'AdminRole'
+   */
+  export type EnumAdminRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AdminRole'>
+    
+
+
+  /**
    * Reference to a field of type 'DateTime'
    */
   export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
@@ -9839,10 +9894,12 @@ export namespace Prisma {
     teamId?: StringNullableFilter<"User"> | string | null
     disability?: BoolFilter<"User"> | boolean
     personNumber?: StringNullableFilter<"User"> | string | null
+    email?: StringNullableFilter<"User"> | string | null
     firstName?: StringNullableFilter<"User"> | string | null
     lastName?: StringNullableFilter<"User"> | string | null
     clubOnboarding?: BoolFilter<"User"> | boolean
     gender?: StringNullableFilter<"User"> | string | null
+    createdBy?: EnumAdminRoleFilter<"User"> | $Enums.AdminRole
     dateCreated?: DateTimeFilter<"User"> | Date | string
     dateUpdated?: DateTimeNullableFilter<"User"> | Date | string | null
     club?: XOR<ClubRelationFilter, ClubWhereInput>
@@ -9857,10 +9914,12 @@ export namespace Prisma {
     teamId?: SortOrderInput | SortOrder
     disability?: SortOrder
     personNumber?: SortOrderInput | SortOrder
+    email?: SortOrderInput | SortOrder
     firstName?: SortOrderInput | SortOrder
     lastName?: SortOrderInput | SortOrder
     clubOnboarding?: SortOrder
     gender?: SortOrderInput | SortOrder
+    createdBy?: SortOrder
     dateCreated?: SortOrder
     dateUpdated?: SortOrderInput | SortOrder
     club?: ClubOrderByWithRelationInput
@@ -9878,10 +9937,12 @@ export namespace Prisma {
     teamId?: StringNullableFilter<"User"> | string | null
     disability?: BoolFilter<"User"> | boolean
     personNumber?: StringNullableFilter<"User"> | string | null
+    email?: StringNullableFilter<"User"> | string | null
     firstName?: StringNullableFilter<"User"> | string | null
     lastName?: StringNullableFilter<"User"> | string | null
     clubOnboarding?: BoolFilter<"User"> | boolean
     gender?: StringNullableFilter<"User"> | string | null
+    createdBy?: EnumAdminRoleFilter<"User"> | $Enums.AdminRole
     dateCreated?: DateTimeFilter<"User"> | Date | string
     dateUpdated?: DateTimeNullableFilter<"User"> | Date | string | null
     club?: XOR<ClubRelationFilter, ClubWhereInput>
@@ -9896,10 +9957,12 @@ export namespace Prisma {
     teamId?: SortOrderInput | SortOrder
     disability?: SortOrder
     personNumber?: SortOrderInput | SortOrder
+    email?: SortOrderInput | SortOrder
     firstName?: SortOrderInput | SortOrder
     lastName?: SortOrderInput | SortOrder
     clubOnboarding?: SortOrder
     gender?: SortOrderInput | SortOrder
+    createdBy?: SortOrder
     dateCreated?: SortOrder
     dateUpdated?: SortOrderInput | SortOrder
     _count?: UserCountOrderByAggregateInput
@@ -9917,10 +9980,12 @@ export namespace Prisma {
     teamId?: StringNullableWithAggregatesFilter<"User"> | string | null
     disability?: BoolWithAggregatesFilter<"User"> | boolean
     personNumber?: StringNullableWithAggregatesFilter<"User"> | string | null
+    email?: StringNullableWithAggregatesFilter<"User"> | string | null
     firstName?: StringNullableWithAggregatesFilter<"User"> | string | null
     lastName?: StringNullableWithAggregatesFilter<"User"> | string | null
     clubOnboarding?: BoolWithAggregatesFilter<"User"> | boolean
     gender?: StringNullableWithAggregatesFilter<"User"> | string | null
+    createdBy?: EnumAdminRoleWithAggregatesFilter<"User"> | $Enums.AdminRole
     dateCreated?: DateTimeWithAggregatesFilter<"User"> | Date | string
     dateUpdated?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
   }
@@ -10081,6 +10146,7 @@ export namespace Prisma {
     maxAge?: IntFilter<"Activity"> | number
     visibilityType?: EnumVisibilityTypeFilter<"Activity"> | $Enums.VisibilityType
     equipments?: JsonFilter<"Activity">
+    type?: EnumAdminRoleFilter<"Activity"> | $Enums.AdminRole
     dateCreated?: DateTimeFilter<"Activity"> | Date | string
     dateUpdated?: DateTimeNullableFilter<"Activity"> | Date | string | null
     team?: XOR<TeamNullableRelationFilter, TeamWhereInput> | null
@@ -10102,6 +10168,7 @@ export namespace Prisma {
     maxAge?: SortOrder
     visibilityType?: SortOrder
     equipments?: SortOrder
+    type?: SortOrder
     dateCreated?: SortOrder
     dateUpdated?: SortOrderInput | SortOrder
     team?: TeamOrderByWithRelationInput
@@ -10126,6 +10193,7 @@ export namespace Prisma {
     maxAge?: IntFilter<"Activity"> | number
     visibilityType?: EnumVisibilityTypeFilter<"Activity"> | $Enums.VisibilityType
     equipments?: JsonFilter<"Activity">
+    type?: EnumAdminRoleFilter<"Activity"> | $Enums.AdminRole
     dateCreated?: DateTimeFilter<"Activity"> | Date | string
     dateUpdated?: DateTimeNullableFilter<"Activity"> | Date | string | null
     team?: XOR<TeamNullableRelationFilter, TeamWhereInput> | null
@@ -10147,6 +10215,7 @@ export namespace Prisma {
     maxAge?: SortOrder
     visibilityType?: SortOrder
     equipments?: SortOrder
+    type?: SortOrder
     dateCreated?: SortOrder
     dateUpdated?: SortOrderInput | SortOrder
     _count?: ActivityCountOrderByAggregateInput
@@ -10173,6 +10242,7 @@ export namespace Prisma {
     maxAge?: IntWithAggregatesFilter<"Activity"> | number
     visibilityType?: EnumVisibilityTypeWithAggregatesFilter<"Activity"> | $Enums.VisibilityType
     equipments?: JsonWithAggregatesFilter<"Activity">
+    type?: EnumAdminRoleWithAggregatesFilter<"Activity"> | $Enums.AdminRole
     dateCreated?: DateTimeWithAggregatesFilter<"Activity"> | Date | string
     dateUpdated?: DateTimeNullableWithAggregatesFilter<"Activity"> | Date | string | null
   }
@@ -10491,10 +10561,12 @@ export namespace Prisma {
     userType?: $Enums.UserType
     disability?: boolean
     personNumber?: string | null
+    email?: string | null
     firstName?: string | null
     lastName?: string | null
     clubOnboarding?: boolean
     gender?: string | null
+    createdBy?: $Enums.AdminRole
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
     club: ClubCreateNestedOneWithoutUserInput
@@ -10509,10 +10581,12 @@ export namespace Prisma {
     teamId?: string | null
     disability?: boolean
     personNumber?: string | null
+    email?: string | null
     firstName?: string | null
     lastName?: string | null
     clubOnboarding?: boolean
     gender?: string | null
+    createdBy?: $Enums.AdminRole
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
     Activity?: ActivityUncheckedCreateNestedManyWithoutUserInput
@@ -10523,10 +10597,12 @@ export namespace Prisma {
     userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
     disability?: BoolFieldUpdateOperationsInput | boolean
     personNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
     firstName?: NullableStringFieldUpdateOperationsInput | string | null
     lastName?: NullableStringFieldUpdateOperationsInput | string | null
     clubOnboarding?: BoolFieldUpdateOperationsInput | boolean
     gender?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     club?: ClubUpdateOneRequiredWithoutUserNestedInput
@@ -10541,10 +10617,12 @@ export namespace Prisma {
     teamId?: NullableStringFieldUpdateOperationsInput | string | null
     disability?: BoolFieldUpdateOperationsInput | boolean
     personNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
     firstName?: NullableStringFieldUpdateOperationsInput | string | null
     lastName?: NullableStringFieldUpdateOperationsInput | string | null
     clubOnboarding?: BoolFieldUpdateOperationsInput | boolean
     gender?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     Activity?: ActivityUncheckedUpdateManyWithoutUserNestedInput
@@ -10557,10 +10635,12 @@ export namespace Prisma {
     teamId?: string | null
     disability?: boolean
     personNumber?: string | null
+    email?: string | null
     firstName?: string | null
     lastName?: string | null
     clubOnboarding?: boolean
     gender?: string | null
+    createdBy?: $Enums.AdminRole
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
   }
@@ -10570,10 +10650,12 @@ export namespace Prisma {
     userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
     disability?: BoolFieldUpdateOperationsInput | boolean
     personNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
     firstName?: NullableStringFieldUpdateOperationsInput | string | null
     lastName?: NullableStringFieldUpdateOperationsInput | string | null
     clubOnboarding?: BoolFieldUpdateOperationsInput | boolean
     gender?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -10585,10 +10667,12 @@ export namespace Prisma {
     teamId?: NullableStringFieldUpdateOperationsInput | string | null
     disability?: BoolFieldUpdateOperationsInput | boolean
     personNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
     firstName?: NullableStringFieldUpdateOperationsInput | string | null
     lastName?: NullableStringFieldUpdateOperationsInput | string | null
     clubOnboarding?: BoolFieldUpdateOperationsInput | boolean
     gender?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -10756,6 +10840,7 @@ export namespace Prisma {
     maxAge: number
     visibilityType?: $Enums.VisibilityType
     equipments: JsonNullValueInput | InputJsonValue
+    type?: $Enums.AdminRole
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
     team?: TeamCreateNestedOneWithoutActivityInput
@@ -10777,6 +10862,7 @@ export namespace Prisma {
     maxAge: number
     visibilityType?: $Enums.VisibilityType
     equipments: JsonNullValueInput | InputJsonValue
+    type?: $Enums.AdminRole
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
   }
@@ -10792,6 +10878,7 @@ export namespace Prisma {
     maxAge?: IntFieldUpdateOperationsInput | number
     visibilityType?: EnumVisibilityTypeFieldUpdateOperationsInput | $Enums.VisibilityType
     equipments?: JsonNullValueInput | InputJsonValue
+    type?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     team?: TeamUpdateOneWithoutActivityNestedInput
@@ -10813,6 +10900,7 @@ export namespace Prisma {
     maxAge?: IntFieldUpdateOperationsInput | number
     visibilityType?: EnumVisibilityTypeFieldUpdateOperationsInput | $Enums.VisibilityType
     equipments?: JsonNullValueInput | InputJsonValue
+    type?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -10831,6 +10919,7 @@ export namespace Prisma {
     maxAge: number
     visibilityType?: $Enums.VisibilityType
     equipments: JsonNullValueInput | InputJsonValue
+    type?: $Enums.AdminRole
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
   }
@@ -10846,6 +10935,7 @@ export namespace Prisma {
     maxAge?: IntFieldUpdateOperationsInput | number
     visibilityType?: EnumVisibilityTypeFieldUpdateOperationsInput | $Enums.VisibilityType
     equipments?: JsonNullValueInput | InputJsonValue
+    type?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -10864,6 +10954,7 @@ export namespace Prisma {
     maxAge?: IntFieldUpdateOperationsInput | number
     visibilityType?: EnumVisibilityTypeFieldUpdateOperationsInput | $Enums.VisibilityType
     equipments?: JsonNullValueInput | InputJsonValue
+    type?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -11265,6 +11356,13 @@ export namespace Prisma {
     not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
+  export type EnumAdminRoleFilter<$PrismaModel = never> = {
+    equals?: $Enums.AdminRole | EnumAdminRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.AdminRole[]
+    notIn?: $Enums.AdminRole[]
+    not?: NestedEnumAdminRoleFilter<$PrismaModel> | $Enums.AdminRole
+  }
+
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[]
@@ -11319,10 +11417,12 @@ export namespace Prisma {
     teamId?: SortOrder
     disability?: SortOrder
     personNumber?: SortOrder
+    email?: SortOrder
     firstName?: SortOrder
     lastName?: SortOrder
     clubOnboarding?: SortOrder
     gender?: SortOrder
+    createdBy?: SortOrder
     dateCreated?: SortOrder
     dateUpdated?: SortOrder
   }
@@ -11334,10 +11434,12 @@ export namespace Prisma {
     teamId?: SortOrder
     disability?: SortOrder
     personNumber?: SortOrder
+    email?: SortOrder
     firstName?: SortOrder
     lastName?: SortOrder
     clubOnboarding?: SortOrder
     gender?: SortOrder
+    createdBy?: SortOrder
     dateCreated?: SortOrder
     dateUpdated?: SortOrder
   }
@@ -11349,10 +11451,12 @@ export namespace Prisma {
     teamId?: SortOrder
     disability?: SortOrder
     personNumber?: SortOrder
+    email?: SortOrder
     firstName?: SortOrder
     lastName?: SortOrder
     clubOnboarding?: SortOrder
     gender?: SortOrder
+    createdBy?: SortOrder
     dateCreated?: SortOrder
     dateUpdated?: SortOrder
   }
@@ -11407,6 +11511,16 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedBoolFilter<$PrismaModel>
     _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type EnumAdminRoleWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.AdminRole | EnumAdminRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.AdminRole[]
+    notIn?: $Enums.AdminRole[]
+    not?: NestedEnumAdminRoleWithAggregatesFilter<$PrismaModel> | $Enums.AdminRole
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumAdminRoleFilter<$PrismaModel>
+    _max?: NestedEnumAdminRoleFilter<$PrismaModel>
   }
 
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -11597,6 +11711,7 @@ export namespace Prisma {
     maxAge?: SortOrder
     visibilityType?: SortOrder
     equipments?: SortOrder
+    type?: SortOrder
     dateCreated?: SortOrder
     dateUpdated?: SortOrder
   }
@@ -11621,6 +11736,7 @@ export namespace Prisma {
     minAge?: SortOrder
     maxAge?: SortOrder
     visibilityType?: SortOrder
+    type?: SortOrder
     dateCreated?: SortOrder
     dateUpdated?: SortOrder
   }
@@ -11638,6 +11754,7 @@ export namespace Prisma {
     minAge?: SortOrder
     maxAge?: SortOrder
     visibilityType?: SortOrder
+    type?: SortOrder
     dateCreated?: SortOrder
     dateUpdated?: SortOrder
   }
@@ -11920,6 +12037,10 @@ export namespace Prisma {
 
   export type NullableStringFieldUpdateOperationsInput = {
     set?: string | null
+  }
+
+  export type EnumAdminRoleFieldUpdateOperationsInput = {
+    set?: $Enums.AdminRole
   }
 
   export type DateTimeFieldUpdateOperationsInput = {
@@ -12300,6 +12421,13 @@ export namespace Prisma {
     not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
+  export type NestedEnumAdminRoleFilter<$PrismaModel = never> = {
+    equals?: $Enums.AdminRole | EnumAdminRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.AdminRole[]
+    notIn?: $Enums.AdminRole[]
+    not?: NestedEnumAdminRoleFilter<$PrismaModel> | $Enums.AdminRole
+  }
+
   export type NestedDateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[]
@@ -12394,6 +12522,16 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedBoolFilter<$PrismaModel>
     _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type NestedEnumAdminRoleWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.AdminRole | EnumAdminRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.AdminRole[]
+    notIn?: $Enums.AdminRole[]
+    not?: NestedEnumAdminRoleWithAggregatesFilter<$PrismaModel> | $Enums.AdminRole
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumAdminRoleFilter<$PrismaModel>
+    _max?: NestedEnumAdminRoleFilter<$PrismaModel>
   }
 
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -12572,6 +12710,7 @@ export namespace Prisma {
     maxAge: number
     visibilityType?: $Enums.VisibilityType
     equipments: JsonNullValueInput | InputJsonValue
+    type?: $Enums.AdminRole
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
     team?: TeamCreateNestedOneWithoutActivityInput
@@ -12591,6 +12730,7 @@ export namespace Prisma {
     maxAge: number
     visibilityType?: $Enums.VisibilityType
     equipments: JsonNullValueInput | InputJsonValue
+    type?: $Enums.AdminRole
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
   }
@@ -12704,6 +12844,7 @@ export namespace Prisma {
     maxAge?: IntFilter<"Activity"> | number
     visibilityType?: EnumVisibilityTypeFilter<"Activity"> | $Enums.VisibilityType
     equipments?: JsonFilter<"Activity">
+    type?: EnumAdminRoleFilter<"Activity"> | $Enums.AdminRole
     dateCreated?: DateTimeFilter<"Activity"> | Date | string
     dateUpdated?: DateTimeNullableFilter<"Activity"> | Date | string | null
   }
@@ -12749,6 +12890,7 @@ export namespace Prisma {
     maxAge: number
     visibilityType?: $Enums.VisibilityType
     equipments: JsonNullValueInput | InputJsonValue
+    type?: $Enums.AdminRole
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
     team?: TeamCreateNestedOneWithoutActivityInput
@@ -12768,6 +12910,7 @@ export namespace Prisma {
     maxAge: number
     visibilityType?: $Enums.VisibilityType
     equipments: JsonNullValueInput | InputJsonValue
+    type?: $Enums.AdminRole
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
   }
@@ -12787,10 +12930,12 @@ export namespace Prisma {
     userType?: $Enums.UserType
     disability?: boolean
     personNumber?: string | null
+    email?: string | null
     firstName?: string | null
     lastName?: string | null
     clubOnboarding?: boolean
     gender?: string | null
+    createdBy?: $Enums.AdminRole
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
     team?: TeamCreateNestedOneWithoutUserInput
@@ -12803,10 +12948,12 @@ export namespace Prisma {
     teamId?: string | null
     disability?: boolean
     personNumber?: string | null
+    email?: string | null
     firstName?: string | null
     lastName?: string | null
     clubOnboarding?: boolean
     gender?: string | null
+    createdBy?: $Enums.AdminRole
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
     Activity?: ActivityUncheckedCreateNestedManyWithoutUserInput
@@ -12892,10 +13039,12 @@ export namespace Prisma {
     teamId?: StringNullableFilter<"User"> | string | null
     disability?: BoolFilter<"User"> | boolean
     personNumber?: StringNullableFilter<"User"> | string | null
+    email?: StringNullableFilter<"User"> | string | null
     firstName?: StringNullableFilter<"User"> | string | null
     lastName?: StringNullableFilter<"User"> | string | null
     clubOnboarding?: BoolFilter<"User"> | boolean
     gender?: StringNullableFilter<"User"> | string | null
+    createdBy?: EnumAdminRoleFilter<"User"> | $Enums.AdminRole
     dateCreated?: DateTimeFilter<"User"> | Date | string
     dateUpdated?: DateTimeNullableFilter<"User"> | Date | string | null
   }
@@ -12940,6 +13089,7 @@ export namespace Prisma {
     maxAge: number
     visibilityType?: $Enums.VisibilityType
     equipments: JsonNullValueInput | InputJsonValue
+    type?: $Enums.AdminRole
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
     club: ClubCreateNestedOneWithoutActivityInput
@@ -12959,6 +13109,7 @@ export namespace Prisma {
     maxAge: number
     visibilityType?: $Enums.VisibilityType
     equipments: JsonNullValueInput | InputJsonValue
+    type?: $Enums.AdminRole
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
   }
@@ -12978,10 +13129,12 @@ export namespace Prisma {
     userType?: $Enums.UserType
     disability?: boolean
     personNumber?: string | null
+    email?: string | null
     firstName?: string | null
     lastName?: string | null
     clubOnboarding?: boolean
     gender?: string | null
+    createdBy?: $Enums.AdminRole
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
     club: ClubCreateNestedOneWithoutUserInput
@@ -12994,10 +13147,12 @@ export namespace Prisma {
     clubId: string
     disability?: boolean
     personNumber?: string | null
+    email?: string | null
     firstName?: string | null
     lastName?: string | null
     clubOnboarding?: boolean
     gender?: string | null
+    createdBy?: $Enums.AdminRole
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
     Activity?: ActivityUncheckedCreateNestedManyWithoutUserInput
@@ -13139,10 +13294,12 @@ export namespace Prisma {
     userType?: $Enums.UserType
     disability?: boolean
     personNumber?: string | null
+    email?: string | null
     firstName?: string | null
     lastName?: string | null
     clubOnboarding?: boolean
     gender?: string | null
+    createdBy?: $Enums.AdminRole
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
     club: ClubCreateNestedOneWithoutUserInput
@@ -13156,10 +13313,12 @@ export namespace Prisma {
     teamId?: string | null
     disability?: boolean
     personNumber?: string | null
+    email?: string | null
     firstName?: string | null
     lastName?: string | null
     clubOnboarding?: boolean
     gender?: string | null
+    createdBy?: $Enums.AdminRole
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
   }
@@ -13251,10 +13410,12 @@ export namespace Prisma {
     userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
     disability?: BoolFieldUpdateOperationsInput | boolean
     personNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
     firstName?: NullableStringFieldUpdateOperationsInput | string | null
     lastName?: NullableStringFieldUpdateOperationsInput | string | null
     clubOnboarding?: BoolFieldUpdateOperationsInput | boolean
     gender?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     club?: ClubUpdateOneRequiredWithoutUserNestedInput
@@ -13268,10 +13429,12 @@ export namespace Prisma {
     teamId?: NullableStringFieldUpdateOperationsInput | string | null
     disability?: BoolFieldUpdateOperationsInput | boolean
     personNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
     firstName?: NullableStringFieldUpdateOperationsInput | string | null
     lastName?: NullableStringFieldUpdateOperationsInput | string | null
     clubOnboarding?: BoolFieldUpdateOperationsInput | boolean
     gender?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -13289,6 +13452,7 @@ export namespace Prisma {
     maxAge: number
     visibilityType?: $Enums.VisibilityType
     equipments: JsonNullValueInput | InputJsonValue
+    type?: $Enums.AdminRole
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
   }
@@ -13304,6 +13468,7 @@ export namespace Prisma {
     maxAge?: IntFieldUpdateOperationsInput | number
     visibilityType?: EnumVisibilityTypeFieldUpdateOperationsInput | $Enums.VisibilityType
     equipments?: JsonNullValueInput | InputJsonValue
+    type?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     team?: TeamUpdateOneWithoutActivityNestedInput
@@ -13323,6 +13488,7 @@ export namespace Prisma {
     maxAge?: IntFieldUpdateOperationsInput | number
     visibilityType?: EnumVisibilityTypeFieldUpdateOperationsInput | $Enums.VisibilityType
     equipments?: JsonNullValueInput | InputJsonValue
+    type?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -13340,6 +13506,7 @@ export namespace Prisma {
     maxAge?: IntFieldUpdateOperationsInput | number
     visibilityType?: EnumVisibilityTypeFieldUpdateOperationsInput | $Enums.VisibilityType
     equipments?: JsonNullValueInput | InputJsonValue
+    type?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -13365,6 +13532,7 @@ export namespace Prisma {
     maxAge: number
     visibilityType?: $Enums.VisibilityType
     equipments: JsonNullValueInput | InputJsonValue
+    type?: $Enums.AdminRole
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
   }
@@ -13375,10 +13543,12 @@ export namespace Prisma {
     teamId?: string | null
     disability?: boolean
     personNumber?: string | null
+    email?: string | null
     firstName?: string | null
     lastName?: string | null
     clubOnboarding?: boolean
     gender?: string | null
+    createdBy?: $Enums.AdminRole
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
   }
@@ -13422,6 +13592,7 @@ export namespace Prisma {
     maxAge?: IntFieldUpdateOperationsInput | number
     visibilityType?: EnumVisibilityTypeFieldUpdateOperationsInput | $Enums.VisibilityType
     equipments?: JsonNullValueInput | InputJsonValue
+    type?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     team?: TeamUpdateOneWithoutActivityNestedInput
@@ -13441,6 +13612,7 @@ export namespace Prisma {
     maxAge?: IntFieldUpdateOperationsInput | number
     visibilityType?: EnumVisibilityTypeFieldUpdateOperationsInput | $Enums.VisibilityType
     equipments?: JsonNullValueInput | InputJsonValue
+    type?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -13458,6 +13630,7 @@ export namespace Prisma {
     maxAge?: IntFieldUpdateOperationsInput | number
     visibilityType?: EnumVisibilityTypeFieldUpdateOperationsInput | $Enums.VisibilityType
     equipments?: JsonNullValueInput | InputJsonValue
+    type?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -13467,10 +13640,12 @@ export namespace Prisma {
     userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
     disability?: BoolFieldUpdateOperationsInput | boolean
     personNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
     firstName?: NullableStringFieldUpdateOperationsInput | string | null
     lastName?: NullableStringFieldUpdateOperationsInput | string | null
     clubOnboarding?: BoolFieldUpdateOperationsInput | boolean
     gender?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     team?: TeamUpdateOneWithoutUserNestedInput
@@ -13483,10 +13658,12 @@ export namespace Prisma {
     teamId?: NullableStringFieldUpdateOperationsInput | string | null
     disability?: BoolFieldUpdateOperationsInput | boolean
     personNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
     firstName?: NullableStringFieldUpdateOperationsInput | string | null
     lastName?: NullableStringFieldUpdateOperationsInput | string | null
     clubOnboarding?: BoolFieldUpdateOperationsInput | boolean
     gender?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     Activity?: ActivityUncheckedUpdateManyWithoutUserNestedInput
@@ -13498,10 +13675,12 @@ export namespace Prisma {
     teamId?: NullableStringFieldUpdateOperationsInput | string | null
     disability?: BoolFieldUpdateOperationsInput | boolean
     personNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
     firstName?: NullableStringFieldUpdateOperationsInput | string | null
     lastName?: NullableStringFieldUpdateOperationsInput | string | null
     clubOnboarding?: BoolFieldUpdateOperationsInput | boolean
     gender?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -13519,6 +13698,7 @@ export namespace Prisma {
     maxAge: number
     visibilityType?: $Enums.VisibilityType
     equipments: JsonNullValueInput | InputJsonValue
+    type?: $Enums.AdminRole
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
   }
@@ -13529,10 +13709,12 @@ export namespace Prisma {
     clubId: string
     disability?: boolean
     personNumber?: string | null
+    email?: string | null
     firstName?: string | null
     lastName?: string | null
     clubOnboarding?: boolean
     gender?: string | null
+    createdBy?: $Enums.AdminRole
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
   }
@@ -13548,6 +13730,7 @@ export namespace Prisma {
     maxAge?: IntFieldUpdateOperationsInput | number
     visibilityType?: EnumVisibilityTypeFieldUpdateOperationsInput | $Enums.VisibilityType
     equipments?: JsonNullValueInput | InputJsonValue
+    type?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     club?: ClubUpdateOneRequiredWithoutActivityNestedInput
@@ -13567,6 +13750,7 @@ export namespace Prisma {
     maxAge?: IntFieldUpdateOperationsInput | number
     visibilityType?: EnumVisibilityTypeFieldUpdateOperationsInput | $Enums.VisibilityType
     equipments?: JsonNullValueInput | InputJsonValue
+    type?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -13584,6 +13768,7 @@ export namespace Prisma {
     maxAge?: IntFieldUpdateOperationsInput | number
     visibilityType?: EnumVisibilityTypeFieldUpdateOperationsInput | $Enums.VisibilityType
     equipments?: JsonNullValueInput | InputJsonValue
+    type?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -13593,10 +13778,12 @@ export namespace Prisma {
     userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
     disability?: BoolFieldUpdateOperationsInput | boolean
     personNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
     firstName?: NullableStringFieldUpdateOperationsInput | string | null
     lastName?: NullableStringFieldUpdateOperationsInput | string | null
     clubOnboarding?: BoolFieldUpdateOperationsInput | boolean
     gender?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     club?: ClubUpdateOneRequiredWithoutUserNestedInput
@@ -13609,10 +13796,12 @@ export namespace Prisma {
     clubId?: StringFieldUpdateOperationsInput | string
     disability?: BoolFieldUpdateOperationsInput | boolean
     personNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
     firstName?: NullableStringFieldUpdateOperationsInput | string | null
     lastName?: NullableStringFieldUpdateOperationsInput | string | null
     clubOnboarding?: BoolFieldUpdateOperationsInput | boolean
     gender?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     Activity?: ActivityUncheckedUpdateManyWithoutUserNestedInput
@@ -13624,10 +13813,12 @@ export namespace Prisma {
     clubId?: StringFieldUpdateOperationsInput | string
     disability?: BoolFieldUpdateOperationsInput | boolean
     personNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
     firstName?: NullableStringFieldUpdateOperationsInput | string | null
     lastName?: NullableStringFieldUpdateOperationsInput | string | null
     clubOnboarding?: BoolFieldUpdateOperationsInput | boolean
     gender?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
