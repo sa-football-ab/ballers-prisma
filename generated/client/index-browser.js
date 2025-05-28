@@ -143,7 +143,9 @@ exports.Prisma.ClubScalarFieldEnum = {
   income: 'income',
   organizationNumber: 'organizationNumber',
   dateCreated: 'dateCreated',
-  dateUpdated: 'dateUpdated'
+  dateUpdated: 'dateUpdated',
+  type: 'type',
+  subscriptionStatus: 'subscriptionStatus'
 };
 
 exports.Prisma.TeamScalarFieldEnum = {
@@ -170,6 +172,7 @@ exports.Prisma.ActivityScalarFieldEnum = {
   visibilityType: 'visibilityType',
   equipments: 'equipments',
   type: 'type',
+  language: 'language',
   dateCreated: 'dateCreated',
   dateUpdated: 'dateUpdated'
 };
@@ -256,15 +259,27 @@ exports.AdminRole = exports.$Enums.AdminRole = {
   LOK: 'LOK'
 };
 
+exports.SubscriptionStatus = exports.$Enums.SubscriptionStatus = {
+  FREE: 'FREE',
+  PREMIUM: 'PREMIUM'
+};
+
 exports.VisibilityType = exports.$Enums.VisibilityType = {
   RESTRICTED: 'RESTRICTED',
   RECOMMENDED: 'RECOMMENDED'
+};
+
+exports.Language = exports.$Enums.Language = {
+  EN: 'EN',
+  SV: 'SV',
+  ES: 'ES'
 };
 
 exports.SubscriptionType = exports.$Enums.SubscriptionType = {
   RECURRING: 'RECURRING',
   ONE_OFF: 'ONE_OFF',
   FREE: 'FREE',
+  PREMIUM: 'PREMIUM',
   CLUB: 'CLUB',
   AI: 'AI',
   ACTIVITY: 'ACTIVITY'

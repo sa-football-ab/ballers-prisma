@@ -76,6 +76,14 @@ export const AdminRole: {
 export type AdminRole = (typeof AdminRole)[keyof typeof AdminRole]
 
 
+export const SubscriptionStatus: {
+  FREE: 'FREE',
+  PREMIUM: 'PREMIUM'
+};
+
+export type SubscriptionStatus = (typeof SubscriptionStatus)[keyof typeof SubscriptionStatus]
+
+
 export const VisibilityType: {
   RESTRICTED: 'RESTRICTED',
   RECOMMENDED: 'RECOMMENDED'
@@ -84,10 +92,20 @@ export const VisibilityType: {
 export type VisibilityType = (typeof VisibilityType)[keyof typeof VisibilityType]
 
 
+export const Language: {
+  EN: 'EN',
+  SV: 'SV',
+  ES: 'ES'
+};
+
+export type Language = (typeof Language)[keyof typeof Language]
+
+
 export const SubscriptionType: {
   RECURRING: 'RECURRING',
   ONE_OFF: 'ONE_OFF',
   FREE: 'FREE',
+  PREMIUM: 'PREMIUM',
   CLUB: 'CLUB',
   AI: 'AI',
   ACTIVITY: 'ACTIVITY'
@@ -105,9 +123,17 @@ export type AdminRole = $Enums.AdminRole
 
 export const AdminRole: typeof $Enums.AdminRole
 
+export type SubscriptionStatus = $Enums.SubscriptionStatus
+
+export const SubscriptionStatus: typeof $Enums.SubscriptionStatus
+
 export type VisibilityType = $Enums.VisibilityType
 
 export const VisibilityType: typeof $Enums.VisibilityType
+
+export type Language = $Enums.Language
+
+export const Language: typeof $Enums.Language
 
 export type SubscriptionType = $Enums.SubscriptionType
 
@@ -2724,6 +2750,8 @@ export namespace Prisma {
     organizationNumber: string | null
     dateCreated: Date | null
     dateUpdated: Date | null
+    type: $Enums.AdminRole | null
+    subscriptionStatus: $Enums.SubscriptionStatus | null
   }
 
   export type ClubMaxAggregateOutputType = {
@@ -2734,6 +2762,8 @@ export namespace Prisma {
     organizationNumber: string | null
     dateCreated: Date | null
     dateUpdated: Date | null
+    type: $Enums.AdminRole | null
+    subscriptionStatus: $Enums.SubscriptionStatus | null
   }
 
   export type ClubCountAggregateOutputType = {
@@ -2744,6 +2774,8 @@ export namespace Prisma {
     organizationNumber: number
     dateCreated: number
     dateUpdated: number
+    type: number
+    subscriptionStatus: number
     _all: number
   }
 
@@ -2764,6 +2796,8 @@ export namespace Prisma {
     organizationNumber?: true
     dateCreated?: true
     dateUpdated?: true
+    type?: true
+    subscriptionStatus?: true
   }
 
   export type ClubMaxAggregateInputType = {
@@ -2774,6 +2808,8 @@ export namespace Prisma {
     organizationNumber?: true
     dateCreated?: true
     dateUpdated?: true
+    type?: true
+    subscriptionStatus?: true
   }
 
   export type ClubCountAggregateInputType = {
@@ -2784,6 +2820,8 @@ export namespace Prisma {
     organizationNumber?: true
     dateCreated?: true
     dateUpdated?: true
+    type?: true
+    subscriptionStatus?: true
     _all?: true
   }
 
@@ -2881,6 +2919,8 @@ export namespace Prisma {
     organizationNumber: string | null
     dateCreated: Date
     dateUpdated: Date | null
+    type: $Enums.AdminRole
+    subscriptionStatus: $Enums.SubscriptionStatus
     _count: ClubCountAggregateOutputType | null
     _avg: ClubAvgAggregateOutputType | null
     _sum: ClubSumAggregateOutputType | null
@@ -2910,6 +2950,8 @@ export namespace Prisma {
     organizationNumber?: boolean
     dateCreated?: boolean
     dateUpdated?: boolean
+    type?: boolean
+    subscriptionStatus?: boolean
     teams?: boolean | Club$teamsArgs<ExtArgs>
     Activity?: boolean | Club$ActivityArgs<ExtArgs>
     User?: boolean | Club$UserArgs<ExtArgs>
@@ -2924,6 +2966,8 @@ export namespace Prisma {
     organizationNumber?: boolean
     dateCreated?: boolean
     dateUpdated?: boolean
+    type?: boolean
+    subscriptionStatus?: boolean
   }
 
   export type ClubInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2949,6 +2993,8 @@ export namespace Prisma {
       organizationNumber: string | null
       dateCreated: Date
       dateUpdated: Date | null
+      type: $Enums.AdminRole
+      subscriptionStatus: $Enums.SubscriptionStatus
     }, ExtArgs["result"]["club"]>
     composites: {}
   }
@@ -3355,6 +3401,8 @@ export namespace Prisma {
     readonly organizationNumber: FieldRef<"Club", 'String'>
     readonly dateCreated: FieldRef<"Club", 'DateTime'>
     readonly dateUpdated: FieldRef<"Club", 'DateTime'>
+    readonly type: FieldRef<"Club", 'AdminRole'>
+    readonly subscriptionStatus: FieldRef<"Club", 'SubscriptionStatus'>
   }
     
 
@@ -4768,6 +4816,7 @@ export namespace Prisma {
     maxAge: number | null
     visibilityType: $Enums.VisibilityType | null
     type: $Enums.AdminRole | null
+    language: $Enums.Language | null
     dateCreated: Date | null
     dateUpdated: Date | null
   }
@@ -4786,6 +4835,7 @@ export namespace Prisma {
     maxAge: number | null
     visibilityType: $Enums.VisibilityType | null
     type: $Enums.AdminRole | null
+    language: $Enums.Language | null
     dateCreated: Date | null
     dateUpdated: Date | null
   }
@@ -4805,6 +4855,7 @@ export namespace Prisma {
     visibilityType: number
     equipments: number
     type: number
+    language: number
     dateCreated: number
     dateUpdated: number
     _all: number
@@ -4839,6 +4890,7 @@ export namespace Prisma {
     maxAge?: true
     visibilityType?: true
     type?: true
+    language?: true
     dateCreated?: true
     dateUpdated?: true
   }
@@ -4857,6 +4909,7 @@ export namespace Prisma {
     maxAge?: true
     visibilityType?: true
     type?: true
+    language?: true
     dateCreated?: true
     dateUpdated?: true
   }
@@ -4876,6 +4929,7 @@ export namespace Prisma {
     visibilityType?: true
     equipments?: true
     type?: true
+    language?: true
     dateCreated?: true
     dateUpdated?: true
     _all?: true
@@ -4982,6 +5036,7 @@ export namespace Prisma {
     visibilityType: $Enums.VisibilityType
     equipments: JsonValue
     type: $Enums.AdminRole
+    language: $Enums.Language
     dateCreated: Date
     dateUpdated: Date | null
     _count: ActivityCountAggregateOutputType | null
@@ -5020,6 +5075,7 @@ export namespace Prisma {
     visibilityType?: boolean
     equipments?: boolean
     type?: boolean
+    language?: boolean
     dateCreated?: boolean
     dateUpdated?: boolean
     team?: boolean | Activity$teamArgs<ExtArgs>
@@ -5042,6 +5098,7 @@ export namespace Prisma {
     visibilityType?: boolean
     equipments?: boolean
     type?: boolean
+    language?: boolean
     dateCreated?: boolean
     dateUpdated?: boolean
   }
@@ -5075,6 +5132,7 @@ export namespace Prisma {
       visibilityType: $Enums.VisibilityType
       equipments: Prisma.JsonValue
       type: $Enums.AdminRole
+      language: $Enums.Language
       dateCreated: Date
       dateUpdated: Date | null
     }, ExtArgs["result"]["activity"]>
@@ -5490,6 +5548,7 @@ export namespace Prisma {
     readonly visibilityType: FieldRef<"Activity", 'VisibilityType'>
     readonly equipments: FieldRef<"Activity", 'Json'>
     readonly type: FieldRef<"Activity", 'AdminRole'>
+    readonly language: FieldRef<"Activity", 'Language'>
     readonly dateCreated: FieldRef<"Activity", 'DateTime'>
     readonly dateUpdated: FieldRef<"Activity", 'DateTime'>
   }
@@ -9671,7 +9730,9 @@ export namespace Prisma {
     income: 'income',
     organizationNumber: 'organizationNumber',
     dateCreated: 'dateCreated',
-    dateUpdated: 'dateUpdated'
+    dateUpdated: 'dateUpdated',
+    type: 'type',
+    subscriptionStatus: 'subscriptionStatus'
   };
 
   export type ClubScalarFieldEnum = (typeof ClubScalarFieldEnum)[keyof typeof ClubScalarFieldEnum]
@@ -9704,6 +9765,7 @@ export namespace Prisma {
     visibilityType: 'visibilityType',
     equipments: 'equipments',
     type: 'type',
+    language: 'language',
     dateCreated: 'dateCreated',
     dateUpdated: 'dateUpdated'
   };
@@ -9854,6 +9916,13 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'SubscriptionStatus'
+   */
+  export type EnumSubscriptionStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SubscriptionStatus'>
+    
+
+
+  /**
    * Reference to a field of type 'VisibilityType'
    */
   export type EnumVisibilityTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'VisibilityType'>
@@ -9864,6 +9933,13 @@ export namespace Prisma {
    * Reference to a field of type 'Json'
    */
   export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+    
+
+
+  /**
+   * Reference to a field of type 'Language'
+   */
+  export type EnumLanguageFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Language'>
     
 
 
@@ -10001,6 +10077,8 @@ export namespace Prisma {
     organizationNumber?: StringNullableFilter<"Club"> | string | null
     dateCreated?: DateTimeFilter<"Club"> | Date | string
     dateUpdated?: DateTimeNullableFilter<"Club"> | Date | string | null
+    type?: EnumAdminRoleFilter<"Club"> | $Enums.AdminRole
+    subscriptionStatus?: EnumSubscriptionStatusFilter<"Club"> | $Enums.SubscriptionStatus
     teams?: TeamListRelationFilter
     Activity?: ActivityListRelationFilter
     User?: UserListRelationFilter
@@ -10014,6 +10092,8 @@ export namespace Prisma {
     organizationNumber?: SortOrderInput | SortOrder
     dateCreated?: SortOrder
     dateUpdated?: SortOrderInput | SortOrder
+    type?: SortOrder
+    subscriptionStatus?: SortOrder
     teams?: TeamOrderByRelationAggregateInput
     Activity?: ActivityOrderByRelationAggregateInput
     User?: UserOrderByRelationAggregateInput
@@ -10030,6 +10110,8 @@ export namespace Prisma {
     organizationNumber?: StringNullableFilter<"Club"> | string | null
     dateCreated?: DateTimeFilter<"Club"> | Date | string
     dateUpdated?: DateTimeNullableFilter<"Club"> | Date | string | null
+    type?: EnumAdminRoleFilter<"Club"> | $Enums.AdminRole
+    subscriptionStatus?: EnumSubscriptionStatusFilter<"Club"> | $Enums.SubscriptionStatus
     teams?: TeamListRelationFilter
     Activity?: ActivityListRelationFilter
     User?: UserListRelationFilter
@@ -10043,6 +10125,8 @@ export namespace Prisma {
     organizationNumber?: SortOrderInput | SortOrder
     dateCreated?: SortOrder
     dateUpdated?: SortOrderInput | SortOrder
+    type?: SortOrder
+    subscriptionStatus?: SortOrder
     _count?: ClubCountOrderByAggregateInput
     _avg?: ClubAvgOrderByAggregateInput
     _max?: ClubMaxOrderByAggregateInput
@@ -10061,6 +10145,8 @@ export namespace Prisma {
     organizationNumber?: StringNullableWithAggregatesFilter<"Club"> | string | null
     dateCreated?: DateTimeWithAggregatesFilter<"Club"> | Date | string
     dateUpdated?: DateTimeNullableWithAggregatesFilter<"Club"> | Date | string | null
+    type?: EnumAdminRoleWithAggregatesFilter<"Club"> | $Enums.AdminRole
+    subscriptionStatus?: EnumSubscriptionStatusWithAggregatesFilter<"Club"> | $Enums.SubscriptionStatus
   }
 
   export type TeamWhereInput = {
@@ -10147,6 +10233,7 @@ export namespace Prisma {
     visibilityType?: EnumVisibilityTypeFilter<"Activity"> | $Enums.VisibilityType
     equipments?: JsonFilter<"Activity">
     type?: EnumAdminRoleFilter<"Activity"> | $Enums.AdminRole
+    language?: EnumLanguageFilter<"Activity"> | $Enums.Language
     dateCreated?: DateTimeFilter<"Activity"> | Date | string
     dateUpdated?: DateTimeNullableFilter<"Activity"> | Date | string | null
     team?: XOR<TeamNullableRelationFilter, TeamWhereInput> | null
@@ -10169,6 +10256,7 @@ export namespace Prisma {
     visibilityType?: SortOrder
     equipments?: SortOrder
     type?: SortOrder
+    language?: SortOrder
     dateCreated?: SortOrder
     dateUpdated?: SortOrderInput | SortOrder
     team?: TeamOrderByWithRelationInput
@@ -10194,6 +10282,7 @@ export namespace Prisma {
     visibilityType?: EnumVisibilityTypeFilter<"Activity"> | $Enums.VisibilityType
     equipments?: JsonFilter<"Activity">
     type?: EnumAdminRoleFilter<"Activity"> | $Enums.AdminRole
+    language?: EnumLanguageFilter<"Activity"> | $Enums.Language
     dateCreated?: DateTimeFilter<"Activity"> | Date | string
     dateUpdated?: DateTimeNullableFilter<"Activity"> | Date | string | null
     team?: XOR<TeamNullableRelationFilter, TeamWhereInput> | null
@@ -10216,6 +10305,7 @@ export namespace Prisma {
     visibilityType?: SortOrder
     equipments?: SortOrder
     type?: SortOrder
+    language?: SortOrder
     dateCreated?: SortOrder
     dateUpdated?: SortOrderInput | SortOrder
     _count?: ActivityCountOrderByAggregateInput
@@ -10243,6 +10333,7 @@ export namespace Prisma {
     visibilityType?: EnumVisibilityTypeWithAggregatesFilter<"Activity"> | $Enums.VisibilityType
     equipments?: JsonWithAggregatesFilter<"Activity">
     type?: EnumAdminRoleWithAggregatesFilter<"Activity"> | $Enums.AdminRole
+    language?: EnumLanguageWithAggregatesFilter<"Activity"> | $Enums.Language
     dateCreated?: DateTimeWithAggregatesFilter<"Activity"> | Date | string
     dateUpdated?: DateTimeNullableWithAggregatesFilter<"Activity"> | Date | string | null
   }
@@ -10685,6 +10776,8 @@ export namespace Prisma {
     organizationNumber?: string | null
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
+    type?: $Enums.AdminRole
+    subscriptionStatus?: $Enums.SubscriptionStatus
     teams?: TeamCreateNestedManyWithoutClubInput
     Activity?: ActivityCreateNestedManyWithoutClubInput
     User?: UserCreateNestedManyWithoutClubInput
@@ -10698,6 +10791,8 @@ export namespace Prisma {
     organizationNumber?: string | null
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
+    type?: $Enums.AdminRole
+    subscriptionStatus?: $Enums.SubscriptionStatus
     teams?: TeamUncheckedCreateNestedManyWithoutClubInput
     Activity?: ActivityUncheckedCreateNestedManyWithoutClubInput
     User?: UserUncheckedCreateNestedManyWithoutClubInput
@@ -10711,6 +10806,8 @@ export namespace Prisma {
     organizationNumber?: NullableStringFieldUpdateOperationsInput | string | null
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    type?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
+    subscriptionStatus?: EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
     teams?: TeamUpdateManyWithoutClubNestedInput
     Activity?: ActivityUpdateManyWithoutClubNestedInput
     User?: UserUpdateManyWithoutClubNestedInput
@@ -10724,6 +10821,8 @@ export namespace Prisma {
     organizationNumber?: NullableStringFieldUpdateOperationsInput | string | null
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    type?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
+    subscriptionStatus?: EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
     teams?: TeamUncheckedUpdateManyWithoutClubNestedInput
     Activity?: ActivityUncheckedUpdateManyWithoutClubNestedInput
     User?: UserUncheckedUpdateManyWithoutClubNestedInput
@@ -10737,6 +10836,8 @@ export namespace Prisma {
     organizationNumber?: string | null
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
+    type?: $Enums.AdminRole
+    subscriptionStatus?: $Enums.SubscriptionStatus
   }
 
   export type ClubUpdateManyMutationInput = {
@@ -10747,6 +10848,8 @@ export namespace Prisma {
     organizationNumber?: NullableStringFieldUpdateOperationsInput | string | null
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    type?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
+    subscriptionStatus?: EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
   }
 
   export type ClubUncheckedUpdateManyInput = {
@@ -10757,6 +10860,8 @@ export namespace Prisma {
     organizationNumber?: NullableStringFieldUpdateOperationsInput | string | null
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    type?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
+    subscriptionStatus?: EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
   }
 
   export type TeamCreateInput = {
@@ -10841,6 +10946,7 @@ export namespace Prisma {
     visibilityType?: $Enums.VisibilityType
     equipments: JsonNullValueInput | InputJsonValue
     type?: $Enums.AdminRole
+    language?: $Enums.Language
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
     team?: TeamCreateNestedOneWithoutActivityInput
@@ -10863,6 +10969,7 @@ export namespace Prisma {
     visibilityType?: $Enums.VisibilityType
     equipments: JsonNullValueInput | InputJsonValue
     type?: $Enums.AdminRole
+    language?: $Enums.Language
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
   }
@@ -10879,6 +10986,7 @@ export namespace Prisma {
     visibilityType?: EnumVisibilityTypeFieldUpdateOperationsInput | $Enums.VisibilityType
     equipments?: JsonNullValueInput | InputJsonValue
     type?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
+    language?: EnumLanguageFieldUpdateOperationsInput | $Enums.Language
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     team?: TeamUpdateOneWithoutActivityNestedInput
@@ -10901,6 +11009,7 @@ export namespace Prisma {
     visibilityType?: EnumVisibilityTypeFieldUpdateOperationsInput | $Enums.VisibilityType
     equipments?: JsonNullValueInput | InputJsonValue
     type?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
+    language?: EnumLanguageFieldUpdateOperationsInput | $Enums.Language
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -10920,6 +11029,7 @@ export namespace Prisma {
     visibilityType?: $Enums.VisibilityType
     equipments: JsonNullValueInput | InputJsonValue
     type?: $Enums.AdminRole
+    language?: $Enums.Language
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
   }
@@ -10936,6 +11046,7 @@ export namespace Prisma {
     visibilityType?: EnumVisibilityTypeFieldUpdateOperationsInput | $Enums.VisibilityType
     equipments?: JsonNullValueInput | InputJsonValue
     type?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
+    language?: EnumLanguageFieldUpdateOperationsInput | $Enums.Language
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -10955,6 +11066,7 @@ export namespace Prisma {
     visibilityType?: EnumVisibilityTypeFieldUpdateOperationsInput | $Enums.VisibilityType
     equipments?: JsonNullValueInput | InputJsonValue
     type?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
+    language?: EnumLanguageFieldUpdateOperationsInput | $Enums.Language
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -11562,6 +11674,13 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
+  export type EnumSubscriptionStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.SubscriptionStatus | EnumSubscriptionStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.SubscriptionStatus[]
+    notIn?: $Enums.SubscriptionStatus[]
+    not?: NestedEnumSubscriptionStatusFilter<$PrismaModel> | $Enums.SubscriptionStatus
+  }
+
   export type TeamListRelationFilter = {
     every?: TeamWhereInput
     some?: TeamWhereInput
@@ -11590,6 +11709,8 @@ export namespace Prisma {
     organizationNumber?: SortOrder
     dateCreated?: SortOrder
     dateUpdated?: SortOrder
+    type?: SortOrder
+    subscriptionStatus?: SortOrder
   }
 
   export type ClubAvgOrderByAggregateInput = {
@@ -11604,6 +11725,8 @@ export namespace Prisma {
     organizationNumber?: SortOrder
     dateCreated?: SortOrder
     dateUpdated?: SortOrder
+    type?: SortOrder
+    subscriptionStatus?: SortOrder
   }
 
   export type ClubMinOrderByAggregateInput = {
@@ -11614,6 +11737,8 @@ export namespace Prisma {
     organizationNumber?: SortOrder
     dateCreated?: SortOrder
     dateUpdated?: SortOrder
+    type?: SortOrder
+    subscriptionStatus?: SortOrder
   }
 
   export type ClubSumOrderByAggregateInput = {
@@ -11634,6 +11759,16 @@ export namespace Prisma {
     _sum?: NestedIntFilter<$PrismaModel>
     _min?: NestedIntFilter<$PrismaModel>
     _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type EnumSubscriptionStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.SubscriptionStatus | EnumSubscriptionStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.SubscriptionStatus[]
+    notIn?: $Enums.SubscriptionStatus[]
+    not?: NestedEnumSubscriptionStatusWithAggregatesFilter<$PrismaModel> | $Enums.SubscriptionStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumSubscriptionStatusFilter<$PrismaModel>
+    _max?: NestedEnumSubscriptionStatusFilter<$PrismaModel>
   }
 
   export type TeamCountOrderByAggregateInput = {
@@ -11692,6 +11827,13 @@ export namespace Prisma {
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
+  export type EnumLanguageFilter<$PrismaModel = never> = {
+    equals?: $Enums.Language | EnumLanguageFieldRefInput<$PrismaModel>
+    in?: $Enums.Language[]
+    notIn?: $Enums.Language[]
+    not?: NestedEnumLanguageFilter<$PrismaModel> | $Enums.Language
+  }
+
   export type UserRelationFilter = {
     is?: UserWhereInput
     isNot?: UserWhereInput
@@ -11712,6 +11854,7 @@ export namespace Prisma {
     visibilityType?: SortOrder
     equipments?: SortOrder
     type?: SortOrder
+    language?: SortOrder
     dateCreated?: SortOrder
     dateUpdated?: SortOrder
   }
@@ -11737,6 +11880,7 @@ export namespace Prisma {
     maxAge?: SortOrder
     visibilityType?: SortOrder
     type?: SortOrder
+    language?: SortOrder
     dateCreated?: SortOrder
     dateUpdated?: SortOrder
   }
@@ -11755,6 +11899,7 @@ export namespace Prisma {
     maxAge?: SortOrder
     visibilityType?: SortOrder
     type?: SortOrder
+    language?: SortOrder
     dateCreated?: SortOrder
     dateUpdated?: SortOrder
   }
@@ -11799,6 +11944,16 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedJsonFilter<$PrismaModel>
     _max?: NestedJsonFilter<$PrismaModel>
+  }
+
+  export type EnumLanguageWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Language | EnumLanguageFieldRefInput<$PrismaModel>
+    in?: $Enums.Language[]
+    notIn?: $Enums.Language[]
+    not?: NestedEnumLanguageWithAggregatesFilter<$PrismaModel> | $Enums.Language
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumLanguageFilter<$PrismaModel>
+    _max?: NestedEnumLanguageFilter<$PrismaModel>
   }
 
   export type PlayerTrainingCountOrderByAggregateInput = {
@@ -12147,6 +12302,10 @@ export namespace Prisma {
     divide?: number
   }
 
+  export type EnumSubscriptionStatusFieldUpdateOperationsInput = {
+    set?: $Enums.SubscriptionStatus
+  }
+
   export type TeamUpdateManyWithoutClubNestedInput = {
     create?: XOR<TeamCreateWithoutClubInput, TeamUncheckedCreateWithoutClubInput> | TeamCreateWithoutClubInput[] | TeamUncheckedCreateWithoutClubInput[]
     connectOrCreate?: TeamCreateOrConnectWithoutClubInput | TeamCreateOrConnectWithoutClubInput[]
@@ -12349,6 +12508,10 @@ export namespace Prisma {
 
   export type EnumVisibilityTypeFieldUpdateOperationsInput = {
     set?: $Enums.VisibilityType
+  }
+
+  export type EnumLanguageFieldUpdateOperationsInput = {
+    set?: $Enums.Language
   }
 
   export type TeamUpdateOneWithoutActivityNestedInput = {
@@ -12562,6 +12725,13 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
+  export type NestedEnumSubscriptionStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.SubscriptionStatus | EnumSubscriptionStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.SubscriptionStatus[]
+    notIn?: $Enums.SubscriptionStatus[]
+    not?: NestedEnumSubscriptionStatusFilter<$PrismaModel> | $Enums.SubscriptionStatus
+  }
+
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[]
@@ -12589,11 +12759,28 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
+  export type NestedEnumSubscriptionStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.SubscriptionStatus | EnumSubscriptionStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.SubscriptionStatus[]
+    notIn?: $Enums.SubscriptionStatus[]
+    not?: NestedEnumSubscriptionStatusWithAggregatesFilter<$PrismaModel> | $Enums.SubscriptionStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumSubscriptionStatusFilter<$PrismaModel>
+    _max?: NestedEnumSubscriptionStatusFilter<$PrismaModel>
+  }
+
   export type NestedEnumVisibilityTypeFilter<$PrismaModel = never> = {
     equals?: $Enums.VisibilityType | EnumVisibilityTypeFieldRefInput<$PrismaModel>
     in?: $Enums.VisibilityType[]
     notIn?: $Enums.VisibilityType[]
     not?: NestedEnumVisibilityTypeFilter<$PrismaModel> | $Enums.VisibilityType
+  }
+
+  export type NestedEnumLanguageFilter<$PrismaModel = never> = {
+    equals?: $Enums.Language | EnumLanguageFieldRefInput<$PrismaModel>
+    in?: $Enums.Language[]
+    notIn?: $Enums.Language[]
+    not?: NestedEnumLanguageFilter<$PrismaModel> | $Enums.Language
   }
 
   export type NestedEnumVisibilityTypeWithAggregatesFilter<$PrismaModel = never> = {
@@ -12628,6 +12815,16 @@ export namespace Prisma {
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
+  export type NestedEnumLanguageWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Language | EnumLanguageFieldRefInput<$PrismaModel>
+    in?: $Enums.Language[]
+    notIn?: $Enums.Language[]
+    not?: NestedEnumLanguageWithAggregatesFilter<$PrismaModel> | $Enums.Language
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumLanguageFilter<$PrismaModel>
+    _max?: NestedEnumLanguageFilter<$PrismaModel>
+  }
+
   export type NestedEnumSubscriptionTypeFilter<$PrismaModel = never> = {
     equals?: $Enums.SubscriptionType | EnumSubscriptionTypeFieldRefInput<$PrismaModel>
     in?: $Enums.SubscriptionType[]
@@ -12653,6 +12850,8 @@ export namespace Prisma {
     organizationNumber?: string | null
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
+    type?: $Enums.AdminRole
+    subscriptionStatus?: $Enums.SubscriptionStatus
     teams?: TeamCreateNestedManyWithoutClubInput
     Activity?: ActivityCreateNestedManyWithoutClubInput
   }
@@ -12665,6 +12864,8 @@ export namespace Prisma {
     organizationNumber?: string | null
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
+    type?: $Enums.AdminRole
+    subscriptionStatus?: $Enums.SubscriptionStatus
     teams?: TeamUncheckedCreateNestedManyWithoutClubInput
     Activity?: ActivityUncheckedCreateNestedManyWithoutClubInput
   }
@@ -12711,6 +12912,7 @@ export namespace Prisma {
     visibilityType?: $Enums.VisibilityType
     equipments: JsonNullValueInput | InputJsonValue
     type?: $Enums.AdminRole
+    language?: $Enums.Language
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
     team?: TeamCreateNestedOneWithoutActivityInput
@@ -12731,6 +12933,7 @@ export namespace Prisma {
     visibilityType?: $Enums.VisibilityType
     equipments: JsonNullValueInput | InputJsonValue
     type?: $Enums.AdminRole
+    language?: $Enums.Language
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
   }
@@ -12764,6 +12967,8 @@ export namespace Prisma {
     organizationNumber?: NullableStringFieldUpdateOperationsInput | string | null
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    type?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
+    subscriptionStatus?: EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
     teams?: TeamUpdateManyWithoutClubNestedInput
     Activity?: ActivityUpdateManyWithoutClubNestedInput
   }
@@ -12776,6 +12981,8 @@ export namespace Prisma {
     organizationNumber?: NullableStringFieldUpdateOperationsInput | string | null
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    type?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
+    subscriptionStatus?: EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
     teams?: TeamUncheckedUpdateManyWithoutClubNestedInput
     Activity?: ActivityUncheckedUpdateManyWithoutClubNestedInput
   }
@@ -12845,6 +13052,7 @@ export namespace Prisma {
     visibilityType?: EnumVisibilityTypeFilter<"Activity"> | $Enums.VisibilityType
     equipments?: JsonFilter<"Activity">
     type?: EnumAdminRoleFilter<"Activity"> | $Enums.AdminRole
+    language?: EnumLanguageFilter<"Activity"> | $Enums.Language
     dateCreated?: DateTimeFilter<"Activity"> | Date | string
     dateUpdated?: DateTimeNullableFilter<"Activity"> | Date | string | null
   }
@@ -12891,6 +13099,7 @@ export namespace Prisma {
     visibilityType?: $Enums.VisibilityType
     equipments: JsonNullValueInput | InputJsonValue
     type?: $Enums.AdminRole
+    language?: $Enums.Language
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
     team?: TeamCreateNestedOneWithoutActivityInput
@@ -12911,6 +13120,7 @@ export namespace Prisma {
     visibilityType?: $Enums.VisibilityType
     equipments: JsonNullValueInput | InputJsonValue
     type?: $Enums.AdminRole
+    language?: $Enums.Language
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
   }
@@ -13057,6 +13267,8 @@ export namespace Prisma {
     organizationNumber?: string | null
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
+    type?: $Enums.AdminRole
+    subscriptionStatus?: $Enums.SubscriptionStatus
     Activity?: ActivityCreateNestedManyWithoutClubInput
     User?: UserCreateNestedManyWithoutClubInput
   }
@@ -13069,6 +13281,8 @@ export namespace Prisma {
     organizationNumber?: string | null
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
+    type?: $Enums.AdminRole
+    subscriptionStatus?: $Enums.SubscriptionStatus
     Activity?: ActivityUncheckedCreateNestedManyWithoutClubInput
     User?: UserUncheckedCreateNestedManyWithoutClubInput
   }
@@ -13090,6 +13304,7 @@ export namespace Prisma {
     visibilityType?: $Enums.VisibilityType
     equipments: JsonNullValueInput | InputJsonValue
     type?: $Enums.AdminRole
+    language?: $Enums.Language
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
     club: ClubCreateNestedOneWithoutActivityInput
@@ -13110,6 +13325,7 @@ export namespace Prisma {
     visibilityType?: $Enums.VisibilityType
     equipments: JsonNullValueInput | InputJsonValue
     type?: $Enums.AdminRole
+    language?: $Enums.Language
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
   }
@@ -13187,6 +13403,8 @@ export namespace Prisma {
     organizationNumber?: NullableStringFieldUpdateOperationsInput | string | null
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    type?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
+    subscriptionStatus?: EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
     Activity?: ActivityUpdateManyWithoutClubNestedInput
     User?: UserUpdateManyWithoutClubNestedInput
   }
@@ -13199,6 +13417,8 @@ export namespace Prisma {
     organizationNumber?: NullableStringFieldUpdateOperationsInput | string | null
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    type?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
+    subscriptionStatus?: EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
     Activity?: ActivityUncheckedUpdateManyWithoutClubNestedInput
     User?: UserUncheckedUpdateManyWithoutClubNestedInput
   }
@@ -13268,6 +13488,8 @@ export namespace Prisma {
     organizationNumber?: string | null
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
+    type?: $Enums.AdminRole
+    subscriptionStatus?: $Enums.SubscriptionStatus
     teams?: TeamCreateNestedManyWithoutClubInput
     User?: UserCreateNestedManyWithoutClubInput
   }
@@ -13280,6 +13502,8 @@ export namespace Prisma {
     organizationNumber?: string | null
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
+    type?: $Enums.AdminRole
+    subscriptionStatus?: $Enums.SubscriptionStatus
     teams?: TeamUncheckedCreateNestedManyWithoutClubInput
     User?: UserUncheckedCreateNestedManyWithoutClubInput
   }
@@ -13378,6 +13602,8 @@ export namespace Prisma {
     organizationNumber?: NullableStringFieldUpdateOperationsInput | string | null
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    type?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
+    subscriptionStatus?: EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
     teams?: TeamUpdateManyWithoutClubNestedInput
     User?: UserUpdateManyWithoutClubNestedInput
   }
@@ -13390,6 +13616,8 @@ export namespace Prisma {
     organizationNumber?: NullableStringFieldUpdateOperationsInput | string | null
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    type?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
+    subscriptionStatus?: EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
     teams?: TeamUncheckedUpdateManyWithoutClubNestedInput
     User?: UserUncheckedUpdateManyWithoutClubNestedInput
   }
@@ -13453,6 +13681,7 @@ export namespace Prisma {
     visibilityType?: $Enums.VisibilityType
     equipments: JsonNullValueInput | InputJsonValue
     type?: $Enums.AdminRole
+    language?: $Enums.Language
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
   }
@@ -13469,6 +13698,7 @@ export namespace Prisma {
     visibilityType?: EnumVisibilityTypeFieldUpdateOperationsInput | $Enums.VisibilityType
     equipments?: JsonNullValueInput | InputJsonValue
     type?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
+    language?: EnumLanguageFieldUpdateOperationsInput | $Enums.Language
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     team?: TeamUpdateOneWithoutActivityNestedInput
@@ -13489,6 +13719,7 @@ export namespace Prisma {
     visibilityType?: EnumVisibilityTypeFieldUpdateOperationsInput | $Enums.VisibilityType
     equipments?: JsonNullValueInput | InputJsonValue
     type?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
+    language?: EnumLanguageFieldUpdateOperationsInput | $Enums.Language
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -13507,6 +13738,7 @@ export namespace Prisma {
     visibilityType?: EnumVisibilityTypeFieldUpdateOperationsInput | $Enums.VisibilityType
     equipments?: JsonNullValueInput | InputJsonValue
     type?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
+    language?: EnumLanguageFieldUpdateOperationsInput | $Enums.Language
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -13533,6 +13765,7 @@ export namespace Prisma {
     visibilityType?: $Enums.VisibilityType
     equipments: JsonNullValueInput | InputJsonValue
     type?: $Enums.AdminRole
+    language?: $Enums.Language
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
   }
@@ -13593,6 +13826,7 @@ export namespace Prisma {
     visibilityType?: EnumVisibilityTypeFieldUpdateOperationsInput | $Enums.VisibilityType
     equipments?: JsonNullValueInput | InputJsonValue
     type?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
+    language?: EnumLanguageFieldUpdateOperationsInput | $Enums.Language
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     team?: TeamUpdateOneWithoutActivityNestedInput
@@ -13613,6 +13847,7 @@ export namespace Prisma {
     visibilityType?: EnumVisibilityTypeFieldUpdateOperationsInput | $Enums.VisibilityType
     equipments?: JsonNullValueInput | InputJsonValue
     type?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
+    language?: EnumLanguageFieldUpdateOperationsInput | $Enums.Language
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -13631,6 +13866,7 @@ export namespace Prisma {
     visibilityType?: EnumVisibilityTypeFieldUpdateOperationsInput | $Enums.VisibilityType
     equipments?: JsonNullValueInput | InputJsonValue
     type?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
+    language?: EnumLanguageFieldUpdateOperationsInput | $Enums.Language
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -13699,6 +13935,7 @@ export namespace Prisma {
     visibilityType?: $Enums.VisibilityType
     equipments: JsonNullValueInput | InputJsonValue
     type?: $Enums.AdminRole
+    language?: $Enums.Language
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
   }
@@ -13731,6 +13968,7 @@ export namespace Prisma {
     visibilityType?: EnumVisibilityTypeFieldUpdateOperationsInput | $Enums.VisibilityType
     equipments?: JsonNullValueInput | InputJsonValue
     type?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
+    language?: EnumLanguageFieldUpdateOperationsInput | $Enums.Language
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     club?: ClubUpdateOneRequiredWithoutActivityNestedInput
@@ -13751,6 +13989,7 @@ export namespace Prisma {
     visibilityType?: EnumVisibilityTypeFieldUpdateOperationsInput | $Enums.VisibilityType
     equipments?: JsonNullValueInput | InputJsonValue
     type?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
+    language?: EnumLanguageFieldUpdateOperationsInput | $Enums.Language
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -13769,6 +14008,7 @@ export namespace Prisma {
     visibilityType?: EnumVisibilityTypeFieldUpdateOperationsInput | $Enums.VisibilityType
     equipments?: JsonNullValueInput | InputJsonValue
     type?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
+    language?: EnumLanguageFieldUpdateOperationsInput | $Enums.Language
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }

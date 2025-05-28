@@ -8,7 +8,7 @@ generator client {
 
 // ---------------------------- Auth Service ------------------------------------- //
 
-// SubscriptionType Enum defination
+// User Type Enum defination
 enum UserType {
     PLAYER
     COACH
@@ -24,6 +24,12 @@ enum AdminRole {
     GENERAL
     BALLERS
     LOK
+}
+
+enum Language {
+    EN
+    SV
+    ES
 }
 
 // User model
@@ -52,13 +58,15 @@ model User {
 
 // Club Table defination
 model Club {
-    id                 String     @id
+    id                 String             @id
     display            String
     location           String?
-    income             Int        @default(0)
+    income             Int                @default(0)
     organizationNumber String?
-    dateCreated        DateTime   @default(now())
+    dateCreated        DateTime           @default(now())
     dateUpdated        DateTime?
+    type               AdminRole          @default(LOK)
+    subscriptionStatus SubscriptionStatus @default(FREE)
     teams              Team[]
     Activity           Activity[]
     User               User[]
@@ -95,6 +103,7 @@ model Activity {
     visibilityType VisibilityType @default(RECOMMENDED)
     equipments     Json
     type           AdminRole      @default(LOK)
+    language       Language       @default(EN)
     dateCreated    DateTime       @default(now())
     dateUpdated    DateTime?
 
@@ -156,11 +165,18 @@ model PlayerTrainingLevel {
     @@index([playerTrainingProgramId, trainingProgramLevelIndex, userId])
 }
 
-// SubscriptionType Enum defination
+// Subscription Status Enum defination
+enum SubscriptionStatus {
+    FREE
+    PREMIUM
+}
+
+// Subscription Type Enum defination
 enum SubscriptionType {
     RECURRING
     ONE_OFF
     FREE
+    PREMIUM
     CLUB
     AI
     ACTIVITY
