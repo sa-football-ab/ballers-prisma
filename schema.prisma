@@ -36,8 +36,8 @@ enum Language {
 model User {
     id             String     @id
     userType       UserType   @default(PLAYER)
-    club           Club       @relation(fields: [clubId], references: [id])
-    clubId         String
+    club           Club?      @relation(fields: [clubId], references: [id])
+    clubId         String?
     team           Team?      @relation(fields: [teamId], references: [id])
     teamId         String?
     disability     Boolean    @default(false)
@@ -45,7 +45,7 @@ model User {
     email          String?
     firstName      String?
     lastName       String?
-    clubOnboarding Boolean    @default(true)
+    clubOnboarding Boolean    @default(false)
     gender         String?
     Activity       Activity[]
     createdBy      AdminRole  @default(LOK) // This tracks who created the user
@@ -89,11 +89,12 @@ model Activity {
     id             String         @id
     team           Team?          @relation(fields: [teamId], references: [id])
     teamId         String?
-    club           Club           @relation(fields: [clubId], references: [id])
-    clubId         String
+    club           Club?          @relation(fields: [clubId], references: [id])
+    clubId         String?
     user           User           @relation(fields: [coachUserId], references: [id])
+    name           String         @default("Ballers")
     coachUserId    String
-    description    String
+    description    String         @db.Text
     noOfReg        Int
     activityDate   DateTime
     income         Int            @default(0)

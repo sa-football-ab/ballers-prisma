@@ -161,6 +161,7 @@ exports.Prisma.ActivityScalarFieldEnum = {
   id: 'id',
   teamId: 'teamId',
   clubId: 'clubId',
+  name: 'name',
   coachUserId: 'coachUserId',
   description: 'description',
   noOfReg: 'noOfReg',
