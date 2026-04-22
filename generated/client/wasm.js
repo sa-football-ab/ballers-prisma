@@ -251,7 +251,8 @@ exports.Prisma.JsonNullValueFilter = {
 exports.UserType = exports.$Enums.UserType = {
   PLAYER: 'PLAYER',
   COACH: 'COACH',
-  ADMIN: 'ADMIN'
+  ADMIN: 'ADMIN',
+  ANALYST: 'ANALYST'
 };
 
 exports.AdminRole = exports.$Enums.AdminRole = {

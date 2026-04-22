@@ -61,7 +61,8 @@ export namespace $Enums {
   export const UserType: {
   PLAYER: 'PLAYER',
   COACH: 'COACH',
-  ADMIN: 'ADMIN'
+  ADMIN: 'ADMIN',
+  ANALYST: 'ANALYST'
 };
 
 export type UserType = (typeof UserType)[keyof typeof UserType]

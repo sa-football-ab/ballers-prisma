@@ -1,3 +1,7 @@
+# Setup Database Connection
+
+Run bastion host on port 3307 before executing Prisma commands.
+
 # Generate Prisma files
 
 npx prisma generate
