@@ -1,2 +1,0 @@
--- AlterTable
-ALTER TABLE `Activity` ADD COLUMN `income` INTEGER NOT NULL DEFAULT 0;

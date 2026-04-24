@@ -1,14 +1,16 @@
-// prisma/schema.prisma
-
 generator client {
     provider      = "prisma-client-js"
     output        = "./generated/client"
     binaryTargets = ["native", "linux-arm64-openssl-1.1.x", "linux-arm64-openssl-3.0.x"]
 }
 
-// ---------------------------- Auth Service ------------------------------------- //
+datasource db {
+    provider = "mysql"
+    url      = env("DATABASE_URL")
+}
 
-// User Type Enum defination
+// ---------------------------- Existing Enums ------------------------------------- //
+
 enum UserType {
     PLAYER
     COACH
@@ -33,31 +35,87 @@ enum Language {
     ES
 }
 
-// User model
+enum SubscriptionStatus {
+    FREE
+    PREMIUM
+}
+
+enum SubscriptionType {
+    RECURRING
+    ONE_OFF
+    FREE
+    PREMIUM
+    CLUB
+    AI
+    ACTIVITY
+}
+
+// ---------------------------- New Enums For Admin Dashboard ------------------------------------- //
+
+enum ChurnStatus {
+    HEALTHY
+    MIGHT_LEAVE_SOON
+    AT_RISK
+    CHURNED
+}
+
+enum SubscriptionTier {
+    FREE
+    PREMIUM
+}
+
+enum SubscriptionRecordStatus {
+    ACTIVE
+    EXPIRED
+    CANCELED
+}
+
+enum BookingStatus {
+    BOOKED
+    NO_BOOKING
+}
+
+enum AttendanceStatus {
+    ATTENDED
+    NO_SHOW
+}
+
+// ---------------------------- Existing Models (Extended Where Needed) ------------------------------------- //
+
 model User {
-    id             String     @id
-    userType       UserType   @default(PLAYER)
-    club           Club?      @relation(fields: [clubId], references: [id])
+    id             String    @id
+    userType       UserType  @default(PLAYER)
+    club           Club?     @relation(fields: [clubId], references: [id])
     clubId         String?
-    team           Team?      @relation(fields: [teamId], references: [id])
+    team           Team?     @relation(fields: [teamId], references: [id])
     teamId         String?
-    disability     Boolean    @default(false)
+    disability     Boolean   @default(false)
     personNumber   String?
-    email          String?
+    email          String?   @unique
     firstName      String?
     lastName       String?
-    clubOnboarding Boolean    @default(false)
+    clubOnboarding Boolean   @default(false)
     gender         String?
-    Activity       Activity[]
-    createdBy      AdminRole  @default(LOK) // This tracks who created the user
-    dateCreated    DateTime   @default(now())
+    createdBy      AdminRole @default(LOK)
+    dateCreated    DateTime  @default(now())
     dateUpdated    DateTime?
+
+    // New fields for churn and date-based filtering
+    churnStatus    ChurnStatus @default(HEALTHY)
+    joinedAt       DateTime    @default(now())
+    lastActivityAt DateTime?
+
+    Activity            Activity[]
+    playerSubscriptions PlayerSubscription[]
+    sessionBookings     SessionBooking[]     @relation("SessionBookingPlayer")
 
     @@index([clubId])
     @@index([teamId])
+    @@index([churnStatus])
+    @@index([joinedAt])
+    @@index([lastActivityAt])
 }
 
-// Club Table defination
 model Club {
     id                 String             @id
     display            String
@@ -68,22 +126,24 @@ model Club {
     dateUpdated        DateTime?
     type               AdminRole          @default(LOK)
     subscriptionStatus SubscriptionStatus @default(FREE)
-    teams              Team[]
-    Activity           Activity[]
-    User               User[]
+
+    teams    Team[]
+    Activity Activity[]
+    User     User[]
+    metrics  MonthlyChurnMetric[]
 }
 
-// Team model
 model Team {
-    id          String     @id
+    id          String    @id
     display     String
-    club        Club       @relation(fields: [clubId], references: [id])
+    club        Club      @relation(fields: [clubId], references: [id])
     clubId      String
-    voided      Boolean    @default(false) // Default value false
-    dateCreated DateTime   @default(now())
+    voided      Boolean   @default(false)
+    dateCreated DateTime  @default(now())
     dateUpdated DateTime?
-    Activity    Activity[]
-    User        User[]
+
+    Activity Activity[]
+    User     User[]
 }
 
 model Activity {
@@ -109,20 +169,19 @@ model Activity {
     dateCreated    DateTime       @default(now())
     dateUpdated    DateTime?
 
+    bookings SessionBooking[]
+
     @@index([coachUserId])
     @@index([clubId])
+    @@index([activityDate])
 }
 
-// ---------------------------- Training Program Service ------------------------------------- //
-// PlayerTraining Table defination
 model PlayerTraining {
     id                           String    @id
     userId                       String
-    //Keys of the player training program
     playerTrainingProgramId      String
     playerTrainingProgramLevelId String
     playerTrainingProgramWeekId  String
-    //Actual keys of the training program
     trainingIndex                Int       @default(-1)
     points                       Int
     isCompleted                  Boolean
@@ -133,14 +192,11 @@ model PlayerTraining {
     address                      String?
 }
 
-// PlayerTrainingWeek Table defination
 model PlayerTrainingWeek {
     id                           String    @id
     userId                       String
-    //Keys of the player training program
     playerTrainingProgramId      String
     playerTrainingProgramLevelId String
-    //Actual keys of the training program
     trainingProgramWeekIndex     Int       @default(-1)
     isCompleted                  Boolean
     dateCompleted                DateTime?
@@ -150,13 +206,10 @@ model PlayerTrainingWeek {
     @@index([playerTrainingProgramLevelId, isCompleted])
 }
 
-// PlayerTrainingLevel Table defination
 model PlayerTrainingLevel {
     id                        String    @id
     userId                    String
-    //Keys of the player training program
     playerTrainingProgramId   String
-    //Actual keys of the training program
     trainingProgramLevelIndex Int       @default(-1)
     isCompleted               Boolean
     dateCompleted             DateTime?
@@ -167,24 +220,6 @@ model PlayerTrainingLevel {
     @@index([playerTrainingProgramId, trainingProgramLevelIndex, userId])
 }
 
-// Subscription Status Enum defination
-enum SubscriptionStatus {
-    FREE
-    PREMIUM
-}
-
-// Subscription Type Enum defination
-enum SubscriptionType {
-    RECURRING
-    ONE_OFF
-    FREE
-    PREMIUM
-    CLUB
-    AI
-    ACTIVITY
-}
-
-// PlayerTrainingProgram Table defination
 model PlayerTrainingProgram {
     id                String           @id
     userId            String
@@ -203,7 +238,63 @@ model PlayerTrainingProgram {
     @@index([userId, isLocked])
 }
 
-datasource db {
-    provider = "mysql"
-    url      = env("DATABASE_URL")
+// ---------------------------- New Models For Admin Dashboard ------------------------------------- //
+
+model PlayerSubscription {
+    id        String                   @id @default(cuid())
+    user      User                     @relation(fields: [userId], references: [id])
+    userId    String
+    tier      SubscriptionTier         @default(FREE)
+    status    SubscriptionRecordStatus @default(ACTIVE)
+    startDate DateTime                 @default(now())
+    endDate   DateTime?
+    autoRenew Boolean                  @default(false)
+    createdAt DateTime                 @default(now())
+    updatedAt DateTime                 @updatedAt
+
+    @@index([userId])
+    @@index([tier])
+    @@index([status])
+    @@index([endDate])
+}
+
+model SessionBooking {
+    id               String           @id @default(cuid())
+    player           User             @relation("SessionBookingPlayer", fields: [playerUserId], references: [id])
+    playerUserId     String
+    activity         Activity         @relation(fields: [activityId], references: [id])
+    activityId       String
+    bookedAt         DateTime         @default(now())
+    bookingStatus    BookingStatus    @default(BOOKED)
+    attendanceStatus AttendanceStatus @default(NO_SHOW)
+    joinedAt         DateTime?
+    leftAt           DateTime?
+    createdAt        DateTime         @default(now())
+    updatedAt        DateTime         @updatedAt
+
+    @@index([playerUserId])
+    @@index([activityId])
+    @@index([bookedAt])
+    @@index([attendanceStatus])
+    @@index([playerUserId, bookedAt])
+}
+
+model MonthlyChurnMetric {
+    id                  String   @id @default(cuid())
+    monthStartDate      DateTime
+    club                Club?    @relation(fields: [clubId], references: [id])
+    clubId              String?
+    healthyCount        Int      @default(0)
+    mightLeaveSoonCount Int      @default(0)
+    atRiskCount         Int      @default(0)
+    churnedCount        Int      @default(0)
+    newPlayers          Int      @default(0)
+    netGrowth           Int      @default(0)
+    retentionRate       Decimal? @db.Decimal(5, 2)
+    churnRate           Decimal? @db.Decimal(5, 2)
+    createdAt           DateTime @default(now())
+    updatedAt           DateTime @updatedAt
+
+    @@index([monthStartDate])
+    @@index([clubId, monthStartDate])
 }
