@@ -135,7 +135,7 @@ exports.Prisma.UserScalarFieldEnum = {
   createdBy: 'createdBy',
   dateCreated: 'dateCreated',
   dateUpdated: 'dateUpdated',
-  churnStatus: 'churnStatus',
+  subscription: 'subscription',
   joinedAt: 'joinedAt',
   lastActivityAt: 'lastActivityAt'
 };
@@ -233,27 +233,41 @@ exports.Prisma.PlayerTrainingProgramScalarFieldEnum = {
   dateCreated: 'dateCreated'
 };
 
-exports.Prisma.PlayerSubscriptionScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  tier: 'tier',
-  status: 'status',
-  startDate: 'startDate',
-  endDate: 'endDate',
-  autoRenew: 'autoRenew',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-};
-
 exports.Prisma.SessionBookingScalarFieldEnum = {
   id: 'id',
-  playerUserId: 'playerUserId',
+  userId: 'userId',
   activityId: 'activityId',
   bookedAt: 'bookedAt',
   bookingStatus: 'bookingStatus',
   attendanceStatus: 'attendanceStatus',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ChurnEventScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  eventType: 'eventType',
+  eventDate: 'eventDate',
+  scoreImpact: 'scoreImpact',
+  reasonText: 'reasonText',
+  metaJson: 'metaJson',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.PlayerHealthSummaryScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
   joinedAt: 'joinedAt',
-  leftAt: 'leftAt',
+  lastTrainingAt: 'lastTrainingAt',
+  lastLiveSessionAt: 'lastLiveSessionAt',
+  lastFeedActivityAt: 'lastFeedActivityAt',
+  trainingRiskPoints: 'trainingRiskPoints',
+  liveSessionRiskPoints: 'liveSessionRiskPoints',
+  feedRiskPoints: 'feedRiskPoints',
+  totalRiskScore: 'totalRiskScore',
+  currentStatus: 'currentStatus',
+  lastCalculatedAt: 'lastCalculatedAt',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -280,6 +294,11 @@ exports.Prisma.SortOrder = {
 };
 
 exports.Prisma.JsonNullValueInput = {
+  JsonNull: Prisma.JsonNull
+};
+
+exports.Prisma.NullableJsonNullValueInput = {
+  DbNull: Prisma.DbNull,
   JsonNull: Prisma.JsonNull
 };
 
@@ -362,15 +381,22 @@ exports.Prisma.PlayerTrainingProgramOrderByRelevanceFieldEnum = {
   subscriptionId: 'subscriptionId'
 };
 
-exports.Prisma.PlayerSubscriptionOrderByRelevanceFieldEnum = {
-  id: 'id',
-  userId: 'userId'
-};
-
 exports.Prisma.SessionBookingOrderByRelevanceFieldEnum = {
   id: 'id',
-  playerUserId: 'playerUserId',
+  userId: 'userId',
   activityId: 'activityId'
+};
+
+exports.Prisma.ChurnEventOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  eventType: 'eventType',
+  reasonText: 'reasonText'
+};
+
+exports.Prisma.PlayerHealthSummaryOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userId: 'userId'
 };
 
 exports.Prisma.MonthlyChurnMetricOrderByRelevanceFieldEnum = {
@@ -390,11 +416,9 @@ exports.AdminRole = exports.$Enums.AdminRole = {
   LOK: 'LOK'
 };
 
-exports.ChurnStatus = exports.$Enums.ChurnStatus = {
-  HEALTHY: 'HEALTHY',
-  MIGHT_LEAVE_SOON: 'MIGHT_LEAVE_SOON',
-  AT_RISK: 'AT_RISK',
-  CHURNED: 'CHURNED'
+exports.SubscriptionTiers = exports.$Enums.SubscriptionTiers = {
+  ADMIN: 'ADMIN',
+  STRIPE: 'STRIPE'
 };
 
 exports.SubscriptionStatus = exports.$Enums.SubscriptionStatus = {
@@ -423,17 +447,6 @@ exports.SubscriptionType = exports.$Enums.SubscriptionType = {
   ACTIVITY: 'ACTIVITY'
 };
 
-exports.SubscriptionTier = exports.$Enums.SubscriptionTier = {
-  FREE: 'FREE',
-  PREMIUM: 'PREMIUM'
-};
-
-exports.SubscriptionRecordStatus = exports.$Enums.SubscriptionRecordStatus = {
-  ACTIVE: 'ACTIVE',
-  EXPIRED: 'EXPIRED',
-  CANCELED: 'CANCELED'
-};
-
 exports.BookingStatus = exports.$Enums.BookingStatus = {
   BOOKED: 'BOOKED',
   NO_BOOKING: 'NO_BOOKING'
@@ -442,6 +455,13 @@ exports.BookingStatus = exports.$Enums.BookingStatus = {
 exports.AttendanceStatus = exports.$Enums.AttendanceStatus = {
   ATTENDED: 'ATTENDED',
   NO_SHOW: 'NO_SHOW'
+};
+
+exports.ChurnStatus = exports.$Enums.ChurnStatus = {
+  HEALTHY: 'HEALTHY',
+  MIGHT_LEAVE_SOON: 'MIGHT_LEAVE_SOON',
+  AT_RISK: 'AT_RISK',
+  CHURNED: 'CHURNED'
 };
 
 exports.Prisma.ModelName = {
@@ -453,8 +473,9 @@ exports.Prisma.ModelName = {
   PlayerTrainingWeek: 'PlayerTrainingWeek',
   PlayerTrainingLevel: 'PlayerTrainingLevel',
   PlayerTrainingProgram: 'PlayerTrainingProgram',
-  PlayerSubscription: 'PlayerSubscription',
   SessionBooking: 'SessionBooking',
+  ChurnEvent: 'ChurnEvent',
+  PlayerHealthSummary: 'PlayerHealthSummary',
   MonthlyChurnMetric: 'MonthlyChurnMetric'
 };
 

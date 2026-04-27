@@ -58,15 +58,9 @@ enum ChurnStatus {
   CHURNED
 }
 
-enum SubscriptionTier {
-  FREE
-  PREMIUM
-}
-
-enum SubscriptionRecordStatus {
-  ACTIVE
-  EXPIRED
-  CANCELED
+enum SubscriptionTiers {
+  ADMIN
+  STRIPE
 }
 
 enum BookingStatus {
@@ -82,35 +76,33 @@ enum AttendanceStatus {
 // ---------------------------- Existing Models (Extended Where Needed) ------------------------------------- //
 
 model User {
-  id             String    @id
-  userType       UserType  @default(PLAYER)
-  club           Club?     @relation(fields: [clubId], references: [id])
+  id             String            @id
+  userType       UserType          @default(PLAYER)
+  club           Club?             @relation(fields: [clubId], references: [id])
   clubId         String?
-  team           Team?     @relation(fields: [teamId], references: [id])
+  team           Team?             @relation(fields: [teamId], references: [id])
   teamId         String?
-  disability     Boolean   @default(false)
+  disability     Boolean           @default(false)
   personNumber   String?
-  email          String?   @unique
+  email          String?           @unique
   firstName      String?
   lastName       String?
-  clubOnboarding Boolean   @default(false)
+  clubOnboarding Boolean           @default(false)
   gender         String?
-  createdBy      AdminRole @default(LOK)
-  dateCreated    DateTime  @default(now())
+  createdBy      AdminRole         @default(LOK)
+  dateCreated    DateTime          @default(now())
   dateUpdated    DateTime?
-
-  // New fields for churn and date-based filtering
-  churnStatus    ChurnStatus @default(HEALTHY)
-  joinedAt       DateTime    @default(now())
+  subscription   SubscriptionTiers @default(ADMIN)
+  joinedAt       DateTime          @default(now())
   lastActivityAt DateTime?
 
-  Activity            Activity[]
-  playerSubscriptions PlayerSubscription[]
-  sessionBookings     SessionBooking[]     @relation("SessionBookingPlayer")
+  Activity        Activity[]
+  sessionBookings SessionBooking[]     @relation("SessionBookingPlayer")
+  churnEvents     ChurnEvent[]
+  healthSummary   PlayerHealthSummary?
 
   @@index([clubId])
   @@index([teamId])
-  @@index([churnStatus])
   @@index([joinedAt])
   @@index([lastActivityAt])
 }
@@ -239,43 +231,63 @@ model PlayerTrainingProgram {
 
 // ---------------------------- New Models For Admin Dashboard ------------------------------------- //
 
-model PlayerSubscription {
-  id        String                   @id @default(cuid())
-  user      User                     @relation(fields: [userId], references: [id])
-  userId    String
-  tier      SubscriptionTier         @default(FREE)
-  status    SubscriptionRecordStatus @default(ACTIVE)
-  startDate DateTime                 @default(now())
-  endDate   DateTime?
-  autoRenew Boolean                  @default(false)
-  createdAt DateTime                 @default(now())
-  updatedAt DateTime                 @updatedAt
-
-  @@index([userId])
-  @@index([tier])
-  @@index([status])
-  @@index([endDate])
-}
-
 model SessionBooking {
   id               String           @id @default(cuid())
-  player           User             @relation("SessionBookingPlayer", fields: [playerUserId], references: [id])
-  playerUserId     String
+  user             User             @relation("SessionBookingPlayer", fields: [userId], references: [id])
+  userId           String
   activity         Activity         @relation(fields: [activityId], references: [id])
   activityId       String
   bookedAt         DateTime         @default(now())
   bookingStatus    BookingStatus    @default(BOOKED)
   attendanceStatus AttendanceStatus @default(NO_SHOW)
-  joinedAt         DateTime?
-  leftAt           DateTime?
   createdAt        DateTime         @default(now())
   updatedAt        DateTime         @updatedAt
 
-  @@index([playerUserId])
+  @@index([userId])
   @@index([activityId])
   @@index([bookedAt])
   @@index([attendanceStatus])
-  @@index([playerUserId, bookedAt])
+  @@index([userId, bookedAt])
+}
+
+model ChurnEvent {
+  id          String   @id @default(cuid())
+  user        User     @relation(fields: [userId], references: [id])
+  userId      String
+  eventType   String
+  eventDate   DateTime
+  scoreImpact Int      @default(0)
+  reasonText  String?  @db.Text
+  metaJson    Json?
+  createdAt   DateTime @default(now())
+
+  @@index([userId])
+  @@index([eventType])
+  @@index([eventDate])
+  @@index([userId, eventDate])
+}
+
+model PlayerHealthSummary {
+  id                    String      @id @default(cuid())
+  user                  User        @relation(fields: [userId], references: [id])
+  userId                String      @unique
+  joinedAt              DateTime
+  lastTrainingAt        DateTime?
+  lastLiveSessionAt     DateTime?
+  lastFeedActivityAt    DateTime?
+  trainingRiskPoints    Int         @default(0)
+  liveSessionRiskPoints Int         @default(0)
+  feedRiskPoints        Int         @default(0)
+  totalRiskScore        Int         @default(0)
+  currentStatus         ChurnStatus @default(HEALTHY)
+  lastCalculatedAt      DateTime?
+  createdAt             DateTime    @default(now())
+  updatedAt             DateTime    @updatedAt
+
+  @@index([userId])
+  @@index([currentStatus])
+  @@index([totalRiskScore])
+  @@index([lastCalculatedAt])
 }
 
 model MonthlyChurnMetric {

@@ -54,15 +54,20 @@ export type PlayerTrainingLevel = $Result.DefaultSelection<Prisma.$PlayerTrainin
  */
 export type PlayerTrainingProgram = $Result.DefaultSelection<Prisma.$PlayerTrainingProgramPayload>
 /**
- * Model PlayerSubscription
- * 
- */
-export type PlayerSubscription = $Result.DefaultSelection<Prisma.$PlayerSubscriptionPayload>
-/**
  * Model SessionBooking
  * 
  */
 export type SessionBooking = $Result.DefaultSelection<Prisma.$SessionBookingPayload>
+/**
+ * Model ChurnEvent
+ * 
+ */
+export type ChurnEvent = $Result.DefaultSelection<Prisma.$ChurnEventPayload>
+/**
+ * Model PlayerHealthSummary
+ * 
+ */
+export type PlayerHealthSummary = $Result.DefaultSelection<Prisma.$PlayerHealthSummaryPayload>
 /**
  * Model MonthlyChurnMetric
  * 
@@ -140,21 +145,12 @@ export const ChurnStatus: {
 export type ChurnStatus = (typeof ChurnStatus)[keyof typeof ChurnStatus]
 
 
-export const SubscriptionTier: {
-  FREE: 'FREE',
-  PREMIUM: 'PREMIUM'
+export const SubscriptionTiers: {
+  ADMIN: 'ADMIN',
+  STRIPE: 'STRIPE'
 };
 
-export type SubscriptionTier = (typeof SubscriptionTier)[keyof typeof SubscriptionTier]
-
-
-export const SubscriptionRecordStatus: {
-  ACTIVE: 'ACTIVE',
-  EXPIRED: 'EXPIRED',
-  CANCELED: 'CANCELED'
-};
-
-export type SubscriptionRecordStatus = (typeof SubscriptionRecordStatus)[keyof typeof SubscriptionRecordStatus]
+export type SubscriptionTiers = (typeof SubscriptionTiers)[keyof typeof SubscriptionTiers]
 
 
 export const BookingStatus: {
@@ -202,13 +198,9 @@ export type ChurnStatus = $Enums.ChurnStatus
 
 export const ChurnStatus: typeof $Enums.ChurnStatus
 
-export type SubscriptionTier = $Enums.SubscriptionTier
+export type SubscriptionTiers = $Enums.SubscriptionTiers
 
-export const SubscriptionTier: typeof $Enums.SubscriptionTier
-
-export type SubscriptionRecordStatus = $Enums.SubscriptionRecordStatus
-
-export const SubscriptionRecordStatus: typeof $Enums.SubscriptionRecordStatus
+export const SubscriptionTiers: typeof $Enums.SubscriptionTiers
 
 export type BookingStatus = $Enums.BookingStatus
 
@@ -420,16 +412,6 @@ export class PrismaClient<
   get playerTrainingProgram(): Prisma.PlayerTrainingProgramDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.playerSubscription`: Exposes CRUD operations for the **PlayerSubscription** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more PlayerSubscriptions
-    * const playerSubscriptions = await prisma.playerSubscription.findMany()
-    * ```
-    */
-  get playerSubscription(): Prisma.PlayerSubscriptionDelegate<ExtArgs, ClientOptions>;
-
-  /**
    * `prisma.sessionBooking`: Exposes CRUD operations for the **SessionBooking** model.
     * Example usage:
     * ```ts
@@ -438,6 +420,26 @@ export class PrismaClient<
     * ```
     */
   get sessionBooking(): Prisma.SessionBookingDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.churnEvent`: Exposes CRUD operations for the **ChurnEvent** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ChurnEvents
+    * const churnEvents = await prisma.churnEvent.findMany()
+    * ```
+    */
+  get churnEvent(): Prisma.ChurnEventDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.playerHealthSummary`: Exposes CRUD operations for the **PlayerHealthSummary** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more PlayerHealthSummaries
+    * const playerHealthSummaries = await prisma.playerHealthSummary.findMany()
+    * ```
+    */
+  get playerHealthSummary(): Prisma.PlayerHealthSummaryDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.monthlyChurnMetric`: Exposes CRUD operations for the **MonthlyChurnMetric** model.
@@ -890,8 +892,9 @@ export namespace Prisma {
     PlayerTrainingWeek: 'PlayerTrainingWeek',
     PlayerTrainingLevel: 'PlayerTrainingLevel',
     PlayerTrainingProgram: 'PlayerTrainingProgram',
-    PlayerSubscription: 'PlayerSubscription',
     SessionBooking: 'SessionBooking',
+    ChurnEvent: 'ChurnEvent',
+    PlayerHealthSummary: 'PlayerHealthSummary',
     MonthlyChurnMetric: 'MonthlyChurnMetric'
   };
 
@@ -908,7 +911,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "club" | "team" | "activity" | "playerTraining" | "playerTrainingWeek" | "playerTrainingLevel" | "playerTrainingProgram" | "playerSubscription" | "sessionBooking" | "monthlyChurnMetric"
+      modelProps: "user" | "club" | "team" | "activity" | "playerTraining" | "playerTrainingWeek" | "playerTrainingLevel" | "playerTrainingProgram" | "sessionBooking" | "churnEvent" | "playerHealthSummary" | "monthlyChurnMetric"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1440,72 +1443,6 @@ export namespace Prisma {
           }
         }
       }
-      PlayerSubscription: {
-        payload: Prisma.$PlayerSubscriptionPayload<ExtArgs>
-        fields: Prisma.PlayerSubscriptionFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.PlayerSubscriptionFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PlayerSubscriptionPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.PlayerSubscriptionFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PlayerSubscriptionPayload>
-          }
-          findFirst: {
-            args: Prisma.PlayerSubscriptionFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PlayerSubscriptionPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.PlayerSubscriptionFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PlayerSubscriptionPayload>
-          }
-          findMany: {
-            args: Prisma.PlayerSubscriptionFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PlayerSubscriptionPayload>[]
-          }
-          create: {
-            args: Prisma.PlayerSubscriptionCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PlayerSubscriptionPayload>
-          }
-          createMany: {
-            args: Prisma.PlayerSubscriptionCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          delete: {
-            args: Prisma.PlayerSubscriptionDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PlayerSubscriptionPayload>
-          }
-          update: {
-            args: Prisma.PlayerSubscriptionUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PlayerSubscriptionPayload>
-          }
-          deleteMany: {
-            args: Prisma.PlayerSubscriptionDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.PlayerSubscriptionUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          upsert: {
-            args: Prisma.PlayerSubscriptionUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PlayerSubscriptionPayload>
-          }
-          aggregate: {
-            args: Prisma.PlayerSubscriptionAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregatePlayerSubscription>
-          }
-          groupBy: {
-            args: Prisma.PlayerSubscriptionGroupByArgs<ExtArgs>
-            result: $Utils.Optional<PlayerSubscriptionGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.PlayerSubscriptionCountArgs<ExtArgs>
-            result: $Utils.Optional<PlayerSubscriptionCountAggregateOutputType> | number
-          }
-        }
-      }
       SessionBooking: {
         payload: Prisma.$SessionBookingPayload<ExtArgs>
         fields: Prisma.SessionBookingFieldRefs
@@ -1569,6 +1506,138 @@ export namespace Prisma {
           count: {
             args: Prisma.SessionBookingCountArgs<ExtArgs>
             result: $Utils.Optional<SessionBookingCountAggregateOutputType> | number
+          }
+        }
+      }
+      ChurnEvent: {
+        payload: Prisma.$ChurnEventPayload<ExtArgs>
+        fields: Prisma.ChurnEventFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ChurnEventFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChurnEventPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ChurnEventFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChurnEventPayload>
+          }
+          findFirst: {
+            args: Prisma.ChurnEventFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChurnEventPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ChurnEventFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChurnEventPayload>
+          }
+          findMany: {
+            args: Prisma.ChurnEventFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChurnEventPayload>[]
+          }
+          create: {
+            args: Prisma.ChurnEventCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChurnEventPayload>
+          }
+          createMany: {
+            args: Prisma.ChurnEventCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.ChurnEventDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChurnEventPayload>
+          }
+          update: {
+            args: Prisma.ChurnEventUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChurnEventPayload>
+          }
+          deleteMany: {
+            args: Prisma.ChurnEventDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ChurnEventUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.ChurnEventUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChurnEventPayload>
+          }
+          aggregate: {
+            args: Prisma.ChurnEventAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateChurnEvent>
+          }
+          groupBy: {
+            args: Prisma.ChurnEventGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ChurnEventGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ChurnEventCountArgs<ExtArgs>
+            result: $Utils.Optional<ChurnEventCountAggregateOutputType> | number
+          }
+        }
+      }
+      PlayerHealthSummary: {
+        payload: Prisma.$PlayerHealthSummaryPayload<ExtArgs>
+        fields: Prisma.PlayerHealthSummaryFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.PlayerHealthSummaryFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlayerHealthSummaryPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.PlayerHealthSummaryFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlayerHealthSummaryPayload>
+          }
+          findFirst: {
+            args: Prisma.PlayerHealthSummaryFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlayerHealthSummaryPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.PlayerHealthSummaryFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlayerHealthSummaryPayload>
+          }
+          findMany: {
+            args: Prisma.PlayerHealthSummaryFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlayerHealthSummaryPayload>[]
+          }
+          create: {
+            args: Prisma.PlayerHealthSummaryCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlayerHealthSummaryPayload>
+          }
+          createMany: {
+            args: Prisma.PlayerHealthSummaryCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.PlayerHealthSummaryDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlayerHealthSummaryPayload>
+          }
+          update: {
+            args: Prisma.PlayerHealthSummaryUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlayerHealthSummaryPayload>
+          }
+          deleteMany: {
+            args: Prisma.PlayerHealthSummaryDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.PlayerHealthSummaryUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.PlayerHealthSummaryUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlayerHealthSummaryPayload>
+          }
+          aggregate: {
+            args: Prisma.PlayerHealthSummaryAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregatePlayerHealthSummary>
+          }
+          groupBy: {
+            args: Prisma.PlayerHealthSummaryGroupByArgs<ExtArgs>
+            result: $Utils.Optional<PlayerHealthSummaryGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.PlayerHealthSummaryCountArgs<ExtArgs>
+            result: $Utils.Optional<PlayerHealthSummaryCountAggregateOutputType> | number
           }
         }
       }
@@ -1754,8 +1823,9 @@ export namespace Prisma {
     playerTrainingWeek?: PlayerTrainingWeekOmit
     playerTrainingLevel?: PlayerTrainingLevelOmit
     playerTrainingProgram?: PlayerTrainingProgramOmit
-    playerSubscription?: PlayerSubscriptionOmit
     sessionBooking?: SessionBookingOmit
+    churnEvent?: ChurnEventOmit
+    playerHealthSummary?: PlayerHealthSummaryOmit
     monthlyChurnMetric?: MonthlyChurnMetricOmit
   }
 
@@ -1838,14 +1908,14 @@ export namespace Prisma {
 
   export type UserCountOutputType = {
     Activity: number
-    playerSubscriptions: number
     sessionBookings: number
+    churnEvents: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Activity?: boolean | UserCountOutputTypeCountActivityArgs
-    playerSubscriptions?: boolean | UserCountOutputTypeCountPlayerSubscriptionsArgs
     sessionBookings?: boolean | UserCountOutputTypeCountSessionBookingsArgs
+    churnEvents?: boolean | UserCountOutputTypeCountChurnEventsArgs
   }
 
   // Custom InputTypes
@@ -1869,15 +1939,15 @@ export namespace Prisma {
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountPlayerSubscriptionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: PlayerSubscriptionWhereInput
+  export type UserCountOutputTypeCountSessionBookingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SessionBookingWhereInput
   }
 
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountSessionBookingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: SessionBookingWhereInput
+  export type UserCountOutputTypeCountChurnEventsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ChurnEventWhereInput
   }
 
 
@@ -2039,7 +2109,7 @@ export namespace Prisma {
     createdBy: $Enums.AdminRole | null
     dateCreated: Date | null
     dateUpdated: Date | null
-    churnStatus: $Enums.ChurnStatus | null
+    subscription: $Enums.SubscriptionTiers | null
     joinedAt: Date | null
     lastActivityAt: Date | null
   }
@@ -2059,7 +2129,7 @@ export namespace Prisma {
     createdBy: $Enums.AdminRole | null
     dateCreated: Date | null
     dateUpdated: Date | null
-    churnStatus: $Enums.ChurnStatus | null
+    subscription: $Enums.SubscriptionTiers | null
     joinedAt: Date | null
     lastActivityAt: Date | null
   }
@@ -2079,7 +2149,7 @@ export namespace Prisma {
     createdBy: number
     dateCreated: number
     dateUpdated: number
-    churnStatus: number
+    subscription: number
     joinedAt: number
     lastActivityAt: number
     _all: number
@@ -2101,7 +2171,7 @@ export namespace Prisma {
     createdBy?: true
     dateCreated?: true
     dateUpdated?: true
-    churnStatus?: true
+    subscription?: true
     joinedAt?: true
     lastActivityAt?: true
   }
@@ -2121,7 +2191,7 @@ export namespace Prisma {
     createdBy?: true
     dateCreated?: true
     dateUpdated?: true
-    churnStatus?: true
+    subscription?: true
     joinedAt?: true
     lastActivityAt?: true
   }
@@ -2141,7 +2211,7 @@ export namespace Prisma {
     createdBy?: true
     dateCreated?: true
     dateUpdated?: true
-    churnStatus?: true
+    subscription?: true
     joinedAt?: true
     lastActivityAt?: true
     _all?: true
@@ -2234,7 +2304,7 @@ export namespace Prisma {
     createdBy: $Enums.AdminRole
     dateCreated: Date
     dateUpdated: Date | null
-    churnStatus: $Enums.ChurnStatus
+    subscription: $Enums.SubscriptionTiers
     joinedAt: Date
     lastActivityAt: Date | null
     _count: UserCountAggregateOutputType | null
@@ -2271,14 +2341,15 @@ export namespace Prisma {
     createdBy?: boolean
     dateCreated?: boolean
     dateUpdated?: boolean
-    churnStatus?: boolean
+    subscription?: boolean
     joinedAt?: boolean
     lastActivityAt?: boolean
     club?: boolean | User$clubArgs<ExtArgs>
     team?: boolean | User$teamArgs<ExtArgs>
     Activity?: boolean | User$ActivityArgs<ExtArgs>
-    playerSubscriptions?: boolean | User$playerSubscriptionsArgs<ExtArgs>
     sessionBookings?: boolean | User$sessionBookingsArgs<ExtArgs>
+    churnEvents?: boolean | User$churnEventsArgs<ExtArgs>
+    healthSummary?: boolean | User$healthSummaryArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -2299,18 +2370,19 @@ export namespace Prisma {
     createdBy?: boolean
     dateCreated?: boolean
     dateUpdated?: boolean
-    churnStatus?: boolean
+    subscription?: boolean
     joinedAt?: boolean
     lastActivityAt?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userType" | "clubId" | "teamId" | "disability" | "personNumber" | "email" | "firstName" | "lastName" | "clubOnboarding" | "gender" | "createdBy" | "dateCreated" | "dateUpdated" | "churnStatus" | "joinedAt" | "lastActivityAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userType" | "clubId" | "teamId" | "disability" | "personNumber" | "email" | "firstName" | "lastName" | "clubOnboarding" | "gender" | "createdBy" | "dateCreated" | "dateUpdated" | "subscription" | "joinedAt" | "lastActivityAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     club?: boolean | User$clubArgs<ExtArgs>
     team?: boolean | User$teamArgs<ExtArgs>
     Activity?: boolean | User$ActivityArgs<ExtArgs>
-    playerSubscriptions?: boolean | User$playerSubscriptionsArgs<ExtArgs>
     sessionBookings?: boolean | User$sessionBookingsArgs<ExtArgs>
+    churnEvents?: boolean | User$churnEventsArgs<ExtArgs>
+    healthSummary?: boolean | User$healthSummaryArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -2320,8 +2392,9 @@ export namespace Prisma {
       club: Prisma.$ClubPayload<ExtArgs> | null
       team: Prisma.$TeamPayload<ExtArgs> | null
       Activity: Prisma.$ActivityPayload<ExtArgs>[]
-      playerSubscriptions: Prisma.$PlayerSubscriptionPayload<ExtArgs>[]
       sessionBookings: Prisma.$SessionBookingPayload<ExtArgs>[]
+      churnEvents: Prisma.$ChurnEventPayload<ExtArgs>[]
+      healthSummary: Prisma.$PlayerHealthSummaryPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -2338,7 +2411,7 @@ export namespace Prisma {
       createdBy: $Enums.AdminRole
       dateCreated: Date
       dateUpdated: Date | null
-      churnStatus: $Enums.ChurnStatus
+      subscription: $Enums.SubscriptionTiers
       joinedAt: Date
       lastActivityAt: Date | null
     }, ExtArgs["result"]["user"]>
@@ -2684,8 +2757,9 @@ export namespace Prisma {
     club<T extends User$clubArgs<ExtArgs> = {}>(args?: Subset<T, User$clubArgs<ExtArgs>>): Prisma__ClubClient<$Result.GetResult<Prisma.$ClubPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     team<T extends User$teamArgs<ExtArgs> = {}>(args?: Subset<T, User$teamArgs<ExtArgs>>): Prisma__TeamClient<$Result.GetResult<Prisma.$TeamPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     Activity<T extends User$ActivityArgs<ExtArgs> = {}>(args?: Subset<T, User$ActivityArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ActivityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    playerSubscriptions<T extends User$playerSubscriptionsArgs<ExtArgs> = {}>(args?: Subset<T, User$playerSubscriptionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PlayerSubscriptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     sessionBookings<T extends User$sessionBookingsArgs<ExtArgs> = {}>(args?: Subset<T, User$sessionBookingsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessionBookingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    churnEvents<T extends User$churnEventsArgs<ExtArgs> = {}>(args?: Subset<T, User$churnEventsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ChurnEventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    healthSummary<T extends User$healthSummaryArgs<ExtArgs> = {}>(args?: Subset<T, User$healthSummaryArgs<ExtArgs>>): Prisma__PlayerHealthSummaryClient<$Result.GetResult<Prisma.$PlayerHealthSummaryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2729,7 +2803,7 @@ export namespace Prisma {
     readonly createdBy: FieldRef<"User", 'AdminRole'>
     readonly dateCreated: FieldRef<"User", 'DateTime'>
     readonly dateUpdated: FieldRef<"User", 'DateTime'>
-    readonly churnStatus: FieldRef<"User", 'ChurnStatus'>
+    readonly subscription: FieldRef<"User", 'SubscriptionTiers'>
     readonly joinedAt: FieldRef<"User", 'DateTime'>
     readonly lastActivityAt: FieldRef<"User", 'DateTime'>
   }
@@ -3142,30 +3216,6 @@ export namespace Prisma {
   }
 
   /**
-   * User.playerSubscriptions
-   */
-  export type User$playerSubscriptionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PlayerSubscription
-     */
-    select?: PlayerSubscriptionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the PlayerSubscription
-     */
-    omit?: PlayerSubscriptionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PlayerSubscriptionInclude<ExtArgs> | null
-    where?: PlayerSubscriptionWhereInput
-    orderBy?: PlayerSubscriptionOrderByWithRelationInput | PlayerSubscriptionOrderByWithRelationInput[]
-    cursor?: PlayerSubscriptionWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: PlayerSubscriptionScalarFieldEnum | PlayerSubscriptionScalarFieldEnum[]
-  }
-
-  /**
    * User.sessionBookings
    */
   export type User$sessionBookingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3187,6 +3237,49 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: SessionBookingScalarFieldEnum | SessionBookingScalarFieldEnum[]
+  }
+
+  /**
+   * User.churnEvents
+   */
+  export type User$churnEventsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ChurnEvent
+     */
+    select?: ChurnEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ChurnEvent
+     */
+    omit?: ChurnEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChurnEventInclude<ExtArgs> | null
+    where?: ChurnEventWhereInput
+    orderBy?: ChurnEventOrderByWithRelationInput | ChurnEventOrderByWithRelationInput[]
+    cursor?: ChurnEventWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ChurnEventScalarFieldEnum | ChurnEventScalarFieldEnum[]
+  }
+
+  /**
+   * User.healthSummary
+   */
+  export type User$healthSummaryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlayerHealthSummary
+     */
+    select?: PlayerHealthSummarySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PlayerHealthSummary
+     */
+    omit?: PlayerHealthSummaryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlayerHealthSummaryInclude<ExtArgs> | null
+    where?: PlayerHealthSummaryWhereInput
   }
 
   /**
@@ -10392,984 +10485,6 @@ export namespace Prisma {
 
 
   /**
-   * Model PlayerSubscription
-   */
-
-  export type AggregatePlayerSubscription = {
-    _count: PlayerSubscriptionCountAggregateOutputType | null
-    _min: PlayerSubscriptionMinAggregateOutputType | null
-    _max: PlayerSubscriptionMaxAggregateOutputType | null
-  }
-
-  export type PlayerSubscriptionMinAggregateOutputType = {
-    id: string | null
-    userId: string | null
-    tier: $Enums.SubscriptionTier | null
-    status: $Enums.SubscriptionRecordStatus | null
-    startDate: Date | null
-    endDate: Date | null
-    autoRenew: boolean | null
-    createdAt: Date | null
-    updatedAt: Date | null
-  }
-
-  export type PlayerSubscriptionMaxAggregateOutputType = {
-    id: string | null
-    userId: string | null
-    tier: $Enums.SubscriptionTier | null
-    status: $Enums.SubscriptionRecordStatus | null
-    startDate: Date | null
-    endDate: Date | null
-    autoRenew: boolean | null
-    createdAt: Date | null
-    updatedAt: Date | null
-  }
-
-  export type PlayerSubscriptionCountAggregateOutputType = {
-    id: number
-    userId: number
-    tier: number
-    status: number
-    startDate: number
-    endDate: number
-    autoRenew: number
-    createdAt: number
-    updatedAt: number
-    _all: number
-  }
-
-
-  export type PlayerSubscriptionMinAggregateInputType = {
-    id?: true
-    userId?: true
-    tier?: true
-    status?: true
-    startDate?: true
-    endDate?: true
-    autoRenew?: true
-    createdAt?: true
-    updatedAt?: true
-  }
-
-  export type PlayerSubscriptionMaxAggregateInputType = {
-    id?: true
-    userId?: true
-    tier?: true
-    status?: true
-    startDate?: true
-    endDate?: true
-    autoRenew?: true
-    createdAt?: true
-    updatedAt?: true
-  }
-
-  export type PlayerSubscriptionCountAggregateInputType = {
-    id?: true
-    userId?: true
-    tier?: true
-    status?: true
-    startDate?: true
-    endDate?: true
-    autoRenew?: true
-    createdAt?: true
-    updatedAt?: true
-    _all?: true
-  }
-
-  export type PlayerSubscriptionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which PlayerSubscription to aggregate.
-     */
-    where?: PlayerSubscriptionWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of PlayerSubscriptions to fetch.
-     */
-    orderBy?: PlayerSubscriptionOrderByWithRelationInput | PlayerSubscriptionOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: PlayerSubscriptionWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` PlayerSubscriptions from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` PlayerSubscriptions.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned PlayerSubscriptions
-    **/
-    _count?: true | PlayerSubscriptionCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: PlayerSubscriptionMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: PlayerSubscriptionMaxAggregateInputType
-  }
-
-  export type GetPlayerSubscriptionAggregateType<T extends PlayerSubscriptionAggregateArgs> = {
-        [P in keyof T & keyof AggregatePlayerSubscription]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregatePlayerSubscription[P]>
-      : GetScalarType<T[P], AggregatePlayerSubscription[P]>
-  }
-
-
-
-
-  export type PlayerSubscriptionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: PlayerSubscriptionWhereInput
-    orderBy?: PlayerSubscriptionOrderByWithAggregationInput | PlayerSubscriptionOrderByWithAggregationInput[]
-    by: PlayerSubscriptionScalarFieldEnum[] | PlayerSubscriptionScalarFieldEnum
-    having?: PlayerSubscriptionScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: PlayerSubscriptionCountAggregateInputType | true
-    _min?: PlayerSubscriptionMinAggregateInputType
-    _max?: PlayerSubscriptionMaxAggregateInputType
-  }
-
-  export type PlayerSubscriptionGroupByOutputType = {
-    id: string
-    userId: string
-    tier: $Enums.SubscriptionTier
-    status: $Enums.SubscriptionRecordStatus
-    startDate: Date
-    endDate: Date | null
-    autoRenew: boolean
-    createdAt: Date
-    updatedAt: Date
-    _count: PlayerSubscriptionCountAggregateOutputType | null
-    _min: PlayerSubscriptionMinAggregateOutputType | null
-    _max: PlayerSubscriptionMaxAggregateOutputType | null
-  }
-
-  type GetPlayerSubscriptionGroupByPayload<T extends PlayerSubscriptionGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<PlayerSubscriptionGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof PlayerSubscriptionGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], PlayerSubscriptionGroupByOutputType[P]>
-            : GetScalarType<T[P], PlayerSubscriptionGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type PlayerSubscriptionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    userId?: boolean
-    tier?: boolean
-    status?: boolean
-    startDate?: boolean
-    endDate?: boolean
-    autoRenew?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["playerSubscription"]>
-
-
-
-  export type PlayerSubscriptionSelectScalar = {
-    id?: boolean
-    userId?: boolean
-    tier?: boolean
-    status?: boolean
-    startDate?: boolean
-    endDate?: boolean
-    autoRenew?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-  }
-
-  export type PlayerSubscriptionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "tier" | "status" | "startDate" | "endDate" | "autoRenew" | "createdAt" | "updatedAt", ExtArgs["result"]["playerSubscription"]>
-  export type PlayerSubscriptionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }
-
-  export type $PlayerSubscriptionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "PlayerSubscription"
-    objects: {
-      user: Prisma.$UserPayload<ExtArgs>
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: string
-      userId: string
-      tier: $Enums.SubscriptionTier
-      status: $Enums.SubscriptionRecordStatus
-      startDate: Date
-      endDate: Date | null
-      autoRenew: boolean
-      createdAt: Date
-      updatedAt: Date
-    }, ExtArgs["result"]["playerSubscription"]>
-    composites: {}
-  }
-
-  type PlayerSubscriptionGetPayload<S extends boolean | null | undefined | PlayerSubscriptionDefaultArgs> = $Result.GetResult<Prisma.$PlayerSubscriptionPayload, S>
-
-  type PlayerSubscriptionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<PlayerSubscriptionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: PlayerSubscriptionCountAggregateInputType | true
-    }
-
-  export interface PlayerSubscriptionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['PlayerSubscription'], meta: { name: 'PlayerSubscription' } }
-    /**
-     * Find zero or one PlayerSubscription that matches the filter.
-     * @param {PlayerSubscriptionFindUniqueArgs} args - Arguments to find a PlayerSubscription
-     * @example
-     * // Get one PlayerSubscription
-     * const playerSubscription = await prisma.playerSubscription.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends PlayerSubscriptionFindUniqueArgs>(args: SelectSubset<T, PlayerSubscriptionFindUniqueArgs<ExtArgs>>): Prisma__PlayerSubscriptionClient<$Result.GetResult<Prisma.$PlayerSubscriptionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one PlayerSubscription that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {PlayerSubscriptionFindUniqueOrThrowArgs} args - Arguments to find a PlayerSubscription
-     * @example
-     * // Get one PlayerSubscription
-     * const playerSubscription = await prisma.playerSubscription.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends PlayerSubscriptionFindUniqueOrThrowArgs>(args: SelectSubset<T, PlayerSubscriptionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PlayerSubscriptionClient<$Result.GetResult<Prisma.$PlayerSubscriptionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first PlayerSubscription that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PlayerSubscriptionFindFirstArgs} args - Arguments to find a PlayerSubscription
-     * @example
-     * // Get one PlayerSubscription
-     * const playerSubscription = await prisma.playerSubscription.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends PlayerSubscriptionFindFirstArgs>(args?: SelectSubset<T, PlayerSubscriptionFindFirstArgs<ExtArgs>>): Prisma__PlayerSubscriptionClient<$Result.GetResult<Prisma.$PlayerSubscriptionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first PlayerSubscription that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PlayerSubscriptionFindFirstOrThrowArgs} args - Arguments to find a PlayerSubscription
-     * @example
-     * // Get one PlayerSubscription
-     * const playerSubscription = await prisma.playerSubscription.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends PlayerSubscriptionFindFirstOrThrowArgs>(args?: SelectSubset<T, PlayerSubscriptionFindFirstOrThrowArgs<ExtArgs>>): Prisma__PlayerSubscriptionClient<$Result.GetResult<Prisma.$PlayerSubscriptionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more PlayerSubscriptions that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PlayerSubscriptionFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all PlayerSubscriptions
-     * const playerSubscriptions = await prisma.playerSubscription.findMany()
-     * 
-     * // Get first 10 PlayerSubscriptions
-     * const playerSubscriptions = await prisma.playerSubscription.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const playerSubscriptionWithIdOnly = await prisma.playerSubscription.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends PlayerSubscriptionFindManyArgs>(args?: SelectSubset<T, PlayerSubscriptionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PlayerSubscriptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a PlayerSubscription.
-     * @param {PlayerSubscriptionCreateArgs} args - Arguments to create a PlayerSubscription.
-     * @example
-     * // Create one PlayerSubscription
-     * const PlayerSubscription = await prisma.playerSubscription.create({
-     *   data: {
-     *     // ... data to create a PlayerSubscription
-     *   }
-     * })
-     * 
-     */
-    create<T extends PlayerSubscriptionCreateArgs>(args: SelectSubset<T, PlayerSubscriptionCreateArgs<ExtArgs>>): Prisma__PlayerSubscriptionClient<$Result.GetResult<Prisma.$PlayerSubscriptionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many PlayerSubscriptions.
-     * @param {PlayerSubscriptionCreateManyArgs} args - Arguments to create many PlayerSubscriptions.
-     * @example
-     * // Create many PlayerSubscriptions
-     * const playerSubscription = await prisma.playerSubscription.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends PlayerSubscriptionCreateManyArgs>(args?: SelectSubset<T, PlayerSubscriptionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Delete a PlayerSubscription.
-     * @param {PlayerSubscriptionDeleteArgs} args - Arguments to delete one PlayerSubscription.
-     * @example
-     * // Delete one PlayerSubscription
-     * const PlayerSubscription = await prisma.playerSubscription.delete({
-     *   where: {
-     *     // ... filter to delete one PlayerSubscription
-     *   }
-     * })
-     * 
-     */
-    delete<T extends PlayerSubscriptionDeleteArgs>(args: SelectSubset<T, PlayerSubscriptionDeleteArgs<ExtArgs>>): Prisma__PlayerSubscriptionClient<$Result.GetResult<Prisma.$PlayerSubscriptionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one PlayerSubscription.
-     * @param {PlayerSubscriptionUpdateArgs} args - Arguments to update one PlayerSubscription.
-     * @example
-     * // Update one PlayerSubscription
-     * const playerSubscription = await prisma.playerSubscription.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends PlayerSubscriptionUpdateArgs>(args: SelectSubset<T, PlayerSubscriptionUpdateArgs<ExtArgs>>): Prisma__PlayerSubscriptionClient<$Result.GetResult<Prisma.$PlayerSubscriptionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more PlayerSubscriptions.
-     * @param {PlayerSubscriptionDeleteManyArgs} args - Arguments to filter PlayerSubscriptions to delete.
-     * @example
-     * // Delete a few PlayerSubscriptions
-     * const { count } = await prisma.playerSubscription.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends PlayerSubscriptionDeleteManyArgs>(args?: SelectSubset<T, PlayerSubscriptionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more PlayerSubscriptions.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PlayerSubscriptionUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many PlayerSubscriptions
-     * const playerSubscription = await prisma.playerSubscription.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends PlayerSubscriptionUpdateManyArgs>(args: SelectSubset<T, PlayerSubscriptionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create or update one PlayerSubscription.
-     * @param {PlayerSubscriptionUpsertArgs} args - Arguments to update or create a PlayerSubscription.
-     * @example
-     * // Update or create a PlayerSubscription
-     * const playerSubscription = await prisma.playerSubscription.upsert({
-     *   create: {
-     *     // ... data to create a PlayerSubscription
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the PlayerSubscription we want to update
-     *   }
-     * })
-     */
-    upsert<T extends PlayerSubscriptionUpsertArgs>(args: SelectSubset<T, PlayerSubscriptionUpsertArgs<ExtArgs>>): Prisma__PlayerSubscriptionClient<$Result.GetResult<Prisma.$PlayerSubscriptionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of PlayerSubscriptions.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PlayerSubscriptionCountArgs} args - Arguments to filter PlayerSubscriptions to count.
-     * @example
-     * // Count the number of PlayerSubscriptions
-     * const count = await prisma.playerSubscription.count({
-     *   where: {
-     *     // ... the filter for the PlayerSubscriptions we want to count
-     *   }
-     * })
-    **/
-    count<T extends PlayerSubscriptionCountArgs>(
-      args?: Subset<T, PlayerSubscriptionCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], PlayerSubscriptionCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a PlayerSubscription.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PlayerSubscriptionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends PlayerSubscriptionAggregateArgs>(args: Subset<T, PlayerSubscriptionAggregateArgs>): Prisma.PrismaPromise<GetPlayerSubscriptionAggregateType<T>>
-
-    /**
-     * Group by PlayerSubscription.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PlayerSubscriptionGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends PlayerSubscriptionGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: PlayerSubscriptionGroupByArgs['orderBy'] }
-        : { orderBy?: PlayerSubscriptionGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, PlayerSubscriptionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPlayerSubscriptionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the PlayerSubscription model
-   */
-  readonly fields: PlayerSubscriptionFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for PlayerSubscription.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__PlayerSubscriptionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the PlayerSubscription model
-   */
-  interface PlayerSubscriptionFieldRefs {
-    readonly id: FieldRef<"PlayerSubscription", 'String'>
-    readonly userId: FieldRef<"PlayerSubscription", 'String'>
-    readonly tier: FieldRef<"PlayerSubscription", 'SubscriptionTier'>
-    readonly status: FieldRef<"PlayerSubscription", 'SubscriptionRecordStatus'>
-    readonly startDate: FieldRef<"PlayerSubscription", 'DateTime'>
-    readonly endDate: FieldRef<"PlayerSubscription", 'DateTime'>
-    readonly autoRenew: FieldRef<"PlayerSubscription", 'Boolean'>
-    readonly createdAt: FieldRef<"PlayerSubscription", 'DateTime'>
-    readonly updatedAt: FieldRef<"PlayerSubscription", 'DateTime'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * PlayerSubscription findUnique
-   */
-  export type PlayerSubscriptionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PlayerSubscription
-     */
-    select?: PlayerSubscriptionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the PlayerSubscription
-     */
-    omit?: PlayerSubscriptionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PlayerSubscriptionInclude<ExtArgs> | null
-    /**
-     * Filter, which PlayerSubscription to fetch.
-     */
-    where: PlayerSubscriptionWhereUniqueInput
-  }
-
-  /**
-   * PlayerSubscription findUniqueOrThrow
-   */
-  export type PlayerSubscriptionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PlayerSubscription
-     */
-    select?: PlayerSubscriptionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the PlayerSubscription
-     */
-    omit?: PlayerSubscriptionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PlayerSubscriptionInclude<ExtArgs> | null
-    /**
-     * Filter, which PlayerSubscription to fetch.
-     */
-    where: PlayerSubscriptionWhereUniqueInput
-  }
-
-  /**
-   * PlayerSubscription findFirst
-   */
-  export type PlayerSubscriptionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PlayerSubscription
-     */
-    select?: PlayerSubscriptionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the PlayerSubscription
-     */
-    omit?: PlayerSubscriptionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PlayerSubscriptionInclude<ExtArgs> | null
-    /**
-     * Filter, which PlayerSubscription to fetch.
-     */
-    where?: PlayerSubscriptionWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of PlayerSubscriptions to fetch.
-     */
-    orderBy?: PlayerSubscriptionOrderByWithRelationInput | PlayerSubscriptionOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for PlayerSubscriptions.
-     */
-    cursor?: PlayerSubscriptionWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` PlayerSubscriptions from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` PlayerSubscriptions.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of PlayerSubscriptions.
-     */
-    distinct?: PlayerSubscriptionScalarFieldEnum | PlayerSubscriptionScalarFieldEnum[]
-  }
-
-  /**
-   * PlayerSubscription findFirstOrThrow
-   */
-  export type PlayerSubscriptionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PlayerSubscription
-     */
-    select?: PlayerSubscriptionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the PlayerSubscription
-     */
-    omit?: PlayerSubscriptionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PlayerSubscriptionInclude<ExtArgs> | null
-    /**
-     * Filter, which PlayerSubscription to fetch.
-     */
-    where?: PlayerSubscriptionWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of PlayerSubscriptions to fetch.
-     */
-    orderBy?: PlayerSubscriptionOrderByWithRelationInput | PlayerSubscriptionOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for PlayerSubscriptions.
-     */
-    cursor?: PlayerSubscriptionWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` PlayerSubscriptions from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` PlayerSubscriptions.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of PlayerSubscriptions.
-     */
-    distinct?: PlayerSubscriptionScalarFieldEnum | PlayerSubscriptionScalarFieldEnum[]
-  }
-
-  /**
-   * PlayerSubscription findMany
-   */
-  export type PlayerSubscriptionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PlayerSubscription
-     */
-    select?: PlayerSubscriptionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the PlayerSubscription
-     */
-    omit?: PlayerSubscriptionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PlayerSubscriptionInclude<ExtArgs> | null
-    /**
-     * Filter, which PlayerSubscriptions to fetch.
-     */
-    where?: PlayerSubscriptionWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of PlayerSubscriptions to fetch.
-     */
-    orderBy?: PlayerSubscriptionOrderByWithRelationInput | PlayerSubscriptionOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing PlayerSubscriptions.
-     */
-    cursor?: PlayerSubscriptionWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` PlayerSubscriptions from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` PlayerSubscriptions.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of PlayerSubscriptions.
-     */
-    distinct?: PlayerSubscriptionScalarFieldEnum | PlayerSubscriptionScalarFieldEnum[]
-  }
-
-  /**
-   * PlayerSubscription create
-   */
-  export type PlayerSubscriptionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PlayerSubscription
-     */
-    select?: PlayerSubscriptionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the PlayerSubscription
-     */
-    omit?: PlayerSubscriptionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PlayerSubscriptionInclude<ExtArgs> | null
-    /**
-     * The data needed to create a PlayerSubscription.
-     */
-    data: XOR<PlayerSubscriptionCreateInput, PlayerSubscriptionUncheckedCreateInput>
-  }
-
-  /**
-   * PlayerSubscription createMany
-   */
-  export type PlayerSubscriptionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many PlayerSubscriptions.
-     */
-    data: PlayerSubscriptionCreateManyInput | PlayerSubscriptionCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * PlayerSubscription update
-   */
-  export type PlayerSubscriptionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PlayerSubscription
-     */
-    select?: PlayerSubscriptionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the PlayerSubscription
-     */
-    omit?: PlayerSubscriptionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PlayerSubscriptionInclude<ExtArgs> | null
-    /**
-     * The data needed to update a PlayerSubscription.
-     */
-    data: XOR<PlayerSubscriptionUpdateInput, PlayerSubscriptionUncheckedUpdateInput>
-    /**
-     * Choose, which PlayerSubscription to update.
-     */
-    where: PlayerSubscriptionWhereUniqueInput
-  }
-
-  /**
-   * PlayerSubscription updateMany
-   */
-  export type PlayerSubscriptionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update PlayerSubscriptions.
-     */
-    data: XOR<PlayerSubscriptionUpdateManyMutationInput, PlayerSubscriptionUncheckedUpdateManyInput>
-    /**
-     * Filter which PlayerSubscriptions to update
-     */
-    where?: PlayerSubscriptionWhereInput
-    /**
-     * Limit how many PlayerSubscriptions to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * PlayerSubscription upsert
-   */
-  export type PlayerSubscriptionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PlayerSubscription
-     */
-    select?: PlayerSubscriptionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the PlayerSubscription
-     */
-    omit?: PlayerSubscriptionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PlayerSubscriptionInclude<ExtArgs> | null
-    /**
-     * The filter to search for the PlayerSubscription to update in case it exists.
-     */
-    where: PlayerSubscriptionWhereUniqueInput
-    /**
-     * In case the PlayerSubscription found by the `where` argument doesn't exist, create a new PlayerSubscription with this data.
-     */
-    create: XOR<PlayerSubscriptionCreateInput, PlayerSubscriptionUncheckedCreateInput>
-    /**
-     * In case the PlayerSubscription was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<PlayerSubscriptionUpdateInput, PlayerSubscriptionUncheckedUpdateInput>
-  }
-
-  /**
-   * PlayerSubscription delete
-   */
-  export type PlayerSubscriptionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PlayerSubscription
-     */
-    select?: PlayerSubscriptionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the PlayerSubscription
-     */
-    omit?: PlayerSubscriptionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PlayerSubscriptionInclude<ExtArgs> | null
-    /**
-     * Filter which PlayerSubscription to delete.
-     */
-    where: PlayerSubscriptionWhereUniqueInput
-  }
-
-  /**
-   * PlayerSubscription deleteMany
-   */
-  export type PlayerSubscriptionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which PlayerSubscriptions to delete
-     */
-    where?: PlayerSubscriptionWhereInput
-    /**
-     * Limit how many PlayerSubscriptions to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * PlayerSubscription without action
-   */
-  export type PlayerSubscriptionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PlayerSubscription
-     */
-    select?: PlayerSubscriptionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the PlayerSubscription
-     */
-    omit?: PlayerSubscriptionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PlayerSubscriptionInclude<ExtArgs> | null
-  }
-
-
-  /**
    * Model SessionBooking
    */
 
@@ -11381,39 +10496,33 @@ export namespace Prisma {
 
   export type SessionBookingMinAggregateOutputType = {
     id: string | null
-    playerUserId: string | null
+    userId: string | null
     activityId: string | null
     bookedAt: Date | null
     bookingStatus: $Enums.BookingStatus | null
     attendanceStatus: $Enums.AttendanceStatus | null
-    joinedAt: Date | null
-    leftAt: Date | null
     createdAt: Date | null
     updatedAt: Date | null
   }
 
   export type SessionBookingMaxAggregateOutputType = {
     id: string | null
-    playerUserId: string | null
+    userId: string | null
     activityId: string | null
     bookedAt: Date | null
     bookingStatus: $Enums.BookingStatus | null
     attendanceStatus: $Enums.AttendanceStatus | null
-    joinedAt: Date | null
-    leftAt: Date | null
     createdAt: Date | null
     updatedAt: Date | null
   }
 
   export type SessionBookingCountAggregateOutputType = {
     id: number
-    playerUserId: number
+    userId: number
     activityId: number
     bookedAt: number
     bookingStatus: number
     attendanceStatus: number
-    joinedAt: number
-    leftAt: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -11422,39 +10531,33 @@ export namespace Prisma {
 
   export type SessionBookingMinAggregateInputType = {
     id?: true
-    playerUserId?: true
+    userId?: true
     activityId?: true
     bookedAt?: true
     bookingStatus?: true
     attendanceStatus?: true
-    joinedAt?: true
-    leftAt?: true
     createdAt?: true
     updatedAt?: true
   }
 
   export type SessionBookingMaxAggregateInputType = {
     id?: true
-    playerUserId?: true
+    userId?: true
     activityId?: true
     bookedAt?: true
     bookingStatus?: true
     attendanceStatus?: true
-    joinedAt?: true
-    leftAt?: true
     createdAt?: true
     updatedAt?: true
   }
 
   export type SessionBookingCountAggregateInputType = {
     id?: true
-    playerUserId?: true
+    userId?: true
     activityId?: true
     bookedAt?: true
     bookingStatus?: true
     attendanceStatus?: true
-    joinedAt?: true
-    leftAt?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -11534,13 +10637,11 @@ export namespace Prisma {
 
   export type SessionBookingGroupByOutputType = {
     id: string
-    playerUserId: string
+    userId: string
     activityId: string
     bookedAt: Date
     bookingStatus: $Enums.BookingStatus
     attendanceStatus: $Enums.AttendanceStatus
-    joinedAt: Date | null
-    leftAt: Date | null
     createdAt: Date
     updatedAt: Date
     _count: SessionBookingCountAggregateOutputType | null
@@ -11564,16 +10665,14 @@ export namespace Prisma {
 
   export type SessionBookingSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    playerUserId?: boolean
+    userId?: boolean
     activityId?: boolean
     bookedAt?: boolean
     bookingStatus?: boolean
     attendanceStatus?: boolean
-    joinedAt?: boolean
-    leftAt?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    player?: boolean | UserDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
     activity?: boolean | ActivityDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["sessionBooking"]>
 
@@ -11581,38 +10680,34 @@ export namespace Prisma {
 
   export type SessionBookingSelectScalar = {
     id?: boolean
-    playerUserId?: boolean
+    userId?: boolean
     activityId?: boolean
     bookedAt?: boolean
     bookingStatus?: boolean
     attendanceStatus?: boolean
-    joinedAt?: boolean
-    leftAt?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type SessionBookingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "playerUserId" | "activityId" | "bookedAt" | "bookingStatus" | "attendanceStatus" | "joinedAt" | "leftAt" | "createdAt" | "updatedAt", ExtArgs["result"]["sessionBooking"]>
+  export type SessionBookingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "activityId" | "bookedAt" | "bookingStatus" | "attendanceStatus" | "createdAt" | "updatedAt", ExtArgs["result"]["sessionBooking"]>
   export type SessionBookingInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    player?: boolean | UserDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
     activity?: boolean | ActivityDefaultArgs<ExtArgs>
   }
 
   export type $SessionBookingPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "SessionBooking"
     objects: {
-      player: Prisma.$UserPayload<ExtArgs>
+      user: Prisma.$UserPayload<ExtArgs>
       activity: Prisma.$ActivityPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      playerUserId: string
+      userId: string
       activityId: string
       bookedAt: Date
       bookingStatus: $Enums.BookingStatus
       attendanceStatus: $Enums.AttendanceStatus
-      joinedAt: Date | null
-      leftAt: Date | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["sessionBooking"]>
@@ -11955,7 +11050,7 @@ export namespace Prisma {
    */
   export interface Prisma__SessionBookingClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    player<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     activity<T extends ActivityDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ActivityDefaultArgs<ExtArgs>>): Prisma__ActivityClient<$Result.GetResult<Prisma.$ActivityPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -11987,13 +11082,11 @@ export namespace Prisma {
    */
   interface SessionBookingFieldRefs {
     readonly id: FieldRef<"SessionBooking", 'String'>
-    readonly playerUserId: FieldRef<"SessionBooking", 'String'>
+    readonly userId: FieldRef<"SessionBooking", 'String'>
     readonly activityId: FieldRef<"SessionBooking", 'String'>
     readonly bookedAt: FieldRef<"SessionBooking", 'DateTime'>
     readonly bookingStatus: FieldRef<"SessionBooking", 'BookingStatus'>
     readonly attendanceStatus: FieldRef<"SessionBooking", 'AttendanceStatus'>
-    readonly joinedAt: FieldRef<"SessionBooking", 'DateTime'>
-    readonly leftAt: FieldRef<"SessionBooking", 'DateTime'>
     readonly createdAt: FieldRef<"SessionBooking", 'DateTime'>
     readonly updatedAt: FieldRef<"SessionBooking", 'DateTime'>
   }
@@ -12359,6 +11452,2082 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: SessionBookingInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ChurnEvent
+   */
+
+  export type AggregateChurnEvent = {
+    _count: ChurnEventCountAggregateOutputType | null
+    _avg: ChurnEventAvgAggregateOutputType | null
+    _sum: ChurnEventSumAggregateOutputType | null
+    _min: ChurnEventMinAggregateOutputType | null
+    _max: ChurnEventMaxAggregateOutputType | null
+  }
+
+  export type ChurnEventAvgAggregateOutputType = {
+    scoreImpact: number | null
+  }
+
+  export type ChurnEventSumAggregateOutputType = {
+    scoreImpact: number | null
+  }
+
+  export type ChurnEventMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    eventType: string | null
+    eventDate: Date | null
+    scoreImpact: number | null
+    reasonText: string | null
+    createdAt: Date | null
+  }
+
+  export type ChurnEventMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    eventType: string | null
+    eventDate: Date | null
+    scoreImpact: number | null
+    reasonText: string | null
+    createdAt: Date | null
+  }
+
+  export type ChurnEventCountAggregateOutputType = {
+    id: number
+    userId: number
+    eventType: number
+    eventDate: number
+    scoreImpact: number
+    reasonText: number
+    metaJson: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type ChurnEventAvgAggregateInputType = {
+    scoreImpact?: true
+  }
+
+  export type ChurnEventSumAggregateInputType = {
+    scoreImpact?: true
+  }
+
+  export type ChurnEventMinAggregateInputType = {
+    id?: true
+    userId?: true
+    eventType?: true
+    eventDate?: true
+    scoreImpact?: true
+    reasonText?: true
+    createdAt?: true
+  }
+
+  export type ChurnEventMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    eventType?: true
+    eventDate?: true
+    scoreImpact?: true
+    reasonText?: true
+    createdAt?: true
+  }
+
+  export type ChurnEventCountAggregateInputType = {
+    id?: true
+    userId?: true
+    eventType?: true
+    eventDate?: true
+    scoreImpact?: true
+    reasonText?: true
+    metaJson?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type ChurnEventAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ChurnEvent to aggregate.
+     */
+    where?: ChurnEventWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ChurnEvents to fetch.
+     */
+    orderBy?: ChurnEventOrderByWithRelationInput | ChurnEventOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ChurnEventWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ChurnEvents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ChurnEvents.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ChurnEvents
+    **/
+    _count?: true | ChurnEventCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ChurnEventAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ChurnEventSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ChurnEventMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ChurnEventMaxAggregateInputType
+  }
+
+  export type GetChurnEventAggregateType<T extends ChurnEventAggregateArgs> = {
+        [P in keyof T & keyof AggregateChurnEvent]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateChurnEvent[P]>
+      : GetScalarType<T[P], AggregateChurnEvent[P]>
+  }
+
+
+
+
+  export type ChurnEventGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ChurnEventWhereInput
+    orderBy?: ChurnEventOrderByWithAggregationInput | ChurnEventOrderByWithAggregationInput[]
+    by: ChurnEventScalarFieldEnum[] | ChurnEventScalarFieldEnum
+    having?: ChurnEventScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ChurnEventCountAggregateInputType | true
+    _avg?: ChurnEventAvgAggregateInputType
+    _sum?: ChurnEventSumAggregateInputType
+    _min?: ChurnEventMinAggregateInputType
+    _max?: ChurnEventMaxAggregateInputType
+  }
+
+  export type ChurnEventGroupByOutputType = {
+    id: string
+    userId: string
+    eventType: string
+    eventDate: Date
+    scoreImpact: number
+    reasonText: string | null
+    metaJson: JsonValue | null
+    createdAt: Date
+    _count: ChurnEventCountAggregateOutputType | null
+    _avg: ChurnEventAvgAggregateOutputType | null
+    _sum: ChurnEventSumAggregateOutputType | null
+    _min: ChurnEventMinAggregateOutputType | null
+    _max: ChurnEventMaxAggregateOutputType | null
+  }
+
+  type GetChurnEventGroupByPayload<T extends ChurnEventGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ChurnEventGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ChurnEventGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ChurnEventGroupByOutputType[P]>
+            : GetScalarType<T[P], ChurnEventGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ChurnEventSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    eventType?: boolean
+    eventDate?: boolean
+    scoreImpact?: boolean
+    reasonText?: boolean
+    metaJson?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["churnEvent"]>
+
+
+
+  export type ChurnEventSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    eventType?: boolean
+    eventDate?: boolean
+    scoreImpact?: boolean
+    reasonText?: boolean
+    metaJson?: boolean
+    createdAt?: boolean
+  }
+
+  export type ChurnEventOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "eventType" | "eventDate" | "scoreImpact" | "reasonText" | "metaJson" | "createdAt", ExtArgs["result"]["churnEvent"]>
+  export type ChurnEventInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $ChurnEventPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ChurnEvent"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      eventType: string
+      eventDate: Date
+      scoreImpact: number
+      reasonText: string | null
+      metaJson: Prisma.JsonValue | null
+      createdAt: Date
+    }, ExtArgs["result"]["churnEvent"]>
+    composites: {}
+  }
+
+  type ChurnEventGetPayload<S extends boolean | null | undefined | ChurnEventDefaultArgs> = $Result.GetResult<Prisma.$ChurnEventPayload, S>
+
+  type ChurnEventCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ChurnEventFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ChurnEventCountAggregateInputType | true
+    }
+
+  export interface ChurnEventDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ChurnEvent'], meta: { name: 'ChurnEvent' } }
+    /**
+     * Find zero or one ChurnEvent that matches the filter.
+     * @param {ChurnEventFindUniqueArgs} args - Arguments to find a ChurnEvent
+     * @example
+     * // Get one ChurnEvent
+     * const churnEvent = await prisma.churnEvent.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ChurnEventFindUniqueArgs>(args: SelectSubset<T, ChurnEventFindUniqueArgs<ExtArgs>>): Prisma__ChurnEventClient<$Result.GetResult<Prisma.$ChurnEventPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ChurnEvent that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ChurnEventFindUniqueOrThrowArgs} args - Arguments to find a ChurnEvent
+     * @example
+     * // Get one ChurnEvent
+     * const churnEvent = await prisma.churnEvent.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ChurnEventFindUniqueOrThrowArgs>(args: SelectSubset<T, ChurnEventFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ChurnEventClient<$Result.GetResult<Prisma.$ChurnEventPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ChurnEvent that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ChurnEventFindFirstArgs} args - Arguments to find a ChurnEvent
+     * @example
+     * // Get one ChurnEvent
+     * const churnEvent = await prisma.churnEvent.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ChurnEventFindFirstArgs>(args?: SelectSubset<T, ChurnEventFindFirstArgs<ExtArgs>>): Prisma__ChurnEventClient<$Result.GetResult<Prisma.$ChurnEventPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ChurnEvent that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ChurnEventFindFirstOrThrowArgs} args - Arguments to find a ChurnEvent
+     * @example
+     * // Get one ChurnEvent
+     * const churnEvent = await prisma.churnEvent.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ChurnEventFindFirstOrThrowArgs>(args?: SelectSubset<T, ChurnEventFindFirstOrThrowArgs<ExtArgs>>): Prisma__ChurnEventClient<$Result.GetResult<Prisma.$ChurnEventPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ChurnEvents that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ChurnEventFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ChurnEvents
+     * const churnEvents = await prisma.churnEvent.findMany()
+     * 
+     * // Get first 10 ChurnEvents
+     * const churnEvents = await prisma.churnEvent.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const churnEventWithIdOnly = await prisma.churnEvent.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ChurnEventFindManyArgs>(args?: SelectSubset<T, ChurnEventFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ChurnEventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ChurnEvent.
+     * @param {ChurnEventCreateArgs} args - Arguments to create a ChurnEvent.
+     * @example
+     * // Create one ChurnEvent
+     * const ChurnEvent = await prisma.churnEvent.create({
+     *   data: {
+     *     // ... data to create a ChurnEvent
+     *   }
+     * })
+     * 
+     */
+    create<T extends ChurnEventCreateArgs>(args: SelectSubset<T, ChurnEventCreateArgs<ExtArgs>>): Prisma__ChurnEventClient<$Result.GetResult<Prisma.$ChurnEventPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ChurnEvents.
+     * @param {ChurnEventCreateManyArgs} args - Arguments to create many ChurnEvents.
+     * @example
+     * // Create many ChurnEvents
+     * const churnEvent = await prisma.churnEvent.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ChurnEventCreateManyArgs>(args?: SelectSubset<T, ChurnEventCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a ChurnEvent.
+     * @param {ChurnEventDeleteArgs} args - Arguments to delete one ChurnEvent.
+     * @example
+     * // Delete one ChurnEvent
+     * const ChurnEvent = await prisma.churnEvent.delete({
+     *   where: {
+     *     // ... filter to delete one ChurnEvent
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ChurnEventDeleteArgs>(args: SelectSubset<T, ChurnEventDeleteArgs<ExtArgs>>): Prisma__ChurnEventClient<$Result.GetResult<Prisma.$ChurnEventPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ChurnEvent.
+     * @param {ChurnEventUpdateArgs} args - Arguments to update one ChurnEvent.
+     * @example
+     * // Update one ChurnEvent
+     * const churnEvent = await prisma.churnEvent.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ChurnEventUpdateArgs>(args: SelectSubset<T, ChurnEventUpdateArgs<ExtArgs>>): Prisma__ChurnEventClient<$Result.GetResult<Prisma.$ChurnEventPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ChurnEvents.
+     * @param {ChurnEventDeleteManyArgs} args - Arguments to filter ChurnEvents to delete.
+     * @example
+     * // Delete a few ChurnEvents
+     * const { count } = await prisma.churnEvent.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ChurnEventDeleteManyArgs>(args?: SelectSubset<T, ChurnEventDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ChurnEvents.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ChurnEventUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ChurnEvents
+     * const churnEvent = await prisma.churnEvent.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ChurnEventUpdateManyArgs>(args: SelectSubset<T, ChurnEventUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one ChurnEvent.
+     * @param {ChurnEventUpsertArgs} args - Arguments to update or create a ChurnEvent.
+     * @example
+     * // Update or create a ChurnEvent
+     * const churnEvent = await prisma.churnEvent.upsert({
+     *   create: {
+     *     // ... data to create a ChurnEvent
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ChurnEvent we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ChurnEventUpsertArgs>(args: SelectSubset<T, ChurnEventUpsertArgs<ExtArgs>>): Prisma__ChurnEventClient<$Result.GetResult<Prisma.$ChurnEventPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ChurnEvents.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ChurnEventCountArgs} args - Arguments to filter ChurnEvents to count.
+     * @example
+     * // Count the number of ChurnEvents
+     * const count = await prisma.churnEvent.count({
+     *   where: {
+     *     // ... the filter for the ChurnEvents we want to count
+     *   }
+     * })
+    **/
+    count<T extends ChurnEventCountArgs>(
+      args?: Subset<T, ChurnEventCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ChurnEventCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ChurnEvent.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ChurnEventAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ChurnEventAggregateArgs>(args: Subset<T, ChurnEventAggregateArgs>): Prisma.PrismaPromise<GetChurnEventAggregateType<T>>
+
+    /**
+     * Group by ChurnEvent.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ChurnEventGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ChurnEventGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ChurnEventGroupByArgs['orderBy'] }
+        : { orderBy?: ChurnEventGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ChurnEventGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetChurnEventGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ChurnEvent model
+   */
+  readonly fields: ChurnEventFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ChurnEvent.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ChurnEventClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ChurnEvent model
+   */
+  interface ChurnEventFieldRefs {
+    readonly id: FieldRef<"ChurnEvent", 'String'>
+    readonly userId: FieldRef<"ChurnEvent", 'String'>
+    readonly eventType: FieldRef<"ChurnEvent", 'String'>
+    readonly eventDate: FieldRef<"ChurnEvent", 'DateTime'>
+    readonly scoreImpact: FieldRef<"ChurnEvent", 'Int'>
+    readonly reasonText: FieldRef<"ChurnEvent", 'String'>
+    readonly metaJson: FieldRef<"ChurnEvent", 'Json'>
+    readonly createdAt: FieldRef<"ChurnEvent", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ChurnEvent findUnique
+   */
+  export type ChurnEventFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ChurnEvent
+     */
+    select?: ChurnEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ChurnEvent
+     */
+    omit?: ChurnEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChurnEventInclude<ExtArgs> | null
+    /**
+     * Filter, which ChurnEvent to fetch.
+     */
+    where: ChurnEventWhereUniqueInput
+  }
+
+  /**
+   * ChurnEvent findUniqueOrThrow
+   */
+  export type ChurnEventFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ChurnEvent
+     */
+    select?: ChurnEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ChurnEvent
+     */
+    omit?: ChurnEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChurnEventInclude<ExtArgs> | null
+    /**
+     * Filter, which ChurnEvent to fetch.
+     */
+    where: ChurnEventWhereUniqueInput
+  }
+
+  /**
+   * ChurnEvent findFirst
+   */
+  export type ChurnEventFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ChurnEvent
+     */
+    select?: ChurnEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ChurnEvent
+     */
+    omit?: ChurnEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChurnEventInclude<ExtArgs> | null
+    /**
+     * Filter, which ChurnEvent to fetch.
+     */
+    where?: ChurnEventWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ChurnEvents to fetch.
+     */
+    orderBy?: ChurnEventOrderByWithRelationInput | ChurnEventOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ChurnEvents.
+     */
+    cursor?: ChurnEventWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ChurnEvents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ChurnEvents.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ChurnEvents.
+     */
+    distinct?: ChurnEventScalarFieldEnum | ChurnEventScalarFieldEnum[]
+  }
+
+  /**
+   * ChurnEvent findFirstOrThrow
+   */
+  export type ChurnEventFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ChurnEvent
+     */
+    select?: ChurnEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ChurnEvent
+     */
+    omit?: ChurnEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChurnEventInclude<ExtArgs> | null
+    /**
+     * Filter, which ChurnEvent to fetch.
+     */
+    where?: ChurnEventWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ChurnEvents to fetch.
+     */
+    orderBy?: ChurnEventOrderByWithRelationInput | ChurnEventOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ChurnEvents.
+     */
+    cursor?: ChurnEventWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ChurnEvents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ChurnEvents.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ChurnEvents.
+     */
+    distinct?: ChurnEventScalarFieldEnum | ChurnEventScalarFieldEnum[]
+  }
+
+  /**
+   * ChurnEvent findMany
+   */
+  export type ChurnEventFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ChurnEvent
+     */
+    select?: ChurnEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ChurnEvent
+     */
+    omit?: ChurnEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChurnEventInclude<ExtArgs> | null
+    /**
+     * Filter, which ChurnEvents to fetch.
+     */
+    where?: ChurnEventWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ChurnEvents to fetch.
+     */
+    orderBy?: ChurnEventOrderByWithRelationInput | ChurnEventOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ChurnEvents.
+     */
+    cursor?: ChurnEventWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ChurnEvents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ChurnEvents.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ChurnEvents.
+     */
+    distinct?: ChurnEventScalarFieldEnum | ChurnEventScalarFieldEnum[]
+  }
+
+  /**
+   * ChurnEvent create
+   */
+  export type ChurnEventCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ChurnEvent
+     */
+    select?: ChurnEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ChurnEvent
+     */
+    omit?: ChurnEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChurnEventInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ChurnEvent.
+     */
+    data: XOR<ChurnEventCreateInput, ChurnEventUncheckedCreateInput>
+  }
+
+  /**
+   * ChurnEvent createMany
+   */
+  export type ChurnEventCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ChurnEvents.
+     */
+    data: ChurnEventCreateManyInput | ChurnEventCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ChurnEvent update
+   */
+  export type ChurnEventUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ChurnEvent
+     */
+    select?: ChurnEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ChurnEvent
+     */
+    omit?: ChurnEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChurnEventInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ChurnEvent.
+     */
+    data: XOR<ChurnEventUpdateInput, ChurnEventUncheckedUpdateInput>
+    /**
+     * Choose, which ChurnEvent to update.
+     */
+    where: ChurnEventWhereUniqueInput
+  }
+
+  /**
+   * ChurnEvent updateMany
+   */
+  export type ChurnEventUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ChurnEvents.
+     */
+    data: XOR<ChurnEventUpdateManyMutationInput, ChurnEventUncheckedUpdateManyInput>
+    /**
+     * Filter which ChurnEvents to update
+     */
+    where?: ChurnEventWhereInput
+    /**
+     * Limit how many ChurnEvents to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ChurnEvent upsert
+   */
+  export type ChurnEventUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ChurnEvent
+     */
+    select?: ChurnEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ChurnEvent
+     */
+    omit?: ChurnEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChurnEventInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ChurnEvent to update in case it exists.
+     */
+    where: ChurnEventWhereUniqueInput
+    /**
+     * In case the ChurnEvent found by the `where` argument doesn't exist, create a new ChurnEvent with this data.
+     */
+    create: XOR<ChurnEventCreateInput, ChurnEventUncheckedCreateInput>
+    /**
+     * In case the ChurnEvent was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ChurnEventUpdateInput, ChurnEventUncheckedUpdateInput>
+  }
+
+  /**
+   * ChurnEvent delete
+   */
+  export type ChurnEventDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ChurnEvent
+     */
+    select?: ChurnEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ChurnEvent
+     */
+    omit?: ChurnEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChurnEventInclude<ExtArgs> | null
+    /**
+     * Filter which ChurnEvent to delete.
+     */
+    where: ChurnEventWhereUniqueInput
+  }
+
+  /**
+   * ChurnEvent deleteMany
+   */
+  export type ChurnEventDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ChurnEvents to delete
+     */
+    where?: ChurnEventWhereInput
+    /**
+     * Limit how many ChurnEvents to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ChurnEvent without action
+   */
+  export type ChurnEventDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ChurnEvent
+     */
+    select?: ChurnEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ChurnEvent
+     */
+    omit?: ChurnEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChurnEventInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model PlayerHealthSummary
+   */
+
+  export type AggregatePlayerHealthSummary = {
+    _count: PlayerHealthSummaryCountAggregateOutputType | null
+    _avg: PlayerHealthSummaryAvgAggregateOutputType | null
+    _sum: PlayerHealthSummarySumAggregateOutputType | null
+    _min: PlayerHealthSummaryMinAggregateOutputType | null
+    _max: PlayerHealthSummaryMaxAggregateOutputType | null
+  }
+
+  export type PlayerHealthSummaryAvgAggregateOutputType = {
+    trainingRiskPoints: number | null
+    liveSessionRiskPoints: number | null
+    feedRiskPoints: number | null
+    totalRiskScore: number | null
+  }
+
+  export type PlayerHealthSummarySumAggregateOutputType = {
+    trainingRiskPoints: number | null
+    liveSessionRiskPoints: number | null
+    feedRiskPoints: number | null
+    totalRiskScore: number | null
+  }
+
+  export type PlayerHealthSummaryMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    joinedAt: Date | null
+    lastTrainingAt: Date | null
+    lastLiveSessionAt: Date | null
+    lastFeedActivityAt: Date | null
+    trainingRiskPoints: number | null
+    liveSessionRiskPoints: number | null
+    feedRiskPoints: number | null
+    totalRiskScore: number | null
+    currentStatus: $Enums.ChurnStatus | null
+    lastCalculatedAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type PlayerHealthSummaryMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    joinedAt: Date | null
+    lastTrainingAt: Date | null
+    lastLiveSessionAt: Date | null
+    lastFeedActivityAt: Date | null
+    trainingRiskPoints: number | null
+    liveSessionRiskPoints: number | null
+    feedRiskPoints: number | null
+    totalRiskScore: number | null
+    currentStatus: $Enums.ChurnStatus | null
+    lastCalculatedAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type PlayerHealthSummaryCountAggregateOutputType = {
+    id: number
+    userId: number
+    joinedAt: number
+    lastTrainingAt: number
+    lastLiveSessionAt: number
+    lastFeedActivityAt: number
+    trainingRiskPoints: number
+    liveSessionRiskPoints: number
+    feedRiskPoints: number
+    totalRiskScore: number
+    currentStatus: number
+    lastCalculatedAt: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type PlayerHealthSummaryAvgAggregateInputType = {
+    trainingRiskPoints?: true
+    liveSessionRiskPoints?: true
+    feedRiskPoints?: true
+    totalRiskScore?: true
+  }
+
+  export type PlayerHealthSummarySumAggregateInputType = {
+    trainingRiskPoints?: true
+    liveSessionRiskPoints?: true
+    feedRiskPoints?: true
+    totalRiskScore?: true
+  }
+
+  export type PlayerHealthSummaryMinAggregateInputType = {
+    id?: true
+    userId?: true
+    joinedAt?: true
+    lastTrainingAt?: true
+    lastLiveSessionAt?: true
+    lastFeedActivityAt?: true
+    trainingRiskPoints?: true
+    liveSessionRiskPoints?: true
+    feedRiskPoints?: true
+    totalRiskScore?: true
+    currentStatus?: true
+    lastCalculatedAt?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type PlayerHealthSummaryMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    joinedAt?: true
+    lastTrainingAt?: true
+    lastLiveSessionAt?: true
+    lastFeedActivityAt?: true
+    trainingRiskPoints?: true
+    liveSessionRiskPoints?: true
+    feedRiskPoints?: true
+    totalRiskScore?: true
+    currentStatus?: true
+    lastCalculatedAt?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type PlayerHealthSummaryCountAggregateInputType = {
+    id?: true
+    userId?: true
+    joinedAt?: true
+    lastTrainingAt?: true
+    lastLiveSessionAt?: true
+    lastFeedActivityAt?: true
+    trainingRiskPoints?: true
+    liveSessionRiskPoints?: true
+    feedRiskPoints?: true
+    totalRiskScore?: true
+    currentStatus?: true
+    lastCalculatedAt?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type PlayerHealthSummaryAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PlayerHealthSummary to aggregate.
+     */
+    where?: PlayerHealthSummaryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PlayerHealthSummaries to fetch.
+     */
+    orderBy?: PlayerHealthSummaryOrderByWithRelationInput | PlayerHealthSummaryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: PlayerHealthSummaryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PlayerHealthSummaries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PlayerHealthSummaries.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned PlayerHealthSummaries
+    **/
+    _count?: true | PlayerHealthSummaryCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: PlayerHealthSummaryAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: PlayerHealthSummarySumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: PlayerHealthSummaryMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: PlayerHealthSummaryMaxAggregateInputType
+  }
+
+  export type GetPlayerHealthSummaryAggregateType<T extends PlayerHealthSummaryAggregateArgs> = {
+        [P in keyof T & keyof AggregatePlayerHealthSummary]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePlayerHealthSummary[P]>
+      : GetScalarType<T[P], AggregatePlayerHealthSummary[P]>
+  }
+
+
+
+
+  export type PlayerHealthSummaryGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PlayerHealthSummaryWhereInput
+    orderBy?: PlayerHealthSummaryOrderByWithAggregationInput | PlayerHealthSummaryOrderByWithAggregationInput[]
+    by: PlayerHealthSummaryScalarFieldEnum[] | PlayerHealthSummaryScalarFieldEnum
+    having?: PlayerHealthSummaryScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: PlayerHealthSummaryCountAggregateInputType | true
+    _avg?: PlayerHealthSummaryAvgAggregateInputType
+    _sum?: PlayerHealthSummarySumAggregateInputType
+    _min?: PlayerHealthSummaryMinAggregateInputType
+    _max?: PlayerHealthSummaryMaxAggregateInputType
+  }
+
+  export type PlayerHealthSummaryGroupByOutputType = {
+    id: string
+    userId: string
+    joinedAt: Date
+    lastTrainingAt: Date | null
+    lastLiveSessionAt: Date | null
+    lastFeedActivityAt: Date | null
+    trainingRiskPoints: number
+    liveSessionRiskPoints: number
+    feedRiskPoints: number
+    totalRiskScore: number
+    currentStatus: $Enums.ChurnStatus
+    lastCalculatedAt: Date | null
+    createdAt: Date
+    updatedAt: Date
+    _count: PlayerHealthSummaryCountAggregateOutputType | null
+    _avg: PlayerHealthSummaryAvgAggregateOutputType | null
+    _sum: PlayerHealthSummarySumAggregateOutputType | null
+    _min: PlayerHealthSummaryMinAggregateOutputType | null
+    _max: PlayerHealthSummaryMaxAggregateOutputType | null
+  }
+
+  type GetPlayerHealthSummaryGroupByPayload<T extends PlayerHealthSummaryGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PlayerHealthSummaryGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PlayerHealthSummaryGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PlayerHealthSummaryGroupByOutputType[P]>
+            : GetScalarType<T[P], PlayerHealthSummaryGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type PlayerHealthSummarySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    joinedAt?: boolean
+    lastTrainingAt?: boolean
+    lastLiveSessionAt?: boolean
+    lastFeedActivityAt?: boolean
+    trainingRiskPoints?: boolean
+    liveSessionRiskPoints?: boolean
+    feedRiskPoints?: boolean
+    totalRiskScore?: boolean
+    currentStatus?: boolean
+    lastCalculatedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["playerHealthSummary"]>
+
+
+
+  export type PlayerHealthSummarySelectScalar = {
+    id?: boolean
+    userId?: boolean
+    joinedAt?: boolean
+    lastTrainingAt?: boolean
+    lastLiveSessionAt?: boolean
+    lastFeedActivityAt?: boolean
+    trainingRiskPoints?: boolean
+    liveSessionRiskPoints?: boolean
+    feedRiskPoints?: boolean
+    totalRiskScore?: boolean
+    currentStatus?: boolean
+    lastCalculatedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type PlayerHealthSummaryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "joinedAt" | "lastTrainingAt" | "lastLiveSessionAt" | "lastFeedActivityAt" | "trainingRiskPoints" | "liveSessionRiskPoints" | "feedRiskPoints" | "totalRiskScore" | "currentStatus" | "lastCalculatedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["playerHealthSummary"]>
+  export type PlayerHealthSummaryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $PlayerHealthSummaryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "PlayerHealthSummary"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      joinedAt: Date
+      lastTrainingAt: Date | null
+      lastLiveSessionAt: Date | null
+      lastFeedActivityAt: Date | null
+      trainingRiskPoints: number
+      liveSessionRiskPoints: number
+      feedRiskPoints: number
+      totalRiskScore: number
+      currentStatus: $Enums.ChurnStatus
+      lastCalculatedAt: Date | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["playerHealthSummary"]>
+    composites: {}
+  }
+
+  type PlayerHealthSummaryGetPayload<S extends boolean | null | undefined | PlayerHealthSummaryDefaultArgs> = $Result.GetResult<Prisma.$PlayerHealthSummaryPayload, S>
+
+  type PlayerHealthSummaryCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<PlayerHealthSummaryFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: PlayerHealthSummaryCountAggregateInputType | true
+    }
+
+  export interface PlayerHealthSummaryDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['PlayerHealthSummary'], meta: { name: 'PlayerHealthSummary' } }
+    /**
+     * Find zero or one PlayerHealthSummary that matches the filter.
+     * @param {PlayerHealthSummaryFindUniqueArgs} args - Arguments to find a PlayerHealthSummary
+     * @example
+     * // Get one PlayerHealthSummary
+     * const playerHealthSummary = await prisma.playerHealthSummary.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends PlayerHealthSummaryFindUniqueArgs>(args: SelectSubset<T, PlayerHealthSummaryFindUniqueArgs<ExtArgs>>): Prisma__PlayerHealthSummaryClient<$Result.GetResult<Prisma.$PlayerHealthSummaryPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one PlayerHealthSummary that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {PlayerHealthSummaryFindUniqueOrThrowArgs} args - Arguments to find a PlayerHealthSummary
+     * @example
+     * // Get one PlayerHealthSummary
+     * const playerHealthSummary = await prisma.playerHealthSummary.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends PlayerHealthSummaryFindUniqueOrThrowArgs>(args: SelectSubset<T, PlayerHealthSummaryFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PlayerHealthSummaryClient<$Result.GetResult<Prisma.$PlayerHealthSummaryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PlayerHealthSummary that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlayerHealthSummaryFindFirstArgs} args - Arguments to find a PlayerHealthSummary
+     * @example
+     * // Get one PlayerHealthSummary
+     * const playerHealthSummary = await prisma.playerHealthSummary.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends PlayerHealthSummaryFindFirstArgs>(args?: SelectSubset<T, PlayerHealthSummaryFindFirstArgs<ExtArgs>>): Prisma__PlayerHealthSummaryClient<$Result.GetResult<Prisma.$PlayerHealthSummaryPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PlayerHealthSummary that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlayerHealthSummaryFindFirstOrThrowArgs} args - Arguments to find a PlayerHealthSummary
+     * @example
+     * // Get one PlayerHealthSummary
+     * const playerHealthSummary = await prisma.playerHealthSummary.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends PlayerHealthSummaryFindFirstOrThrowArgs>(args?: SelectSubset<T, PlayerHealthSummaryFindFirstOrThrowArgs<ExtArgs>>): Prisma__PlayerHealthSummaryClient<$Result.GetResult<Prisma.$PlayerHealthSummaryPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more PlayerHealthSummaries that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlayerHealthSummaryFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all PlayerHealthSummaries
+     * const playerHealthSummaries = await prisma.playerHealthSummary.findMany()
+     * 
+     * // Get first 10 PlayerHealthSummaries
+     * const playerHealthSummaries = await prisma.playerHealthSummary.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const playerHealthSummaryWithIdOnly = await prisma.playerHealthSummary.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends PlayerHealthSummaryFindManyArgs>(args?: SelectSubset<T, PlayerHealthSummaryFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PlayerHealthSummaryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a PlayerHealthSummary.
+     * @param {PlayerHealthSummaryCreateArgs} args - Arguments to create a PlayerHealthSummary.
+     * @example
+     * // Create one PlayerHealthSummary
+     * const PlayerHealthSummary = await prisma.playerHealthSummary.create({
+     *   data: {
+     *     // ... data to create a PlayerHealthSummary
+     *   }
+     * })
+     * 
+     */
+    create<T extends PlayerHealthSummaryCreateArgs>(args: SelectSubset<T, PlayerHealthSummaryCreateArgs<ExtArgs>>): Prisma__PlayerHealthSummaryClient<$Result.GetResult<Prisma.$PlayerHealthSummaryPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many PlayerHealthSummaries.
+     * @param {PlayerHealthSummaryCreateManyArgs} args - Arguments to create many PlayerHealthSummaries.
+     * @example
+     * // Create many PlayerHealthSummaries
+     * const playerHealthSummary = await prisma.playerHealthSummary.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends PlayerHealthSummaryCreateManyArgs>(args?: SelectSubset<T, PlayerHealthSummaryCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a PlayerHealthSummary.
+     * @param {PlayerHealthSummaryDeleteArgs} args - Arguments to delete one PlayerHealthSummary.
+     * @example
+     * // Delete one PlayerHealthSummary
+     * const PlayerHealthSummary = await prisma.playerHealthSummary.delete({
+     *   where: {
+     *     // ... filter to delete one PlayerHealthSummary
+     *   }
+     * })
+     * 
+     */
+    delete<T extends PlayerHealthSummaryDeleteArgs>(args: SelectSubset<T, PlayerHealthSummaryDeleteArgs<ExtArgs>>): Prisma__PlayerHealthSummaryClient<$Result.GetResult<Prisma.$PlayerHealthSummaryPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one PlayerHealthSummary.
+     * @param {PlayerHealthSummaryUpdateArgs} args - Arguments to update one PlayerHealthSummary.
+     * @example
+     * // Update one PlayerHealthSummary
+     * const playerHealthSummary = await prisma.playerHealthSummary.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends PlayerHealthSummaryUpdateArgs>(args: SelectSubset<T, PlayerHealthSummaryUpdateArgs<ExtArgs>>): Prisma__PlayerHealthSummaryClient<$Result.GetResult<Prisma.$PlayerHealthSummaryPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more PlayerHealthSummaries.
+     * @param {PlayerHealthSummaryDeleteManyArgs} args - Arguments to filter PlayerHealthSummaries to delete.
+     * @example
+     * // Delete a few PlayerHealthSummaries
+     * const { count } = await prisma.playerHealthSummary.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends PlayerHealthSummaryDeleteManyArgs>(args?: SelectSubset<T, PlayerHealthSummaryDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PlayerHealthSummaries.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlayerHealthSummaryUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many PlayerHealthSummaries
+     * const playerHealthSummary = await prisma.playerHealthSummary.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends PlayerHealthSummaryUpdateManyArgs>(args: SelectSubset<T, PlayerHealthSummaryUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one PlayerHealthSummary.
+     * @param {PlayerHealthSummaryUpsertArgs} args - Arguments to update or create a PlayerHealthSummary.
+     * @example
+     * // Update or create a PlayerHealthSummary
+     * const playerHealthSummary = await prisma.playerHealthSummary.upsert({
+     *   create: {
+     *     // ... data to create a PlayerHealthSummary
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the PlayerHealthSummary we want to update
+     *   }
+     * })
+     */
+    upsert<T extends PlayerHealthSummaryUpsertArgs>(args: SelectSubset<T, PlayerHealthSummaryUpsertArgs<ExtArgs>>): Prisma__PlayerHealthSummaryClient<$Result.GetResult<Prisma.$PlayerHealthSummaryPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of PlayerHealthSummaries.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlayerHealthSummaryCountArgs} args - Arguments to filter PlayerHealthSummaries to count.
+     * @example
+     * // Count the number of PlayerHealthSummaries
+     * const count = await prisma.playerHealthSummary.count({
+     *   where: {
+     *     // ... the filter for the PlayerHealthSummaries we want to count
+     *   }
+     * })
+    **/
+    count<T extends PlayerHealthSummaryCountArgs>(
+      args?: Subset<T, PlayerHealthSummaryCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PlayerHealthSummaryCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a PlayerHealthSummary.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlayerHealthSummaryAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PlayerHealthSummaryAggregateArgs>(args: Subset<T, PlayerHealthSummaryAggregateArgs>): Prisma.PrismaPromise<GetPlayerHealthSummaryAggregateType<T>>
+
+    /**
+     * Group by PlayerHealthSummary.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlayerHealthSummaryGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends PlayerHealthSummaryGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: PlayerHealthSummaryGroupByArgs['orderBy'] }
+        : { orderBy?: PlayerHealthSummaryGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, PlayerHealthSummaryGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPlayerHealthSummaryGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the PlayerHealthSummary model
+   */
+  readonly fields: PlayerHealthSummaryFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for PlayerHealthSummary.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__PlayerHealthSummaryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the PlayerHealthSummary model
+   */
+  interface PlayerHealthSummaryFieldRefs {
+    readonly id: FieldRef<"PlayerHealthSummary", 'String'>
+    readonly userId: FieldRef<"PlayerHealthSummary", 'String'>
+    readonly joinedAt: FieldRef<"PlayerHealthSummary", 'DateTime'>
+    readonly lastTrainingAt: FieldRef<"PlayerHealthSummary", 'DateTime'>
+    readonly lastLiveSessionAt: FieldRef<"PlayerHealthSummary", 'DateTime'>
+    readonly lastFeedActivityAt: FieldRef<"PlayerHealthSummary", 'DateTime'>
+    readonly trainingRiskPoints: FieldRef<"PlayerHealthSummary", 'Int'>
+    readonly liveSessionRiskPoints: FieldRef<"PlayerHealthSummary", 'Int'>
+    readonly feedRiskPoints: FieldRef<"PlayerHealthSummary", 'Int'>
+    readonly totalRiskScore: FieldRef<"PlayerHealthSummary", 'Int'>
+    readonly currentStatus: FieldRef<"PlayerHealthSummary", 'ChurnStatus'>
+    readonly lastCalculatedAt: FieldRef<"PlayerHealthSummary", 'DateTime'>
+    readonly createdAt: FieldRef<"PlayerHealthSummary", 'DateTime'>
+    readonly updatedAt: FieldRef<"PlayerHealthSummary", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * PlayerHealthSummary findUnique
+   */
+  export type PlayerHealthSummaryFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlayerHealthSummary
+     */
+    select?: PlayerHealthSummarySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PlayerHealthSummary
+     */
+    omit?: PlayerHealthSummaryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlayerHealthSummaryInclude<ExtArgs> | null
+    /**
+     * Filter, which PlayerHealthSummary to fetch.
+     */
+    where: PlayerHealthSummaryWhereUniqueInput
+  }
+
+  /**
+   * PlayerHealthSummary findUniqueOrThrow
+   */
+  export type PlayerHealthSummaryFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlayerHealthSummary
+     */
+    select?: PlayerHealthSummarySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PlayerHealthSummary
+     */
+    omit?: PlayerHealthSummaryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlayerHealthSummaryInclude<ExtArgs> | null
+    /**
+     * Filter, which PlayerHealthSummary to fetch.
+     */
+    where: PlayerHealthSummaryWhereUniqueInput
+  }
+
+  /**
+   * PlayerHealthSummary findFirst
+   */
+  export type PlayerHealthSummaryFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlayerHealthSummary
+     */
+    select?: PlayerHealthSummarySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PlayerHealthSummary
+     */
+    omit?: PlayerHealthSummaryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlayerHealthSummaryInclude<ExtArgs> | null
+    /**
+     * Filter, which PlayerHealthSummary to fetch.
+     */
+    where?: PlayerHealthSummaryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PlayerHealthSummaries to fetch.
+     */
+    orderBy?: PlayerHealthSummaryOrderByWithRelationInput | PlayerHealthSummaryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PlayerHealthSummaries.
+     */
+    cursor?: PlayerHealthSummaryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PlayerHealthSummaries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PlayerHealthSummaries.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PlayerHealthSummaries.
+     */
+    distinct?: PlayerHealthSummaryScalarFieldEnum | PlayerHealthSummaryScalarFieldEnum[]
+  }
+
+  /**
+   * PlayerHealthSummary findFirstOrThrow
+   */
+  export type PlayerHealthSummaryFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlayerHealthSummary
+     */
+    select?: PlayerHealthSummarySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PlayerHealthSummary
+     */
+    omit?: PlayerHealthSummaryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlayerHealthSummaryInclude<ExtArgs> | null
+    /**
+     * Filter, which PlayerHealthSummary to fetch.
+     */
+    where?: PlayerHealthSummaryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PlayerHealthSummaries to fetch.
+     */
+    orderBy?: PlayerHealthSummaryOrderByWithRelationInput | PlayerHealthSummaryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PlayerHealthSummaries.
+     */
+    cursor?: PlayerHealthSummaryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PlayerHealthSummaries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PlayerHealthSummaries.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PlayerHealthSummaries.
+     */
+    distinct?: PlayerHealthSummaryScalarFieldEnum | PlayerHealthSummaryScalarFieldEnum[]
+  }
+
+  /**
+   * PlayerHealthSummary findMany
+   */
+  export type PlayerHealthSummaryFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlayerHealthSummary
+     */
+    select?: PlayerHealthSummarySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PlayerHealthSummary
+     */
+    omit?: PlayerHealthSummaryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlayerHealthSummaryInclude<ExtArgs> | null
+    /**
+     * Filter, which PlayerHealthSummaries to fetch.
+     */
+    where?: PlayerHealthSummaryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PlayerHealthSummaries to fetch.
+     */
+    orderBy?: PlayerHealthSummaryOrderByWithRelationInput | PlayerHealthSummaryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing PlayerHealthSummaries.
+     */
+    cursor?: PlayerHealthSummaryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PlayerHealthSummaries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PlayerHealthSummaries.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PlayerHealthSummaries.
+     */
+    distinct?: PlayerHealthSummaryScalarFieldEnum | PlayerHealthSummaryScalarFieldEnum[]
+  }
+
+  /**
+   * PlayerHealthSummary create
+   */
+  export type PlayerHealthSummaryCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlayerHealthSummary
+     */
+    select?: PlayerHealthSummarySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PlayerHealthSummary
+     */
+    omit?: PlayerHealthSummaryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlayerHealthSummaryInclude<ExtArgs> | null
+    /**
+     * The data needed to create a PlayerHealthSummary.
+     */
+    data: XOR<PlayerHealthSummaryCreateInput, PlayerHealthSummaryUncheckedCreateInput>
+  }
+
+  /**
+   * PlayerHealthSummary createMany
+   */
+  export type PlayerHealthSummaryCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many PlayerHealthSummaries.
+     */
+    data: PlayerHealthSummaryCreateManyInput | PlayerHealthSummaryCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * PlayerHealthSummary update
+   */
+  export type PlayerHealthSummaryUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlayerHealthSummary
+     */
+    select?: PlayerHealthSummarySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PlayerHealthSummary
+     */
+    omit?: PlayerHealthSummaryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlayerHealthSummaryInclude<ExtArgs> | null
+    /**
+     * The data needed to update a PlayerHealthSummary.
+     */
+    data: XOR<PlayerHealthSummaryUpdateInput, PlayerHealthSummaryUncheckedUpdateInput>
+    /**
+     * Choose, which PlayerHealthSummary to update.
+     */
+    where: PlayerHealthSummaryWhereUniqueInput
+  }
+
+  /**
+   * PlayerHealthSummary updateMany
+   */
+  export type PlayerHealthSummaryUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update PlayerHealthSummaries.
+     */
+    data: XOR<PlayerHealthSummaryUpdateManyMutationInput, PlayerHealthSummaryUncheckedUpdateManyInput>
+    /**
+     * Filter which PlayerHealthSummaries to update
+     */
+    where?: PlayerHealthSummaryWhereInput
+    /**
+     * Limit how many PlayerHealthSummaries to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * PlayerHealthSummary upsert
+   */
+  export type PlayerHealthSummaryUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlayerHealthSummary
+     */
+    select?: PlayerHealthSummarySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PlayerHealthSummary
+     */
+    omit?: PlayerHealthSummaryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlayerHealthSummaryInclude<ExtArgs> | null
+    /**
+     * The filter to search for the PlayerHealthSummary to update in case it exists.
+     */
+    where: PlayerHealthSummaryWhereUniqueInput
+    /**
+     * In case the PlayerHealthSummary found by the `where` argument doesn't exist, create a new PlayerHealthSummary with this data.
+     */
+    create: XOR<PlayerHealthSummaryCreateInput, PlayerHealthSummaryUncheckedCreateInput>
+    /**
+     * In case the PlayerHealthSummary was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<PlayerHealthSummaryUpdateInput, PlayerHealthSummaryUncheckedUpdateInput>
+  }
+
+  /**
+   * PlayerHealthSummary delete
+   */
+  export type PlayerHealthSummaryDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlayerHealthSummary
+     */
+    select?: PlayerHealthSummarySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PlayerHealthSummary
+     */
+    omit?: PlayerHealthSummaryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlayerHealthSummaryInclude<ExtArgs> | null
+    /**
+     * Filter which PlayerHealthSummary to delete.
+     */
+    where: PlayerHealthSummaryWhereUniqueInput
+  }
+
+  /**
+   * PlayerHealthSummary deleteMany
+   */
+  export type PlayerHealthSummaryDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PlayerHealthSummaries to delete
+     */
+    where?: PlayerHealthSummaryWhereInput
+    /**
+     * Limit how many PlayerHealthSummaries to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * PlayerHealthSummary without action
+   */
+  export type PlayerHealthSummaryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlayerHealthSummary
+     */
+    select?: PlayerHealthSummarySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PlayerHealthSummary
+     */
+    omit?: PlayerHealthSummaryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlayerHealthSummaryInclude<ExtArgs> | null
   }
 
 
@@ -13494,7 +14663,7 @@ export namespace Prisma {
     createdBy: 'createdBy',
     dateCreated: 'dateCreated',
     dateUpdated: 'dateUpdated',
-    churnStatus: 'churnStatus',
+    subscription: 'subscription',
     joinedAt: 'joinedAt',
     lastActivityAt: 'lastActivityAt'
   };
@@ -13616,35 +14785,52 @@ export namespace Prisma {
   export type PlayerTrainingProgramScalarFieldEnum = (typeof PlayerTrainingProgramScalarFieldEnum)[keyof typeof PlayerTrainingProgramScalarFieldEnum]
 
 
-  export const PlayerSubscriptionScalarFieldEnum: {
-    id: 'id',
-    userId: 'userId',
-    tier: 'tier',
-    status: 'status',
-    startDate: 'startDate',
-    endDate: 'endDate',
-    autoRenew: 'autoRenew',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
-  };
-
-  export type PlayerSubscriptionScalarFieldEnum = (typeof PlayerSubscriptionScalarFieldEnum)[keyof typeof PlayerSubscriptionScalarFieldEnum]
-
-
   export const SessionBookingScalarFieldEnum: {
     id: 'id',
-    playerUserId: 'playerUserId',
+    userId: 'userId',
     activityId: 'activityId',
     bookedAt: 'bookedAt',
     bookingStatus: 'bookingStatus',
     attendanceStatus: 'attendanceStatus',
-    joinedAt: 'joinedAt',
-    leftAt: 'leftAt',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
 
   export type SessionBookingScalarFieldEnum = (typeof SessionBookingScalarFieldEnum)[keyof typeof SessionBookingScalarFieldEnum]
+
+
+  export const ChurnEventScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    eventType: 'eventType',
+    eventDate: 'eventDate',
+    scoreImpact: 'scoreImpact',
+    reasonText: 'reasonText',
+    metaJson: 'metaJson',
+    createdAt: 'createdAt'
+  };
+
+  export type ChurnEventScalarFieldEnum = (typeof ChurnEventScalarFieldEnum)[keyof typeof ChurnEventScalarFieldEnum]
+
+
+  export const PlayerHealthSummaryScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    joinedAt: 'joinedAt',
+    lastTrainingAt: 'lastTrainingAt',
+    lastLiveSessionAt: 'lastLiveSessionAt',
+    lastFeedActivityAt: 'lastFeedActivityAt',
+    trainingRiskPoints: 'trainingRiskPoints',
+    liveSessionRiskPoints: 'liveSessionRiskPoints',
+    feedRiskPoints: 'feedRiskPoints',
+    totalRiskScore: 'totalRiskScore',
+    currentStatus: 'currentStatus',
+    lastCalculatedAt: 'lastCalculatedAt',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type PlayerHealthSummaryScalarFieldEnum = (typeof PlayerHealthSummaryScalarFieldEnum)[keyof typeof PlayerHealthSummaryScalarFieldEnum]
 
 
   export const MonthlyChurnMetricScalarFieldEnum: {
@@ -13679,6 +14865,14 @@ export namespace Prisma {
   };
 
   export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
+
+
+  export const NullableJsonNullValueInput: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull
+  };
+
+  export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
 
 
   export const NullsOrder: {
@@ -13793,21 +14987,31 @@ export namespace Prisma {
   export type PlayerTrainingProgramOrderByRelevanceFieldEnum = (typeof PlayerTrainingProgramOrderByRelevanceFieldEnum)[keyof typeof PlayerTrainingProgramOrderByRelevanceFieldEnum]
 
 
-  export const PlayerSubscriptionOrderByRelevanceFieldEnum: {
-    id: 'id',
-    userId: 'userId'
-  };
-
-  export type PlayerSubscriptionOrderByRelevanceFieldEnum = (typeof PlayerSubscriptionOrderByRelevanceFieldEnum)[keyof typeof PlayerSubscriptionOrderByRelevanceFieldEnum]
-
-
   export const SessionBookingOrderByRelevanceFieldEnum: {
     id: 'id',
-    playerUserId: 'playerUserId',
+    userId: 'userId',
     activityId: 'activityId'
   };
 
   export type SessionBookingOrderByRelevanceFieldEnum = (typeof SessionBookingOrderByRelevanceFieldEnum)[keyof typeof SessionBookingOrderByRelevanceFieldEnum]
+
+
+  export const ChurnEventOrderByRelevanceFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    eventType: 'eventType',
+    reasonText: 'reasonText'
+  };
+
+  export type ChurnEventOrderByRelevanceFieldEnum = (typeof ChurnEventOrderByRelevanceFieldEnum)[keyof typeof ChurnEventOrderByRelevanceFieldEnum]
+
+
+  export const PlayerHealthSummaryOrderByRelevanceFieldEnum: {
+    id: 'id',
+    userId: 'userId'
+  };
+
+  export type PlayerHealthSummaryOrderByRelevanceFieldEnum = (typeof PlayerHealthSummaryOrderByRelevanceFieldEnum)[keyof typeof PlayerHealthSummaryOrderByRelevanceFieldEnum]
 
 
   export const MonthlyChurnMetricOrderByRelevanceFieldEnum: {
@@ -13859,9 +15063,9 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'ChurnStatus'
+   * Reference to a field of type 'SubscriptionTiers'
    */
-  export type EnumChurnStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ChurnStatus'>
+  export type EnumSubscriptionTiersFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SubscriptionTiers'>
     
 
 
@@ -13915,20 +15119,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'SubscriptionTier'
-   */
-  export type EnumSubscriptionTierFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SubscriptionTier'>
-    
-
-
-  /**
-   * Reference to a field of type 'SubscriptionRecordStatus'
-   */
-  export type EnumSubscriptionRecordStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SubscriptionRecordStatus'>
-    
-
-
-  /**
    * Reference to a field of type 'BookingStatus'
    */
   export type EnumBookingStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BookingStatus'>
@@ -13939,6 +15129,13 @@ export namespace Prisma {
    * Reference to a field of type 'AttendanceStatus'
    */
   export type EnumAttendanceStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AttendanceStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'ChurnStatus'
+   */
+  export type EnumChurnStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ChurnStatus'>
     
 
 
@@ -13977,14 +15174,15 @@ export namespace Prisma {
     createdBy?: EnumAdminRoleFilter<"User"> | $Enums.AdminRole
     dateCreated?: DateTimeFilter<"User"> | Date | string
     dateUpdated?: DateTimeNullableFilter<"User"> | Date | string | null
-    churnStatus?: EnumChurnStatusFilter<"User"> | $Enums.ChurnStatus
+    subscription?: EnumSubscriptionTiersFilter<"User"> | $Enums.SubscriptionTiers
     joinedAt?: DateTimeFilter<"User"> | Date | string
     lastActivityAt?: DateTimeNullableFilter<"User"> | Date | string | null
     club?: XOR<ClubNullableScalarRelationFilter, ClubWhereInput> | null
     team?: XOR<TeamNullableScalarRelationFilter, TeamWhereInput> | null
     Activity?: ActivityListRelationFilter
-    playerSubscriptions?: PlayerSubscriptionListRelationFilter
     sessionBookings?: SessionBookingListRelationFilter
+    churnEvents?: ChurnEventListRelationFilter
+    healthSummary?: XOR<PlayerHealthSummaryNullableScalarRelationFilter, PlayerHealthSummaryWhereInput> | null
   }
 
   export type UserOrderByWithRelationInput = {
@@ -14002,14 +15200,15 @@ export namespace Prisma {
     createdBy?: SortOrder
     dateCreated?: SortOrder
     dateUpdated?: SortOrderInput | SortOrder
-    churnStatus?: SortOrder
+    subscription?: SortOrder
     joinedAt?: SortOrder
     lastActivityAt?: SortOrderInput | SortOrder
     club?: ClubOrderByWithRelationInput
     team?: TeamOrderByWithRelationInput
     Activity?: ActivityOrderByRelationAggregateInput
-    playerSubscriptions?: PlayerSubscriptionOrderByRelationAggregateInput
     sessionBookings?: SessionBookingOrderByRelationAggregateInput
+    churnEvents?: ChurnEventOrderByRelationAggregateInput
+    healthSummary?: PlayerHealthSummaryOrderByWithRelationInput
     _relevance?: UserOrderByRelevanceInput
   }
 
@@ -14031,14 +15230,15 @@ export namespace Prisma {
     createdBy?: EnumAdminRoleFilter<"User"> | $Enums.AdminRole
     dateCreated?: DateTimeFilter<"User"> | Date | string
     dateUpdated?: DateTimeNullableFilter<"User"> | Date | string | null
-    churnStatus?: EnumChurnStatusFilter<"User"> | $Enums.ChurnStatus
+    subscription?: EnumSubscriptionTiersFilter<"User"> | $Enums.SubscriptionTiers
     joinedAt?: DateTimeFilter<"User"> | Date | string
     lastActivityAt?: DateTimeNullableFilter<"User"> | Date | string | null
     club?: XOR<ClubNullableScalarRelationFilter, ClubWhereInput> | null
     team?: XOR<TeamNullableScalarRelationFilter, TeamWhereInput> | null
     Activity?: ActivityListRelationFilter
-    playerSubscriptions?: PlayerSubscriptionListRelationFilter
     sessionBookings?: SessionBookingListRelationFilter
+    churnEvents?: ChurnEventListRelationFilter
+    healthSummary?: XOR<PlayerHealthSummaryNullableScalarRelationFilter, PlayerHealthSummaryWhereInput> | null
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -14056,7 +15256,7 @@ export namespace Prisma {
     createdBy?: SortOrder
     dateCreated?: SortOrder
     dateUpdated?: SortOrderInput | SortOrder
-    churnStatus?: SortOrder
+    subscription?: SortOrder
     joinedAt?: SortOrder
     lastActivityAt?: SortOrderInput | SortOrder
     _count?: UserCountOrderByAggregateInput
@@ -14082,7 +15282,7 @@ export namespace Prisma {
     createdBy?: EnumAdminRoleWithAggregatesFilter<"User"> | $Enums.AdminRole
     dateCreated?: DateTimeWithAggregatesFilter<"User"> | Date | string
     dateUpdated?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
-    churnStatus?: EnumChurnStatusWithAggregatesFilter<"User"> | $Enums.ChurnStatus
+    subscription?: EnumSubscriptionTiersWithAggregatesFilter<"User"> | $Enums.SubscriptionTiers
     joinedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     lastActivityAt?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
   }
@@ -14686,112 +15886,32 @@ export namespace Prisma {
     dateCreated?: DateTimeWithAggregatesFilter<"PlayerTrainingProgram"> | Date | string
   }
 
-  export type PlayerSubscriptionWhereInput = {
-    AND?: PlayerSubscriptionWhereInput | PlayerSubscriptionWhereInput[]
-    OR?: PlayerSubscriptionWhereInput[]
-    NOT?: PlayerSubscriptionWhereInput | PlayerSubscriptionWhereInput[]
-    id?: StringFilter<"PlayerSubscription"> | string
-    userId?: StringFilter<"PlayerSubscription"> | string
-    tier?: EnumSubscriptionTierFilter<"PlayerSubscription"> | $Enums.SubscriptionTier
-    status?: EnumSubscriptionRecordStatusFilter<"PlayerSubscription"> | $Enums.SubscriptionRecordStatus
-    startDate?: DateTimeFilter<"PlayerSubscription"> | Date | string
-    endDate?: DateTimeNullableFilter<"PlayerSubscription"> | Date | string | null
-    autoRenew?: BoolFilter<"PlayerSubscription"> | boolean
-    createdAt?: DateTimeFilter<"PlayerSubscription"> | Date | string
-    updatedAt?: DateTimeFilter<"PlayerSubscription"> | Date | string
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
-  }
-
-  export type PlayerSubscriptionOrderByWithRelationInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    tier?: SortOrder
-    status?: SortOrder
-    startDate?: SortOrder
-    endDate?: SortOrderInput | SortOrder
-    autoRenew?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    user?: UserOrderByWithRelationInput
-    _relevance?: PlayerSubscriptionOrderByRelevanceInput
-  }
-
-  export type PlayerSubscriptionWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    AND?: PlayerSubscriptionWhereInput | PlayerSubscriptionWhereInput[]
-    OR?: PlayerSubscriptionWhereInput[]
-    NOT?: PlayerSubscriptionWhereInput | PlayerSubscriptionWhereInput[]
-    userId?: StringFilter<"PlayerSubscription"> | string
-    tier?: EnumSubscriptionTierFilter<"PlayerSubscription"> | $Enums.SubscriptionTier
-    status?: EnumSubscriptionRecordStatusFilter<"PlayerSubscription"> | $Enums.SubscriptionRecordStatus
-    startDate?: DateTimeFilter<"PlayerSubscription"> | Date | string
-    endDate?: DateTimeNullableFilter<"PlayerSubscription"> | Date | string | null
-    autoRenew?: BoolFilter<"PlayerSubscription"> | boolean
-    createdAt?: DateTimeFilter<"PlayerSubscription"> | Date | string
-    updatedAt?: DateTimeFilter<"PlayerSubscription"> | Date | string
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
-  }, "id">
-
-  export type PlayerSubscriptionOrderByWithAggregationInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    tier?: SortOrder
-    status?: SortOrder
-    startDate?: SortOrder
-    endDate?: SortOrderInput | SortOrder
-    autoRenew?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    _count?: PlayerSubscriptionCountOrderByAggregateInput
-    _max?: PlayerSubscriptionMaxOrderByAggregateInput
-    _min?: PlayerSubscriptionMinOrderByAggregateInput
-  }
-
-  export type PlayerSubscriptionScalarWhereWithAggregatesInput = {
-    AND?: PlayerSubscriptionScalarWhereWithAggregatesInput | PlayerSubscriptionScalarWhereWithAggregatesInput[]
-    OR?: PlayerSubscriptionScalarWhereWithAggregatesInput[]
-    NOT?: PlayerSubscriptionScalarWhereWithAggregatesInput | PlayerSubscriptionScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"PlayerSubscription"> | string
-    userId?: StringWithAggregatesFilter<"PlayerSubscription"> | string
-    tier?: EnumSubscriptionTierWithAggregatesFilter<"PlayerSubscription"> | $Enums.SubscriptionTier
-    status?: EnumSubscriptionRecordStatusWithAggregatesFilter<"PlayerSubscription"> | $Enums.SubscriptionRecordStatus
-    startDate?: DateTimeWithAggregatesFilter<"PlayerSubscription"> | Date | string
-    endDate?: DateTimeNullableWithAggregatesFilter<"PlayerSubscription"> | Date | string | null
-    autoRenew?: BoolWithAggregatesFilter<"PlayerSubscription"> | boolean
-    createdAt?: DateTimeWithAggregatesFilter<"PlayerSubscription"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"PlayerSubscription"> | Date | string
-  }
-
   export type SessionBookingWhereInput = {
     AND?: SessionBookingWhereInput | SessionBookingWhereInput[]
     OR?: SessionBookingWhereInput[]
     NOT?: SessionBookingWhereInput | SessionBookingWhereInput[]
     id?: StringFilter<"SessionBooking"> | string
-    playerUserId?: StringFilter<"SessionBooking"> | string
+    userId?: StringFilter<"SessionBooking"> | string
     activityId?: StringFilter<"SessionBooking"> | string
     bookedAt?: DateTimeFilter<"SessionBooking"> | Date | string
     bookingStatus?: EnumBookingStatusFilter<"SessionBooking"> | $Enums.BookingStatus
     attendanceStatus?: EnumAttendanceStatusFilter<"SessionBooking"> | $Enums.AttendanceStatus
-    joinedAt?: DateTimeNullableFilter<"SessionBooking"> | Date | string | null
-    leftAt?: DateTimeNullableFilter<"SessionBooking"> | Date | string | null
     createdAt?: DateTimeFilter<"SessionBooking"> | Date | string
     updatedAt?: DateTimeFilter<"SessionBooking"> | Date | string
-    player?: XOR<UserScalarRelationFilter, UserWhereInput>
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
     activity?: XOR<ActivityScalarRelationFilter, ActivityWhereInput>
   }
 
   export type SessionBookingOrderByWithRelationInput = {
     id?: SortOrder
-    playerUserId?: SortOrder
+    userId?: SortOrder
     activityId?: SortOrder
     bookedAt?: SortOrder
     bookingStatus?: SortOrder
     attendanceStatus?: SortOrder
-    joinedAt?: SortOrderInput | SortOrder
-    leftAt?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    player?: UserOrderByWithRelationInput
+    user?: UserOrderByWithRelationInput
     activity?: ActivityOrderByWithRelationInput
     _relevance?: SessionBookingOrderByRelevanceInput
   }
@@ -14801,28 +15921,24 @@ export namespace Prisma {
     AND?: SessionBookingWhereInput | SessionBookingWhereInput[]
     OR?: SessionBookingWhereInput[]
     NOT?: SessionBookingWhereInput | SessionBookingWhereInput[]
-    playerUserId?: StringFilter<"SessionBooking"> | string
+    userId?: StringFilter<"SessionBooking"> | string
     activityId?: StringFilter<"SessionBooking"> | string
     bookedAt?: DateTimeFilter<"SessionBooking"> | Date | string
     bookingStatus?: EnumBookingStatusFilter<"SessionBooking"> | $Enums.BookingStatus
     attendanceStatus?: EnumAttendanceStatusFilter<"SessionBooking"> | $Enums.AttendanceStatus
-    joinedAt?: DateTimeNullableFilter<"SessionBooking"> | Date | string | null
-    leftAt?: DateTimeNullableFilter<"SessionBooking"> | Date | string | null
     createdAt?: DateTimeFilter<"SessionBooking"> | Date | string
     updatedAt?: DateTimeFilter<"SessionBooking"> | Date | string
-    player?: XOR<UserScalarRelationFilter, UserWhereInput>
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
     activity?: XOR<ActivityScalarRelationFilter, ActivityWhereInput>
   }, "id">
 
   export type SessionBookingOrderByWithAggregationInput = {
     id?: SortOrder
-    playerUserId?: SortOrder
+    userId?: SortOrder
     activityId?: SortOrder
     bookedAt?: SortOrder
     bookingStatus?: SortOrder
     attendanceStatus?: SortOrder
-    joinedAt?: SortOrderInput | SortOrder
-    leftAt?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: SessionBookingCountOrderByAggregateInput
@@ -14835,15 +15951,189 @@ export namespace Prisma {
     OR?: SessionBookingScalarWhereWithAggregatesInput[]
     NOT?: SessionBookingScalarWhereWithAggregatesInput | SessionBookingScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"SessionBooking"> | string
-    playerUserId?: StringWithAggregatesFilter<"SessionBooking"> | string
+    userId?: StringWithAggregatesFilter<"SessionBooking"> | string
     activityId?: StringWithAggregatesFilter<"SessionBooking"> | string
     bookedAt?: DateTimeWithAggregatesFilter<"SessionBooking"> | Date | string
     bookingStatus?: EnumBookingStatusWithAggregatesFilter<"SessionBooking"> | $Enums.BookingStatus
     attendanceStatus?: EnumAttendanceStatusWithAggregatesFilter<"SessionBooking"> | $Enums.AttendanceStatus
-    joinedAt?: DateTimeNullableWithAggregatesFilter<"SessionBooking"> | Date | string | null
-    leftAt?: DateTimeNullableWithAggregatesFilter<"SessionBooking"> | Date | string | null
     createdAt?: DateTimeWithAggregatesFilter<"SessionBooking"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"SessionBooking"> | Date | string
+  }
+
+  export type ChurnEventWhereInput = {
+    AND?: ChurnEventWhereInput | ChurnEventWhereInput[]
+    OR?: ChurnEventWhereInput[]
+    NOT?: ChurnEventWhereInput | ChurnEventWhereInput[]
+    id?: StringFilter<"ChurnEvent"> | string
+    userId?: StringFilter<"ChurnEvent"> | string
+    eventType?: StringFilter<"ChurnEvent"> | string
+    eventDate?: DateTimeFilter<"ChurnEvent"> | Date | string
+    scoreImpact?: IntFilter<"ChurnEvent"> | number
+    reasonText?: StringNullableFilter<"ChurnEvent"> | string | null
+    metaJson?: JsonNullableFilter<"ChurnEvent">
+    createdAt?: DateTimeFilter<"ChurnEvent"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type ChurnEventOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    eventType?: SortOrder
+    eventDate?: SortOrder
+    scoreImpact?: SortOrder
+    reasonText?: SortOrderInput | SortOrder
+    metaJson?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+    _relevance?: ChurnEventOrderByRelevanceInput
+  }
+
+  export type ChurnEventWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ChurnEventWhereInput | ChurnEventWhereInput[]
+    OR?: ChurnEventWhereInput[]
+    NOT?: ChurnEventWhereInput | ChurnEventWhereInput[]
+    userId?: StringFilter<"ChurnEvent"> | string
+    eventType?: StringFilter<"ChurnEvent"> | string
+    eventDate?: DateTimeFilter<"ChurnEvent"> | Date | string
+    scoreImpact?: IntFilter<"ChurnEvent"> | number
+    reasonText?: StringNullableFilter<"ChurnEvent"> | string | null
+    metaJson?: JsonNullableFilter<"ChurnEvent">
+    createdAt?: DateTimeFilter<"ChurnEvent"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id">
+
+  export type ChurnEventOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    eventType?: SortOrder
+    eventDate?: SortOrder
+    scoreImpact?: SortOrder
+    reasonText?: SortOrderInput | SortOrder
+    metaJson?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    _count?: ChurnEventCountOrderByAggregateInput
+    _avg?: ChurnEventAvgOrderByAggregateInput
+    _max?: ChurnEventMaxOrderByAggregateInput
+    _min?: ChurnEventMinOrderByAggregateInput
+    _sum?: ChurnEventSumOrderByAggregateInput
+  }
+
+  export type ChurnEventScalarWhereWithAggregatesInput = {
+    AND?: ChurnEventScalarWhereWithAggregatesInput | ChurnEventScalarWhereWithAggregatesInput[]
+    OR?: ChurnEventScalarWhereWithAggregatesInput[]
+    NOT?: ChurnEventScalarWhereWithAggregatesInput | ChurnEventScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ChurnEvent"> | string
+    userId?: StringWithAggregatesFilter<"ChurnEvent"> | string
+    eventType?: StringWithAggregatesFilter<"ChurnEvent"> | string
+    eventDate?: DateTimeWithAggregatesFilter<"ChurnEvent"> | Date | string
+    scoreImpact?: IntWithAggregatesFilter<"ChurnEvent"> | number
+    reasonText?: StringNullableWithAggregatesFilter<"ChurnEvent"> | string | null
+    metaJson?: JsonNullableWithAggregatesFilter<"ChurnEvent">
+    createdAt?: DateTimeWithAggregatesFilter<"ChurnEvent"> | Date | string
+  }
+
+  export type PlayerHealthSummaryWhereInput = {
+    AND?: PlayerHealthSummaryWhereInput | PlayerHealthSummaryWhereInput[]
+    OR?: PlayerHealthSummaryWhereInput[]
+    NOT?: PlayerHealthSummaryWhereInput | PlayerHealthSummaryWhereInput[]
+    id?: StringFilter<"PlayerHealthSummary"> | string
+    userId?: StringFilter<"PlayerHealthSummary"> | string
+    joinedAt?: DateTimeFilter<"PlayerHealthSummary"> | Date | string
+    lastTrainingAt?: DateTimeNullableFilter<"PlayerHealthSummary"> | Date | string | null
+    lastLiveSessionAt?: DateTimeNullableFilter<"PlayerHealthSummary"> | Date | string | null
+    lastFeedActivityAt?: DateTimeNullableFilter<"PlayerHealthSummary"> | Date | string | null
+    trainingRiskPoints?: IntFilter<"PlayerHealthSummary"> | number
+    liveSessionRiskPoints?: IntFilter<"PlayerHealthSummary"> | number
+    feedRiskPoints?: IntFilter<"PlayerHealthSummary"> | number
+    totalRiskScore?: IntFilter<"PlayerHealthSummary"> | number
+    currentStatus?: EnumChurnStatusFilter<"PlayerHealthSummary"> | $Enums.ChurnStatus
+    lastCalculatedAt?: DateTimeNullableFilter<"PlayerHealthSummary"> | Date | string | null
+    createdAt?: DateTimeFilter<"PlayerHealthSummary"> | Date | string
+    updatedAt?: DateTimeFilter<"PlayerHealthSummary"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type PlayerHealthSummaryOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    joinedAt?: SortOrder
+    lastTrainingAt?: SortOrderInput | SortOrder
+    lastLiveSessionAt?: SortOrderInput | SortOrder
+    lastFeedActivityAt?: SortOrderInput | SortOrder
+    trainingRiskPoints?: SortOrder
+    liveSessionRiskPoints?: SortOrder
+    feedRiskPoints?: SortOrder
+    totalRiskScore?: SortOrder
+    currentStatus?: SortOrder
+    lastCalculatedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+    _relevance?: PlayerHealthSummaryOrderByRelevanceInput
+  }
+
+  export type PlayerHealthSummaryWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    userId?: string
+    AND?: PlayerHealthSummaryWhereInput | PlayerHealthSummaryWhereInput[]
+    OR?: PlayerHealthSummaryWhereInput[]
+    NOT?: PlayerHealthSummaryWhereInput | PlayerHealthSummaryWhereInput[]
+    joinedAt?: DateTimeFilter<"PlayerHealthSummary"> | Date | string
+    lastTrainingAt?: DateTimeNullableFilter<"PlayerHealthSummary"> | Date | string | null
+    lastLiveSessionAt?: DateTimeNullableFilter<"PlayerHealthSummary"> | Date | string | null
+    lastFeedActivityAt?: DateTimeNullableFilter<"PlayerHealthSummary"> | Date | string | null
+    trainingRiskPoints?: IntFilter<"PlayerHealthSummary"> | number
+    liveSessionRiskPoints?: IntFilter<"PlayerHealthSummary"> | number
+    feedRiskPoints?: IntFilter<"PlayerHealthSummary"> | number
+    totalRiskScore?: IntFilter<"PlayerHealthSummary"> | number
+    currentStatus?: EnumChurnStatusFilter<"PlayerHealthSummary"> | $Enums.ChurnStatus
+    lastCalculatedAt?: DateTimeNullableFilter<"PlayerHealthSummary"> | Date | string | null
+    createdAt?: DateTimeFilter<"PlayerHealthSummary"> | Date | string
+    updatedAt?: DateTimeFilter<"PlayerHealthSummary"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id" | "userId">
+
+  export type PlayerHealthSummaryOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    joinedAt?: SortOrder
+    lastTrainingAt?: SortOrderInput | SortOrder
+    lastLiveSessionAt?: SortOrderInput | SortOrder
+    lastFeedActivityAt?: SortOrderInput | SortOrder
+    trainingRiskPoints?: SortOrder
+    liveSessionRiskPoints?: SortOrder
+    feedRiskPoints?: SortOrder
+    totalRiskScore?: SortOrder
+    currentStatus?: SortOrder
+    lastCalculatedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: PlayerHealthSummaryCountOrderByAggregateInput
+    _avg?: PlayerHealthSummaryAvgOrderByAggregateInput
+    _max?: PlayerHealthSummaryMaxOrderByAggregateInput
+    _min?: PlayerHealthSummaryMinOrderByAggregateInput
+    _sum?: PlayerHealthSummarySumOrderByAggregateInput
+  }
+
+  export type PlayerHealthSummaryScalarWhereWithAggregatesInput = {
+    AND?: PlayerHealthSummaryScalarWhereWithAggregatesInput | PlayerHealthSummaryScalarWhereWithAggregatesInput[]
+    OR?: PlayerHealthSummaryScalarWhereWithAggregatesInput[]
+    NOT?: PlayerHealthSummaryScalarWhereWithAggregatesInput | PlayerHealthSummaryScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"PlayerHealthSummary"> | string
+    userId?: StringWithAggregatesFilter<"PlayerHealthSummary"> | string
+    joinedAt?: DateTimeWithAggregatesFilter<"PlayerHealthSummary"> | Date | string
+    lastTrainingAt?: DateTimeNullableWithAggregatesFilter<"PlayerHealthSummary"> | Date | string | null
+    lastLiveSessionAt?: DateTimeNullableWithAggregatesFilter<"PlayerHealthSummary"> | Date | string | null
+    lastFeedActivityAt?: DateTimeNullableWithAggregatesFilter<"PlayerHealthSummary"> | Date | string | null
+    trainingRiskPoints?: IntWithAggregatesFilter<"PlayerHealthSummary"> | number
+    liveSessionRiskPoints?: IntWithAggregatesFilter<"PlayerHealthSummary"> | number
+    feedRiskPoints?: IntWithAggregatesFilter<"PlayerHealthSummary"> | number
+    totalRiskScore?: IntWithAggregatesFilter<"PlayerHealthSummary"> | number
+    currentStatus?: EnumChurnStatusWithAggregatesFilter<"PlayerHealthSummary"> | $Enums.ChurnStatus
+    lastCalculatedAt?: DateTimeNullableWithAggregatesFilter<"PlayerHealthSummary"> | Date | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"PlayerHealthSummary"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"PlayerHealthSummary"> | Date | string
   }
 
   export type MonthlyChurnMetricWhereInput = {
@@ -14957,14 +16247,15 @@ export namespace Prisma {
     createdBy?: $Enums.AdminRole
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
-    churnStatus?: $Enums.ChurnStatus
+    subscription?: $Enums.SubscriptionTiers
     joinedAt?: Date | string
     lastActivityAt?: Date | string | null
     club?: ClubCreateNestedOneWithoutUserInput
     team?: TeamCreateNestedOneWithoutUserInput
     Activity?: ActivityCreateNestedManyWithoutUserInput
-    playerSubscriptions?: PlayerSubscriptionCreateNestedManyWithoutUserInput
-    sessionBookings?: SessionBookingCreateNestedManyWithoutPlayerInput
+    sessionBookings?: SessionBookingCreateNestedManyWithoutUserInput
+    churnEvents?: ChurnEventCreateNestedManyWithoutUserInput
+    healthSummary?: PlayerHealthSummaryCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -14982,12 +16273,13 @@ export namespace Prisma {
     createdBy?: $Enums.AdminRole
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
-    churnStatus?: $Enums.ChurnStatus
+    subscription?: $Enums.SubscriptionTiers
     joinedAt?: Date | string
     lastActivityAt?: Date | string | null
     Activity?: ActivityUncheckedCreateNestedManyWithoutUserInput
-    playerSubscriptions?: PlayerSubscriptionUncheckedCreateNestedManyWithoutUserInput
-    sessionBookings?: SessionBookingUncheckedCreateNestedManyWithoutPlayerInput
+    sessionBookings?: SessionBookingUncheckedCreateNestedManyWithoutUserInput
+    churnEvents?: ChurnEventUncheckedCreateNestedManyWithoutUserInput
+    healthSummary?: PlayerHealthSummaryUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -15003,14 +16295,15 @@ export namespace Prisma {
     createdBy?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    churnStatus?: EnumChurnStatusFieldUpdateOperationsInput | $Enums.ChurnStatus
+    subscription?: EnumSubscriptionTiersFieldUpdateOperationsInput | $Enums.SubscriptionTiers
     joinedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastActivityAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     club?: ClubUpdateOneWithoutUserNestedInput
     team?: TeamUpdateOneWithoutUserNestedInput
     Activity?: ActivityUpdateManyWithoutUserNestedInput
-    playerSubscriptions?: PlayerSubscriptionUpdateManyWithoutUserNestedInput
-    sessionBookings?: SessionBookingUpdateManyWithoutPlayerNestedInput
+    sessionBookings?: SessionBookingUpdateManyWithoutUserNestedInput
+    churnEvents?: ChurnEventUpdateManyWithoutUserNestedInput
+    healthSummary?: PlayerHealthSummaryUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -15028,12 +16321,13 @@ export namespace Prisma {
     createdBy?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    churnStatus?: EnumChurnStatusFieldUpdateOperationsInput | $Enums.ChurnStatus
+    subscription?: EnumSubscriptionTiersFieldUpdateOperationsInput | $Enums.SubscriptionTiers
     joinedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastActivityAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     Activity?: ActivityUncheckedUpdateManyWithoutUserNestedInput
-    playerSubscriptions?: PlayerSubscriptionUncheckedUpdateManyWithoutUserNestedInput
-    sessionBookings?: SessionBookingUncheckedUpdateManyWithoutPlayerNestedInput
+    sessionBookings?: SessionBookingUncheckedUpdateManyWithoutUserNestedInput
+    churnEvents?: ChurnEventUncheckedUpdateManyWithoutUserNestedInput
+    healthSummary?: PlayerHealthSummaryUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -15051,7 +16345,7 @@ export namespace Prisma {
     createdBy?: $Enums.AdminRole
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
-    churnStatus?: $Enums.ChurnStatus
+    subscription?: $Enums.SubscriptionTiers
     joinedAt?: Date | string
     lastActivityAt?: Date | string | null
   }
@@ -15069,7 +16363,7 @@ export namespace Prisma {
     createdBy?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    churnStatus?: EnumChurnStatusFieldUpdateOperationsInput | $Enums.ChurnStatus
+    subscription?: EnumSubscriptionTiersFieldUpdateOperationsInput | $Enums.SubscriptionTiers
     joinedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastActivityAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -15089,7 +16383,7 @@ export namespace Prisma {
     createdBy?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    churnStatus?: EnumChurnStatusFieldUpdateOperationsInput | $Enums.ChurnStatus
+    subscription?: EnumSubscriptionTiersFieldUpdateOperationsInput | $Enums.SubscriptionTiers
     joinedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastActivityAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -15769,111 +17063,24 @@ export namespace Prisma {
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type PlayerSubscriptionCreateInput = {
-    id?: string
-    tier?: $Enums.SubscriptionTier
-    status?: $Enums.SubscriptionRecordStatus
-    startDate?: Date | string
-    endDate?: Date | string | null
-    autoRenew?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    user: UserCreateNestedOneWithoutPlayerSubscriptionsInput
-  }
-
-  export type PlayerSubscriptionUncheckedCreateInput = {
-    id?: string
-    userId: string
-    tier?: $Enums.SubscriptionTier
-    status?: $Enums.SubscriptionRecordStatus
-    startDate?: Date | string
-    endDate?: Date | string | null
-    autoRenew?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type PlayerSubscriptionUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    tier?: EnumSubscriptionTierFieldUpdateOperationsInput | $Enums.SubscriptionTier
-    status?: EnumSubscriptionRecordStatusFieldUpdateOperationsInput | $Enums.SubscriptionRecordStatus
-    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    autoRenew?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutPlayerSubscriptionsNestedInput
-  }
-
-  export type PlayerSubscriptionUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
-    tier?: EnumSubscriptionTierFieldUpdateOperationsInput | $Enums.SubscriptionTier
-    status?: EnumSubscriptionRecordStatusFieldUpdateOperationsInput | $Enums.SubscriptionRecordStatus
-    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    autoRenew?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type PlayerSubscriptionCreateManyInput = {
-    id?: string
-    userId: string
-    tier?: $Enums.SubscriptionTier
-    status?: $Enums.SubscriptionRecordStatus
-    startDate?: Date | string
-    endDate?: Date | string | null
-    autoRenew?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type PlayerSubscriptionUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    tier?: EnumSubscriptionTierFieldUpdateOperationsInput | $Enums.SubscriptionTier
-    status?: EnumSubscriptionRecordStatusFieldUpdateOperationsInput | $Enums.SubscriptionRecordStatus
-    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    autoRenew?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type PlayerSubscriptionUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
-    tier?: EnumSubscriptionTierFieldUpdateOperationsInput | $Enums.SubscriptionTier
-    status?: EnumSubscriptionRecordStatusFieldUpdateOperationsInput | $Enums.SubscriptionRecordStatus
-    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    autoRenew?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
   export type SessionBookingCreateInput = {
     id?: string
     bookedAt?: Date | string
     bookingStatus?: $Enums.BookingStatus
     attendanceStatus?: $Enums.AttendanceStatus
-    joinedAt?: Date | string | null
-    leftAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    player: UserCreateNestedOneWithoutSessionBookingsInput
+    user: UserCreateNestedOneWithoutSessionBookingsInput
     activity: ActivityCreateNestedOneWithoutBookingsInput
   }
 
   export type SessionBookingUncheckedCreateInput = {
     id?: string
-    playerUserId: string
+    userId: string
     activityId: string
     bookedAt?: Date | string
     bookingStatus?: $Enums.BookingStatus
     attendanceStatus?: $Enums.AttendanceStatus
-    joinedAt?: Date | string | null
-    leftAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -15883,36 +17090,30 @@ export namespace Prisma {
     bookedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     bookingStatus?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
     attendanceStatus?: EnumAttendanceStatusFieldUpdateOperationsInput | $Enums.AttendanceStatus
-    joinedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    leftAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    player?: UserUpdateOneRequiredWithoutSessionBookingsNestedInput
+    user?: UserUpdateOneRequiredWithoutSessionBookingsNestedInput
     activity?: ActivityUpdateOneRequiredWithoutBookingsNestedInput
   }
 
   export type SessionBookingUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    playerUserId?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
     activityId?: StringFieldUpdateOperationsInput | string
     bookedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     bookingStatus?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
     attendanceStatus?: EnumAttendanceStatusFieldUpdateOperationsInput | $Enums.AttendanceStatus
-    joinedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    leftAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SessionBookingCreateManyInput = {
     id?: string
-    playerUserId: string
+    userId: string
     activityId: string
     bookedAt?: Date | string
     bookingStatus?: $Enums.BookingStatus
     attendanceStatus?: $Enums.AttendanceStatus
-    joinedAt?: Date | string | null
-    leftAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -15922,21 +17123,211 @@ export namespace Prisma {
     bookedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     bookingStatus?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
     attendanceStatus?: EnumAttendanceStatusFieldUpdateOperationsInput | $Enums.AttendanceStatus
-    joinedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    leftAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SessionBookingUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    playerUserId?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
     activityId?: StringFieldUpdateOperationsInput | string
     bookedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     bookingStatus?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
     attendanceStatus?: EnumAttendanceStatusFieldUpdateOperationsInput | $Enums.AttendanceStatus
-    joinedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    leftAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ChurnEventCreateInput = {
+    id?: string
+    eventType: string
+    eventDate: Date | string
+    scoreImpact?: number
+    reasonText?: string | null
+    metaJson?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    user: UserCreateNestedOneWithoutChurnEventsInput
+  }
+
+  export type ChurnEventUncheckedCreateInput = {
+    id?: string
+    userId: string
+    eventType: string
+    eventDate: Date | string
+    scoreImpact?: number
+    reasonText?: string | null
+    metaJson?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+  }
+
+  export type ChurnEventUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    eventType?: StringFieldUpdateOperationsInput | string
+    eventDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    scoreImpact?: IntFieldUpdateOperationsInput | number
+    reasonText?: NullableStringFieldUpdateOperationsInput | string | null
+    metaJson?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutChurnEventsNestedInput
+  }
+
+  export type ChurnEventUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    eventType?: StringFieldUpdateOperationsInput | string
+    eventDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    scoreImpact?: IntFieldUpdateOperationsInput | number
+    reasonText?: NullableStringFieldUpdateOperationsInput | string | null
+    metaJson?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ChurnEventCreateManyInput = {
+    id?: string
+    userId: string
+    eventType: string
+    eventDate: Date | string
+    scoreImpact?: number
+    reasonText?: string | null
+    metaJson?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+  }
+
+  export type ChurnEventUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    eventType?: StringFieldUpdateOperationsInput | string
+    eventDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    scoreImpact?: IntFieldUpdateOperationsInput | number
+    reasonText?: NullableStringFieldUpdateOperationsInput | string | null
+    metaJson?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ChurnEventUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    eventType?: StringFieldUpdateOperationsInput | string
+    eventDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    scoreImpact?: IntFieldUpdateOperationsInput | number
+    reasonText?: NullableStringFieldUpdateOperationsInput | string | null
+    metaJson?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PlayerHealthSummaryCreateInput = {
+    id?: string
+    joinedAt: Date | string
+    lastTrainingAt?: Date | string | null
+    lastLiveSessionAt?: Date | string | null
+    lastFeedActivityAt?: Date | string | null
+    trainingRiskPoints?: number
+    liveSessionRiskPoints?: number
+    feedRiskPoints?: number
+    totalRiskScore?: number
+    currentStatus?: $Enums.ChurnStatus
+    lastCalculatedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutHealthSummaryInput
+  }
+
+  export type PlayerHealthSummaryUncheckedCreateInput = {
+    id?: string
+    userId: string
+    joinedAt: Date | string
+    lastTrainingAt?: Date | string | null
+    lastLiveSessionAt?: Date | string | null
+    lastFeedActivityAt?: Date | string | null
+    trainingRiskPoints?: number
+    liveSessionRiskPoints?: number
+    feedRiskPoints?: number
+    totalRiskScore?: number
+    currentStatus?: $Enums.ChurnStatus
+    lastCalculatedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PlayerHealthSummaryUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    joinedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lastTrainingAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastLiveSessionAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastFeedActivityAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    trainingRiskPoints?: IntFieldUpdateOperationsInput | number
+    liveSessionRiskPoints?: IntFieldUpdateOperationsInput | number
+    feedRiskPoints?: IntFieldUpdateOperationsInput | number
+    totalRiskScore?: IntFieldUpdateOperationsInput | number
+    currentStatus?: EnumChurnStatusFieldUpdateOperationsInput | $Enums.ChurnStatus
+    lastCalculatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutHealthSummaryNestedInput
+  }
+
+  export type PlayerHealthSummaryUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    joinedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lastTrainingAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastLiveSessionAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastFeedActivityAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    trainingRiskPoints?: IntFieldUpdateOperationsInput | number
+    liveSessionRiskPoints?: IntFieldUpdateOperationsInput | number
+    feedRiskPoints?: IntFieldUpdateOperationsInput | number
+    totalRiskScore?: IntFieldUpdateOperationsInput | number
+    currentStatus?: EnumChurnStatusFieldUpdateOperationsInput | $Enums.ChurnStatus
+    lastCalculatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PlayerHealthSummaryCreateManyInput = {
+    id?: string
+    userId: string
+    joinedAt: Date | string
+    lastTrainingAt?: Date | string | null
+    lastLiveSessionAt?: Date | string | null
+    lastFeedActivityAt?: Date | string | null
+    trainingRiskPoints?: number
+    liveSessionRiskPoints?: number
+    feedRiskPoints?: number
+    totalRiskScore?: number
+    currentStatus?: $Enums.ChurnStatus
+    lastCalculatedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PlayerHealthSummaryUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    joinedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lastTrainingAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastLiveSessionAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastFeedActivityAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    trainingRiskPoints?: IntFieldUpdateOperationsInput | number
+    liveSessionRiskPoints?: IntFieldUpdateOperationsInput | number
+    feedRiskPoints?: IntFieldUpdateOperationsInput | number
+    totalRiskScore?: IntFieldUpdateOperationsInput | number
+    currentStatus?: EnumChurnStatusFieldUpdateOperationsInput | $Enums.ChurnStatus
+    lastCalculatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PlayerHealthSummaryUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    joinedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lastTrainingAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastLiveSessionAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastFeedActivityAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    trainingRiskPoints?: IntFieldUpdateOperationsInput | number
+    liveSessionRiskPoints?: IntFieldUpdateOperationsInput | number
+    feedRiskPoints?: IntFieldUpdateOperationsInput | number
+    totalRiskScore?: IntFieldUpdateOperationsInput | number
+    currentStatus?: EnumChurnStatusFieldUpdateOperationsInput | $Enums.ChurnStatus
+    lastCalculatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -16123,11 +17514,11 @@ export namespace Prisma {
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
-  export type EnumChurnStatusFilter<$PrismaModel = never> = {
-    equals?: $Enums.ChurnStatus | EnumChurnStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.ChurnStatus[]
-    notIn?: $Enums.ChurnStatus[]
-    not?: NestedEnumChurnStatusFilter<$PrismaModel> | $Enums.ChurnStatus
+  export type EnumSubscriptionTiersFilter<$PrismaModel = never> = {
+    equals?: $Enums.SubscriptionTiers | EnumSubscriptionTiersFieldRefInput<$PrismaModel>
+    in?: $Enums.SubscriptionTiers[]
+    notIn?: $Enums.SubscriptionTiers[]
+    not?: NestedEnumSubscriptionTiersFilter<$PrismaModel> | $Enums.SubscriptionTiers
   }
 
   export type ClubNullableScalarRelationFilter = {
@@ -16146,16 +17537,21 @@ export namespace Prisma {
     none?: ActivityWhereInput
   }
 
-  export type PlayerSubscriptionListRelationFilter = {
-    every?: PlayerSubscriptionWhereInput
-    some?: PlayerSubscriptionWhereInput
-    none?: PlayerSubscriptionWhereInput
-  }
-
   export type SessionBookingListRelationFilter = {
     every?: SessionBookingWhereInput
     some?: SessionBookingWhereInput
     none?: SessionBookingWhereInput
+  }
+
+  export type ChurnEventListRelationFilter = {
+    every?: ChurnEventWhereInput
+    some?: ChurnEventWhereInput
+    none?: ChurnEventWhereInput
+  }
+
+  export type PlayerHealthSummaryNullableScalarRelationFilter = {
+    is?: PlayerHealthSummaryWhereInput | null
+    isNot?: PlayerHealthSummaryWhereInput | null
   }
 
   export type SortOrderInput = {
@@ -16167,11 +17563,11 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
-  export type PlayerSubscriptionOrderByRelationAggregateInput = {
+  export type SessionBookingOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
-  export type SessionBookingOrderByRelationAggregateInput = {
+  export type ChurnEventOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -16196,7 +17592,7 @@ export namespace Prisma {
     createdBy?: SortOrder
     dateCreated?: SortOrder
     dateUpdated?: SortOrder
-    churnStatus?: SortOrder
+    subscription?: SortOrder
     joinedAt?: SortOrder
     lastActivityAt?: SortOrder
   }
@@ -16216,7 +17612,7 @@ export namespace Prisma {
     createdBy?: SortOrder
     dateCreated?: SortOrder
     dateUpdated?: SortOrder
-    churnStatus?: SortOrder
+    subscription?: SortOrder
     joinedAt?: SortOrder
     lastActivityAt?: SortOrder
   }
@@ -16236,7 +17632,7 @@ export namespace Prisma {
     createdBy?: SortOrder
     dateCreated?: SortOrder
     dateUpdated?: SortOrder
-    churnStatus?: SortOrder
+    subscription?: SortOrder
     joinedAt?: SortOrder
     lastActivityAt?: SortOrder
   }
@@ -16333,14 +17729,14 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
-  export type EnumChurnStatusWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.ChurnStatus | EnumChurnStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.ChurnStatus[]
-    notIn?: $Enums.ChurnStatus[]
-    not?: NestedEnumChurnStatusWithAggregatesFilter<$PrismaModel> | $Enums.ChurnStatus
+  export type EnumSubscriptionTiersWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.SubscriptionTiers | EnumSubscriptionTiersFieldRefInput<$PrismaModel>
+    in?: $Enums.SubscriptionTiers[]
+    notIn?: $Enums.SubscriptionTiers[]
+    not?: NestedEnumSubscriptionTiersWithAggregatesFilter<$PrismaModel> | $Enums.SubscriptionTiers
     _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumChurnStatusFilter<$PrismaModel>
-    _max?: NestedEnumChurnStatusFilter<$PrismaModel>
+    _min?: NestedEnumSubscriptionTiersFilter<$PrismaModel>
+    _max?: NestedEnumSubscriptionTiersFilter<$PrismaModel>
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -16894,82 +18290,6 @@ export namespace Prisma {
     _max?: NestedEnumSubscriptionTypeFilter<$PrismaModel>
   }
 
-  export type EnumSubscriptionTierFilter<$PrismaModel = never> = {
-    equals?: $Enums.SubscriptionTier | EnumSubscriptionTierFieldRefInput<$PrismaModel>
-    in?: $Enums.SubscriptionTier[]
-    notIn?: $Enums.SubscriptionTier[]
-    not?: NestedEnumSubscriptionTierFilter<$PrismaModel> | $Enums.SubscriptionTier
-  }
-
-  export type EnumSubscriptionRecordStatusFilter<$PrismaModel = never> = {
-    equals?: $Enums.SubscriptionRecordStatus | EnumSubscriptionRecordStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.SubscriptionRecordStatus[]
-    notIn?: $Enums.SubscriptionRecordStatus[]
-    not?: NestedEnumSubscriptionRecordStatusFilter<$PrismaModel> | $Enums.SubscriptionRecordStatus
-  }
-
-  export type PlayerSubscriptionOrderByRelevanceInput = {
-    fields: PlayerSubscriptionOrderByRelevanceFieldEnum | PlayerSubscriptionOrderByRelevanceFieldEnum[]
-    sort: SortOrder
-    search: string
-  }
-
-  export type PlayerSubscriptionCountOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    tier?: SortOrder
-    status?: SortOrder
-    startDate?: SortOrder
-    endDate?: SortOrder
-    autoRenew?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type PlayerSubscriptionMaxOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    tier?: SortOrder
-    status?: SortOrder
-    startDate?: SortOrder
-    endDate?: SortOrder
-    autoRenew?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type PlayerSubscriptionMinOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    tier?: SortOrder
-    status?: SortOrder
-    startDate?: SortOrder
-    endDate?: SortOrder
-    autoRenew?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type EnumSubscriptionTierWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.SubscriptionTier | EnumSubscriptionTierFieldRefInput<$PrismaModel>
-    in?: $Enums.SubscriptionTier[]
-    notIn?: $Enums.SubscriptionTier[]
-    not?: NestedEnumSubscriptionTierWithAggregatesFilter<$PrismaModel> | $Enums.SubscriptionTier
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumSubscriptionTierFilter<$PrismaModel>
-    _max?: NestedEnumSubscriptionTierFilter<$PrismaModel>
-  }
-
-  export type EnumSubscriptionRecordStatusWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.SubscriptionRecordStatus | EnumSubscriptionRecordStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.SubscriptionRecordStatus[]
-    notIn?: $Enums.SubscriptionRecordStatus[]
-    not?: NestedEnumSubscriptionRecordStatusWithAggregatesFilter<$PrismaModel> | $Enums.SubscriptionRecordStatus
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumSubscriptionRecordStatusFilter<$PrismaModel>
-    _max?: NestedEnumSubscriptionRecordStatusFilter<$PrismaModel>
-  }
-
   export type EnumBookingStatusFilter<$PrismaModel = never> = {
     equals?: $Enums.BookingStatus | EnumBookingStatusFieldRefInput<$PrismaModel>
     in?: $Enums.BookingStatus[]
@@ -16997,39 +18317,33 @@ export namespace Prisma {
 
   export type SessionBookingCountOrderByAggregateInput = {
     id?: SortOrder
-    playerUserId?: SortOrder
+    userId?: SortOrder
     activityId?: SortOrder
     bookedAt?: SortOrder
     bookingStatus?: SortOrder
     attendanceStatus?: SortOrder
-    joinedAt?: SortOrder
-    leftAt?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
   export type SessionBookingMaxOrderByAggregateInput = {
     id?: SortOrder
-    playerUserId?: SortOrder
+    userId?: SortOrder
     activityId?: SortOrder
     bookedAt?: SortOrder
     bookingStatus?: SortOrder
     attendanceStatus?: SortOrder
-    joinedAt?: SortOrder
-    leftAt?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
   export type SessionBookingMinOrderByAggregateInput = {
     id?: SortOrder
-    playerUserId?: SortOrder
+    userId?: SortOrder
     activityId?: SortOrder
     bookedAt?: SortOrder
     bookingStatus?: SortOrder
     attendanceStatus?: SortOrder
-    joinedAt?: SortOrder
-    leftAt?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -17052,6 +18366,188 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumAttendanceStatusFilter<$PrismaModel>
     _max?: NestedEnumAttendanceStatusFilter<$PrismaModel>
+  }
+  export type JsonNullableFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue
+    lte?: InputJsonValue
+    gt?: InputJsonValue
+    gte?: InputJsonValue
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type ChurnEventOrderByRelevanceInput = {
+    fields: ChurnEventOrderByRelevanceFieldEnum | ChurnEventOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type ChurnEventCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    eventType?: SortOrder
+    eventDate?: SortOrder
+    scoreImpact?: SortOrder
+    reasonText?: SortOrder
+    metaJson?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ChurnEventAvgOrderByAggregateInput = {
+    scoreImpact?: SortOrder
+  }
+
+  export type ChurnEventMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    eventType?: SortOrder
+    eventDate?: SortOrder
+    scoreImpact?: SortOrder
+    reasonText?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ChurnEventMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    eventType?: SortOrder
+    eventDate?: SortOrder
+    scoreImpact?: SortOrder
+    reasonText?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ChurnEventSumOrderByAggregateInput = {
+    scoreImpact?: SortOrder
+  }
+  export type JsonNullableWithAggregatesFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableWithAggregatesFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue
+    lte?: InputJsonValue
+    gt?: InputJsonValue
+    gte?: InputJsonValue
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedJsonNullableFilter<$PrismaModel>
+    _max?: NestedJsonNullableFilter<$PrismaModel>
+  }
+
+  export type EnumChurnStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.ChurnStatus | EnumChurnStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.ChurnStatus[]
+    notIn?: $Enums.ChurnStatus[]
+    not?: NestedEnumChurnStatusFilter<$PrismaModel> | $Enums.ChurnStatus
+  }
+
+  export type PlayerHealthSummaryOrderByRelevanceInput = {
+    fields: PlayerHealthSummaryOrderByRelevanceFieldEnum | PlayerHealthSummaryOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type PlayerHealthSummaryCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    joinedAt?: SortOrder
+    lastTrainingAt?: SortOrder
+    lastLiveSessionAt?: SortOrder
+    lastFeedActivityAt?: SortOrder
+    trainingRiskPoints?: SortOrder
+    liveSessionRiskPoints?: SortOrder
+    feedRiskPoints?: SortOrder
+    totalRiskScore?: SortOrder
+    currentStatus?: SortOrder
+    lastCalculatedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type PlayerHealthSummaryAvgOrderByAggregateInput = {
+    trainingRiskPoints?: SortOrder
+    liveSessionRiskPoints?: SortOrder
+    feedRiskPoints?: SortOrder
+    totalRiskScore?: SortOrder
+  }
+
+  export type PlayerHealthSummaryMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    joinedAt?: SortOrder
+    lastTrainingAt?: SortOrder
+    lastLiveSessionAt?: SortOrder
+    lastFeedActivityAt?: SortOrder
+    trainingRiskPoints?: SortOrder
+    liveSessionRiskPoints?: SortOrder
+    feedRiskPoints?: SortOrder
+    totalRiskScore?: SortOrder
+    currentStatus?: SortOrder
+    lastCalculatedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type PlayerHealthSummaryMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    joinedAt?: SortOrder
+    lastTrainingAt?: SortOrder
+    lastLiveSessionAt?: SortOrder
+    lastFeedActivityAt?: SortOrder
+    trainingRiskPoints?: SortOrder
+    liveSessionRiskPoints?: SortOrder
+    feedRiskPoints?: SortOrder
+    totalRiskScore?: SortOrder
+    currentStatus?: SortOrder
+    lastCalculatedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type PlayerHealthSummarySumOrderByAggregateInput = {
+    trainingRiskPoints?: SortOrder
+    liveSessionRiskPoints?: SortOrder
+    feedRiskPoints?: SortOrder
+    totalRiskScore?: SortOrder
+  }
+
+  export type EnumChurnStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ChurnStatus | EnumChurnStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.ChurnStatus[]
+    notIn?: $Enums.ChurnStatus[]
+    not?: NestedEnumChurnStatusWithAggregatesFilter<$PrismaModel> | $Enums.ChurnStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumChurnStatusFilter<$PrismaModel>
+    _max?: NestedEnumChurnStatusFilter<$PrismaModel>
   }
 
   export type DecimalNullableFilter<$PrismaModel = never> = {
@@ -17176,18 +18672,24 @@ export namespace Prisma {
     connect?: ActivityWhereUniqueInput | ActivityWhereUniqueInput[]
   }
 
-  export type PlayerSubscriptionCreateNestedManyWithoutUserInput = {
-    create?: XOR<PlayerSubscriptionCreateWithoutUserInput, PlayerSubscriptionUncheckedCreateWithoutUserInput> | PlayerSubscriptionCreateWithoutUserInput[] | PlayerSubscriptionUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: PlayerSubscriptionCreateOrConnectWithoutUserInput | PlayerSubscriptionCreateOrConnectWithoutUserInput[]
-    createMany?: PlayerSubscriptionCreateManyUserInputEnvelope
-    connect?: PlayerSubscriptionWhereUniqueInput | PlayerSubscriptionWhereUniqueInput[]
+  export type SessionBookingCreateNestedManyWithoutUserInput = {
+    create?: XOR<SessionBookingCreateWithoutUserInput, SessionBookingUncheckedCreateWithoutUserInput> | SessionBookingCreateWithoutUserInput[] | SessionBookingUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SessionBookingCreateOrConnectWithoutUserInput | SessionBookingCreateOrConnectWithoutUserInput[]
+    createMany?: SessionBookingCreateManyUserInputEnvelope
+    connect?: SessionBookingWhereUniqueInput | SessionBookingWhereUniqueInput[]
   }
 
-  export type SessionBookingCreateNestedManyWithoutPlayerInput = {
-    create?: XOR<SessionBookingCreateWithoutPlayerInput, SessionBookingUncheckedCreateWithoutPlayerInput> | SessionBookingCreateWithoutPlayerInput[] | SessionBookingUncheckedCreateWithoutPlayerInput[]
-    connectOrCreate?: SessionBookingCreateOrConnectWithoutPlayerInput | SessionBookingCreateOrConnectWithoutPlayerInput[]
-    createMany?: SessionBookingCreateManyPlayerInputEnvelope
-    connect?: SessionBookingWhereUniqueInput | SessionBookingWhereUniqueInput[]
+  export type ChurnEventCreateNestedManyWithoutUserInput = {
+    create?: XOR<ChurnEventCreateWithoutUserInput, ChurnEventUncheckedCreateWithoutUserInput> | ChurnEventCreateWithoutUserInput[] | ChurnEventUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ChurnEventCreateOrConnectWithoutUserInput | ChurnEventCreateOrConnectWithoutUserInput[]
+    createMany?: ChurnEventCreateManyUserInputEnvelope
+    connect?: ChurnEventWhereUniqueInput | ChurnEventWhereUniqueInput[]
+  }
+
+  export type PlayerHealthSummaryCreateNestedOneWithoutUserInput = {
+    create?: XOR<PlayerHealthSummaryCreateWithoutUserInput, PlayerHealthSummaryUncheckedCreateWithoutUserInput>
+    connectOrCreate?: PlayerHealthSummaryCreateOrConnectWithoutUserInput
+    connect?: PlayerHealthSummaryWhereUniqueInput
   }
 
   export type ActivityUncheckedCreateNestedManyWithoutUserInput = {
@@ -17197,18 +18699,24 @@ export namespace Prisma {
     connect?: ActivityWhereUniqueInput | ActivityWhereUniqueInput[]
   }
 
-  export type PlayerSubscriptionUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<PlayerSubscriptionCreateWithoutUserInput, PlayerSubscriptionUncheckedCreateWithoutUserInput> | PlayerSubscriptionCreateWithoutUserInput[] | PlayerSubscriptionUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: PlayerSubscriptionCreateOrConnectWithoutUserInput | PlayerSubscriptionCreateOrConnectWithoutUserInput[]
-    createMany?: PlayerSubscriptionCreateManyUserInputEnvelope
-    connect?: PlayerSubscriptionWhereUniqueInput | PlayerSubscriptionWhereUniqueInput[]
+  export type SessionBookingUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<SessionBookingCreateWithoutUserInput, SessionBookingUncheckedCreateWithoutUserInput> | SessionBookingCreateWithoutUserInput[] | SessionBookingUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SessionBookingCreateOrConnectWithoutUserInput | SessionBookingCreateOrConnectWithoutUserInput[]
+    createMany?: SessionBookingCreateManyUserInputEnvelope
+    connect?: SessionBookingWhereUniqueInput | SessionBookingWhereUniqueInput[]
   }
 
-  export type SessionBookingUncheckedCreateNestedManyWithoutPlayerInput = {
-    create?: XOR<SessionBookingCreateWithoutPlayerInput, SessionBookingUncheckedCreateWithoutPlayerInput> | SessionBookingCreateWithoutPlayerInput[] | SessionBookingUncheckedCreateWithoutPlayerInput[]
-    connectOrCreate?: SessionBookingCreateOrConnectWithoutPlayerInput | SessionBookingCreateOrConnectWithoutPlayerInput[]
-    createMany?: SessionBookingCreateManyPlayerInputEnvelope
-    connect?: SessionBookingWhereUniqueInput | SessionBookingWhereUniqueInput[]
+  export type ChurnEventUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<ChurnEventCreateWithoutUserInput, ChurnEventUncheckedCreateWithoutUserInput> | ChurnEventCreateWithoutUserInput[] | ChurnEventUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ChurnEventCreateOrConnectWithoutUserInput | ChurnEventCreateOrConnectWithoutUserInput[]
+    createMany?: ChurnEventCreateManyUserInputEnvelope
+    connect?: ChurnEventWhereUniqueInput | ChurnEventWhereUniqueInput[]
+  }
+
+  export type PlayerHealthSummaryUncheckedCreateNestedOneWithoutUserInput = {
+    create?: XOR<PlayerHealthSummaryCreateWithoutUserInput, PlayerHealthSummaryUncheckedCreateWithoutUserInput>
+    connectOrCreate?: PlayerHealthSummaryCreateOrConnectWithoutUserInput
+    connect?: PlayerHealthSummaryWhereUniqueInput
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -17239,8 +18747,8 @@ export namespace Prisma {
     set?: Date | string | null
   }
 
-  export type EnumChurnStatusFieldUpdateOperationsInput = {
-    set?: $Enums.ChurnStatus
+  export type EnumSubscriptionTiersFieldUpdateOperationsInput = {
+    set?: $Enums.SubscriptionTiers
   }
 
   export type ClubUpdateOneWithoutUserNestedInput = {
@@ -17277,32 +18785,42 @@ export namespace Prisma {
     deleteMany?: ActivityScalarWhereInput | ActivityScalarWhereInput[]
   }
 
-  export type PlayerSubscriptionUpdateManyWithoutUserNestedInput = {
-    create?: XOR<PlayerSubscriptionCreateWithoutUserInput, PlayerSubscriptionUncheckedCreateWithoutUserInput> | PlayerSubscriptionCreateWithoutUserInput[] | PlayerSubscriptionUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: PlayerSubscriptionCreateOrConnectWithoutUserInput | PlayerSubscriptionCreateOrConnectWithoutUserInput[]
-    upsert?: PlayerSubscriptionUpsertWithWhereUniqueWithoutUserInput | PlayerSubscriptionUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: PlayerSubscriptionCreateManyUserInputEnvelope
-    set?: PlayerSubscriptionWhereUniqueInput | PlayerSubscriptionWhereUniqueInput[]
-    disconnect?: PlayerSubscriptionWhereUniqueInput | PlayerSubscriptionWhereUniqueInput[]
-    delete?: PlayerSubscriptionWhereUniqueInput | PlayerSubscriptionWhereUniqueInput[]
-    connect?: PlayerSubscriptionWhereUniqueInput | PlayerSubscriptionWhereUniqueInput[]
-    update?: PlayerSubscriptionUpdateWithWhereUniqueWithoutUserInput | PlayerSubscriptionUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: PlayerSubscriptionUpdateManyWithWhereWithoutUserInput | PlayerSubscriptionUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: PlayerSubscriptionScalarWhereInput | PlayerSubscriptionScalarWhereInput[]
-  }
-
-  export type SessionBookingUpdateManyWithoutPlayerNestedInput = {
-    create?: XOR<SessionBookingCreateWithoutPlayerInput, SessionBookingUncheckedCreateWithoutPlayerInput> | SessionBookingCreateWithoutPlayerInput[] | SessionBookingUncheckedCreateWithoutPlayerInput[]
-    connectOrCreate?: SessionBookingCreateOrConnectWithoutPlayerInput | SessionBookingCreateOrConnectWithoutPlayerInput[]
-    upsert?: SessionBookingUpsertWithWhereUniqueWithoutPlayerInput | SessionBookingUpsertWithWhereUniqueWithoutPlayerInput[]
-    createMany?: SessionBookingCreateManyPlayerInputEnvelope
+  export type SessionBookingUpdateManyWithoutUserNestedInput = {
+    create?: XOR<SessionBookingCreateWithoutUserInput, SessionBookingUncheckedCreateWithoutUserInput> | SessionBookingCreateWithoutUserInput[] | SessionBookingUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SessionBookingCreateOrConnectWithoutUserInput | SessionBookingCreateOrConnectWithoutUserInput[]
+    upsert?: SessionBookingUpsertWithWhereUniqueWithoutUserInput | SessionBookingUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: SessionBookingCreateManyUserInputEnvelope
     set?: SessionBookingWhereUniqueInput | SessionBookingWhereUniqueInput[]
     disconnect?: SessionBookingWhereUniqueInput | SessionBookingWhereUniqueInput[]
     delete?: SessionBookingWhereUniqueInput | SessionBookingWhereUniqueInput[]
     connect?: SessionBookingWhereUniqueInput | SessionBookingWhereUniqueInput[]
-    update?: SessionBookingUpdateWithWhereUniqueWithoutPlayerInput | SessionBookingUpdateWithWhereUniqueWithoutPlayerInput[]
-    updateMany?: SessionBookingUpdateManyWithWhereWithoutPlayerInput | SessionBookingUpdateManyWithWhereWithoutPlayerInput[]
+    update?: SessionBookingUpdateWithWhereUniqueWithoutUserInput | SessionBookingUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: SessionBookingUpdateManyWithWhereWithoutUserInput | SessionBookingUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: SessionBookingScalarWhereInput | SessionBookingScalarWhereInput[]
+  }
+
+  export type ChurnEventUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ChurnEventCreateWithoutUserInput, ChurnEventUncheckedCreateWithoutUserInput> | ChurnEventCreateWithoutUserInput[] | ChurnEventUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ChurnEventCreateOrConnectWithoutUserInput | ChurnEventCreateOrConnectWithoutUserInput[]
+    upsert?: ChurnEventUpsertWithWhereUniqueWithoutUserInput | ChurnEventUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ChurnEventCreateManyUserInputEnvelope
+    set?: ChurnEventWhereUniqueInput | ChurnEventWhereUniqueInput[]
+    disconnect?: ChurnEventWhereUniqueInput | ChurnEventWhereUniqueInput[]
+    delete?: ChurnEventWhereUniqueInput | ChurnEventWhereUniqueInput[]
+    connect?: ChurnEventWhereUniqueInput | ChurnEventWhereUniqueInput[]
+    update?: ChurnEventUpdateWithWhereUniqueWithoutUserInput | ChurnEventUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ChurnEventUpdateManyWithWhereWithoutUserInput | ChurnEventUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ChurnEventScalarWhereInput | ChurnEventScalarWhereInput[]
+  }
+
+  export type PlayerHealthSummaryUpdateOneWithoutUserNestedInput = {
+    create?: XOR<PlayerHealthSummaryCreateWithoutUserInput, PlayerHealthSummaryUncheckedCreateWithoutUserInput>
+    connectOrCreate?: PlayerHealthSummaryCreateOrConnectWithoutUserInput
+    upsert?: PlayerHealthSummaryUpsertWithoutUserInput
+    disconnect?: PlayerHealthSummaryWhereInput | boolean
+    delete?: PlayerHealthSummaryWhereInput | boolean
+    connect?: PlayerHealthSummaryWhereUniqueInput
+    update?: XOR<XOR<PlayerHealthSummaryUpdateToOneWithWhereWithoutUserInput, PlayerHealthSummaryUpdateWithoutUserInput>, PlayerHealthSummaryUncheckedUpdateWithoutUserInput>
   }
 
   export type ActivityUncheckedUpdateManyWithoutUserNestedInput = {
@@ -17319,32 +18837,42 @@ export namespace Prisma {
     deleteMany?: ActivityScalarWhereInput | ActivityScalarWhereInput[]
   }
 
-  export type PlayerSubscriptionUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<PlayerSubscriptionCreateWithoutUserInput, PlayerSubscriptionUncheckedCreateWithoutUserInput> | PlayerSubscriptionCreateWithoutUserInput[] | PlayerSubscriptionUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: PlayerSubscriptionCreateOrConnectWithoutUserInput | PlayerSubscriptionCreateOrConnectWithoutUserInput[]
-    upsert?: PlayerSubscriptionUpsertWithWhereUniqueWithoutUserInput | PlayerSubscriptionUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: PlayerSubscriptionCreateManyUserInputEnvelope
-    set?: PlayerSubscriptionWhereUniqueInput | PlayerSubscriptionWhereUniqueInput[]
-    disconnect?: PlayerSubscriptionWhereUniqueInput | PlayerSubscriptionWhereUniqueInput[]
-    delete?: PlayerSubscriptionWhereUniqueInput | PlayerSubscriptionWhereUniqueInput[]
-    connect?: PlayerSubscriptionWhereUniqueInput | PlayerSubscriptionWhereUniqueInput[]
-    update?: PlayerSubscriptionUpdateWithWhereUniqueWithoutUserInput | PlayerSubscriptionUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: PlayerSubscriptionUpdateManyWithWhereWithoutUserInput | PlayerSubscriptionUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: PlayerSubscriptionScalarWhereInput | PlayerSubscriptionScalarWhereInput[]
-  }
-
-  export type SessionBookingUncheckedUpdateManyWithoutPlayerNestedInput = {
-    create?: XOR<SessionBookingCreateWithoutPlayerInput, SessionBookingUncheckedCreateWithoutPlayerInput> | SessionBookingCreateWithoutPlayerInput[] | SessionBookingUncheckedCreateWithoutPlayerInput[]
-    connectOrCreate?: SessionBookingCreateOrConnectWithoutPlayerInput | SessionBookingCreateOrConnectWithoutPlayerInput[]
-    upsert?: SessionBookingUpsertWithWhereUniqueWithoutPlayerInput | SessionBookingUpsertWithWhereUniqueWithoutPlayerInput[]
-    createMany?: SessionBookingCreateManyPlayerInputEnvelope
+  export type SessionBookingUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<SessionBookingCreateWithoutUserInput, SessionBookingUncheckedCreateWithoutUserInput> | SessionBookingCreateWithoutUserInput[] | SessionBookingUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SessionBookingCreateOrConnectWithoutUserInput | SessionBookingCreateOrConnectWithoutUserInput[]
+    upsert?: SessionBookingUpsertWithWhereUniqueWithoutUserInput | SessionBookingUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: SessionBookingCreateManyUserInputEnvelope
     set?: SessionBookingWhereUniqueInput | SessionBookingWhereUniqueInput[]
     disconnect?: SessionBookingWhereUniqueInput | SessionBookingWhereUniqueInput[]
     delete?: SessionBookingWhereUniqueInput | SessionBookingWhereUniqueInput[]
     connect?: SessionBookingWhereUniqueInput | SessionBookingWhereUniqueInput[]
-    update?: SessionBookingUpdateWithWhereUniqueWithoutPlayerInput | SessionBookingUpdateWithWhereUniqueWithoutPlayerInput[]
-    updateMany?: SessionBookingUpdateManyWithWhereWithoutPlayerInput | SessionBookingUpdateManyWithWhereWithoutPlayerInput[]
+    update?: SessionBookingUpdateWithWhereUniqueWithoutUserInput | SessionBookingUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: SessionBookingUpdateManyWithWhereWithoutUserInput | SessionBookingUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: SessionBookingScalarWhereInput | SessionBookingScalarWhereInput[]
+  }
+
+  export type ChurnEventUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ChurnEventCreateWithoutUserInput, ChurnEventUncheckedCreateWithoutUserInput> | ChurnEventCreateWithoutUserInput[] | ChurnEventUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ChurnEventCreateOrConnectWithoutUserInput | ChurnEventCreateOrConnectWithoutUserInput[]
+    upsert?: ChurnEventUpsertWithWhereUniqueWithoutUserInput | ChurnEventUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ChurnEventCreateManyUserInputEnvelope
+    set?: ChurnEventWhereUniqueInput | ChurnEventWhereUniqueInput[]
+    disconnect?: ChurnEventWhereUniqueInput | ChurnEventWhereUniqueInput[]
+    delete?: ChurnEventWhereUniqueInput | ChurnEventWhereUniqueInput[]
+    connect?: ChurnEventWhereUniqueInput | ChurnEventWhereUniqueInput[]
+    update?: ChurnEventUpdateWithWhereUniqueWithoutUserInput | ChurnEventUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ChurnEventUpdateManyWithWhereWithoutUserInput | ChurnEventUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ChurnEventScalarWhereInput | ChurnEventScalarWhereInput[]
+  }
+
+  export type PlayerHealthSummaryUncheckedUpdateOneWithoutUserNestedInput = {
+    create?: XOR<PlayerHealthSummaryCreateWithoutUserInput, PlayerHealthSummaryUncheckedCreateWithoutUserInput>
+    connectOrCreate?: PlayerHealthSummaryCreateOrConnectWithoutUserInput
+    upsert?: PlayerHealthSummaryUpsertWithoutUserInput
+    disconnect?: PlayerHealthSummaryWhereInput | boolean
+    delete?: PlayerHealthSummaryWhereInput | boolean
+    connect?: PlayerHealthSummaryWhereUniqueInput
+    update?: XOR<XOR<PlayerHealthSummaryUpdateToOneWithWhereWithoutUserInput, PlayerHealthSummaryUpdateWithoutUserInput>, PlayerHealthSummaryUncheckedUpdateWithoutUserInput>
   }
 
   export type TeamCreateNestedManyWithoutClubInput = {
@@ -17725,28 +19253,6 @@ export namespace Prisma {
     set?: $Enums.SubscriptionType
   }
 
-  export type UserCreateNestedOneWithoutPlayerSubscriptionsInput = {
-    create?: XOR<UserCreateWithoutPlayerSubscriptionsInput, UserUncheckedCreateWithoutPlayerSubscriptionsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutPlayerSubscriptionsInput
-    connect?: UserWhereUniqueInput
-  }
-
-  export type EnumSubscriptionTierFieldUpdateOperationsInput = {
-    set?: $Enums.SubscriptionTier
-  }
-
-  export type EnumSubscriptionRecordStatusFieldUpdateOperationsInput = {
-    set?: $Enums.SubscriptionRecordStatus
-  }
-
-  export type UserUpdateOneRequiredWithoutPlayerSubscriptionsNestedInput = {
-    create?: XOR<UserCreateWithoutPlayerSubscriptionsInput, UserUncheckedCreateWithoutPlayerSubscriptionsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutPlayerSubscriptionsInput
-    upsert?: UserUpsertWithoutPlayerSubscriptionsInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutPlayerSubscriptionsInput, UserUpdateWithoutPlayerSubscriptionsInput>, UserUncheckedUpdateWithoutPlayerSubscriptionsInput>
-  }
-
   export type UserCreateNestedOneWithoutSessionBookingsInput = {
     create?: XOR<UserCreateWithoutSessionBookingsInput, UserUncheckedCreateWithoutSessionBookingsInput>
     connectOrCreate?: UserCreateOrConnectWithoutSessionBookingsInput
@@ -17781,6 +19287,38 @@ export namespace Prisma {
     upsert?: ActivityUpsertWithoutBookingsInput
     connect?: ActivityWhereUniqueInput
     update?: XOR<XOR<ActivityUpdateToOneWithWhereWithoutBookingsInput, ActivityUpdateWithoutBookingsInput>, ActivityUncheckedUpdateWithoutBookingsInput>
+  }
+
+  export type UserCreateNestedOneWithoutChurnEventsInput = {
+    create?: XOR<UserCreateWithoutChurnEventsInput, UserUncheckedCreateWithoutChurnEventsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutChurnEventsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutChurnEventsNestedInput = {
+    create?: XOR<UserCreateWithoutChurnEventsInput, UserUncheckedCreateWithoutChurnEventsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutChurnEventsInput
+    upsert?: UserUpsertWithoutChurnEventsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutChurnEventsInput, UserUpdateWithoutChurnEventsInput>, UserUncheckedUpdateWithoutChurnEventsInput>
+  }
+
+  export type UserCreateNestedOneWithoutHealthSummaryInput = {
+    create?: XOR<UserCreateWithoutHealthSummaryInput, UserUncheckedCreateWithoutHealthSummaryInput>
+    connectOrCreate?: UserCreateOrConnectWithoutHealthSummaryInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type EnumChurnStatusFieldUpdateOperationsInput = {
+    set?: $Enums.ChurnStatus
+  }
+
+  export type UserUpdateOneRequiredWithoutHealthSummaryNestedInput = {
+    create?: XOR<UserCreateWithoutHealthSummaryInput, UserUncheckedCreateWithoutHealthSummaryInput>
+    connectOrCreate?: UserCreateOrConnectWithoutHealthSummaryInput
+    upsert?: UserUpsertWithoutHealthSummaryInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutHealthSummaryInput, UserUpdateWithoutHealthSummaryInput>, UserUncheckedUpdateWithoutHealthSummaryInput>
   }
 
   export type ClubCreateNestedOneWithoutMetricsInput = {
@@ -17878,11 +19416,11 @@ export namespace Prisma {
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
-  export type NestedEnumChurnStatusFilter<$PrismaModel = never> = {
-    equals?: $Enums.ChurnStatus | EnumChurnStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.ChurnStatus[]
-    notIn?: $Enums.ChurnStatus[]
-    not?: NestedEnumChurnStatusFilter<$PrismaModel> | $Enums.ChurnStatus
+  export type NestedEnumSubscriptionTiersFilter<$PrismaModel = never> = {
+    equals?: $Enums.SubscriptionTiers | EnumSubscriptionTiersFieldRefInput<$PrismaModel>
+    in?: $Enums.SubscriptionTiers[]
+    notIn?: $Enums.SubscriptionTiers[]
+    not?: NestedEnumSubscriptionTiersFilter<$PrismaModel> | $Enums.SubscriptionTiers
   }
 
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
@@ -17999,14 +19537,14 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
-  export type NestedEnumChurnStatusWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.ChurnStatus | EnumChurnStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.ChurnStatus[]
-    notIn?: $Enums.ChurnStatus[]
-    not?: NestedEnumChurnStatusWithAggregatesFilter<$PrismaModel> | $Enums.ChurnStatus
+  export type NestedEnumSubscriptionTiersWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.SubscriptionTiers | EnumSubscriptionTiersFieldRefInput<$PrismaModel>
+    in?: $Enums.SubscriptionTiers[]
+    notIn?: $Enums.SubscriptionTiers[]
+    not?: NestedEnumSubscriptionTiersWithAggregatesFilter<$PrismaModel> | $Enums.SubscriptionTiers
     _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumChurnStatusFilter<$PrismaModel>
-    _max?: NestedEnumChurnStatusFilter<$PrismaModel>
+    _min?: NestedEnumSubscriptionTiersFilter<$PrismaModel>
+    _max?: NestedEnumSubscriptionTiersFilter<$PrismaModel>
   }
 
   export type NestedEnumSubscriptionStatusFilter<$PrismaModel = never> = {
@@ -18127,40 +19665,6 @@ export namespace Prisma {
     _max?: NestedEnumSubscriptionTypeFilter<$PrismaModel>
   }
 
-  export type NestedEnumSubscriptionTierFilter<$PrismaModel = never> = {
-    equals?: $Enums.SubscriptionTier | EnumSubscriptionTierFieldRefInput<$PrismaModel>
-    in?: $Enums.SubscriptionTier[]
-    notIn?: $Enums.SubscriptionTier[]
-    not?: NestedEnumSubscriptionTierFilter<$PrismaModel> | $Enums.SubscriptionTier
-  }
-
-  export type NestedEnumSubscriptionRecordStatusFilter<$PrismaModel = never> = {
-    equals?: $Enums.SubscriptionRecordStatus | EnumSubscriptionRecordStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.SubscriptionRecordStatus[]
-    notIn?: $Enums.SubscriptionRecordStatus[]
-    not?: NestedEnumSubscriptionRecordStatusFilter<$PrismaModel> | $Enums.SubscriptionRecordStatus
-  }
-
-  export type NestedEnumSubscriptionTierWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.SubscriptionTier | EnumSubscriptionTierFieldRefInput<$PrismaModel>
-    in?: $Enums.SubscriptionTier[]
-    notIn?: $Enums.SubscriptionTier[]
-    not?: NestedEnumSubscriptionTierWithAggregatesFilter<$PrismaModel> | $Enums.SubscriptionTier
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumSubscriptionTierFilter<$PrismaModel>
-    _max?: NestedEnumSubscriptionTierFilter<$PrismaModel>
-  }
-
-  export type NestedEnumSubscriptionRecordStatusWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.SubscriptionRecordStatus | EnumSubscriptionRecordStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.SubscriptionRecordStatus[]
-    notIn?: $Enums.SubscriptionRecordStatus[]
-    not?: NestedEnumSubscriptionRecordStatusWithAggregatesFilter<$PrismaModel> | $Enums.SubscriptionRecordStatus
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumSubscriptionRecordStatusFilter<$PrismaModel>
-    _max?: NestedEnumSubscriptionRecordStatusFilter<$PrismaModel>
-  }
-
   export type NestedEnumBookingStatusFilter<$PrismaModel = never> = {
     equals?: $Enums.BookingStatus | EnumBookingStatusFieldRefInput<$PrismaModel>
     in?: $Enums.BookingStatus[]
@@ -18193,6 +19697,46 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumAttendanceStatusFilter<$PrismaModel>
     _max?: NestedEnumAttendanceStatusFilter<$PrismaModel>
+  }
+  export type NestedJsonNullableFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<NestedJsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type NestedJsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue
+    lte?: InputJsonValue
+    gt?: InputJsonValue
+    gte?: InputJsonValue
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type NestedEnumChurnStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.ChurnStatus | EnumChurnStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.ChurnStatus[]
+    notIn?: $Enums.ChurnStatus[]
+    not?: NestedEnumChurnStatusFilter<$PrismaModel> | $Enums.ChurnStatus
+  }
+
+  export type NestedEnumChurnStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ChurnStatus | EnumChurnStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.ChurnStatus[]
+    notIn?: $Enums.ChurnStatus[]
+    not?: NestedEnumChurnStatusWithAggregatesFilter<$PrismaModel> | $Enums.ChurnStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumChurnStatusFilter<$PrismaModel>
+    _max?: NestedEnumChurnStatusFilter<$PrismaModel>
   }
 
   export type NestedDecimalNullableFilter<$PrismaModel = never> = {
@@ -18334,70 +19878,101 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type PlayerSubscriptionCreateWithoutUserInput = {
-    id?: string
-    tier?: $Enums.SubscriptionTier
-    status?: $Enums.SubscriptionRecordStatus
-    startDate?: Date | string
-    endDate?: Date | string | null
-    autoRenew?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type PlayerSubscriptionUncheckedCreateWithoutUserInput = {
-    id?: string
-    tier?: $Enums.SubscriptionTier
-    status?: $Enums.SubscriptionRecordStatus
-    startDate?: Date | string
-    endDate?: Date | string | null
-    autoRenew?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type PlayerSubscriptionCreateOrConnectWithoutUserInput = {
-    where: PlayerSubscriptionWhereUniqueInput
-    create: XOR<PlayerSubscriptionCreateWithoutUserInput, PlayerSubscriptionUncheckedCreateWithoutUserInput>
-  }
-
-  export type PlayerSubscriptionCreateManyUserInputEnvelope = {
-    data: PlayerSubscriptionCreateManyUserInput | PlayerSubscriptionCreateManyUserInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type SessionBookingCreateWithoutPlayerInput = {
+  export type SessionBookingCreateWithoutUserInput = {
     id?: string
     bookedAt?: Date | string
     bookingStatus?: $Enums.BookingStatus
     attendanceStatus?: $Enums.AttendanceStatus
-    joinedAt?: Date | string | null
-    leftAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     activity: ActivityCreateNestedOneWithoutBookingsInput
   }
 
-  export type SessionBookingUncheckedCreateWithoutPlayerInput = {
+  export type SessionBookingUncheckedCreateWithoutUserInput = {
     id?: string
     activityId: string
     bookedAt?: Date | string
     bookingStatus?: $Enums.BookingStatus
     attendanceStatus?: $Enums.AttendanceStatus
-    joinedAt?: Date | string | null
-    leftAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
-  export type SessionBookingCreateOrConnectWithoutPlayerInput = {
+  export type SessionBookingCreateOrConnectWithoutUserInput = {
     where: SessionBookingWhereUniqueInput
-    create: XOR<SessionBookingCreateWithoutPlayerInput, SessionBookingUncheckedCreateWithoutPlayerInput>
+    create: XOR<SessionBookingCreateWithoutUserInput, SessionBookingUncheckedCreateWithoutUserInput>
   }
 
-  export type SessionBookingCreateManyPlayerInputEnvelope = {
-    data: SessionBookingCreateManyPlayerInput | SessionBookingCreateManyPlayerInput[]
+  export type SessionBookingCreateManyUserInputEnvelope = {
+    data: SessionBookingCreateManyUserInput | SessionBookingCreateManyUserInput[]
     skipDuplicates?: boolean
+  }
+
+  export type ChurnEventCreateWithoutUserInput = {
+    id?: string
+    eventType: string
+    eventDate: Date | string
+    scoreImpact?: number
+    reasonText?: string | null
+    metaJson?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+  }
+
+  export type ChurnEventUncheckedCreateWithoutUserInput = {
+    id?: string
+    eventType: string
+    eventDate: Date | string
+    scoreImpact?: number
+    reasonText?: string | null
+    metaJson?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+  }
+
+  export type ChurnEventCreateOrConnectWithoutUserInput = {
+    where: ChurnEventWhereUniqueInput
+    create: XOR<ChurnEventCreateWithoutUserInput, ChurnEventUncheckedCreateWithoutUserInput>
+  }
+
+  export type ChurnEventCreateManyUserInputEnvelope = {
+    data: ChurnEventCreateManyUserInput | ChurnEventCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type PlayerHealthSummaryCreateWithoutUserInput = {
+    id?: string
+    joinedAt: Date | string
+    lastTrainingAt?: Date | string | null
+    lastLiveSessionAt?: Date | string | null
+    lastFeedActivityAt?: Date | string | null
+    trainingRiskPoints?: number
+    liveSessionRiskPoints?: number
+    feedRiskPoints?: number
+    totalRiskScore?: number
+    currentStatus?: $Enums.ChurnStatus
+    lastCalculatedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PlayerHealthSummaryUncheckedCreateWithoutUserInput = {
+    id?: string
+    joinedAt: Date | string
+    lastTrainingAt?: Date | string | null
+    lastLiveSessionAt?: Date | string | null
+    lastFeedActivityAt?: Date | string | null
+    trainingRiskPoints?: number
+    liveSessionRiskPoints?: number
+    feedRiskPoints?: number
+    totalRiskScore?: number
+    currentStatus?: $Enums.ChurnStatus
+    lastCalculatedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PlayerHealthSummaryCreateOrConnectWithoutUserInput = {
+    where: PlayerHealthSummaryWhereUniqueInput
+    create: XOR<PlayerHealthSummaryCreateWithoutUserInput, PlayerHealthSummaryUncheckedCreateWithoutUserInput>
   }
 
   export type ClubUpsertWithoutUserInput = {
@@ -18512,51 +20087,20 @@ export namespace Prisma {
     dateUpdated?: DateTimeNullableFilter<"Activity"> | Date | string | null
   }
 
-  export type PlayerSubscriptionUpsertWithWhereUniqueWithoutUserInput = {
-    where: PlayerSubscriptionWhereUniqueInput
-    update: XOR<PlayerSubscriptionUpdateWithoutUserInput, PlayerSubscriptionUncheckedUpdateWithoutUserInput>
-    create: XOR<PlayerSubscriptionCreateWithoutUserInput, PlayerSubscriptionUncheckedCreateWithoutUserInput>
-  }
-
-  export type PlayerSubscriptionUpdateWithWhereUniqueWithoutUserInput = {
-    where: PlayerSubscriptionWhereUniqueInput
-    data: XOR<PlayerSubscriptionUpdateWithoutUserInput, PlayerSubscriptionUncheckedUpdateWithoutUserInput>
-  }
-
-  export type PlayerSubscriptionUpdateManyWithWhereWithoutUserInput = {
-    where: PlayerSubscriptionScalarWhereInput
-    data: XOR<PlayerSubscriptionUpdateManyMutationInput, PlayerSubscriptionUncheckedUpdateManyWithoutUserInput>
-  }
-
-  export type PlayerSubscriptionScalarWhereInput = {
-    AND?: PlayerSubscriptionScalarWhereInput | PlayerSubscriptionScalarWhereInput[]
-    OR?: PlayerSubscriptionScalarWhereInput[]
-    NOT?: PlayerSubscriptionScalarWhereInput | PlayerSubscriptionScalarWhereInput[]
-    id?: StringFilter<"PlayerSubscription"> | string
-    userId?: StringFilter<"PlayerSubscription"> | string
-    tier?: EnumSubscriptionTierFilter<"PlayerSubscription"> | $Enums.SubscriptionTier
-    status?: EnumSubscriptionRecordStatusFilter<"PlayerSubscription"> | $Enums.SubscriptionRecordStatus
-    startDate?: DateTimeFilter<"PlayerSubscription"> | Date | string
-    endDate?: DateTimeNullableFilter<"PlayerSubscription"> | Date | string | null
-    autoRenew?: BoolFilter<"PlayerSubscription"> | boolean
-    createdAt?: DateTimeFilter<"PlayerSubscription"> | Date | string
-    updatedAt?: DateTimeFilter<"PlayerSubscription"> | Date | string
-  }
-
-  export type SessionBookingUpsertWithWhereUniqueWithoutPlayerInput = {
+  export type SessionBookingUpsertWithWhereUniqueWithoutUserInput = {
     where: SessionBookingWhereUniqueInput
-    update: XOR<SessionBookingUpdateWithoutPlayerInput, SessionBookingUncheckedUpdateWithoutPlayerInput>
-    create: XOR<SessionBookingCreateWithoutPlayerInput, SessionBookingUncheckedCreateWithoutPlayerInput>
+    update: XOR<SessionBookingUpdateWithoutUserInput, SessionBookingUncheckedUpdateWithoutUserInput>
+    create: XOR<SessionBookingCreateWithoutUserInput, SessionBookingUncheckedCreateWithoutUserInput>
   }
 
-  export type SessionBookingUpdateWithWhereUniqueWithoutPlayerInput = {
+  export type SessionBookingUpdateWithWhereUniqueWithoutUserInput = {
     where: SessionBookingWhereUniqueInput
-    data: XOR<SessionBookingUpdateWithoutPlayerInput, SessionBookingUncheckedUpdateWithoutPlayerInput>
+    data: XOR<SessionBookingUpdateWithoutUserInput, SessionBookingUncheckedUpdateWithoutUserInput>
   }
 
-  export type SessionBookingUpdateManyWithWhereWithoutPlayerInput = {
+  export type SessionBookingUpdateManyWithWhereWithoutUserInput = {
     where: SessionBookingScalarWhereInput
-    data: XOR<SessionBookingUpdateManyMutationInput, SessionBookingUncheckedUpdateManyWithoutPlayerInput>
+    data: XOR<SessionBookingUpdateManyMutationInput, SessionBookingUncheckedUpdateManyWithoutUserInput>
   }
 
   export type SessionBookingScalarWhereInput = {
@@ -18564,15 +20108,86 @@ export namespace Prisma {
     OR?: SessionBookingScalarWhereInput[]
     NOT?: SessionBookingScalarWhereInput | SessionBookingScalarWhereInput[]
     id?: StringFilter<"SessionBooking"> | string
-    playerUserId?: StringFilter<"SessionBooking"> | string
+    userId?: StringFilter<"SessionBooking"> | string
     activityId?: StringFilter<"SessionBooking"> | string
     bookedAt?: DateTimeFilter<"SessionBooking"> | Date | string
     bookingStatus?: EnumBookingStatusFilter<"SessionBooking"> | $Enums.BookingStatus
     attendanceStatus?: EnumAttendanceStatusFilter<"SessionBooking"> | $Enums.AttendanceStatus
-    joinedAt?: DateTimeNullableFilter<"SessionBooking"> | Date | string | null
-    leftAt?: DateTimeNullableFilter<"SessionBooking"> | Date | string | null
     createdAt?: DateTimeFilter<"SessionBooking"> | Date | string
     updatedAt?: DateTimeFilter<"SessionBooking"> | Date | string
+  }
+
+  export type ChurnEventUpsertWithWhereUniqueWithoutUserInput = {
+    where: ChurnEventWhereUniqueInput
+    update: XOR<ChurnEventUpdateWithoutUserInput, ChurnEventUncheckedUpdateWithoutUserInput>
+    create: XOR<ChurnEventCreateWithoutUserInput, ChurnEventUncheckedCreateWithoutUserInput>
+  }
+
+  export type ChurnEventUpdateWithWhereUniqueWithoutUserInput = {
+    where: ChurnEventWhereUniqueInput
+    data: XOR<ChurnEventUpdateWithoutUserInput, ChurnEventUncheckedUpdateWithoutUserInput>
+  }
+
+  export type ChurnEventUpdateManyWithWhereWithoutUserInput = {
+    where: ChurnEventScalarWhereInput
+    data: XOR<ChurnEventUpdateManyMutationInput, ChurnEventUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type ChurnEventScalarWhereInput = {
+    AND?: ChurnEventScalarWhereInput | ChurnEventScalarWhereInput[]
+    OR?: ChurnEventScalarWhereInput[]
+    NOT?: ChurnEventScalarWhereInput | ChurnEventScalarWhereInput[]
+    id?: StringFilter<"ChurnEvent"> | string
+    userId?: StringFilter<"ChurnEvent"> | string
+    eventType?: StringFilter<"ChurnEvent"> | string
+    eventDate?: DateTimeFilter<"ChurnEvent"> | Date | string
+    scoreImpact?: IntFilter<"ChurnEvent"> | number
+    reasonText?: StringNullableFilter<"ChurnEvent"> | string | null
+    metaJson?: JsonNullableFilter<"ChurnEvent">
+    createdAt?: DateTimeFilter<"ChurnEvent"> | Date | string
+  }
+
+  export type PlayerHealthSummaryUpsertWithoutUserInput = {
+    update: XOR<PlayerHealthSummaryUpdateWithoutUserInput, PlayerHealthSummaryUncheckedUpdateWithoutUserInput>
+    create: XOR<PlayerHealthSummaryCreateWithoutUserInput, PlayerHealthSummaryUncheckedCreateWithoutUserInput>
+    where?: PlayerHealthSummaryWhereInput
+  }
+
+  export type PlayerHealthSummaryUpdateToOneWithWhereWithoutUserInput = {
+    where?: PlayerHealthSummaryWhereInput
+    data: XOR<PlayerHealthSummaryUpdateWithoutUserInput, PlayerHealthSummaryUncheckedUpdateWithoutUserInput>
+  }
+
+  export type PlayerHealthSummaryUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    joinedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lastTrainingAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastLiveSessionAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastFeedActivityAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    trainingRiskPoints?: IntFieldUpdateOperationsInput | number
+    liveSessionRiskPoints?: IntFieldUpdateOperationsInput | number
+    feedRiskPoints?: IntFieldUpdateOperationsInput | number
+    totalRiskScore?: IntFieldUpdateOperationsInput | number
+    currentStatus?: EnumChurnStatusFieldUpdateOperationsInput | $Enums.ChurnStatus
+    lastCalculatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PlayerHealthSummaryUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    joinedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lastTrainingAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastLiveSessionAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastFeedActivityAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    trainingRiskPoints?: IntFieldUpdateOperationsInput | number
+    liveSessionRiskPoints?: IntFieldUpdateOperationsInput | number
+    feedRiskPoints?: IntFieldUpdateOperationsInput | number
+    totalRiskScore?: IntFieldUpdateOperationsInput | number
+    currentStatus?: EnumChurnStatusFieldUpdateOperationsInput | $Enums.ChurnStatus
+    lastCalculatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type TeamCreateWithoutClubInput = {
@@ -18670,13 +20285,14 @@ export namespace Prisma {
     createdBy?: $Enums.AdminRole
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
-    churnStatus?: $Enums.ChurnStatus
+    subscription?: $Enums.SubscriptionTiers
     joinedAt?: Date | string
     lastActivityAt?: Date | string | null
     team?: TeamCreateNestedOneWithoutUserInput
     Activity?: ActivityCreateNestedManyWithoutUserInput
-    playerSubscriptions?: PlayerSubscriptionCreateNestedManyWithoutUserInput
-    sessionBookings?: SessionBookingCreateNestedManyWithoutPlayerInput
+    sessionBookings?: SessionBookingCreateNestedManyWithoutUserInput
+    churnEvents?: ChurnEventCreateNestedManyWithoutUserInput
+    healthSummary?: PlayerHealthSummaryCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutClubInput = {
@@ -18693,12 +20309,13 @@ export namespace Prisma {
     createdBy?: $Enums.AdminRole
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
-    churnStatus?: $Enums.ChurnStatus
+    subscription?: $Enums.SubscriptionTiers
     joinedAt?: Date | string
     lastActivityAt?: Date | string | null
     Activity?: ActivityUncheckedCreateNestedManyWithoutUserInput
-    playerSubscriptions?: PlayerSubscriptionUncheckedCreateNestedManyWithoutUserInput
-    sessionBookings?: SessionBookingUncheckedCreateNestedManyWithoutPlayerInput
+    sessionBookings?: SessionBookingUncheckedCreateNestedManyWithoutUserInput
+    churnEvents?: ChurnEventUncheckedCreateNestedManyWithoutUserInput
+    healthSummary?: PlayerHealthSummaryUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutClubInput = {
@@ -18829,7 +20446,7 @@ export namespace Prisma {
     createdBy?: EnumAdminRoleFilter<"User"> | $Enums.AdminRole
     dateCreated?: DateTimeFilter<"User"> | Date | string
     dateUpdated?: DateTimeNullableFilter<"User"> | Date | string | null
-    churnStatus?: EnumChurnStatusFilter<"User"> | $Enums.ChurnStatus
+    subscription?: EnumSubscriptionTiersFilter<"User"> | $Enums.SubscriptionTiers
     joinedAt?: DateTimeFilter<"User"> | Date | string
     lastActivityAt?: DateTimeNullableFilter<"User"> | Date | string | null
   }
@@ -18969,13 +20586,14 @@ export namespace Prisma {
     createdBy?: $Enums.AdminRole
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
-    churnStatus?: $Enums.ChurnStatus
+    subscription?: $Enums.SubscriptionTiers
     joinedAt?: Date | string
     lastActivityAt?: Date | string | null
     club?: ClubCreateNestedOneWithoutUserInput
     Activity?: ActivityCreateNestedManyWithoutUserInput
-    playerSubscriptions?: PlayerSubscriptionCreateNestedManyWithoutUserInput
-    sessionBookings?: SessionBookingCreateNestedManyWithoutPlayerInput
+    sessionBookings?: SessionBookingCreateNestedManyWithoutUserInput
+    churnEvents?: ChurnEventCreateNestedManyWithoutUserInput
+    healthSummary?: PlayerHealthSummaryCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutTeamInput = {
@@ -18992,12 +20610,13 @@ export namespace Prisma {
     createdBy?: $Enums.AdminRole
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
-    churnStatus?: $Enums.ChurnStatus
+    subscription?: $Enums.SubscriptionTiers
     joinedAt?: Date | string
     lastActivityAt?: Date | string | null
     Activity?: ActivityUncheckedCreateNestedManyWithoutUserInput
-    playerSubscriptions?: PlayerSubscriptionUncheckedCreateNestedManyWithoutUserInput
-    sessionBookings?: SessionBookingUncheckedCreateNestedManyWithoutPlayerInput
+    sessionBookings?: SessionBookingUncheckedCreateNestedManyWithoutUserInput
+    churnEvents?: ChurnEventUncheckedCreateNestedManyWithoutUserInput
+    healthSummary?: PlayerHealthSummaryUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutTeamInput = {
@@ -19156,13 +20775,14 @@ export namespace Prisma {
     createdBy?: $Enums.AdminRole
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
-    churnStatus?: $Enums.ChurnStatus
+    subscription?: $Enums.SubscriptionTiers
     joinedAt?: Date | string
     lastActivityAt?: Date | string | null
     club?: ClubCreateNestedOneWithoutUserInput
     team?: TeamCreateNestedOneWithoutUserInput
-    playerSubscriptions?: PlayerSubscriptionCreateNestedManyWithoutUserInput
-    sessionBookings?: SessionBookingCreateNestedManyWithoutPlayerInput
+    sessionBookings?: SessionBookingCreateNestedManyWithoutUserInput
+    churnEvents?: ChurnEventCreateNestedManyWithoutUserInput
+    healthSummary?: PlayerHealthSummaryCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutActivityInput = {
@@ -19180,11 +20800,12 @@ export namespace Prisma {
     createdBy?: $Enums.AdminRole
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
-    churnStatus?: $Enums.ChurnStatus
+    subscription?: $Enums.SubscriptionTiers
     joinedAt?: Date | string
     lastActivityAt?: Date | string | null
-    playerSubscriptions?: PlayerSubscriptionUncheckedCreateNestedManyWithoutUserInput
-    sessionBookings?: SessionBookingUncheckedCreateNestedManyWithoutPlayerInput
+    sessionBookings?: SessionBookingUncheckedCreateNestedManyWithoutUserInput
+    churnEvents?: ChurnEventUncheckedCreateNestedManyWithoutUserInput
+    healthSummary?: PlayerHealthSummaryUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutActivityInput = {
@@ -19197,21 +20818,17 @@ export namespace Prisma {
     bookedAt?: Date | string
     bookingStatus?: $Enums.BookingStatus
     attendanceStatus?: $Enums.AttendanceStatus
-    joinedAt?: Date | string | null
-    leftAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    player: UserCreateNestedOneWithoutSessionBookingsInput
+    user: UserCreateNestedOneWithoutSessionBookingsInput
   }
 
   export type SessionBookingUncheckedCreateWithoutActivityInput = {
     id?: string
-    playerUserId: string
+    userId: string
     bookedAt?: Date | string
     bookingStatus?: $Enums.BookingStatus
     attendanceStatus?: $Enums.AttendanceStatus
-    joinedAt?: Date | string | null
-    leftAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -19322,13 +20939,14 @@ export namespace Prisma {
     createdBy?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    churnStatus?: EnumChurnStatusFieldUpdateOperationsInput | $Enums.ChurnStatus
+    subscription?: EnumSubscriptionTiersFieldUpdateOperationsInput | $Enums.SubscriptionTiers
     joinedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastActivityAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     club?: ClubUpdateOneWithoutUserNestedInput
     team?: TeamUpdateOneWithoutUserNestedInput
-    playerSubscriptions?: PlayerSubscriptionUpdateManyWithoutUserNestedInput
-    sessionBookings?: SessionBookingUpdateManyWithoutPlayerNestedInput
+    sessionBookings?: SessionBookingUpdateManyWithoutUserNestedInput
+    churnEvents?: ChurnEventUpdateManyWithoutUserNestedInput
+    healthSummary?: PlayerHealthSummaryUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutActivityInput = {
@@ -19346,11 +20964,12 @@ export namespace Prisma {
     createdBy?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    churnStatus?: EnumChurnStatusFieldUpdateOperationsInput | $Enums.ChurnStatus
+    subscription?: EnumSubscriptionTiersFieldUpdateOperationsInput | $Enums.SubscriptionTiers
     joinedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastActivityAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    playerSubscriptions?: PlayerSubscriptionUncheckedUpdateManyWithoutUserNestedInput
-    sessionBookings?: SessionBookingUncheckedUpdateManyWithoutPlayerNestedInput
+    sessionBookings?: SessionBookingUncheckedUpdateManyWithoutUserNestedInput
+    churnEvents?: ChurnEventUncheckedUpdateManyWithoutUserNestedInput
+    healthSummary?: PlayerHealthSummaryUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type SessionBookingUpsertWithWhereUniqueWithoutActivityInput = {
@@ -19369,110 +20988,6 @@ export namespace Prisma {
     data: XOR<SessionBookingUpdateManyMutationInput, SessionBookingUncheckedUpdateManyWithoutActivityInput>
   }
 
-  export type UserCreateWithoutPlayerSubscriptionsInput = {
-    id: string
-    userType?: $Enums.UserType
-    disability?: boolean
-    personNumber?: string | null
-    email?: string | null
-    firstName?: string | null
-    lastName?: string | null
-    clubOnboarding?: boolean
-    gender?: string | null
-    createdBy?: $Enums.AdminRole
-    dateCreated?: Date | string
-    dateUpdated?: Date | string | null
-    churnStatus?: $Enums.ChurnStatus
-    joinedAt?: Date | string
-    lastActivityAt?: Date | string | null
-    club?: ClubCreateNestedOneWithoutUserInput
-    team?: TeamCreateNestedOneWithoutUserInput
-    Activity?: ActivityCreateNestedManyWithoutUserInput
-    sessionBookings?: SessionBookingCreateNestedManyWithoutPlayerInput
-  }
-
-  export type UserUncheckedCreateWithoutPlayerSubscriptionsInput = {
-    id: string
-    userType?: $Enums.UserType
-    clubId?: string | null
-    teamId?: string | null
-    disability?: boolean
-    personNumber?: string | null
-    email?: string | null
-    firstName?: string | null
-    lastName?: string | null
-    clubOnboarding?: boolean
-    gender?: string | null
-    createdBy?: $Enums.AdminRole
-    dateCreated?: Date | string
-    dateUpdated?: Date | string | null
-    churnStatus?: $Enums.ChurnStatus
-    joinedAt?: Date | string
-    lastActivityAt?: Date | string | null
-    Activity?: ActivityUncheckedCreateNestedManyWithoutUserInput
-    sessionBookings?: SessionBookingUncheckedCreateNestedManyWithoutPlayerInput
-  }
-
-  export type UserCreateOrConnectWithoutPlayerSubscriptionsInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutPlayerSubscriptionsInput, UserUncheckedCreateWithoutPlayerSubscriptionsInput>
-  }
-
-  export type UserUpsertWithoutPlayerSubscriptionsInput = {
-    update: XOR<UserUpdateWithoutPlayerSubscriptionsInput, UserUncheckedUpdateWithoutPlayerSubscriptionsInput>
-    create: XOR<UserCreateWithoutPlayerSubscriptionsInput, UserUncheckedCreateWithoutPlayerSubscriptionsInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutPlayerSubscriptionsInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutPlayerSubscriptionsInput, UserUncheckedUpdateWithoutPlayerSubscriptionsInput>
-  }
-
-  export type UserUpdateWithoutPlayerSubscriptionsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
-    disability?: BoolFieldUpdateOperationsInput | boolean
-    personNumber?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: NullableStringFieldUpdateOperationsInput | string | null
-    firstName?: NullableStringFieldUpdateOperationsInput | string | null
-    lastName?: NullableStringFieldUpdateOperationsInput | string | null
-    clubOnboarding?: BoolFieldUpdateOperationsInput | boolean
-    gender?: NullableStringFieldUpdateOperationsInput | string | null
-    createdBy?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
-    dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
-    dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    churnStatus?: EnumChurnStatusFieldUpdateOperationsInput | $Enums.ChurnStatus
-    joinedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    lastActivityAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    club?: ClubUpdateOneWithoutUserNestedInput
-    team?: TeamUpdateOneWithoutUserNestedInput
-    Activity?: ActivityUpdateManyWithoutUserNestedInput
-    sessionBookings?: SessionBookingUpdateManyWithoutPlayerNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutPlayerSubscriptionsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
-    clubId?: NullableStringFieldUpdateOperationsInput | string | null
-    teamId?: NullableStringFieldUpdateOperationsInput | string | null
-    disability?: BoolFieldUpdateOperationsInput | boolean
-    personNumber?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: NullableStringFieldUpdateOperationsInput | string | null
-    firstName?: NullableStringFieldUpdateOperationsInput | string | null
-    lastName?: NullableStringFieldUpdateOperationsInput | string | null
-    clubOnboarding?: BoolFieldUpdateOperationsInput | boolean
-    gender?: NullableStringFieldUpdateOperationsInput | string | null
-    createdBy?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
-    dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
-    dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    churnStatus?: EnumChurnStatusFieldUpdateOperationsInput | $Enums.ChurnStatus
-    joinedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    lastActivityAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    Activity?: ActivityUncheckedUpdateManyWithoutUserNestedInput
-    sessionBookings?: SessionBookingUncheckedUpdateManyWithoutPlayerNestedInput
-  }
-
   export type UserCreateWithoutSessionBookingsInput = {
     id: string
     userType?: $Enums.UserType
@@ -19486,13 +21001,14 @@ export namespace Prisma {
     createdBy?: $Enums.AdminRole
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
-    churnStatus?: $Enums.ChurnStatus
+    subscription?: $Enums.SubscriptionTiers
     joinedAt?: Date | string
     lastActivityAt?: Date | string | null
     club?: ClubCreateNestedOneWithoutUserInput
     team?: TeamCreateNestedOneWithoutUserInput
     Activity?: ActivityCreateNestedManyWithoutUserInput
-    playerSubscriptions?: PlayerSubscriptionCreateNestedManyWithoutUserInput
+    churnEvents?: ChurnEventCreateNestedManyWithoutUserInput
+    healthSummary?: PlayerHealthSummaryCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSessionBookingsInput = {
@@ -19510,11 +21026,12 @@ export namespace Prisma {
     createdBy?: $Enums.AdminRole
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
-    churnStatus?: $Enums.ChurnStatus
+    subscription?: $Enums.SubscriptionTiers
     joinedAt?: Date | string
     lastActivityAt?: Date | string | null
     Activity?: ActivityUncheckedCreateNestedManyWithoutUserInput
-    playerSubscriptions?: PlayerSubscriptionUncheckedCreateNestedManyWithoutUserInput
+    churnEvents?: ChurnEventUncheckedCreateNestedManyWithoutUserInput
+    healthSummary?: PlayerHealthSummaryUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSessionBookingsInput = {
@@ -19593,13 +21110,14 @@ export namespace Prisma {
     createdBy?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    churnStatus?: EnumChurnStatusFieldUpdateOperationsInput | $Enums.ChurnStatus
+    subscription?: EnumSubscriptionTiersFieldUpdateOperationsInput | $Enums.SubscriptionTiers
     joinedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastActivityAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     club?: ClubUpdateOneWithoutUserNestedInput
     team?: TeamUpdateOneWithoutUserNestedInput
     Activity?: ActivityUpdateManyWithoutUserNestedInput
-    playerSubscriptions?: PlayerSubscriptionUpdateManyWithoutUserNestedInput
+    churnEvents?: ChurnEventUpdateManyWithoutUserNestedInput
+    healthSummary?: PlayerHealthSummaryUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSessionBookingsInput = {
@@ -19617,11 +21135,12 @@ export namespace Prisma {
     createdBy?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    churnStatus?: EnumChurnStatusFieldUpdateOperationsInput | $Enums.ChurnStatus
+    subscription?: EnumSubscriptionTiersFieldUpdateOperationsInput | $Enums.SubscriptionTiers
     joinedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastActivityAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     Activity?: ActivityUncheckedUpdateManyWithoutUserNestedInput
-    playerSubscriptions?: PlayerSubscriptionUncheckedUpdateManyWithoutUserNestedInput
+    churnEvents?: ChurnEventUncheckedUpdateManyWithoutUserNestedInput
+    healthSummary?: PlayerHealthSummaryUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type ActivityUpsertWithoutBookingsInput = {
@@ -19675,6 +21194,222 @@ export namespace Prisma {
     language?: EnumLanguageFieldUpdateOperationsInput | $Enums.Language
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type UserCreateWithoutChurnEventsInput = {
+    id: string
+    userType?: $Enums.UserType
+    disability?: boolean
+    personNumber?: string | null
+    email?: string | null
+    firstName?: string | null
+    lastName?: string | null
+    clubOnboarding?: boolean
+    gender?: string | null
+    createdBy?: $Enums.AdminRole
+    dateCreated?: Date | string
+    dateUpdated?: Date | string | null
+    subscription?: $Enums.SubscriptionTiers
+    joinedAt?: Date | string
+    lastActivityAt?: Date | string | null
+    club?: ClubCreateNestedOneWithoutUserInput
+    team?: TeamCreateNestedOneWithoutUserInput
+    Activity?: ActivityCreateNestedManyWithoutUserInput
+    sessionBookings?: SessionBookingCreateNestedManyWithoutUserInput
+    healthSummary?: PlayerHealthSummaryCreateNestedOneWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutChurnEventsInput = {
+    id: string
+    userType?: $Enums.UserType
+    clubId?: string | null
+    teamId?: string | null
+    disability?: boolean
+    personNumber?: string | null
+    email?: string | null
+    firstName?: string | null
+    lastName?: string | null
+    clubOnboarding?: boolean
+    gender?: string | null
+    createdBy?: $Enums.AdminRole
+    dateCreated?: Date | string
+    dateUpdated?: Date | string | null
+    subscription?: $Enums.SubscriptionTiers
+    joinedAt?: Date | string
+    lastActivityAt?: Date | string | null
+    Activity?: ActivityUncheckedCreateNestedManyWithoutUserInput
+    sessionBookings?: SessionBookingUncheckedCreateNestedManyWithoutUserInput
+    healthSummary?: PlayerHealthSummaryUncheckedCreateNestedOneWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutChurnEventsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutChurnEventsInput, UserUncheckedCreateWithoutChurnEventsInput>
+  }
+
+  export type UserUpsertWithoutChurnEventsInput = {
+    update: XOR<UserUpdateWithoutChurnEventsInput, UserUncheckedUpdateWithoutChurnEventsInput>
+    create: XOR<UserCreateWithoutChurnEventsInput, UserUncheckedCreateWithoutChurnEventsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutChurnEventsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutChurnEventsInput, UserUncheckedUpdateWithoutChurnEventsInput>
+  }
+
+  export type UserUpdateWithoutChurnEventsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
+    disability?: BoolFieldUpdateOperationsInput | boolean
+    personNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    clubOnboarding?: BoolFieldUpdateOperationsInput | boolean
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
+    dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    subscription?: EnumSubscriptionTiersFieldUpdateOperationsInput | $Enums.SubscriptionTiers
+    joinedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lastActivityAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    club?: ClubUpdateOneWithoutUserNestedInput
+    team?: TeamUpdateOneWithoutUserNestedInput
+    Activity?: ActivityUpdateManyWithoutUserNestedInput
+    sessionBookings?: SessionBookingUpdateManyWithoutUserNestedInput
+    healthSummary?: PlayerHealthSummaryUpdateOneWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutChurnEventsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
+    clubId?: NullableStringFieldUpdateOperationsInput | string | null
+    teamId?: NullableStringFieldUpdateOperationsInput | string | null
+    disability?: BoolFieldUpdateOperationsInput | boolean
+    personNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    clubOnboarding?: BoolFieldUpdateOperationsInput | boolean
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
+    dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    subscription?: EnumSubscriptionTiersFieldUpdateOperationsInput | $Enums.SubscriptionTiers
+    joinedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lastActivityAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    Activity?: ActivityUncheckedUpdateManyWithoutUserNestedInput
+    sessionBookings?: SessionBookingUncheckedUpdateManyWithoutUserNestedInput
+    healthSummary?: PlayerHealthSummaryUncheckedUpdateOneWithoutUserNestedInput
+  }
+
+  export type UserCreateWithoutHealthSummaryInput = {
+    id: string
+    userType?: $Enums.UserType
+    disability?: boolean
+    personNumber?: string | null
+    email?: string | null
+    firstName?: string | null
+    lastName?: string | null
+    clubOnboarding?: boolean
+    gender?: string | null
+    createdBy?: $Enums.AdminRole
+    dateCreated?: Date | string
+    dateUpdated?: Date | string | null
+    subscription?: $Enums.SubscriptionTiers
+    joinedAt?: Date | string
+    lastActivityAt?: Date | string | null
+    club?: ClubCreateNestedOneWithoutUserInput
+    team?: TeamCreateNestedOneWithoutUserInput
+    Activity?: ActivityCreateNestedManyWithoutUserInput
+    sessionBookings?: SessionBookingCreateNestedManyWithoutUserInput
+    churnEvents?: ChurnEventCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutHealthSummaryInput = {
+    id: string
+    userType?: $Enums.UserType
+    clubId?: string | null
+    teamId?: string | null
+    disability?: boolean
+    personNumber?: string | null
+    email?: string | null
+    firstName?: string | null
+    lastName?: string | null
+    clubOnboarding?: boolean
+    gender?: string | null
+    createdBy?: $Enums.AdminRole
+    dateCreated?: Date | string
+    dateUpdated?: Date | string | null
+    subscription?: $Enums.SubscriptionTiers
+    joinedAt?: Date | string
+    lastActivityAt?: Date | string | null
+    Activity?: ActivityUncheckedCreateNestedManyWithoutUserInput
+    sessionBookings?: SessionBookingUncheckedCreateNestedManyWithoutUserInput
+    churnEvents?: ChurnEventUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutHealthSummaryInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutHealthSummaryInput, UserUncheckedCreateWithoutHealthSummaryInput>
+  }
+
+  export type UserUpsertWithoutHealthSummaryInput = {
+    update: XOR<UserUpdateWithoutHealthSummaryInput, UserUncheckedUpdateWithoutHealthSummaryInput>
+    create: XOR<UserCreateWithoutHealthSummaryInput, UserUncheckedCreateWithoutHealthSummaryInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutHealthSummaryInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutHealthSummaryInput, UserUncheckedUpdateWithoutHealthSummaryInput>
+  }
+
+  export type UserUpdateWithoutHealthSummaryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
+    disability?: BoolFieldUpdateOperationsInput | boolean
+    personNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    clubOnboarding?: BoolFieldUpdateOperationsInput | boolean
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
+    dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    subscription?: EnumSubscriptionTiersFieldUpdateOperationsInput | $Enums.SubscriptionTiers
+    joinedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lastActivityAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    club?: ClubUpdateOneWithoutUserNestedInput
+    team?: TeamUpdateOneWithoutUserNestedInput
+    Activity?: ActivityUpdateManyWithoutUserNestedInput
+    sessionBookings?: SessionBookingUpdateManyWithoutUserNestedInput
+    churnEvents?: ChurnEventUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutHealthSummaryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
+    clubId?: NullableStringFieldUpdateOperationsInput | string | null
+    teamId?: NullableStringFieldUpdateOperationsInput | string | null
+    disability?: BoolFieldUpdateOperationsInput | boolean
+    personNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    clubOnboarding?: BoolFieldUpdateOperationsInput | boolean
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
+    dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    subscription?: EnumSubscriptionTiersFieldUpdateOperationsInput | $Enums.SubscriptionTiers
+    joinedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lastActivityAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    Activity?: ActivityUncheckedUpdateManyWithoutUserNestedInput
+    sessionBookings?: SessionBookingUncheckedUpdateManyWithoutUserNestedInput
+    churnEvents?: ChurnEventUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ClubCreateWithoutMetricsInput = {
@@ -19773,27 +21508,24 @@ export namespace Prisma {
     dateUpdated?: Date | string | null
   }
 
-  export type PlayerSubscriptionCreateManyUserInput = {
-    id?: string
-    tier?: $Enums.SubscriptionTier
-    status?: $Enums.SubscriptionRecordStatus
-    startDate?: Date | string
-    endDate?: Date | string | null
-    autoRenew?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type SessionBookingCreateManyPlayerInput = {
+  export type SessionBookingCreateManyUserInput = {
     id?: string
     activityId: string
     bookedAt?: Date | string
     bookingStatus?: $Enums.BookingStatus
     attendanceStatus?: $Enums.AttendanceStatus
-    joinedAt?: Date | string | null
-    leftAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+  }
+
+  export type ChurnEventCreateManyUserInput = {
+    id?: string
+    eventType: string
+    eventDate: Date | string
+    scoreImpact?: number
+    reasonText?: string | null
+    metaJson?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
   }
 
   export type ActivityUpdateWithoutUserInput = {
@@ -19858,73 +21590,64 @@ export namespace Prisma {
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
-  export type PlayerSubscriptionUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    tier?: EnumSubscriptionTierFieldUpdateOperationsInput | $Enums.SubscriptionTier
-    status?: EnumSubscriptionRecordStatusFieldUpdateOperationsInput | $Enums.SubscriptionRecordStatus
-    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    autoRenew?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type PlayerSubscriptionUncheckedUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    tier?: EnumSubscriptionTierFieldUpdateOperationsInput | $Enums.SubscriptionTier
-    status?: EnumSubscriptionRecordStatusFieldUpdateOperationsInput | $Enums.SubscriptionRecordStatus
-    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    autoRenew?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type PlayerSubscriptionUncheckedUpdateManyWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    tier?: EnumSubscriptionTierFieldUpdateOperationsInput | $Enums.SubscriptionTier
-    status?: EnumSubscriptionRecordStatusFieldUpdateOperationsInput | $Enums.SubscriptionRecordStatus
-    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    autoRenew?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type SessionBookingUpdateWithoutPlayerInput = {
+  export type SessionBookingUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     bookedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     bookingStatus?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
     attendanceStatus?: EnumAttendanceStatusFieldUpdateOperationsInput | $Enums.AttendanceStatus
-    joinedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    leftAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     activity?: ActivityUpdateOneRequiredWithoutBookingsNestedInput
   }
 
-  export type SessionBookingUncheckedUpdateWithoutPlayerInput = {
+  export type SessionBookingUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     activityId?: StringFieldUpdateOperationsInput | string
     bookedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     bookingStatus?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
     attendanceStatus?: EnumAttendanceStatusFieldUpdateOperationsInput | $Enums.AttendanceStatus
-    joinedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    leftAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type SessionBookingUncheckedUpdateManyWithoutPlayerInput = {
+  export type SessionBookingUncheckedUpdateManyWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     activityId?: StringFieldUpdateOperationsInput | string
     bookedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     bookingStatus?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
     attendanceStatus?: EnumAttendanceStatusFieldUpdateOperationsInput | $Enums.AttendanceStatus
-    joinedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    leftAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ChurnEventUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    eventType?: StringFieldUpdateOperationsInput | string
+    eventDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    scoreImpact?: IntFieldUpdateOperationsInput | number
+    reasonText?: NullableStringFieldUpdateOperationsInput | string | null
+    metaJson?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ChurnEventUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    eventType?: StringFieldUpdateOperationsInput | string
+    eventDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    scoreImpact?: IntFieldUpdateOperationsInput | number
+    reasonText?: NullableStringFieldUpdateOperationsInput | string | null
+    metaJson?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ChurnEventUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    eventType?: StringFieldUpdateOperationsInput | string
+    eventDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    scoreImpact?: IntFieldUpdateOperationsInput | number
+    reasonText?: NullableStringFieldUpdateOperationsInput | string | null
+    metaJson?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type TeamCreateManyClubInput = {
@@ -19969,7 +21692,7 @@ export namespace Prisma {
     createdBy?: $Enums.AdminRole
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
-    churnStatus?: $Enums.ChurnStatus
+    subscription?: $Enums.SubscriptionTiers
     joinedAt?: Date | string
     lastActivityAt?: Date | string | null
   }
@@ -20092,13 +21815,14 @@ export namespace Prisma {
     createdBy?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    churnStatus?: EnumChurnStatusFieldUpdateOperationsInput | $Enums.ChurnStatus
+    subscription?: EnumSubscriptionTiersFieldUpdateOperationsInput | $Enums.SubscriptionTiers
     joinedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastActivityAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     team?: TeamUpdateOneWithoutUserNestedInput
     Activity?: ActivityUpdateManyWithoutUserNestedInput
-    playerSubscriptions?: PlayerSubscriptionUpdateManyWithoutUserNestedInput
-    sessionBookings?: SessionBookingUpdateManyWithoutPlayerNestedInput
+    sessionBookings?: SessionBookingUpdateManyWithoutUserNestedInput
+    churnEvents?: ChurnEventUpdateManyWithoutUserNestedInput
+    healthSummary?: PlayerHealthSummaryUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutClubInput = {
@@ -20115,12 +21839,13 @@ export namespace Prisma {
     createdBy?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    churnStatus?: EnumChurnStatusFieldUpdateOperationsInput | $Enums.ChurnStatus
+    subscription?: EnumSubscriptionTiersFieldUpdateOperationsInput | $Enums.SubscriptionTiers
     joinedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastActivityAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     Activity?: ActivityUncheckedUpdateManyWithoutUserNestedInput
-    playerSubscriptions?: PlayerSubscriptionUncheckedUpdateManyWithoutUserNestedInput
-    sessionBookings?: SessionBookingUncheckedUpdateManyWithoutPlayerNestedInput
+    sessionBookings?: SessionBookingUncheckedUpdateManyWithoutUserNestedInput
+    churnEvents?: ChurnEventUncheckedUpdateManyWithoutUserNestedInput
+    healthSummary?: PlayerHealthSummaryUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateManyWithoutClubInput = {
@@ -20137,7 +21862,7 @@ export namespace Prisma {
     createdBy?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    churnStatus?: EnumChurnStatusFieldUpdateOperationsInput | $Enums.ChurnStatus
+    subscription?: EnumSubscriptionTiersFieldUpdateOperationsInput | $Enums.SubscriptionTiers
     joinedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastActivityAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -20221,7 +21946,7 @@ export namespace Prisma {
     createdBy?: $Enums.AdminRole
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
-    churnStatus?: $Enums.ChurnStatus
+    subscription?: $Enums.SubscriptionTiers
     joinedAt?: Date | string
     lastActivityAt?: Date | string | null
   }
@@ -20301,13 +22026,14 @@ export namespace Prisma {
     createdBy?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    churnStatus?: EnumChurnStatusFieldUpdateOperationsInput | $Enums.ChurnStatus
+    subscription?: EnumSubscriptionTiersFieldUpdateOperationsInput | $Enums.SubscriptionTiers
     joinedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastActivityAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     club?: ClubUpdateOneWithoutUserNestedInput
     Activity?: ActivityUpdateManyWithoutUserNestedInput
-    playerSubscriptions?: PlayerSubscriptionUpdateManyWithoutUserNestedInput
-    sessionBookings?: SessionBookingUpdateManyWithoutPlayerNestedInput
+    sessionBookings?: SessionBookingUpdateManyWithoutUserNestedInput
+    churnEvents?: ChurnEventUpdateManyWithoutUserNestedInput
+    healthSummary?: PlayerHealthSummaryUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTeamInput = {
@@ -20324,12 +22050,13 @@ export namespace Prisma {
     createdBy?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    churnStatus?: EnumChurnStatusFieldUpdateOperationsInput | $Enums.ChurnStatus
+    subscription?: EnumSubscriptionTiersFieldUpdateOperationsInput | $Enums.SubscriptionTiers
     joinedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastActivityAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     Activity?: ActivityUncheckedUpdateManyWithoutUserNestedInput
-    playerSubscriptions?: PlayerSubscriptionUncheckedUpdateManyWithoutUserNestedInput
-    sessionBookings?: SessionBookingUncheckedUpdateManyWithoutPlayerNestedInput
+    sessionBookings?: SessionBookingUncheckedUpdateManyWithoutUserNestedInput
+    churnEvents?: ChurnEventUncheckedUpdateManyWithoutUserNestedInput
+    healthSummary?: PlayerHealthSummaryUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateManyWithoutTeamInput = {
@@ -20346,19 +22073,17 @@ export namespace Prisma {
     createdBy?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    churnStatus?: EnumChurnStatusFieldUpdateOperationsInput | $Enums.ChurnStatus
+    subscription?: EnumSubscriptionTiersFieldUpdateOperationsInput | $Enums.SubscriptionTiers
     joinedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastActivityAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type SessionBookingCreateManyActivityInput = {
     id?: string
-    playerUserId: string
+    userId: string
     bookedAt?: Date | string
     bookingStatus?: $Enums.BookingStatus
     attendanceStatus?: $Enums.AttendanceStatus
-    joinedAt?: Date | string | null
-    leftAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -20368,33 +22093,27 @@ export namespace Prisma {
     bookedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     bookingStatus?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
     attendanceStatus?: EnumAttendanceStatusFieldUpdateOperationsInput | $Enums.AttendanceStatus
-    joinedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    leftAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    player?: UserUpdateOneRequiredWithoutSessionBookingsNestedInput
+    user?: UserUpdateOneRequiredWithoutSessionBookingsNestedInput
   }
 
   export type SessionBookingUncheckedUpdateWithoutActivityInput = {
     id?: StringFieldUpdateOperationsInput | string
-    playerUserId?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
     bookedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     bookingStatus?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
     attendanceStatus?: EnumAttendanceStatusFieldUpdateOperationsInput | $Enums.AttendanceStatus
-    joinedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    leftAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SessionBookingUncheckedUpdateManyWithoutActivityInput = {
     id?: StringFieldUpdateOperationsInput | string
-    playerUserId?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
     bookedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     bookingStatus?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
     attendanceStatus?: EnumAttendanceStatusFieldUpdateOperationsInput | $Enums.AttendanceStatus
-    joinedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    leftAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
