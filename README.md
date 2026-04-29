@@ -29,6 +29,7 @@ Do not run `migrate dev` against staging/production.
 If staging is your only database, use this no-reset flow instead of `migrate dev`.
 
 Why this flow:
+
 - `migrate dev` can ask for reset when drift is detected.
 - This flow generates SQL from current staging to your schema, applies it safely, and then records migration history.
 
@@ -60,6 +61,7 @@ git add schema.prisma migrations/20260427140000_ballers_migration_44/migration.s
 git commit -m "Add migration 44"
 
 Safety notes:
+
 - Always confirm you are connected to the intended database.
 - Review SQL for destructive operations before applying.
 - Keep backups/snapshots for staging before major changes.

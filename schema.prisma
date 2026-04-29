@@ -63,14 +63,34 @@ enum SubscriptionTiers {
     STRIPE
 }
 
-enum BookingStatus {
-    BOOKED
-    NO_BOOKING
-}
-
 enum AttendanceStatus {
     ATTENDED
     NO_SHOW
+}
+
+enum ChurnEventType {
+    // Positive engagement events
+    TRAINING_COMPLETED
+    LIVE_SESSION_ATTENDED
+    FEED_ENGAGED
+
+    // Training inactivity penalties
+    TRAINING_PENALTY_APPLIED_5_DAYS
+    TRAINING_PENALTY_APPLIED_10_DAYS
+    TRAINING_PENALTY_APPLIED_15_DAYS
+
+    // Live session inactivity penalties
+    LIVE_PENALTY_APPLIED_5_DAYS
+    LIVE_PENALTY_APPLIED_10_DAYS
+    LIVE_PENALTY_APPLIED_15_DAYS
+
+    // Feed inactivity penalties
+    FEED_PENALTY_APPLIED_5_DAYS
+    FEED_PENALTY_APPLIED_10_DAYS
+    FEED_PENALTY_APPLIED_15_DAYS
+
+    // Status transitions
+    STATUS_CHANGED
 }
 
 // ---------------------------- Existing Models (Extended Where Needed) ------------------------------------- //
@@ -238,7 +258,6 @@ model SessionBooking {
     activity         Activity         @relation(fields: [activityId], references: [id])
     activityId       String
     bookedAt         DateTime         @default(now())
-    bookingStatus    BookingStatus    @default(BOOKED)
     attendanceStatus AttendanceStatus @default(NO_SHOW)
     createdAt        DateTime         @default(now())
     updatedAt        DateTime         @updatedAt
@@ -251,15 +270,15 @@ model SessionBooking {
 }
 
 model ChurnEvent {
-    id          String   @id @default(cuid())
-    user        User     @relation(fields: [userId], references: [id])
+    id          String         @id @default(cuid())
+    user        User           @relation(fields: [userId], references: [id])
     userId      String
-    eventType   String
+    eventType   ChurnEventType
     eventDate   DateTime
-    scoreImpact Int      @default(0)
-    reasonText  String?  @db.Text
+    scoreImpact Int            @default(0)
+    reasonText  String?        @db.Text
     metaJson    Json?
-    createdAt   DateTime @default(now())
+    createdAt   DateTime       @default(now())
 
     @@index([userId])
     @@index([eventType])
