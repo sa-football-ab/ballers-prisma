@@ -24,7 +24,11 @@
   },
   "homepage": "https://github.com/sa-football-ab/ballers-prisma#readme",
   "dependencies": {
+    "@prisma/adapter-mariadb": "^7.8.0",
     "@prisma/client": "^7.8.0",
+    "mariadb": "^3.5.2"
+  },
+  "devDependencies": {
     "prisma": "^7.8.0"
   }
 }
