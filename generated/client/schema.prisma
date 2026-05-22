@@ -58,14 +58,9 @@ enum ChurnStatus {
   CHURNED
 }
 
-enum SubscriptionTiers {
-  ADMIN
-  STRIPE
-}
-
-enum BookingStatus {
-  BOOKED
-  NO_BOOKING
+enum SubscriptionMethod {
+  ADMIN_GRANTED
+  STRIPE_PAID
 }
 
 enum AttendanceStatus {
@@ -73,28 +68,53 @@ enum AttendanceStatus {
   NO_SHOW
 }
 
+enum ChurnEventType {
+  // Positive engagement events
+  TRAINING_COMPLETED
+  LIVE_SESSION_ATTENDED
+  FEED_ENGAGED
+
+  // Training inactivity penalties
+  TRAINING_PENALTY_APPLIED_5_DAYS
+  TRAINING_PENALTY_APPLIED_10_DAYS
+  TRAINING_PENALTY_APPLIED_15_DAYS
+
+  // Live session inactivity penalties
+  LIVE_PENALTY_APPLIED_5_DAYS
+  LIVE_PENALTY_APPLIED_10_DAYS
+  LIVE_PENALTY_APPLIED_15_DAYS
+
+  // Feed inactivity penalties
+  FEED_PENALTY_APPLIED_5_DAYS
+  FEED_PENALTY_APPLIED_10_DAYS
+  FEED_PENALTY_APPLIED_15_DAYS
+
+  // Status transitions
+  STATUS_CHANGED
+}
+
 // ---------------------------- Existing Models (Extended Where Needed) ------------------------------------- //
 
 model User {
-  id             String            @id
-  userType       UserType          @default(PLAYER)
-  club           Club?             @relation(fields: [clubId], references: [id])
-  clubId         String?
-  team           Team?             @relation(fields: [teamId], references: [id])
-  teamId         String?
-  disability     Boolean           @default(false)
-  personNumber   String?
-  email          String?           @unique
-  firstName      String?
-  lastName       String?
-  clubOnboarding Boolean           @default(false)
-  gender         String?
-  createdBy      AdminRole         @default(LOK)
-  dateCreated    DateTime          @default(now())
-  dateUpdated    DateTime?
-  subscription   SubscriptionTiers @default(ADMIN)
-  joinedAt       DateTime          @default(now())
-  lastActivityAt DateTime?
+  id                 String             @id
+  userType           UserType           @default(PLAYER)
+  club               Club?              @relation(fields: [clubId], references: [id])
+  clubId             String?
+  team               Team?              @relation(fields: [teamId], references: [id])
+  teamId             String?
+  disability         Boolean            @default(false)
+  personNumber       String?
+  email              String?            @unique
+  firstName          String?
+  lastName           String?
+  clubOnboarding     Boolean            @default(false)
+  gender             String?
+  createdBy          AdminRole          @default(LOK)
+  dateCreated        DateTime           @default(now())
+  dateUpdated        DateTime?
+  subscriptionMethod SubscriptionMethod @default(ADMIN_GRANTED)
+  joinedAt           DateTime           @default(now())
+  lastActivityAt     DateTime?
 
   Activity        Activity[]
   sessionBookings SessionBooking[]     @relation("SessionBookingPlayer")
@@ -121,7 +141,6 @@ model Club {
   teams    Team[]
   Activity Activity[]
   User     User[]
-  metrics  MonthlyChurnMetric[]
 }
 
 model Team {
@@ -238,7 +257,6 @@ model SessionBooking {
   activity         Activity         @relation(fields: [activityId], references: [id])
   activityId       String
   bookedAt         DateTime         @default(now())
-  bookingStatus    BookingStatus    @default(BOOKED)
   attendanceStatus AttendanceStatus @default(NO_SHOW)
   createdAt        DateTime         @default(now())
   updatedAt        DateTime         @updatedAt
@@ -251,15 +269,14 @@ model SessionBooking {
 }
 
 model ChurnEvent {
-  id          String   @id @default(cuid())
-  user        User     @relation(fields: [userId], references: [id])
+  id          String         @id @default(cuid())
+  user        User           @relation(fields: [userId], references: [id])
   userId      String
-  eventType   String
+  eventType   ChurnEventType
   eventDate   DateTime
-  scoreImpact Int      @default(0)
-  reasonText  String?  @db.Text
-  metaJson    Json?
-  createdAt   DateTime @default(now())
+  scoreImpact Int            @default(0)
+  reasonText  String?        @db.Text
+  createdAt   DateTime       @default(now())
 
   @@index([userId])
   @@index([eventType])
@@ -288,24 +305,4 @@ model PlayerHealthSummary {
   @@index([currentStatus])
   @@index([totalRiskScore])
   @@index([lastCalculatedAt])
-}
-
-model MonthlyChurnMetric {
-  id                  String   @id @default(cuid())
-  monthStartDate      DateTime
-  club                Club?    @relation(fields: [clubId], references: [id])
-  clubId              String?
-  healthyCount        Int      @default(0)
-  mightLeaveSoonCount Int      @default(0)
-  atRiskCount         Int      @default(0)
-  churnedCount        Int      @default(0)
-  newPlayers          Int      @default(0)
-  netGrowth           Int      @default(0)
-  retentionRate       Decimal? @db.Decimal(5, 2)
-  churnRate           Decimal? @db.Decimal(5, 2)
-  createdAt           DateTime @default(now())
-  updatedAt           DateTime @updatedAt
-
-  @@index([monthStartDate])
-  @@index([clubId, monthStartDate])
 }

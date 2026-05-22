@@ -68,11 +68,6 @@ export type ChurnEvent = $Result.DefaultSelection<Prisma.$ChurnEventPayload>
  * 
  */
 export type PlayerHealthSummary = $Result.DefaultSelection<Prisma.$PlayerHealthSummaryPayload>
-/**
- * Model MonthlyChurnMetric
- * 
- */
-export type MonthlyChurnMetric = $Result.DefaultSelection<Prisma.$MonthlyChurnMetricPayload>
 
 /**
  * Enums
@@ -145,20 +140,12 @@ export const ChurnStatus: {
 export type ChurnStatus = (typeof ChurnStatus)[keyof typeof ChurnStatus]
 
 
-export const SubscriptionTiers: {
-  ADMIN: 'ADMIN',
-  STRIPE: 'STRIPE'
+export const SubscriptionMethod: {
+  ADMIN_GRANTED: 'ADMIN_GRANTED',
+  STRIPE_PAID: 'STRIPE_PAID'
 };
 
-export type SubscriptionTiers = (typeof SubscriptionTiers)[keyof typeof SubscriptionTiers]
-
-
-export const BookingStatus: {
-  BOOKED: 'BOOKED',
-  NO_BOOKING: 'NO_BOOKING'
-};
-
-export type BookingStatus = (typeof BookingStatus)[keyof typeof BookingStatus]
+export type SubscriptionMethod = (typeof SubscriptionMethod)[keyof typeof SubscriptionMethod]
 
 
 export const AttendanceStatus: {
@@ -167,6 +154,25 @@ export const AttendanceStatus: {
 };
 
 export type AttendanceStatus = (typeof AttendanceStatus)[keyof typeof AttendanceStatus]
+
+
+export const ChurnEventType: {
+  TRAINING_COMPLETED: 'TRAINING_COMPLETED',
+  LIVE_SESSION_ATTENDED: 'LIVE_SESSION_ATTENDED',
+  FEED_ENGAGED: 'FEED_ENGAGED',
+  TRAINING_PENALTY_APPLIED_5_DAYS: 'TRAINING_PENALTY_APPLIED_5_DAYS',
+  TRAINING_PENALTY_APPLIED_10_DAYS: 'TRAINING_PENALTY_APPLIED_10_DAYS',
+  TRAINING_PENALTY_APPLIED_15_DAYS: 'TRAINING_PENALTY_APPLIED_15_DAYS',
+  LIVE_PENALTY_APPLIED_5_DAYS: 'LIVE_PENALTY_APPLIED_5_DAYS',
+  LIVE_PENALTY_APPLIED_10_DAYS: 'LIVE_PENALTY_APPLIED_10_DAYS',
+  LIVE_PENALTY_APPLIED_15_DAYS: 'LIVE_PENALTY_APPLIED_15_DAYS',
+  FEED_PENALTY_APPLIED_5_DAYS: 'FEED_PENALTY_APPLIED_5_DAYS',
+  FEED_PENALTY_APPLIED_10_DAYS: 'FEED_PENALTY_APPLIED_10_DAYS',
+  FEED_PENALTY_APPLIED_15_DAYS: 'FEED_PENALTY_APPLIED_15_DAYS',
+  STATUS_CHANGED: 'STATUS_CHANGED'
+};
+
+export type ChurnEventType = (typeof ChurnEventType)[keyof typeof ChurnEventType]
 
 }
 
@@ -198,17 +204,17 @@ export type ChurnStatus = $Enums.ChurnStatus
 
 export const ChurnStatus: typeof $Enums.ChurnStatus
 
-export type SubscriptionTiers = $Enums.SubscriptionTiers
+export type SubscriptionMethod = $Enums.SubscriptionMethod
 
-export const SubscriptionTiers: typeof $Enums.SubscriptionTiers
-
-export type BookingStatus = $Enums.BookingStatus
-
-export const BookingStatus: typeof $Enums.BookingStatus
+export const SubscriptionMethod: typeof $Enums.SubscriptionMethod
 
 export type AttendanceStatus = $Enums.AttendanceStatus
 
 export const AttendanceStatus: typeof $Enums.AttendanceStatus
+
+export type ChurnEventType = $Enums.ChurnEventType
+
+export const ChurnEventType: typeof $Enums.ChurnEventType
 
 /**
  * ##  Prisma Client ʲˢ
@@ -440,16 +446,6 @@ export class PrismaClient<
     * ```
     */
   get playerHealthSummary(): Prisma.PlayerHealthSummaryDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.monthlyChurnMetric`: Exposes CRUD operations for the **MonthlyChurnMetric** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more MonthlyChurnMetrics
-    * const monthlyChurnMetrics = await prisma.monthlyChurnMetric.findMany()
-    * ```
-    */
-  get monthlyChurnMetric(): Prisma.MonthlyChurnMetricDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -894,8 +890,7 @@ export namespace Prisma {
     PlayerTrainingProgram: 'PlayerTrainingProgram',
     SessionBooking: 'SessionBooking',
     ChurnEvent: 'ChurnEvent',
-    PlayerHealthSummary: 'PlayerHealthSummary',
-    MonthlyChurnMetric: 'MonthlyChurnMetric'
+    PlayerHealthSummary: 'PlayerHealthSummary'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -911,7 +906,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "club" | "team" | "activity" | "playerTraining" | "playerTrainingWeek" | "playerTrainingLevel" | "playerTrainingProgram" | "sessionBooking" | "churnEvent" | "playerHealthSummary" | "monthlyChurnMetric"
+      modelProps: "user" | "club" | "team" | "activity" | "playerTraining" | "playerTrainingWeek" | "playerTrainingLevel" | "playerTrainingProgram" | "sessionBooking" | "churnEvent" | "playerHealthSummary"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1641,72 +1636,6 @@ export namespace Prisma {
           }
         }
       }
-      MonthlyChurnMetric: {
-        payload: Prisma.$MonthlyChurnMetricPayload<ExtArgs>
-        fields: Prisma.MonthlyChurnMetricFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.MonthlyChurnMetricFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$MonthlyChurnMetricPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.MonthlyChurnMetricFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$MonthlyChurnMetricPayload>
-          }
-          findFirst: {
-            args: Prisma.MonthlyChurnMetricFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$MonthlyChurnMetricPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.MonthlyChurnMetricFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$MonthlyChurnMetricPayload>
-          }
-          findMany: {
-            args: Prisma.MonthlyChurnMetricFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$MonthlyChurnMetricPayload>[]
-          }
-          create: {
-            args: Prisma.MonthlyChurnMetricCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$MonthlyChurnMetricPayload>
-          }
-          createMany: {
-            args: Prisma.MonthlyChurnMetricCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          delete: {
-            args: Prisma.MonthlyChurnMetricDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$MonthlyChurnMetricPayload>
-          }
-          update: {
-            args: Prisma.MonthlyChurnMetricUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$MonthlyChurnMetricPayload>
-          }
-          deleteMany: {
-            args: Prisma.MonthlyChurnMetricDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.MonthlyChurnMetricUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          upsert: {
-            args: Prisma.MonthlyChurnMetricUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$MonthlyChurnMetricPayload>
-          }
-          aggregate: {
-            args: Prisma.MonthlyChurnMetricAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateMonthlyChurnMetric>
-          }
-          groupBy: {
-            args: Prisma.MonthlyChurnMetricGroupByArgs<ExtArgs>
-            result: $Utils.Optional<MonthlyChurnMetricGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.MonthlyChurnMetricCountArgs<ExtArgs>
-            result: $Utils.Optional<MonthlyChurnMetricCountAggregateOutputType> | number
-          }
-        }
-      }
     }
   } & {
     other: {
@@ -1826,7 +1755,6 @@ export namespace Prisma {
     sessionBooking?: SessionBookingOmit
     churnEvent?: ChurnEventOmit
     playerHealthSummary?: PlayerHealthSummaryOmit
-    monthlyChurnMetric?: MonthlyChurnMetricOmit
   }
 
   /* Types for Logging */
@@ -1959,14 +1887,12 @@ export namespace Prisma {
     teams: number
     Activity: number
     User: number
-    metrics: number
   }
 
   export type ClubCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     teams?: boolean | ClubCountOutputTypeCountTeamsArgs
     Activity?: boolean | ClubCountOutputTypeCountActivityArgs
     User?: boolean | ClubCountOutputTypeCountUserArgs
-    metrics?: boolean | ClubCountOutputTypeCountMetricsArgs
   }
 
   // Custom InputTypes
@@ -1999,13 +1925,6 @@ export namespace Prisma {
    */
   export type ClubCountOutputTypeCountUserArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: UserWhereInput
-  }
-
-  /**
-   * ClubCountOutputType without action
-   */
-  export type ClubCountOutputTypeCountMetricsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: MonthlyChurnMetricWhereInput
   }
 
 
@@ -2109,7 +2028,7 @@ export namespace Prisma {
     createdBy: $Enums.AdminRole | null
     dateCreated: Date | null
     dateUpdated: Date | null
-    subscription: $Enums.SubscriptionTiers | null
+    subscriptionMethod: $Enums.SubscriptionMethod | null
     joinedAt: Date | null
     lastActivityAt: Date | null
   }
@@ -2129,7 +2048,7 @@ export namespace Prisma {
     createdBy: $Enums.AdminRole | null
     dateCreated: Date | null
     dateUpdated: Date | null
-    subscription: $Enums.SubscriptionTiers | null
+    subscriptionMethod: $Enums.SubscriptionMethod | null
     joinedAt: Date | null
     lastActivityAt: Date | null
   }
@@ -2149,7 +2068,7 @@ export namespace Prisma {
     createdBy: number
     dateCreated: number
     dateUpdated: number
-    subscription: number
+    subscriptionMethod: number
     joinedAt: number
     lastActivityAt: number
     _all: number
@@ -2171,7 +2090,7 @@ export namespace Prisma {
     createdBy?: true
     dateCreated?: true
     dateUpdated?: true
-    subscription?: true
+    subscriptionMethod?: true
     joinedAt?: true
     lastActivityAt?: true
   }
@@ -2191,7 +2110,7 @@ export namespace Prisma {
     createdBy?: true
     dateCreated?: true
     dateUpdated?: true
-    subscription?: true
+    subscriptionMethod?: true
     joinedAt?: true
     lastActivityAt?: true
   }
@@ -2211,7 +2130,7 @@ export namespace Prisma {
     createdBy?: true
     dateCreated?: true
     dateUpdated?: true
-    subscription?: true
+    subscriptionMethod?: true
     joinedAt?: true
     lastActivityAt?: true
     _all?: true
@@ -2304,7 +2223,7 @@ export namespace Prisma {
     createdBy: $Enums.AdminRole
     dateCreated: Date
     dateUpdated: Date | null
-    subscription: $Enums.SubscriptionTiers
+    subscriptionMethod: $Enums.SubscriptionMethod
     joinedAt: Date
     lastActivityAt: Date | null
     _count: UserCountAggregateOutputType | null
@@ -2341,7 +2260,7 @@ export namespace Prisma {
     createdBy?: boolean
     dateCreated?: boolean
     dateUpdated?: boolean
-    subscription?: boolean
+    subscriptionMethod?: boolean
     joinedAt?: boolean
     lastActivityAt?: boolean
     club?: boolean | User$clubArgs<ExtArgs>
@@ -2370,12 +2289,12 @@ export namespace Prisma {
     createdBy?: boolean
     dateCreated?: boolean
     dateUpdated?: boolean
-    subscription?: boolean
+    subscriptionMethod?: boolean
     joinedAt?: boolean
     lastActivityAt?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userType" | "clubId" | "teamId" | "disability" | "personNumber" | "email" | "firstName" | "lastName" | "clubOnboarding" | "gender" | "createdBy" | "dateCreated" | "dateUpdated" | "subscription" | "joinedAt" | "lastActivityAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userType" | "clubId" | "teamId" | "disability" | "personNumber" | "email" | "firstName" | "lastName" | "clubOnboarding" | "gender" | "createdBy" | "dateCreated" | "dateUpdated" | "subscriptionMethod" | "joinedAt" | "lastActivityAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     club?: boolean | User$clubArgs<ExtArgs>
     team?: boolean | User$teamArgs<ExtArgs>
@@ -2411,7 +2330,7 @@ export namespace Prisma {
       createdBy: $Enums.AdminRole
       dateCreated: Date
       dateUpdated: Date | null
-      subscription: $Enums.SubscriptionTiers
+      subscriptionMethod: $Enums.SubscriptionMethod
       joinedAt: Date
       lastActivityAt: Date | null
     }, ExtArgs["result"]["user"]>
@@ -2803,7 +2722,7 @@ export namespace Prisma {
     readonly createdBy: FieldRef<"User", 'AdminRole'>
     readonly dateCreated: FieldRef<"User", 'DateTime'>
     readonly dateUpdated: FieldRef<"User", 'DateTime'>
-    readonly subscription: FieldRef<"User", 'SubscriptionTiers'>
+    readonly subscriptionMethod: FieldRef<"User", 'SubscriptionMethod'>
     readonly joinedAt: FieldRef<"User", 'DateTime'>
     readonly lastActivityAt: FieldRef<"User", 'DateTime'>
   }
@@ -3534,7 +3453,6 @@ export namespace Prisma {
     teams?: boolean | Club$teamsArgs<ExtArgs>
     Activity?: boolean | Club$ActivityArgs<ExtArgs>
     User?: boolean | Club$UserArgs<ExtArgs>
-    metrics?: boolean | Club$metricsArgs<ExtArgs>
     _count?: boolean | ClubCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["club"]>
 
@@ -3557,7 +3475,6 @@ export namespace Prisma {
     teams?: boolean | Club$teamsArgs<ExtArgs>
     Activity?: boolean | Club$ActivityArgs<ExtArgs>
     User?: boolean | Club$UserArgs<ExtArgs>
-    metrics?: boolean | Club$metricsArgs<ExtArgs>
     _count?: boolean | ClubCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -3567,7 +3484,6 @@ export namespace Prisma {
       teams: Prisma.$TeamPayload<ExtArgs>[]
       Activity: Prisma.$ActivityPayload<ExtArgs>[]
       User: Prisma.$UserPayload<ExtArgs>[]
-      metrics: Prisma.$MonthlyChurnMetricPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -3922,7 +3838,6 @@ export namespace Prisma {
     teams<T extends Club$teamsArgs<ExtArgs> = {}>(args?: Subset<T, Club$teamsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TeamPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Activity<T extends Club$ActivityArgs<ExtArgs> = {}>(args?: Subset<T, Club$ActivityArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ActivityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     User<T extends Club$UserArgs<ExtArgs> = {}>(args?: Subset<T, Club$UserArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    metrics<T extends Club$metricsArgs<ExtArgs> = {}>(args?: Subset<T, Club$metricsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MonthlyChurnMetricPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4378,30 +4293,6 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
-  }
-
-  /**
-   * Club.metrics
-   */
-  export type Club$metricsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the MonthlyChurnMetric
-     */
-    select?: MonthlyChurnMetricSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the MonthlyChurnMetric
-     */
-    omit?: MonthlyChurnMetricOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: MonthlyChurnMetricInclude<ExtArgs> | null
-    where?: MonthlyChurnMetricWhereInput
-    orderBy?: MonthlyChurnMetricOrderByWithRelationInput | MonthlyChurnMetricOrderByWithRelationInput[]
-    cursor?: MonthlyChurnMetricWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: MonthlyChurnMetricScalarFieldEnum | MonthlyChurnMetricScalarFieldEnum[]
   }
 
   /**
@@ -10499,7 +10390,6 @@ export namespace Prisma {
     userId: string | null
     activityId: string | null
     bookedAt: Date | null
-    bookingStatus: $Enums.BookingStatus | null
     attendanceStatus: $Enums.AttendanceStatus | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -10510,7 +10400,6 @@ export namespace Prisma {
     userId: string | null
     activityId: string | null
     bookedAt: Date | null
-    bookingStatus: $Enums.BookingStatus | null
     attendanceStatus: $Enums.AttendanceStatus | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -10521,7 +10410,6 @@ export namespace Prisma {
     userId: number
     activityId: number
     bookedAt: number
-    bookingStatus: number
     attendanceStatus: number
     createdAt: number
     updatedAt: number
@@ -10534,7 +10422,6 @@ export namespace Prisma {
     userId?: true
     activityId?: true
     bookedAt?: true
-    bookingStatus?: true
     attendanceStatus?: true
     createdAt?: true
     updatedAt?: true
@@ -10545,7 +10432,6 @@ export namespace Prisma {
     userId?: true
     activityId?: true
     bookedAt?: true
-    bookingStatus?: true
     attendanceStatus?: true
     createdAt?: true
     updatedAt?: true
@@ -10556,7 +10442,6 @@ export namespace Prisma {
     userId?: true
     activityId?: true
     bookedAt?: true
-    bookingStatus?: true
     attendanceStatus?: true
     createdAt?: true
     updatedAt?: true
@@ -10640,7 +10525,6 @@ export namespace Prisma {
     userId: string
     activityId: string
     bookedAt: Date
-    bookingStatus: $Enums.BookingStatus
     attendanceStatus: $Enums.AttendanceStatus
     createdAt: Date
     updatedAt: Date
@@ -10668,7 +10552,6 @@ export namespace Prisma {
     userId?: boolean
     activityId?: boolean
     bookedAt?: boolean
-    bookingStatus?: boolean
     attendanceStatus?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -10683,13 +10566,12 @@ export namespace Prisma {
     userId?: boolean
     activityId?: boolean
     bookedAt?: boolean
-    bookingStatus?: boolean
     attendanceStatus?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type SessionBookingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "activityId" | "bookedAt" | "bookingStatus" | "attendanceStatus" | "createdAt" | "updatedAt", ExtArgs["result"]["sessionBooking"]>
+  export type SessionBookingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "activityId" | "bookedAt" | "attendanceStatus" | "createdAt" | "updatedAt", ExtArgs["result"]["sessionBooking"]>
   export type SessionBookingInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     activity?: boolean | ActivityDefaultArgs<ExtArgs>
@@ -10706,7 +10588,6 @@ export namespace Prisma {
       userId: string
       activityId: string
       bookedAt: Date
-      bookingStatus: $Enums.BookingStatus
       attendanceStatus: $Enums.AttendanceStatus
       createdAt: Date
       updatedAt: Date
@@ -11085,7 +10966,6 @@ export namespace Prisma {
     readonly userId: FieldRef<"SessionBooking", 'String'>
     readonly activityId: FieldRef<"SessionBooking", 'String'>
     readonly bookedAt: FieldRef<"SessionBooking", 'DateTime'>
-    readonly bookingStatus: FieldRef<"SessionBooking", 'BookingStatus'>
     readonly attendanceStatus: FieldRef<"SessionBooking", 'AttendanceStatus'>
     readonly createdAt: FieldRef<"SessionBooking", 'DateTime'>
     readonly updatedAt: FieldRef<"SessionBooking", 'DateTime'>
@@ -11478,7 +11358,7 @@ export namespace Prisma {
   export type ChurnEventMinAggregateOutputType = {
     id: string | null
     userId: string | null
-    eventType: string | null
+    eventType: $Enums.ChurnEventType | null
     eventDate: Date | null
     scoreImpact: number | null
     reasonText: string | null
@@ -11488,7 +11368,7 @@ export namespace Prisma {
   export type ChurnEventMaxAggregateOutputType = {
     id: string | null
     userId: string | null
-    eventType: string | null
+    eventType: $Enums.ChurnEventType | null
     eventDate: Date | null
     scoreImpact: number | null
     reasonText: string | null
@@ -11502,7 +11382,6 @@ export namespace Prisma {
     eventDate: number
     scoreImpact: number
     reasonText: number
-    metaJson: number
     createdAt: number
     _all: number
   }
@@ -11543,7 +11422,6 @@ export namespace Prisma {
     eventDate?: true
     scoreImpact?: true
     reasonText?: true
-    metaJson?: true
     createdAt?: true
     _all?: true
   }
@@ -11637,11 +11515,10 @@ export namespace Prisma {
   export type ChurnEventGroupByOutputType = {
     id: string
     userId: string
-    eventType: string
+    eventType: $Enums.ChurnEventType
     eventDate: Date
     scoreImpact: number
     reasonText: string | null
-    metaJson: JsonValue | null
     createdAt: Date
     _count: ChurnEventCountAggregateOutputType | null
     _avg: ChurnEventAvgAggregateOutputType | null
@@ -11671,7 +11548,6 @@ export namespace Prisma {
     eventDate?: boolean
     scoreImpact?: boolean
     reasonText?: boolean
-    metaJson?: boolean
     createdAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["churnEvent"]>
@@ -11685,11 +11561,10 @@ export namespace Prisma {
     eventDate?: boolean
     scoreImpact?: boolean
     reasonText?: boolean
-    metaJson?: boolean
     createdAt?: boolean
   }
 
-  export type ChurnEventOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "eventType" | "eventDate" | "scoreImpact" | "reasonText" | "metaJson" | "createdAt", ExtArgs["result"]["churnEvent"]>
+  export type ChurnEventOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "eventType" | "eventDate" | "scoreImpact" | "reasonText" | "createdAt", ExtArgs["result"]["churnEvent"]>
   export type ChurnEventInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
@@ -11702,11 +11577,10 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       userId: string
-      eventType: string
+      eventType: $Enums.ChurnEventType
       eventDate: Date
       scoreImpact: number
       reasonText: string | null
-      metaJson: Prisma.JsonValue | null
       createdAt: Date
     }, ExtArgs["result"]["churnEvent"]>
     composites: {}
@@ -12080,11 +11954,10 @@ export namespace Prisma {
   interface ChurnEventFieldRefs {
     readonly id: FieldRef<"ChurnEvent", 'String'>
     readonly userId: FieldRef<"ChurnEvent", 'String'>
-    readonly eventType: FieldRef<"ChurnEvent", 'String'>
+    readonly eventType: FieldRef<"ChurnEvent", 'ChurnEventType'>
     readonly eventDate: FieldRef<"ChurnEvent", 'DateTime'>
     readonly scoreImpact: FieldRef<"ChurnEvent", 'Int'>
     readonly reasonText: FieldRef<"ChurnEvent", 'String'>
-    readonly metaJson: FieldRef<"ChurnEvent", 'Json'>
     readonly createdAt: FieldRef<"ChurnEvent", 'DateTime'>
   }
     
@@ -13532,1109 +13405,6 @@ export namespace Prisma {
 
 
   /**
-   * Model MonthlyChurnMetric
-   */
-
-  export type AggregateMonthlyChurnMetric = {
-    _count: MonthlyChurnMetricCountAggregateOutputType | null
-    _avg: MonthlyChurnMetricAvgAggregateOutputType | null
-    _sum: MonthlyChurnMetricSumAggregateOutputType | null
-    _min: MonthlyChurnMetricMinAggregateOutputType | null
-    _max: MonthlyChurnMetricMaxAggregateOutputType | null
-  }
-
-  export type MonthlyChurnMetricAvgAggregateOutputType = {
-    healthyCount: number | null
-    mightLeaveSoonCount: number | null
-    atRiskCount: number | null
-    churnedCount: number | null
-    newPlayers: number | null
-    netGrowth: number | null
-    retentionRate: Decimal | null
-    churnRate: Decimal | null
-  }
-
-  export type MonthlyChurnMetricSumAggregateOutputType = {
-    healthyCount: number | null
-    mightLeaveSoonCount: number | null
-    atRiskCount: number | null
-    churnedCount: number | null
-    newPlayers: number | null
-    netGrowth: number | null
-    retentionRate: Decimal | null
-    churnRate: Decimal | null
-  }
-
-  export type MonthlyChurnMetricMinAggregateOutputType = {
-    id: string | null
-    monthStartDate: Date | null
-    clubId: string | null
-    healthyCount: number | null
-    mightLeaveSoonCount: number | null
-    atRiskCount: number | null
-    churnedCount: number | null
-    newPlayers: number | null
-    netGrowth: number | null
-    retentionRate: Decimal | null
-    churnRate: Decimal | null
-    createdAt: Date | null
-    updatedAt: Date | null
-  }
-
-  export type MonthlyChurnMetricMaxAggregateOutputType = {
-    id: string | null
-    monthStartDate: Date | null
-    clubId: string | null
-    healthyCount: number | null
-    mightLeaveSoonCount: number | null
-    atRiskCount: number | null
-    churnedCount: number | null
-    newPlayers: number | null
-    netGrowth: number | null
-    retentionRate: Decimal | null
-    churnRate: Decimal | null
-    createdAt: Date | null
-    updatedAt: Date | null
-  }
-
-  export type MonthlyChurnMetricCountAggregateOutputType = {
-    id: number
-    monthStartDate: number
-    clubId: number
-    healthyCount: number
-    mightLeaveSoonCount: number
-    atRiskCount: number
-    churnedCount: number
-    newPlayers: number
-    netGrowth: number
-    retentionRate: number
-    churnRate: number
-    createdAt: number
-    updatedAt: number
-    _all: number
-  }
-
-
-  export type MonthlyChurnMetricAvgAggregateInputType = {
-    healthyCount?: true
-    mightLeaveSoonCount?: true
-    atRiskCount?: true
-    churnedCount?: true
-    newPlayers?: true
-    netGrowth?: true
-    retentionRate?: true
-    churnRate?: true
-  }
-
-  export type MonthlyChurnMetricSumAggregateInputType = {
-    healthyCount?: true
-    mightLeaveSoonCount?: true
-    atRiskCount?: true
-    churnedCount?: true
-    newPlayers?: true
-    netGrowth?: true
-    retentionRate?: true
-    churnRate?: true
-  }
-
-  export type MonthlyChurnMetricMinAggregateInputType = {
-    id?: true
-    monthStartDate?: true
-    clubId?: true
-    healthyCount?: true
-    mightLeaveSoonCount?: true
-    atRiskCount?: true
-    churnedCount?: true
-    newPlayers?: true
-    netGrowth?: true
-    retentionRate?: true
-    churnRate?: true
-    createdAt?: true
-    updatedAt?: true
-  }
-
-  export type MonthlyChurnMetricMaxAggregateInputType = {
-    id?: true
-    monthStartDate?: true
-    clubId?: true
-    healthyCount?: true
-    mightLeaveSoonCount?: true
-    atRiskCount?: true
-    churnedCount?: true
-    newPlayers?: true
-    netGrowth?: true
-    retentionRate?: true
-    churnRate?: true
-    createdAt?: true
-    updatedAt?: true
-  }
-
-  export type MonthlyChurnMetricCountAggregateInputType = {
-    id?: true
-    monthStartDate?: true
-    clubId?: true
-    healthyCount?: true
-    mightLeaveSoonCount?: true
-    atRiskCount?: true
-    churnedCount?: true
-    newPlayers?: true
-    netGrowth?: true
-    retentionRate?: true
-    churnRate?: true
-    createdAt?: true
-    updatedAt?: true
-    _all?: true
-  }
-
-  export type MonthlyChurnMetricAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which MonthlyChurnMetric to aggregate.
-     */
-    where?: MonthlyChurnMetricWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of MonthlyChurnMetrics to fetch.
-     */
-    orderBy?: MonthlyChurnMetricOrderByWithRelationInput | MonthlyChurnMetricOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: MonthlyChurnMetricWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` MonthlyChurnMetrics from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` MonthlyChurnMetrics.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned MonthlyChurnMetrics
-    **/
-    _count?: true | MonthlyChurnMetricCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: MonthlyChurnMetricAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: MonthlyChurnMetricSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: MonthlyChurnMetricMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: MonthlyChurnMetricMaxAggregateInputType
-  }
-
-  export type GetMonthlyChurnMetricAggregateType<T extends MonthlyChurnMetricAggregateArgs> = {
-        [P in keyof T & keyof AggregateMonthlyChurnMetric]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateMonthlyChurnMetric[P]>
-      : GetScalarType<T[P], AggregateMonthlyChurnMetric[P]>
-  }
-
-
-
-
-  export type MonthlyChurnMetricGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: MonthlyChurnMetricWhereInput
-    orderBy?: MonthlyChurnMetricOrderByWithAggregationInput | MonthlyChurnMetricOrderByWithAggregationInput[]
-    by: MonthlyChurnMetricScalarFieldEnum[] | MonthlyChurnMetricScalarFieldEnum
-    having?: MonthlyChurnMetricScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: MonthlyChurnMetricCountAggregateInputType | true
-    _avg?: MonthlyChurnMetricAvgAggregateInputType
-    _sum?: MonthlyChurnMetricSumAggregateInputType
-    _min?: MonthlyChurnMetricMinAggregateInputType
-    _max?: MonthlyChurnMetricMaxAggregateInputType
-  }
-
-  export type MonthlyChurnMetricGroupByOutputType = {
-    id: string
-    monthStartDate: Date
-    clubId: string | null
-    healthyCount: number
-    mightLeaveSoonCount: number
-    atRiskCount: number
-    churnedCount: number
-    newPlayers: number
-    netGrowth: number
-    retentionRate: Decimal | null
-    churnRate: Decimal | null
-    createdAt: Date
-    updatedAt: Date
-    _count: MonthlyChurnMetricCountAggregateOutputType | null
-    _avg: MonthlyChurnMetricAvgAggregateOutputType | null
-    _sum: MonthlyChurnMetricSumAggregateOutputType | null
-    _min: MonthlyChurnMetricMinAggregateOutputType | null
-    _max: MonthlyChurnMetricMaxAggregateOutputType | null
-  }
-
-  type GetMonthlyChurnMetricGroupByPayload<T extends MonthlyChurnMetricGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<MonthlyChurnMetricGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof MonthlyChurnMetricGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], MonthlyChurnMetricGroupByOutputType[P]>
-            : GetScalarType<T[P], MonthlyChurnMetricGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type MonthlyChurnMetricSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    monthStartDate?: boolean
-    clubId?: boolean
-    healthyCount?: boolean
-    mightLeaveSoonCount?: boolean
-    atRiskCount?: boolean
-    churnedCount?: boolean
-    newPlayers?: boolean
-    netGrowth?: boolean
-    retentionRate?: boolean
-    churnRate?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    club?: boolean | MonthlyChurnMetric$clubArgs<ExtArgs>
-  }, ExtArgs["result"]["monthlyChurnMetric"]>
-
-
-
-  export type MonthlyChurnMetricSelectScalar = {
-    id?: boolean
-    monthStartDate?: boolean
-    clubId?: boolean
-    healthyCount?: boolean
-    mightLeaveSoonCount?: boolean
-    atRiskCount?: boolean
-    churnedCount?: boolean
-    newPlayers?: boolean
-    netGrowth?: boolean
-    retentionRate?: boolean
-    churnRate?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-  }
-
-  export type MonthlyChurnMetricOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "monthStartDate" | "clubId" | "healthyCount" | "mightLeaveSoonCount" | "atRiskCount" | "churnedCount" | "newPlayers" | "netGrowth" | "retentionRate" | "churnRate" | "createdAt" | "updatedAt", ExtArgs["result"]["monthlyChurnMetric"]>
-  export type MonthlyChurnMetricInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    club?: boolean | MonthlyChurnMetric$clubArgs<ExtArgs>
-  }
-
-  export type $MonthlyChurnMetricPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "MonthlyChurnMetric"
-    objects: {
-      club: Prisma.$ClubPayload<ExtArgs> | null
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: string
-      monthStartDate: Date
-      clubId: string | null
-      healthyCount: number
-      mightLeaveSoonCount: number
-      atRiskCount: number
-      churnedCount: number
-      newPlayers: number
-      netGrowth: number
-      retentionRate: Prisma.Decimal | null
-      churnRate: Prisma.Decimal | null
-      createdAt: Date
-      updatedAt: Date
-    }, ExtArgs["result"]["monthlyChurnMetric"]>
-    composites: {}
-  }
-
-  type MonthlyChurnMetricGetPayload<S extends boolean | null | undefined | MonthlyChurnMetricDefaultArgs> = $Result.GetResult<Prisma.$MonthlyChurnMetricPayload, S>
-
-  type MonthlyChurnMetricCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<MonthlyChurnMetricFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: MonthlyChurnMetricCountAggregateInputType | true
-    }
-
-  export interface MonthlyChurnMetricDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['MonthlyChurnMetric'], meta: { name: 'MonthlyChurnMetric' } }
-    /**
-     * Find zero or one MonthlyChurnMetric that matches the filter.
-     * @param {MonthlyChurnMetricFindUniqueArgs} args - Arguments to find a MonthlyChurnMetric
-     * @example
-     * // Get one MonthlyChurnMetric
-     * const monthlyChurnMetric = await prisma.monthlyChurnMetric.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends MonthlyChurnMetricFindUniqueArgs>(args: SelectSubset<T, MonthlyChurnMetricFindUniqueArgs<ExtArgs>>): Prisma__MonthlyChurnMetricClient<$Result.GetResult<Prisma.$MonthlyChurnMetricPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one MonthlyChurnMetric that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {MonthlyChurnMetricFindUniqueOrThrowArgs} args - Arguments to find a MonthlyChurnMetric
-     * @example
-     * // Get one MonthlyChurnMetric
-     * const monthlyChurnMetric = await prisma.monthlyChurnMetric.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends MonthlyChurnMetricFindUniqueOrThrowArgs>(args: SelectSubset<T, MonthlyChurnMetricFindUniqueOrThrowArgs<ExtArgs>>): Prisma__MonthlyChurnMetricClient<$Result.GetResult<Prisma.$MonthlyChurnMetricPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first MonthlyChurnMetric that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {MonthlyChurnMetricFindFirstArgs} args - Arguments to find a MonthlyChurnMetric
-     * @example
-     * // Get one MonthlyChurnMetric
-     * const monthlyChurnMetric = await prisma.monthlyChurnMetric.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends MonthlyChurnMetricFindFirstArgs>(args?: SelectSubset<T, MonthlyChurnMetricFindFirstArgs<ExtArgs>>): Prisma__MonthlyChurnMetricClient<$Result.GetResult<Prisma.$MonthlyChurnMetricPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first MonthlyChurnMetric that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {MonthlyChurnMetricFindFirstOrThrowArgs} args - Arguments to find a MonthlyChurnMetric
-     * @example
-     * // Get one MonthlyChurnMetric
-     * const monthlyChurnMetric = await prisma.monthlyChurnMetric.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends MonthlyChurnMetricFindFirstOrThrowArgs>(args?: SelectSubset<T, MonthlyChurnMetricFindFirstOrThrowArgs<ExtArgs>>): Prisma__MonthlyChurnMetricClient<$Result.GetResult<Prisma.$MonthlyChurnMetricPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more MonthlyChurnMetrics that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {MonthlyChurnMetricFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all MonthlyChurnMetrics
-     * const monthlyChurnMetrics = await prisma.monthlyChurnMetric.findMany()
-     * 
-     * // Get first 10 MonthlyChurnMetrics
-     * const monthlyChurnMetrics = await prisma.monthlyChurnMetric.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const monthlyChurnMetricWithIdOnly = await prisma.monthlyChurnMetric.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends MonthlyChurnMetricFindManyArgs>(args?: SelectSubset<T, MonthlyChurnMetricFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MonthlyChurnMetricPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a MonthlyChurnMetric.
-     * @param {MonthlyChurnMetricCreateArgs} args - Arguments to create a MonthlyChurnMetric.
-     * @example
-     * // Create one MonthlyChurnMetric
-     * const MonthlyChurnMetric = await prisma.monthlyChurnMetric.create({
-     *   data: {
-     *     // ... data to create a MonthlyChurnMetric
-     *   }
-     * })
-     * 
-     */
-    create<T extends MonthlyChurnMetricCreateArgs>(args: SelectSubset<T, MonthlyChurnMetricCreateArgs<ExtArgs>>): Prisma__MonthlyChurnMetricClient<$Result.GetResult<Prisma.$MonthlyChurnMetricPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many MonthlyChurnMetrics.
-     * @param {MonthlyChurnMetricCreateManyArgs} args - Arguments to create many MonthlyChurnMetrics.
-     * @example
-     * // Create many MonthlyChurnMetrics
-     * const monthlyChurnMetric = await prisma.monthlyChurnMetric.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends MonthlyChurnMetricCreateManyArgs>(args?: SelectSubset<T, MonthlyChurnMetricCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Delete a MonthlyChurnMetric.
-     * @param {MonthlyChurnMetricDeleteArgs} args - Arguments to delete one MonthlyChurnMetric.
-     * @example
-     * // Delete one MonthlyChurnMetric
-     * const MonthlyChurnMetric = await prisma.monthlyChurnMetric.delete({
-     *   where: {
-     *     // ... filter to delete one MonthlyChurnMetric
-     *   }
-     * })
-     * 
-     */
-    delete<T extends MonthlyChurnMetricDeleteArgs>(args: SelectSubset<T, MonthlyChurnMetricDeleteArgs<ExtArgs>>): Prisma__MonthlyChurnMetricClient<$Result.GetResult<Prisma.$MonthlyChurnMetricPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one MonthlyChurnMetric.
-     * @param {MonthlyChurnMetricUpdateArgs} args - Arguments to update one MonthlyChurnMetric.
-     * @example
-     * // Update one MonthlyChurnMetric
-     * const monthlyChurnMetric = await prisma.monthlyChurnMetric.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends MonthlyChurnMetricUpdateArgs>(args: SelectSubset<T, MonthlyChurnMetricUpdateArgs<ExtArgs>>): Prisma__MonthlyChurnMetricClient<$Result.GetResult<Prisma.$MonthlyChurnMetricPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more MonthlyChurnMetrics.
-     * @param {MonthlyChurnMetricDeleteManyArgs} args - Arguments to filter MonthlyChurnMetrics to delete.
-     * @example
-     * // Delete a few MonthlyChurnMetrics
-     * const { count } = await prisma.monthlyChurnMetric.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends MonthlyChurnMetricDeleteManyArgs>(args?: SelectSubset<T, MonthlyChurnMetricDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more MonthlyChurnMetrics.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {MonthlyChurnMetricUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many MonthlyChurnMetrics
-     * const monthlyChurnMetric = await prisma.monthlyChurnMetric.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends MonthlyChurnMetricUpdateManyArgs>(args: SelectSubset<T, MonthlyChurnMetricUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create or update one MonthlyChurnMetric.
-     * @param {MonthlyChurnMetricUpsertArgs} args - Arguments to update or create a MonthlyChurnMetric.
-     * @example
-     * // Update or create a MonthlyChurnMetric
-     * const monthlyChurnMetric = await prisma.monthlyChurnMetric.upsert({
-     *   create: {
-     *     // ... data to create a MonthlyChurnMetric
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the MonthlyChurnMetric we want to update
-     *   }
-     * })
-     */
-    upsert<T extends MonthlyChurnMetricUpsertArgs>(args: SelectSubset<T, MonthlyChurnMetricUpsertArgs<ExtArgs>>): Prisma__MonthlyChurnMetricClient<$Result.GetResult<Prisma.$MonthlyChurnMetricPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of MonthlyChurnMetrics.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {MonthlyChurnMetricCountArgs} args - Arguments to filter MonthlyChurnMetrics to count.
-     * @example
-     * // Count the number of MonthlyChurnMetrics
-     * const count = await prisma.monthlyChurnMetric.count({
-     *   where: {
-     *     // ... the filter for the MonthlyChurnMetrics we want to count
-     *   }
-     * })
-    **/
-    count<T extends MonthlyChurnMetricCountArgs>(
-      args?: Subset<T, MonthlyChurnMetricCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], MonthlyChurnMetricCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a MonthlyChurnMetric.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {MonthlyChurnMetricAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends MonthlyChurnMetricAggregateArgs>(args: Subset<T, MonthlyChurnMetricAggregateArgs>): Prisma.PrismaPromise<GetMonthlyChurnMetricAggregateType<T>>
-
-    /**
-     * Group by MonthlyChurnMetric.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {MonthlyChurnMetricGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends MonthlyChurnMetricGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: MonthlyChurnMetricGroupByArgs['orderBy'] }
-        : { orderBy?: MonthlyChurnMetricGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, MonthlyChurnMetricGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetMonthlyChurnMetricGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the MonthlyChurnMetric model
-   */
-  readonly fields: MonthlyChurnMetricFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for MonthlyChurnMetric.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__MonthlyChurnMetricClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    club<T extends MonthlyChurnMetric$clubArgs<ExtArgs> = {}>(args?: Subset<T, MonthlyChurnMetric$clubArgs<ExtArgs>>): Prisma__ClubClient<$Result.GetResult<Prisma.$ClubPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the MonthlyChurnMetric model
-   */
-  interface MonthlyChurnMetricFieldRefs {
-    readonly id: FieldRef<"MonthlyChurnMetric", 'String'>
-    readonly monthStartDate: FieldRef<"MonthlyChurnMetric", 'DateTime'>
-    readonly clubId: FieldRef<"MonthlyChurnMetric", 'String'>
-    readonly healthyCount: FieldRef<"MonthlyChurnMetric", 'Int'>
-    readonly mightLeaveSoonCount: FieldRef<"MonthlyChurnMetric", 'Int'>
-    readonly atRiskCount: FieldRef<"MonthlyChurnMetric", 'Int'>
-    readonly churnedCount: FieldRef<"MonthlyChurnMetric", 'Int'>
-    readonly newPlayers: FieldRef<"MonthlyChurnMetric", 'Int'>
-    readonly netGrowth: FieldRef<"MonthlyChurnMetric", 'Int'>
-    readonly retentionRate: FieldRef<"MonthlyChurnMetric", 'Decimal'>
-    readonly churnRate: FieldRef<"MonthlyChurnMetric", 'Decimal'>
-    readonly createdAt: FieldRef<"MonthlyChurnMetric", 'DateTime'>
-    readonly updatedAt: FieldRef<"MonthlyChurnMetric", 'DateTime'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * MonthlyChurnMetric findUnique
-   */
-  export type MonthlyChurnMetricFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the MonthlyChurnMetric
-     */
-    select?: MonthlyChurnMetricSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the MonthlyChurnMetric
-     */
-    omit?: MonthlyChurnMetricOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: MonthlyChurnMetricInclude<ExtArgs> | null
-    /**
-     * Filter, which MonthlyChurnMetric to fetch.
-     */
-    where: MonthlyChurnMetricWhereUniqueInput
-  }
-
-  /**
-   * MonthlyChurnMetric findUniqueOrThrow
-   */
-  export type MonthlyChurnMetricFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the MonthlyChurnMetric
-     */
-    select?: MonthlyChurnMetricSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the MonthlyChurnMetric
-     */
-    omit?: MonthlyChurnMetricOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: MonthlyChurnMetricInclude<ExtArgs> | null
-    /**
-     * Filter, which MonthlyChurnMetric to fetch.
-     */
-    where: MonthlyChurnMetricWhereUniqueInput
-  }
-
-  /**
-   * MonthlyChurnMetric findFirst
-   */
-  export type MonthlyChurnMetricFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the MonthlyChurnMetric
-     */
-    select?: MonthlyChurnMetricSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the MonthlyChurnMetric
-     */
-    omit?: MonthlyChurnMetricOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: MonthlyChurnMetricInclude<ExtArgs> | null
-    /**
-     * Filter, which MonthlyChurnMetric to fetch.
-     */
-    where?: MonthlyChurnMetricWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of MonthlyChurnMetrics to fetch.
-     */
-    orderBy?: MonthlyChurnMetricOrderByWithRelationInput | MonthlyChurnMetricOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for MonthlyChurnMetrics.
-     */
-    cursor?: MonthlyChurnMetricWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` MonthlyChurnMetrics from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` MonthlyChurnMetrics.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of MonthlyChurnMetrics.
-     */
-    distinct?: MonthlyChurnMetricScalarFieldEnum | MonthlyChurnMetricScalarFieldEnum[]
-  }
-
-  /**
-   * MonthlyChurnMetric findFirstOrThrow
-   */
-  export type MonthlyChurnMetricFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the MonthlyChurnMetric
-     */
-    select?: MonthlyChurnMetricSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the MonthlyChurnMetric
-     */
-    omit?: MonthlyChurnMetricOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: MonthlyChurnMetricInclude<ExtArgs> | null
-    /**
-     * Filter, which MonthlyChurnMetric to fetch.
-     */
-    where?: MonthlyChurnMetricWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of MonthlyChurnMetrics to fetch.
-     */
-    orderBy?: MonthlyChurnMetricOrderByWithRelationInput | MonthlyChurnMetricOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for MonthlyChurnMetrics.
-     */
-    cursor?: MonthlyChurnMetricWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` MonthlyChurnMetrics from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` MonthlyChurnMetrics.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of MonthlyChurnMetrics.
-     */
-    distinct?: MonthlyChurnMetricScalarFieldEnum | MonthlyChurnMetricScalarFieldEnum[]
-  }
-
-  /**
-   * MonthlyChurnMetric findMany
-   */
-  export type MonthlyChurnMetricFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the MonthlyChurnMetric
-     */
-    select?: MonthlyChurnMetricSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the MonthlyChurnMetric
-     */
-    omit?: MonthlyChurnMetricOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: MonthlyChurnMetricInclude<ExtArgs> | null
-    /**
-     * Filter, which MonthlyChurnMetrics to fetch.
-     */
-    where?: MonthlyChurnMetricWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of MonthlyChurnMetrics to fetch.
-     */
-    orderBy?: MonthlyChurnMetricOrderByWithRelationInput | MonthlyChurnMetricOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing MonthlyChurnMetrics.
-     */
-    cursor?: MonthlyChurnMetricWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` MonthlyChurnMetrics from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` MonthlyChurnMetrics.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of MonthlyChurnMetrics.
-     */
-    distinct?: MonthlyChurnMetricScalarFieldEnum | MonthlyChurnMetricScalarFieldEnum[]
-  }
-
-  /**
-   * MonthlyChurnMetric create
-   */
-  export type MonthlyChurnMetricCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the MonthlyChurnMetric
-     */
-    select?: MonthlyChurnMetricSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the MonthlyChurnMetric
-     */
-    omit?: MonthlyChurnMetricOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: MonthlyChurnMetricInclude<ExtArgs> | null
-    /**
-     * The data needed to create a MonthlyChurnMetric.
-     */
-    data: XOR<MonthlyChurnMetricCreateInput, MonthlyChurnMetricUncheckedCreateInput>
-  }
-
-  /**
-   * MonthlyChurnMetric createMany
-   */
-  export type MonthlyChurnMetricCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many MonthlyChurnMetrics.
-     */
-    data: MonthlyChurnMetricCreateManyInput | MonthlyChurnMetricCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * MonthlyChurnMetric update
-   */
-  export type MonthlyChurnMetricUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the MonthlyChurnMetric
-     */
-    select?: MonthlyChurnMetricSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the MonthlyChurnMetric
-     */
-    omit?: MonthlyChurnMetricOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: MonthlyChurnMetricInclude<ExtArgs> | null
-    /**
-     * The data needed to update a MonthlyChurnMetric.
-     */
-    data: XOR<MonthlyChurnMetricUpdateInput, MonthlyChurnMetricUncheckedUpdateInput>
-    /**
-     * Choose, which MonthlyChurnMetric to update.
-     */
-    where: MonthlyChurnMetricWhereUniqueInput
-  }
-
-  /**
-   * MonthlyChurnMetric updateMany
-   */
-  export type MonthlyChurnMetricUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update MonthlyChurnMetrics.
-     */
-    data: XOR<MonthlyChurnMetricUpdateManyMutationInput, MonthlyChurnMetricUncheckedUpdateManyInput>
-    /**
-     * Filter which MonthlyChurnMetrics to update
-     */
-    where?: MonthlyChurnMetricWhereInput
-    /**
-     * Limit how many MonthlyChurnMetrics to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * MonthlyChurnMetric upsert
-   */
-  export type MonthlyChurnMetricUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the MonthlyChurnMetric
-     */
-    select?: MonthlyChurnMetricSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the MonthlyChurnMetric
-     */
-    omit?: MonthlyChurnMetricOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: MonthlyChurnMetricInclude<ExtArgs> | null
-    /**
-     * The filter to search for the MonthlyChurnMetric to update in case it exists.
-     */
-    where: MonthlyChurnMetricWhereUniqueInput
-    /**
-     * In case the MonthlyChurnMetric found by the `where` argument doesn't exist, create a new MonthlyChurnMetric with this data.
-     */
-    create: XOR<MonthlyChurnMetricCreateInput, MonthlyChurnMetricUncheckedCreateInput>
-    /**
-     * In case the MonthlyChurnMetric was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<MonthlyChurnMetricUpdateInput, MonthlyChurnMetricUncheckedUpdateInput>
-  }
-
-  /**
-   * MonthlyChurnMetric delete
-   */
-  export type MonthlyChurnMetricDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the MonthlyChurnMetric
-     */
-    select?: MonthlyChurnMetricSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the MonthlyChurnMetric
-     */
-    omit?: MonthlyChurnMetricOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: MonthlyChurnMetricInclude<ExtArgs> | null
-    /**
-     * Filter which MonthlyChurnMetric to delete.
-     */
-    where: MonthlyChurnMetricWhereUniqueInput
-  }
-
-  /**
-   * MonthlyChurnMetric deleteMany
-   */
-  export type MonthlyChurnMetricDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which MonthlyChurnMetrics to delete
-     */
-    where?: MonthlyChurnMetricWhereInput
-    /**
-     * Limit how many MonthlyChurnMetrics to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * MonthlyChurnMetric.club
-   */
-  export type MonthlyChurnMetric$clubArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Club
-     */
-    select?: ClubSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Club
-     */
-    omit?: ClubOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ClubInclude<ExtArgs> | null
-    where?: ClubWhereInput
-  }
-
-  /**
-   * MonthlyChurnMetric without action
-   */
-  export type MonthlyChurnMetricDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the MonthlyChurnMetric
-     */
-    select?: MonthlyChurnMetricSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the MonthlyChurnMetric
-     */
-    omit?: MonthlyChurnMetricOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: MonthlyChurnMetricInclude<ExtArgs> | null
-  }
-
-
-  /**
    * Enums
    */
 
@@ -14663,7 +13433,7 @@ export namespace Prisma {
     createdBy: 'createdBy',
     dateCreated: 'dateCreated',
     dateUpdated: 'dateUpdated',
-    subscription: 'subscription',
+    subscriptionMethod: 'subscriptionMethod',
     joinedAt: 'joinedAt',
     lastActivityAt: 'lastActivityAt'
   };
@@ -14790,7 +13560,6 @@ export namespace Prisma {
     userId: 'userId',
     activityId: 'activityId',
     bookedAt: 'bookedAt',
-    bookingStatus: 'bookingStatus',
     attendanceStatus: 'attendanceStatus',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -14806,7 +13575,6 @@ export namespace Prisma {
     eventDate: 'eventDate',
     scoreImpact: 'scoreImpact',
     reasonText: 'reasonText',
-    metaJson: 'metaJson',
     createdAt: 'createdAt'
   };
 
@@ -14833,25 +13601,6 @@ export namespace Prisma {
   export type PlayerHealthSummaryScalarFieldEnum = (typeof PlayerHealthSummaryScalarFieldEnum)[keyof typeof PlayerHealthSummaryScalarFieldEnum]
 
 
-  export const MonthlyChurnMetricScalarFieldEnum: {
-    id: 'id',
-    monthStartDate: 'monthStartDate',
-    clubId: 'clubId',
-    healthyCount: 'healthyCount',
-    mightLeaveSoonCount: 'mightLeaveSoonCount',
-    atRiskCount: 'atRiskCount',
-    churnedCount: 'churnedCount',
-    newPlayers: 'newPlayers',
-    netGrowth: 'netGrowth',
-    retentionRate: 'retentionRate',
-    churnRate: 'churnRate',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
-  };
-
-  export type MonthlyChurnMetricScalarFieldEnum = (typeof MonthlyChurnMetricScalarFieldEnum)[keyof typeof MonthlyChurnMetricScalarFieldEnum]
-
-
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -14865,14 +13614,6 @@ export namespace Prisma {
   };
 
   export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
-
-
-  export const NullableJsonNullValueInput: {
-    DbNull: typeof DbNull,
-    JsonNull: typeof JsonNull
-  };
-
-  export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
 
 
   export const NullsOrder: {
@@ -14999,7 +13740,6 @@ export namespace Prisma {
   export const ChurnEventOrderByRelevanceFieldEnum: {
     id: 'id',
     userId: 'userId',
-    eventType: 'eventType',
     reasonText: 'reasonText'
   };
 
@@ -15012,14 +13752,6 @@ export namespace Prisma {
   };
 
   export type PlayerHealthSummaryOrderByRelevanceFieldEnum = (typeof PlayerHealthSummaryOrderByRelevanceFieldEnum)[keyof typeof PlayerHealthSummaryOrderByRelevanceFieldEnum]
-
-
-  export const MonthlyChurnMetricOrderByRelevanceFieldEnum: {
-    id: 'id',
-    clubId: 'clubId'
-  };
-
-  export type MonthlyChurnMetricOrderByRelevanceFieldEnum = (typeof MonthlyChurnMetricOrderByRelevanceFieldEnum)[keyof typeof MonthlyChurnMetricOrderByRelevanceFieldEnum]
 
 
   /**
@@ -15063,9 +13795,9 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'SubscriptionTiers'
+   * Reference to a field of type 'SubscriptionMethod'
    */
-  export type EnumSubscriptionTiersFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SubscriptionTiers'>
+  export type EnumSubscriptionMethodFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SubscriptionMethod'>
     
 
 
@@ -15119,13 +13851,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'BookingStatus'
-   */
-  export type EnumBookingStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BookingStatus'>
-    
-
-
-  /**
    * Reference to a field of type 'AttendanceStatus'
    */
   export type EnumAttendanceStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AttendanceStatus'>
@@ -15133,16 +13858,16 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'ChurnStatus'
+   * Reference to a field of type 'ChurnEventType'
    */
-  export type EnumChurnStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ChurnStatus'>
+  export type EnumChurnEventTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ChurnEventType'>
     
 
 
   /**
-   * Reference to a field of type 'Decimal'
+   * Reference to a field of type 'ChurnStatus'
    */
-  export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal'>
+  export type EnumChurnStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ChurnStatus'>
     
 
 
@@ -15174,7 +13899,7 @@ export namespace Prisma {
     createdBy?: EnumAdminRoleFilter<"User"> | $Enums.AdminRole
     dateCreated?: DateTimeFilter<"User"> | Date | string
     dateUpdated?: DateTimeNullableFilter<"User"> | Date | string | null
-    subscription?: EnumSubscriptionTiersFilter<"User"> | $Enums.SubscriptionTiers
+    subscriptionMethod?: EnumSubscriptionMethodFilter<"User"> | $Enums.SubscriptionMethod
     joinedAt?: DateTimeFilter<"User"> | Date | string
     lastActivityAt?: DateTimeNullableFilter<"User"> | Date | string | null
     club?: XOR<ClubNullableScalarRelationFilter, ClubWhereInput> | null
@@ -15200,7 +13925,7 @@ export namespace Prisma {
     createdBy?: SortOrder
     dateCreated?: SortOrder
     dateUpdated?: SortOrderInput | SortOrder
-    subscription?: SortOrder
+    subscriptionMethod?: SortOrder
     joinedAt?: SortOrder
     lastActivityAt?: SortOrderInput | SortOrder
     club?: ClubOrderByWithRelationInput
@@ -15230,7 +13955,7 @@ export namespace Prisma {
     createdBy?: EnumAdminRoleFilter<"User"> | $Enums.AdminRole
     dateCreated?: DateTimeFilter<"User"> | Date | string
     dateUpdated?: DateTimeNullableFilter<"User"> | Date | string | null
-    subscription?: EnumSubscriptionTiersFilter<"User"> | $Enums.SubscriptionTiers
+    subscriptionMethod?: EnumSubscriptionMethodFilter<"User"> | $Enums.SubscriptionMethod
     joinedAt?: DateTimeFilter<"User"> | Date | string
     lastActivityAt?: DateTimeNullableFilter<"User"> | Date | string | null
     club?: XOR<ClubNullableScalarRelationFilter, ClubWhereInput> | null
@@ -15256,7 +13981,7 @@ export namespace Prisma {
     createdBy?: SortOrder
     dateCreated?: SortOrder
     dateUpdated?: SortOrderInput | SortOrder
-    subscription?: SortOrder
+    subscriptionMethod?: SortOrder
     joinedAt?: SortOrder
     lastActivityAt?: SortOrderInput | SortOrder
     _count?: UserCountOrderByAggregateInput
@@ -15282,7 +14007,7 @@ export namespace Prisma {
     createdBy?: EnumAdminRoleWithAggregatesFilter<"User"> | $Enums.AdminRole
     dateCreated?: DateTimeWithAggregatesFilter<"User"> | Date | string
     dateUpdated?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
-    subscription?: EnumSubscriptionTiersWithAggregatesFilter<"User"> | $Enums.SubscriptionTiers
+    subscriptionMethod?: EnumSubscriptionMethodWithAggregatesFilter<"User"> | $Enums.SubscriptionMethod
     joinedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     lastActivityAt?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
   }
@@ -15303,7 +14028,6 @@ export namespace Prisma {
     teams?: TeamListRelationFilter
     Activity?: ActivityListRelationFilter
     User?: UserListRelationFilter
-    metrics?: MonthlyChurnMetricListRelationFilter
   }
 
   export type ClubOrderByWithRelationInput = {
@@ -15319,7 +14043,6 @@ export namespace Prisma {
     teams?: TeamOrderByRelationAggregateInput
     Activity?: ActivityOrderByRelationAggregateInput
     User?: UserOrderByRelationAggregateInput
-    metrics?: MonthlyChurnMetricOrderByRelationAggregateInput
     _relevance?: ClubOrderByRelevanceInput
   }
 
@@ -15339,7 +14062,6 @@ export namespace Prisma {
     teams?: TeamListRelationFilter
     Activity?: ActivityListRelationFilter
     User?: UserListRelationFilter
-    metrics?: MonthlyChurnMetricListRelationFilter
   }, "id">
 
   export type ClubOrderByWithAggregationInput = {
@@ -15894,7 +14616,6 @@ export namespace Prisma {
     userId?: StringFilter<"SessionBooking"> | string
     activityId?: StringFilter<"SessionBooking"> | string
     bookedAt?: DateTimeFilter<"SessionBooking"> | Date | string
-    bookingStatus?: EnumBookingStatusFilter<"SessionBooking"> | $Enums.BookingStatus
     attendanceStatus?: EnumAttendanceStatusFilter<"SessionBooking"> | $Enums.AttendanceStatus
     createdAt?: DateTimeFilter<"SessionBooking"> | Date | string
     updatedAt?: DateTimeFilter<"SessionBooking"> | Date | string
@@ -15907,7 +14628,6 @@ export namespace Prisma {
     userId?: SortOrder
     activityId?: SortOrder
     bookedAt?: SortOrder
-    bookingStatus?: SortOrder
     attendanceStatus?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -15924,7 +14644,6 @@ export namespace Prisma {
     userId?: StringFilter<"SessionBooking"> | string
     activityId?: StringFilter<"SessionBooking"> | string
     bookedAt?: DateTimeFilter<"SessionBooking"> | Date | string
-    bookingStatus?: EnumBookingStatusFilter<"SessionBooking"> | $Enums.BookingStatus
     attendanceStatus?: EnumAttendanceStatusFilter<"SessionBooking"> | $Enums.AttendanceStatus
     createdAt?: DateTimeFilter<"SessionBooking"> | Date | string
     updatedAt?: DateTimeFilter<"SessionBooking"> | Date | string
@@ -15937,7 +14656,6 @@ export namespace Prisma {
     userId?: SortOrder
     activityId?: SortOrder
     bookedAt?: SortOrder
-    bookingStatus?: SortOrder
     attendanceStatus?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -15954,7 +14672,6 @@ export namespace Prisma {
     userId?: StringWithAggregatesFilter<"SessionBooking"> | string
     activityId?: StringWithAggregatesFilter<"SessionBooking"> | string
     bookedAt?: DateTimeWithAggregatesFilter<"SessionBooking"> | Date | string
-    bookingStatus?: EnumBookingStatusWithAggregatesFilter<"SessionBooking"> | $Enums.BookingStatus
     attendanceStatus?: EnumAttendanceStatusWithAggregatesFilter<"SessionBooking"> | $Enums.AttendanceStatus
     createdAt?: DateTimeWithAggregatesFilter<"SessionBooking"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"SessionBooking"> | Date | string
@@ -15966,11 +14683,10 @@ export namespace Prisma {
     NOT?: ChurnEventWhereInput | ChurnEventWhereInput[]
     id?: StringFilter<"ChurnEvent"> | string
     userId?: StringFilter<"ChurnEvent"> | string
-    eventType?: StringFilter<"ChurnEvent"> | string
+    eventType?: EnumChurnEventTypeFilter<"ChurnEvent"> | $Enums.ChurnEventType
     eventDate?: DateTimeFilter<"ChurnEvent"> | Date | string
     scoreImpact?: IntFilter<"ChurnEvent"> | number
     reasonText?: StringNullableFilter<"ChurnEvent"> | string | null
-    metaJson?: JsonNullableFilter<"ChurnEvent">
     createdAt?: DateTimeFilter<"ChurnEvent"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
@@ -15982,7 +14698,6 @@ export namespace Prisma {
     eventDate?: SortOrder
     scoreImpact?: SortOrder
     reasonText?: SortOrderInput | SortOrder
-    metaJson?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     user?: UserOrderByWithRelationInput
     _relevance?: ChurnEventOrderByRelevanceInput
@@ -15994,11 +14709,10 @@ export namespace Prisma {
     OR?: ChurnEventWhereInput[]
     NOT?: ChurnEventWhereInput | ChurnEventWhereInput[]
     userId?: StringFilter<"ChurnEvent"> | string
-    eventType?: StringFilter<"ChurnEvent"> | string
+    eventType?: EnumChurnEventTypeFilter<"ChurnEvent"> | $Enums.ChurnEventType
     eventDate?: DateTimeFilter<"ChurnEvent"> | Date | string
     scoreImpact?: IntFilter<"ChurnEvent"> | number
     reasonText?: StringNullableFilter<"ChurnEvent"> | string | null
-    metaJson?: JsonNullableFilter<"ChurnEvent">
     createdAt?: DateTimeFilter<"ChurnEvent"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id">
@@ -16010,7 +14724,6 @@ export namespace Prisma {
     eventDate?: SortOrder
     scoreImpact?: SortOrder
     reasonText?: SortOrderInput | SortOrder
-    metaJson?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     _count?: ChurnEventCountOrderByAggregateInput
     _avg?: ChurnEventAvgOrderByAggregateInput
@@ -16025,11 +14738,10 @@ export namespace Prisma {
     NOT?: ChurnEventScalarWhereWithAggregatesInput | ChurnEventScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"ChurnEvent"> | string
     userId?: StringWithAggregatesFilter<"ChurnEvent"> | string
-    eventType?: StringWithAggregatesFilter<"ChurnEvent"> | string
+    eventType?: EnumChurnEventTypeWithAggregatesFilter<"ChurnEvent"> | $Enums.ChurnEventType
     eventDate?: DateTimeWithAggregatesFilter<"ChurnEvent"> | Date | string
     scoreImpact?: IntWithAggregatesFilter<"ChurnEvent"> | number
     reasonText?: StringNullableWithAggregatesFilter<"ChurnEvent"> | string | null
-    metaJson?: JsonNullableWithAggregatesFilter<"ChurnEvent">
     createdAt?: DateTimeWithAggregatesFilter<"ChurnEvent"> | Date | string
   }
 
@@ -16136,104 +14848,6 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"PlayerHealthSummary"> | Date | string
   }
 
-  export type MonthlyChurnMetricWhereInput = {
-    AND?: MonthlyChurnMetricWhereInput | MonthlyChurnMetricWhereInput[]
-    OR?: MonthlyChurnMetricWhereInput[]
-    NOT?: MonthlyChurnMetricWhereInput | MonthlyChurnMetricWhereInput[]
-    id?: StringFilter<"MonthlyChurnMetric"> | string
-    monthStartDate?: DateTimeFilter<"MonthlyChurnMetric"> | Date | string
-    clubId?: StringNullableFilter<"MonthlyChurnMetric"> | string | null
-    healthyCount?: IntFilter<"MonthlyChurnMetric"> | number
-    mightLeaveSoonCount?: IntFilter<"MonthlyChurnMetric"> | number
-    atRiskCount?: IntFilter<"MonthlyChurnMetric"> | number
-    churnedCount?: IntFilter<"MonthlyChurnMetric"> | number
-    newPlayers?: IntFilter<"MonthlyChurnMetric"> | number
-    netGrowth?: IntFilter<"MonthlyChurnMetric"> | number
-    retentionRate?: DecimalNullableFilter<"MonthlyChurnMetric"> | Decimal | DecimalJsLike | number | string | null
-    churnRate?: DecimalNullableFilter<"MonthlyChurnMetric"> | Decimal | DecimalJsLike | number | string | null
-    createdAt?: DateTimeFilter<"MonthlyChurnMetric"> | Date | string
-    updatedAt?: DateTimeFilter<"MonthlyChurnMetric"> | Date | string
-    club?: XOR<ClubNullableScalarRelationFilter, ClubWhereInput> | null
-  }
-
-  export type MonthlyChurnMetricOrderByWithRelationInput = {
-    id?: SortOrder
-    monthStartDate?: SortOrder
-    clubId?: SortOrderInput | SortOrder
-    healthyCount?: SortOrder
-    mightLeaveSoonCount?: SortOrder
-    atRiskCount?: SortOrder
-    churnedCount?: SortOrder
-    newPlayers?: SortOrder
-    netGrowth?: SortOrder
-    retentionRate?: SortOrderInput | SortOrder
-    churnRate?: SortOrderInput | SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    club?: ClubOrderByWithRelationInput
-    _relevance?: MonthlyChurnMetricOrderByRelevanceInput
-  }
-
-  export type MonthlyChurnMetricWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    AND?: MonthlyChurnMetricWhereInput | MonthlyChurnMetricWhereInput[]
-    OR?: MonthlyChurnMetricWhereInput[]
-    NOT?: MonthlyChurnMetricWhereInput | MonthlyChurnMetricWhereInput[]
-    monthStartDate?: DateTimeFilter<"MonthlyChurnMetric"> | Date | string
-    clubId?: StringNullableFilter<"MonthlyChurnMetric"> | string | null
-    healthyCount?: IntFilter<"MonthlyChurnMetric"> | number
-    mightLeaveSoonCount?: IntFilter<"MonthlyChurnMetric"> | number
-    atRiskCount?: IntFilter<"MonthlyChurnMetric"> | number
-    churnedCount?: IntFilter<"MonthlyChurnMetric"> | number
-    newPlayers?: IntFilter<"MonthlyChurnMetric"> | number
-    netGrowth?: IntFilter<"MonthlyChurnMetric"> | number
-    retentionRate?: DecimalNullableFilter<"MonthlyChurnMetric"> | Decimal | DecimalJsLike | number | string | null
-    churnRate?: DecimalNullableFilter<"MonthlyChurnMetric"> | Decimal | DecimalJsLike | number | string | null
-    createdAt?: DateTimeFilter<"MonthlyChurnMetric"> | Date | string
-    updatedAt?: DateTimeFilter<"MonthlyChurnMetric"> | Date | string
-    club?: XOR<ClubNullableScalarRelationFilter, ClubWhereInput> | null
-  }, "id">
-
-  export type MonthlyChurnMetricOrderByWithAggregationInput = {
-    id?: SortOrder
-    monthStartDate?: SortOrder
-    clubId?: SortOrderInput | SortOrder
-    healthyCount?: SortOrder
-    mightLeaveSoonCount?: SortOrder
-    atRiskCount?: SortOrder
-    churnedCount?: SortOrder
-    newPlayers?: SortOrder
-    netGrowth?: SortOrder
-    retentionRate?: SortOrderInput | SortOrder
-    churnRate?: SortOrderInput | SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    _count?: MonthlyChurnMetricCountOrderByAggregateInput
-    _avg?: MonthlyChurnMetricAvgOrderByAggregateInput
-    _max?: MonthlyChurnMetricMaxOrderByAggregateInput
-    _min?: MonthlyChurnMetricMinOrderByAggregateInput
-    _sum?: MonthlyChurnMetricSumOrderByAggregateInput
-  }
-
-  export type MonthlyChurnMetricScalarWhereWithAggregatesInput = {
-    AND?: MonthlyChurnMetricScalarWhereWithAggregatesInput | MonthlyChurnMetricScalarWhereWithAggregatesInput[]
-    OR?: MonthlyChurnMetricScalarWhereWithAggregatesInput[]
-    NOT?: MonthlyChurnMetricScalarWhereWithAggregatesInput | MonthlyChurnMetricScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"MonthlyChurnMetric"> | string
-    monthStartDate?: DateTimeWithAggregatesFilter<"MonthlyChurnMetric"> | Date | string
-    clubId?: StringNullableWithAggregatesFilter<"MonthlyChurnMetric"> | string | null
-    healthyCount?: IntWithAggregatesFilter<"MonthlyChurnMetric"> | number
-    mightLeaveSoonCount?: IntWithAggregatesFilter<"MonthlyChurnMetric"> | number
-    atRiskCount?: IntWithAggregatesFilter<"MonthlyChurnMetric"> | number
-    churnedCount?: IntWithAggregatesFilter<"MonthlyChurnMetric"> | number
-    newPlayers?: IntWithAggregatesFilter<"MonthlyChurnMetric"> | number
-    netGrowth?: IntWithAggregatesFilter<"MonthlyChurnMetric"> | number
-    retentionRate?: DecimalNullableWithAggregatesFilter<"MonthlyChurnMetric"> | Decimal | DecimalJsLike | number | string | null
-    churnRate?: DecimalNullableWithAggregatesFilter<"MonthlyChurnMetric"> | Decimal | DecimalJsLike | number | string | null
-    createdAt?: DateTimeWithAggregatesFilter<"MonthlyChurnMetric"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"MonthlyChurnMetric"> | Date | string
-  }
-
   export type UserCreateInput = {
     id: string
     userType?: $Enums.UserType
@@ -16247,7 +14861,7 @@ export namespace Prisma {
     createdBy?: $Enums.AdminRole
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
-    subscription?: $Enums.SubscriptionTiers
+    subscriptionMethod?: $Enums.SubscriptionMethod
     joinedAt?: Date | string
     lastActivityAt?: Date | string | null
     club?: ClubCreateNestedOneWithoutUserInput
@@ -16273,7 +14887,7 @@ export namespace Prisma {
     createdBy?: $Enums.AdminRole
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
-    subscription?: $Enums.SubscriptionTiers
+    subscriptionMethod?: $Enums.SubscriptionMethod
     joinedAt?: Date | string
     lastActivityAt?: Date | string | null
     Activity?: ActivityUncheckedCreateNestedManyWithoutUserInput
@@ -16295,7 +14909,7 @@ export namespace Prisma {
     createdBy?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    subscription?: EnumSubscriptionTiersFieldUpdateOperationsInput | $Enums.SubscriptionTiers
+    subscriptionMethod?: EnumSubscriptionMethodFieldUpdateOperationsInput | $Enums.SubscriptionMethod
     joinedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastActivityAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     club?: ClubUpdateOneWithoutUserNestedInput
@@ -16321,7 +14935,7 @@ export namespace Prisma {
     createdBy?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    subscription?: EnumSubscriptionTiersFieldUpdateOperationsInput | $Enums.SubscriptionTiers
+    subscriptionMethod?: EnumSubscriptionMethodFieldUpdateOperationsInput | $Enums.SubscriptionMethod
     joinedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastActivityAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     Activity?: ActivityUncheckedUpdateManyWithoutUserNestedInput
@@ -16345,7 +14959,7 @@ export namespace Prisma {
     createdBy?: $Enums.AdminRole
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
-    subscription?: $Enums.SubscriptionTiers
+    subscriptionMethod?: $Enums.SubscriptionMethod
     joinedAt?: Date | string
     lastActivityAt?: Date | string | null
   }
@@ -16363,7 +14977,7 @@ export namespace Prisma {
     createdBy?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    subscription?: EnumSubscriptionTiersFieldUpdateOperationsInput | $Enums.SubscriptionTiers
+    subscriptionMethod?: EnumSubscriptionMethodFieldUpdateOperationsInput | $Enums.SubscriptionMethod
     joinedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastActivityAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -16383,7 +14997,7 @@ export namespace Prisma {
     createdBy?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    subscription?: EnumSubscriptionTiersFieldUpdateOperationsInput | $Enums.SubscriptionTiers
+    subscriptionMethod?: EnumSubscriptionMethodFieldUpdateOperationsInput | $Enums.SubscriptionMethod
     joinedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastActivityAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -16401,7 +15015,6 @@ export namespace Prisma {
     teams?: TeamCreateNestedManyWithoutClubInput
     Activity?: ActivityCreateNestedManyWithoutClubInput
     User?: UserCreateNestedManyWithoutClubInput
-    metrics?: MonthlyChurnMetricCreateNestedManyWithoutClubInput
   }
 
   export type ClubUncheckedCreateInput = {
@@ -16417,7 +15030,6 @@ export namespace Prisma {
     teams?: TeamUncheckedCreateNestedManyWithoutClubInput
     Activity?: ActivityUncheckedCreateNestedManyWithoutClubInput
     User?: UserUncheckedCreateNestedManyWithoutClubInput
-    metrics?: MonthlyChurnMetricUncheckedCreateNestedManyWithoutClubInput
   }
 
   export type ClubUpdateInput = {
@@ -16433,7 +15045,6 @@ export namespace Prisma {
     teams?: TeamUpdateManyWithoutClubNestedInput
     Activity?: ActivityUpdateManyWithoutClubNestedInput
     User?: UserUpdateManyWithoutClubNestedInput
-    metrics?: MonthlyChurnMetricUpdateManyWithoutClubNestedInput
   }
 
   export type ClubUncheckedUpdateInput = {
@@ -16449,7 +15060,6 @@ export namespace Prisma {
     teams?: TeamUncheckedUpdateManyWithoutClubNestedInput
     Activity?: ActivityUncheckedUpdateManyWithoutClubNestedInput
     User?: UserUncheckedUpdateManyWithoutClubNestedInput
-    metrics?: MonthlyChurnMetricUncheckedUpdateManyWithoutClubNestedInput
   }
 
   export type ClubCreateManyInput = {
@@ -17066,7 +15676,6 @@ export namespace Prisma {
   export type SessionBookingCreateInput = {
     id?: string
     bookedAt?: Date | string
-    bookingStatus?: $Enums.BookingStatus
     attendanceStatus?: $Enums.AttendanceStatus
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -17079,7 +15688,6 @@ export namespace Prisma {
     userId: string
     activityId: string
     bookedAt?: Date | string
-    bookingStatus?: $Enums.BookingStatus
     attendanceStatus?: $Enums.AttendanceStatus
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -17088,7 +15696,6 @@ export namespace Prisma {
   export type SessionBookingUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     bookedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    bookingStatus?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
     attendanceStatus?: EnumAttendanceStatusFieldUpdateOperationsInput | $Enums.AttendanceStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -17101,7 +15708,6 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     activityId?: StringFieldUpdateOperationsInput | string
     bookedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    bookingStatus?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
     attendanceStatus?: EnumAttendanceStatusFieldUpdateOperationsInput | $Enums.AttendanceStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -17112,7 +15718,6 @@ export namespace Prisma {
     userId: string
     activityId: string
     bookedAt?: Date | string
-    bookingStatus?: $Enums.BookingStatus
     attendanceStatus?: $Enums.AttendanceStatus
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -17121,7 +15726,6 @@ export namespace Prisma {
   export type SessionBookingUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     bookedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    bookingStatus?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
     attendanceStatus?: EnumAttendanceStatusFieldUpdateOperationsInput | $Enums.AttendanceStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -17132,7 +15736,6 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     activityId?: StringFieldUpdateOperationsInput | string
     bookedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    bookingStatus?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
     attendanceStatus?: EnumAttendanceStatusFieldUpdateOperationsInput | $Enums.AttendanceStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -17140,11 +15743,10 @@ export namespace Prisma {
 
   export type ChurnEventCreateInput = {
     id?: string
-    eventType: string
+    eventType: $Enums.ChurnEventType
     eventDate: Date | string
     scoreImpact?: number
     reasonText?: string | null
-    metaJson?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     user: UserCreateNestedOneWithoutChurnEventsInput
   }
@@ -17152,21 +15754,19 @@ export namespace Prisma {
   export type ChurnEventUncheckedCreateInput = {
     id?: string
     userId: string
-    eventType: string
+    eventType: $Enums.ChurnEventType
     eventDate: Date | string
     scoreImpact?: number
     reasonText?: string | null
-    metaJson?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
   }
 
   export type ChurnEventUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    eventType?: StringFieldUpdateOperationsInput | string
+    eventType?: EnumChurnEventTypeFieldUpdateOperationsInput | $Enums.ChurnEventType
     eventDate?: DateTimeFieldUpdateOperationsInput | Date | string
     scoreImpact?: IntFieldUpdateOperationsInput | number
     reasonText?: NullableStringFieldUpdateOperationsInput | string | null
-    metaJson?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutChurnEventsNestedInput
   }
@@ -17174,43 +15774,39 @@ export namespace Prisma {
   export type ChurnEventUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
-    eventType?: StringFieldUpdateOperationsInput | string
+    eventType?: EnumChurnEventTypeFieldUpdateOperationsInput | $Enums.ChurnEventType
     eventDate?: DateTimeFieldUpdateOperationsInput | Date | string
     scoreImpact?: IntFieldUpdateOperationsInput | number
     reasonText?: NullableStringFieldUpdateOperationsInput | string | null
-    metaJson?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ChurnEventCreateManyInput = {
     id?: string
     userId: string
-    eventType: string
+    eventType: $Enums.ChurnEventType
     eventDate: Date | string
     scoreImpact?: number
     reasonText?: string | null
-    metaJson?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
   }
 
   export type ChurnEventUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    eventType?: StringFieldUpdateOperationsInput | string
+    eventType?: EnumChurnEventTypeFieldUpdateOperationsInput | $Enums.ChurnEventType
     eventDate?: DateTimeFieldUpdateOperationsInput | Date | string
     scoreImpact?: IntFieldUpdateOperationsInput | number
     reasonText?: NullableStringFieldUpdateOperationsInput | string | null
-    metaJson?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ChurnEventUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
-    eventType?: StringFieldUpdateOperationsInput | string
+    eventType?: EnumChurnEventTypeFieldUpdateOperationsInput | $Enums.ChurnEventType
     eventDate?: DateTimeFieldUpdateOperationsInput | Date | string
     scoreImpact?: IntFieldUpdateOperationsInput | number
     reasonText?: NullableStringFieldUpdateOperationsInput | string | null
-    metaJson?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -17332,117 +15928,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type MonthlyChurnMetricCreateInput = {
-    id?: string
-    monthStartDate: Date | string
-    healthyCount?: number
-    mightLeaveSoonCount?: number
-    atRiskCount?: number
-    churnedCount?: number
-    newPlayers?: number
-    netGrowth?: number
-    retentionRate?: Decimal | DecimalJsLike | number | string | null
-    churnRate?: Decimal | DecimalJsLike | number | string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    club?: ClubCreateNestedOneWithoutMetricsInput
-  }
-
-  export type MonthlyChurnMetricUncheckedCreateInput = {
-    id?: string
-    monthStartDate: Date | string
-    clubId?: string | null
-    healthyCount?: number
-    mightLeaveSoonCount?: number
-    atRiskCount?: number
-    churnedCount?: number
-    newPlayers?: number
-    netGrowth?: number
-    retentionRate?: Decimal | DecimalJsLike | number | string | null
-    churnRate?: Decimal | DecimalJsLike | number | string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type MonthlyChurnMetricUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    monthStartDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    healthyCount?: IntFieldUpdateOperationsInput | number
-    mightLeaveSoonCount?: IntFieldUpdateOperationsInput | number
-    atRiskCount?: IntFieldUpdateOperationsInput | number
-    churnedCount?: IntFieldUpdateOperationsInput | number
-    newPlayers?: IntFieldUpdateOperationsInput | number
-    netGrowth?: IntFieldUpdateOperationsInput | number
-    retentionRate?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    churnRate?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    club?: ClubUpdateOneWithoutMetricsNestedInput
-  }
-
-  export type MonthlyChurnMetricUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    monthStartDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    clubId?: NullableStringFieldUpdateOperationsInput | string | null
-    healthyCount?: IntFieldUpdateOperationsInput | number
-    mightLeaveSoonCount?: IntFieldUpdateOperationsInput | number
-    atRiskCount?: IntFieldUpdateOperationsInput | number
-    churnedCount?: IntFieldUpdateOperationsInput | number
-    newPlayers?: IntFieldUpdateOperationsInput | number
-    netGrowth?: IntFieldUpdateOperationsInput | number
-    retentionRate?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    churnRate?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type MonthlyChurnMetricCreateManyInput = {
-    id?: string
-    monthStartDate: Date | string
-    clubId?: string | null
-    healthyCount?: number
-    mightLeaveSoonCount?: number
-    atRiskCount?: number
-    churnedCount?: number
-    newPlayers?: number
-    netGrowth?: number
-    retentionRate?: Decimal | DecimalJsLike | number | string | null
-    churnRate?: Decimal | DecimalJsLike | number | string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type MonthlyChurnMetricUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    monthStartDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    healthyCount?: IntFieldUpdateOperationsInput | number
-    mightLeaveSoonCount?: IntFieldUpdateOperationsInput | number
-    atRiskCount?: IntFieldUpdateOperationsInput | number
-    churnedCount?: IntFieldUpdateOperationsInput | number
-    newPlayers?: IntFieldUpdateOperationsInput | number
-    netGrowth?: IntFieldUpdateOperationsInput | number
-    retentionRate?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    churnRate?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type MonthlyChurnMetricUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    monthStartDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    clubId?: NullableStringFieldUpdateOperationsInput | string | null
-    healthyCount?: IntFieldUpdateOperationsInput | number
-    mightLeaveSoonCount?: IntFieldUpdateOperationsInput | number
-    atRiskCount?: IntFieldUpdateOperationsInput | number
-    churnedCount?: IntFieldUpdateOperationsInput | number
-    newPlayers?: IntFieldUpdateOperationsInput | number
-    netGrowth?: IntFieldUpdateOperationsInput | number
-    retentionRate?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    churnRate?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[]
@@ -17514,11 +15999,11 @@ export namespace Prisma {
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
-  export type EnumSubscriptionTiersFilter<$PrismaModel = never> = {
-    equals?: $Enums.SubscriptionTiers | EnumSubscriptionTiersFieldRefInput<$PrismaModel>
-    in?: $Enums.SubscriptionTiers[]
-    notIn?: $Enums.SubscriptionTiers[]
-    not?: NestedEnumSubscriptionTiersFilter<$PrismaModel> | $Enums.SubscriptionTiers
+  export type EnumSubscriptionMethodFilter<$PrismaModel = never> = {
+    equals?: $Enums.SubscriptionMethod | EnumSubscriptionMethodFieldRefInput<$PrismaModel>
+    in?: $Enums.SubscriptionMethod[]
+    notIn?: $Enums.SubscriptionMethod[]
+    not?: NestedEnumSubscriptionMethodFilter<$PrismaModel> | $Enums.SubscriptionMethod
   }
 
   export type ClubNullableScalarRelationFilter = {
@@ -17592,7 +16077,7 @@ export namespace Prisma {
     createdBy?: SortOrder
     dateCreated?: SortOrder
     dateUpdated?: SortOrder
-    subscription?: SortOrder
+    subscriptionMethod?: SortOrder
     joinedAt?: SortOrder
     lastActivityAt?: SortOrder
   }
@@ -17612,7 +16097,7 @@ export namespace Prisma {
     createdBy?: SortOrder
     dateCreated?: SortOrder
     dateUpdated?: SortOrder
-    subscription?: SortOrder
+    subscriptionMethod?: SortOrder
     joinedAt?: SortOrder
     lastActivityAt?: SortOrder
   }
@@ -17632,7 +16117,7 @@ export namespace Prisma {
     createdBy?: SortOrder
     dateCreated?: SortOrder
     dateUpdated?: SortOrder
-    subscription?: SortOrder
+    subscriptionMethod?: SortOrder
     joinedAt?: SortOrder
     lastActivityAt?: SortOrder
   }
@@ -17729,14 +16214,14 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
-  export type EnumSubscriptionTiersWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.SubscriptionTiers | EnumSubscriptionTiersFieldRefInput<$PrismaModel>
-    in?: $Enums.SubscriptionTiers[]
-    notIn?: $Enums.SubscriptionTiers[]
-    not?: NestedEnumSubscriptionTiersWithAggregatesFilter<$PrismaModel> | $Enums.SubscriptionTiers
+  export type EnumSubscriptionMethodWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.SubscriptionMethod | EnumSubscriptionMethodFieldRefInput<$PrismaModel>
+    in?: $Enums.SubscriptionMethod[]
+    notIn?: $Enums.SubscriptionMethod[]
+    not?: NestedEnumSubscriptionMethodWithAggregatesFilter<$PrismaModel> | $Enums.SubscriptionMethod
     _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumSubscriptionTiersFilter<$PrismaModel>
-    _max?: NestedEnumSubscriptionTiersFilter<$PrismaModel>
+    _min?: NestedEnumSubscriptionMethodFilter<$PrismaModel>
+    _max?: NestedEnumSubscriptionMethodFilter<$PrismaModel>
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -17769,21 +16254,11 @@ export namespace Prisma {
     none?: UserWhereInput
   }
 
-  export type MonthlyChurnMetricListRelationFilter = {
-    every?: MonthlyChurnMetricWhereInput
-    some?: MonthlyChurnMetricWhereInput
-    none?: MonthlyChurnMetricWhereInput
-  }
-
   export type TeamOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
   export type UserOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type MonthlyChurnMetricOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -18290,13 +16765,6 @@ export namespace Prisma {
     _max?: NestedEnumSubscriptionTypeFilter<$PrismaModel>
   }
 
-  export type EnumBookingStatusFilter<$PrismaModel = never> = {
-    equals?: $Enums.BookingStatus | EnumBookingStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.BookingStatus[]
-    notIn?: $Enums.BookingStatus[]
-    not?: NestedEnumBookingStatusFilter<$PrismaModel> | $Enums.BookingStatus
-  }
-
   export type EnumAttendanceStatusFilter<$PrismaModel = never> = {
     equals?: $Enums.AttendanceStatus | EnumAttendanceStatusFieldRefInput<$PrismaModel>
     in?: $Enums.AttendanceStatus[]
@@ -18320,7 +16788,6 @@ export namespace Prisma {
     userId?: SortOrder
     activityId?: SortOrder
     bookedAt?: SortOrder
-    bookingStatus?: SortOrder
     attendanceStatus?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -18331,7 +16798,6 @@ export namespace Prisma {
     userId?: SortOrder
     activityId?: SortOrder
     bookedAt?: SortOrder
-    bookingStatus?: SortOrder
     attendanceStatus?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -18342,20 +16808,9 @@ export namespace Prisma {
     userId?: SortOrder
     activityId?: SortOrder
     bookedAt?: SortOrder
-    bookingStatus?: SortOrder
     attendanceStatus?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-  }
-
-  export type EnumBookingStatusWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.BookingStatus | EnumBookingStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.BookingStatus[]
-    notIn?: $Enums.BookingStatus[]
-    not?: NestedEnumBookingStatusWithAggregatesFilter<$PrismaModel> | $Enums.BookingStatus
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumBookingStatusFilter<$PrismaModel>
-    _max?: NestedEnumBookingStatusFilter<$PrismaModel>
   }
 
   export type EnumAttendanceStatusWithAggregatesFilter<$PrismaModel = never> = {
@@ -18367,28 +16822,12 @@ export namespace Prisma {
     _min?: NestedEnumAttendanceStatusFilter<$PrismaModel>
     _max?: NestedEnumAttendanceStatusFilter<$PrismaModel>
   }
-  export type JsonNullableFilter<$PrismaModel = never> =
-    | PatchUndefined<
-        Either<Required<JsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>,
-        Required<JsonNullableFilterBase<$PrismaModel>>
-      >
-    | OptionalFlat<Omit<Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>
 
-  export type JsonNullableFilterBase<$PrismaModel = never> = {
-    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-    path?: string
-    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
-    string_contains?: string | StringFieldRefInput<$PrismaModel>
-    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
-    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
-    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    lt?: InputJsonValue
-    lte?: InputJsonValue
-    gt?: InputJsonValue
-    gte?: InputJsonValue
-    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  export type EnumChurnEventTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.ChurnEventType | EnumChurnEventTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.ChurnEventType[]
+    notIn?: $Enums.ChurnEventType[]
+    not?: NestedEnumChurnEventTypeFilter<$PrismaModel> | $Enums.ChurnEventType
   }
 
   export type ChurnEventOrderByRelevanceInput = {
@@ -18404,7 +16843,6 @@ export namespace Prisma {
     eventDate?: SortOrder
     scoreImpact?: SortOrder
     reasonText?: SortOrder
-    metaJson?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -18435,31 +16873,15 @@ export namespace Prisma {
   export type ChurnEventSumOrderByAggregateInput = {
     scoreImpact?: SortOrder
   }
-  export type JsonNullableWithAggregatesFilter<$PrismaModel = never> =
-    | PatchUndefined<
-        Either<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
-        Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>
-      >
-    | OptionalFlat<Omit<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
 
-  export type JsonNullableWithAggregatesFilterBase<$PrismaModel = never> = {
-    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-    path?: string
-    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
-    string_contains?: string | StringFieldRefInput<$PrismaModel>
-    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
-    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
-    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    lt?: InputJsonValue
-    lte?: InputJsonValue
-    gt?: InputJsonValue
-    gte?: InputJsonValue
-    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedJsonNullableFilter<$PrismaModel>
-    _max?: NestedJsonNullableFilter<$PrismaModel>
+  export type EnumChurnEventTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ChurnEventType | EnumChurnEventTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.ChurnEventType[]
+    notIn?: $Enums.ChurnEventType[]
+    not?: NestedEnumChurnEventTypeWithAggregatesFilter<$PrismaModel> | $Enums.ChurnEventType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumChurnEventTypeFilter<$PrismaModel>
+    _max?: NestedEnumChurnEventTypeFilter<$PrismaModel>
   }
 
   export type EnumChurnStatusFilter<$PrismaModel = never> = {
@@ -18548,109 +16970,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumChurnStatusFilter<$PrismaModel>
     _max?: NestedEnumChurnStatusFilter<$PrismaModel>
-  }
-
-  export type DecimalNullableFilter<$PrismaModel = never> = {
-    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
-    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | null
-    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | null
-    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    not?: NestedDecimalNullableFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
-  }
-
-  export type MonthlyChurnMetricOrderByRelevanceInput = {
-    fields: MonthlyChurnMetricOrderByRelevanceFieldEnum | MonthlyChurnMetricOrderByRelevanceFieldEnum[]
-    sort: SortOrder
-    search: string
-  }
-
-  export type MonthlyChurnMetricCountOrderByAggregateInput = {
-    id?: SortOrder
-    monthStartDate?: SortOrder
-    clubId?: SortOrder
-    healthyCount?: SortOrder
-    mightLeaveSoonCount?: SortOrder
-    atRiskCount?: SortOrder
-    churnedCount?: SortOrder
-    newPlayers?: SortOrder
-    netGrowth?: SortOrder
-    retentionRate?: SortOrder
-    churnRate?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type MonthlyChurnMetricAvgOrderByAggregateInput = {
-    healthyCount?: SortOrder
-    mightLeaveSoonCount?: SortOrder
-    atRiskCount?: SortOrder
-    churnedCount?: SortOrder
-    newPlayers?: SortOrder
-    netGrowth?: SortOrder
-    retentionRate?: SortOrder
-    churnRate?: SortOrder
-  }
-
-  export type MonthlyChurnMetricMaxOrderByAggregateInput = {
-    id?: SortOrder
-    monthStartDate?: SortOrder
-    clubId?: SortOrder
-    healthyCount?: SortOrder
-    mightLeaveSoonCount?: SortOrder
-    atRiskCount?: SortOrder
-    churnedCount?: SortOrder
-    newPlayers?: SortOrder
-    netGrowth?: SortOrder
-    retentionRate?: SortOrder
-    churnRate?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type MonthlyChurnMetricMinOrderByAggregateInput = {
-    id?: SortOrder
-    monthStartDate?: SortOrder
-    clubId?: SortOrder
-    healthyCount?: SortOrder
-    mightLeaveSoonCount?: SortOrder
-    atRiskCount?: SortOrder
-    churnedCount?: SortOrder
-    newPlayers?: SortOrder
-    netGrowth?: SortOrder
-    retentionRate?: SortOrder
-    churnRate?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type MonthlyChurnMetricSumOrderByAggregateInput = {
-    healthyCount?: SortOrder
-    mightLeaveSoonCount?: SortOrder
-    atRiskCount?: SortOrder
-    churnedCount?: SortOrder
-    newPlayers?: SortOrder
-    netGrowth?: SortOrder
-    retentionRate?: SortOrder
-    churnRate?: SortOrder
-  }
-
-  export type DecimalNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
-    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | null
-    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | null
-    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    not?: NestedDecimalNullableWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedDecimalNullableFilter<$PrismaModel>
-    _sum?: NestedDecimalNullableFilter<$PrismaModel>
-    _min?: NestedDecimalNullableFilter<$PrismaModel>
-    _max?: NestedDecimalNullableFilter<$PrismaModel>
   }
 
   export type ClubCreateNestedOneWithoutUserInput = {
@@ -18747,8 +17066,8 @@ export namespace Prisma {
     set?: Date | string | null
   }
 
-  export type EnumSubscriptionTiersFieldUpdateOperationsInput = {
-    set?: $Enums.SubscriptionTiers
+  export type EnumSubscriptionMethodFieldUpdateOperationsInput = {
+    set?: $Enums.SubscriptionMethod
   }
 
   export type ClubUpdateOneWithoutUserNestedInput = {
@@ -18896,13 +17215,6 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
   }
 
-  export type MonthlyChurnMetricCreateNestedManyWithoutClubInput = {
-    create?: XOR<MonthlyChurnMetricCreateWithoutClubInput, MonthlyChurnMetricUncheckedCreateWithoutClubInput> | MonthlyChurnMetricCreateWithoutClubInput[] | MonthlyChurnMetricUncheckedCreateWithoutClubInput[]
-    connectOrCreate?: MonthlyChurnMetricCreateOrConnectWithoutClubInput | MonthlyChurnMetricCreateOrConnectWithoutClubInput[]
-    createMany?: MonthlyChurnMetricCreateManyClubInputEnvelope
-    connect?: MonthlyChurnMetricWhereUniqueInput | MonthlyChurnMetricWhereUniqueInput[]
-  }
-
   export type TeamUncheckedCreateNestedManyWithoutClubInput = {
     create?: XOR<TeamCreateWithoutClubInput, TeamUncheckedCreateWithoutClubInput> | TeamCreateWithoutClubInput[] | TeamUncheckedCreateWithoutClubInput[]
     connectOrCreate?: TeamCreateOrConnectWithoutClubInput | TeamCreateOrConnectWithoutClubInput[]
@@ -18922,13 +17234,6 @@ export namespace Prisma {
     connectOrCreate?: UserCreateOrConnectWithoutClubInput | UserCreateOrConnectWithoutClubInput[]
     createMany?: UserCreateManyClubInputEnvelope
     connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
-  }
-
-  export type MonthlyChurnMetricUncheckedCreateNestedManyWithoutClubInput = {
-    create?: XOR<MonthlyChurnMetricCreateWithoutClubInput, MonthlyChurnMetricUncheckedCreateWithoutClubInput> | MonthlyChurnMetricCreateWithoutClubInput[] | MonthlyChurnMetricUncheckedCreateWithoutClubInput[]
-    connectOrCreate?: MonthlyChurnMetricCreateOrConnectWithoutClubInput | MonthlyChurnMetricCreateOrConnectWithoutClubInput[]
-    createMany?: MonthlyChurnMetricCreateManyClubInputEnvelope
-    connect?: MonthlyChurnMetricWhereUniqueInput | MonthlyChurnMetricWhereUniqueInput[]
   }
 
   export type IntFieldUpdateOperationsInput = {
@@ -18985,20 +17290,6 @@ export namespace Prisma {
     deleteMany?: UserScalarWhereInput | UserScalarWhereInput[]
   }
 
-  export type MonthlyChurnMetricUpdateManyWithoutClubNestedInput = {
-    create?: XOR<MonthlyChurnMetricCreateWithoutClubInput, MonthlyChurnMetricUncheckedCreateWithoutClubInput> | MonthlyChurnMetricCreateWithoutClubInput[] | MonthlyChurnMetricUncheckedCreateWithoutClubInput[]
-    connectOrCreate?: MonthlyChurnMetricCreateOrConnectWithoutClubInput | MonthlyChurnMetricCreateOrConnectWithoutClubInput[]
-    upsert?: MonthlyChurnMetricUpsertWithWhereUniqueWithoutClubInput | MonthlyChurnMetricUpsertWithWhereUniqueWithoutClubInput[]
-    createMany?: MonthlyChurnMetricCreateManyClubInputEnvelope
-    set?: MonthlyChurnMetricWhereUniqueInput | MonthlyChurnMetricWhereUniqueInput[]
-    disconnect?: MonthlyChurnMetricWhereUniqueInput | MonthlyChurnMetricWhereUniqueInput[]
-    delete?: MonthlyChurnMetricWhereUniqueInput | MonthlyChurnMetricWhereUniqueInput[]
-    connect?: MonthlyChurnMetricWhereUniqueInput | MonthlyChurnMetricWhereUniqueInput[]
-    update?: MonthlyChurnMetricUpdateWithWhereUniqueWithoutClubInput | MonthlyChurnMetricUpdateWithWhereUniqueWithoutClubInput[]
-    updateMany?: MonthlyChurnMetricUpdateManyWithWhereWithoutClubInput | MonthlyChurnMetricUpdateManyWithWhereWithoutClubInput[]
-    deleteMany?: MonthlyChurnMetricScalarWhereInput | MonthlyChurnMetricScalarWhereInput[]
-  }
-
   export type TeamUncheckedUpdateManyWithoutClubNestedInput = {
     create?: XOR<TeamCreateWithoutClubInput, TeamUncheckedCreateWithoutClubInput> | TeamCreateWithoutClubInput[] | TeamUncheckedCreateWithoutClubInput[]
     connectOrCreate?: TeamCreateOrConnectWithoutClubInput | TeamCreateOrConnectWithoutClubInput[]
@@ -19039,20 +17330,6 @@ export namespace Prisma {
     update?: UserUpdateWithWhereUniqueWithoutClubInput | UserUpdateWithWhereUniqueWithoutClubInput[]
     updateMany?: UserUpdateManyWithWhereWithoutClubInput | UserUpdateManyWithWhereWithoutClubInput[]
     deleteMany?: UserScalarWhereInput | UserScalarWhereInput[]
-  }
-
-  export type MonthlyChurnMetricUncheckedUpdateManyWithoutClubNestedInput = {
-    create?: XOR<MonthlyChurnMetricCreateWithoutClubInput, MonthlyChurnMetricUncheckedCreateWithoutClubInput> | MonthlyChurnMetricCreateWithoutClubInput[] | MonthlyChurnMetricUncheckedCreateWithoutClubInput[]
-    connectOrCreate?: MonthlyChurnMetricCreateOrConnectWithoutClubInput | MonthlyChurnMetricCreateOrConnectWithoutClubInput[]
-    upsert?: MonthlyChurnMetricUpsertWithWhereUniqueWithoutClubInput | MonthlyChurnMetricUpsertWithWhereUniqueWithoutClubInput[]
-    createMany?: MonthlyChurnMetricCreateManyClubInputEnvelope
-    set?: MonthlyChurnMetricWhereUniqueInput | MonthlyChurnMetricWhereUniqueInput[]
-    disconnect?: MonthlyChurnMetricWhereUniqueInput | MonthlyChurnMetricWhereUniqueInput[]
-    delete?: MonthlyChurnMetricWhereUniqueInput | MonthlyChurnMetricWhereUniqueInput[]
-    connect?: MonthlyChurnMetricWhereUniqueInput | MonthlyChurnMetricWhereUniqueInput[]
-    update?: MonthlyChurnMetricUpdateWithWhereUniqueWithoutClubInput | MonthlyChurnMetricUpdateWithWhereUniqueWithoutClubInput[]
-    updateMany?: MonthlyChurnMetricUpdateManyWithWhereWithoutClubInput | MonthlyChurnMetricUpdateManyWithWhereWithoutClubInput[]
-    deleteMany?: MonthlyChurnMetricScalarWhereInput | MonthlyChurnMetricScalarWhereInput[]
   }
 
   export type ClubCreateNestedOneWithoutTeamsInput = {
@@ -19265,10 +17542,6 @@ export namespace Prisma {
     connect?: ActivityWhereUniqueInput
   }
 
-  export type EnumBookingStatusFieldUpdateOperationsInput = {
-    set?: $Enums.BookingStatus
-  }
-
   export type EnumAttendanceStatusFieldUpdateOperationsInput = {
     set?: $Enums.AttendanceStatus
   }
@@ -19295,6 +17568,10 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput
   }
 
+  export type EnumChurnEventTypeFieldUpdateOperationsInput = {
+    set?: $Enums.ChurnEventType
+  }
+
   export type UserUpdateOneRequiredWithoutChurnEventsNestedInput = {
     create?: XOR<UserCreateWithoutChurnEventsInput, UserUncheckedCreateWithoutChurnEventsInput>
     connectOrCreate?: UserCreateOrConnectWithoutChurnEventsInput
@@ -19319,30 +17596,6 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutHealthSummaryInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutHealthSummaryInput, UserUpdateWithoutHealthSummaryInput>, UserUncheckedUpdateWithoutHealthSummaryInput>
-  }
-
-  export type ClubCreateNestedOneWithoutMetricsInput = {
-    create?: XOR<ClubCreateWithoutMetricsInput, ClubUncheckedCreateWithoutMetricsInput>
-    connectOrCreate?: ClubCreateOrConnectWithoutMetricsInput
-    connect?: ClubWhereUniqueInput
-  }
-
-  export type NullableDecimalFieldUpdateOperationsInput = {
-    set?: Decimal | DecimalJsLike | number | string | null
-    increment?: Decimal | DecimalJsLike | number | string
-    decrement?: Decimal | DecimalJsLike | number | string
-    multiply?: Decimal | DecimalJsLike | number | string
-    divide?: Decimal | DecimalJsLike | number | string
-  }
-
-  export type ClubUpdateOneWithoutMetricsNestedInput = {
-    create?: XOR<ClubCreateWithoutMetricsInput, ClubUncheckedCreateWithoutMetricsInput>
-    connectOrCreate?: ClubCreateOrConnectWithoutMetricsInput
-    upsert?: ClubUpsertWithoutMetricsInput
-    disconnect?: ClubWhereInput | boolean
-    delete?: ClubWhereInput | boolean
-    connect?: ClubWhereUniqueInput
-    update?: XOR<XOR<ClubUpdateToOneWithWhereWithoutMetricsInput, ClubUpdateWithoutMetricsInput>, ClubUncheckedUpdateWithoutMetricsInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -19416,11 +17669,11 @@ export namespace Prisma {
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
-  export type NestedEnumSubscriptionTiersFilter<$PrismaModel = never> = {
-    equals?: $Enums.SubscriptionTiers | EnumSubscriptionTiersFieldRefInput<$PrismaModel>
-    in?: $Enums.SubscriptionTiers[]
-    notIn?: $Enums.SubscriptionTiers[]
-    not?: NestedEnumSubscriptionTiersFilter<$PrismaModel> | $Enums.SubscriptionTiers
+  export type NestedEnumSubscriptionMethodFilter<$PrismaModel = never> = {
+    equals?: $Enums.SubscriptionMethod | EnumSubscriptionMethodFieldRefInput<$PrismaModel>
+    in?: $Enums.SubscriptionMethod[]
+    notIn?: $Enums.SubscriptionMethod[]
+    not?: NestedEnumSubscriptionMethodFilter<$PrismaModel> | $Enums.SubscriptionMethod
   }
 
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
@@ -19537,14 +17790,14 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
-  export type NestedEnumSubscriptionTiersWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.SubscriptionTiers | EnumSubscriptionTiersFieldRefInput<$PrismaModel>
-    in?: $Enums.SubscriptionTiers[]
-    notIn?: $Enums.SubscriptionTiers[]
-    not?: NestedEnumSubscriptionTiersWithAggregatesFilter<$PrismaModel> | $Enums.SubscriptionTiers
+  export type NestedEnumSubscriptionMethodWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.SubscriptionMethod | EnumSubscriptionMethodFieldRefInput<$PrismaModel>
+    in?: $Enums.SubscriptionMethod[]
+    notIn?: $Enums.SubscriptionMethod[]
+    not?: NestedEnumSubscriptionMethodWithAggregatesFilter<$PrismaModel> | $Enums.SubscriptionMethod
     _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumSubscriptionTiersFilter<$PrismaModel>
-    _max?: NestedEnumSubscriptionTiersFilter<$PrismaModel>
+    _min?: NestedEnumSubscriptionMethodFilter<$PrismaModel>
+    _max?: NestedEnumSubscriptionMethodFilter<$PrismaModel>
   }
 
   export type NestedEnumSubscriptionStatusFilter<$PrismaModel = never> = {
@@ -19665,28 +17918,11 @@ export namespace Prisma {
     _max?: NestedEnumSubscriptionTypeFilter<$PrismaModel>
   }
 
-  export type NestedEnumBookingStatusFilter<$PrismaModel = never> = {
-    equals?: $Enums.BookingStatus | EnumBookingStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.BookingStatus[]
-    notIn?: $Enums.BookingStatus[]
-    not?: NestedEnumBookingStatusFilter<$PrismaModel> | $Enums.BookingStatus
-  }
-
   export type NestedEnumAttendanceStatusFilter<$PrismaModel = never> = {
     equals?: $Enums.AttendanceStatus | EnumAttendanceStatusFieldRefInput<$PrismaModel>
     in?: $Enums.AttendanceStatus[]
     notIn?: $Enums.AttendanceStatus[]
     not?: NestedEnumAttendanceStatusFilter<$PrismaModel> | $Enums.AttendanceStatus
-  }
-
-  export type NestedEnumBookingStatusWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.BookingStatus | EnumBookingStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.BookingStatus[]
-    notIn?: $Enums.BookingStatus[]
-    not?: NestedEnumBookingStatusWithAggregatesFilter<$PrismaModel> | $Enums.BookingStatus
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumBookingStatusFilter<$PrismaModel>
-    _max?: NestedEnumBookingStatusFilter<$PrismaModel>
   }
 
   export type NestedEnumAttendanceStatusWithAggregatesFilter<$PrismaModel = never> = {
@@ -19698,28 +17934,22 @@ export namespace Prisma {
     _min?: NestedEnumAttendanceStatusFilter<$PrismaModel>
     _max?: NestedEnumAttendanceStatusFilter<$PrismaModel>
   }
-  export type NestedJsonNullableFilter<$PrismaModel = never> =
-    | PatchUndefined<
-        Either<Required<NestedJsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>,
-        Required<NestedJsonNullableFilterBase<$PrismaModel>>
-      >
-    | OptionalFlat<Omit<Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>
 
-  export type NestedJsonNullableFilterBase<$PrismaModel = never> = {
-    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-    path?: string
-    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
-    string_contains?: string | StringFieldRefInput<$PrismaModel>
-    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
-    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
-    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    lt?: InputJsonValue
-    lte?: InputJsonValue
-    gt?: InputJsonValue
-    gte?: InputJsonValue
-    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  export type NestedEnumChurnEventTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.ChurnEventType | EnumChurnEventTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.ChurnEventType[]
+    notIn?: $Enums.ChurnEventType[]
+    not?: NestedEnumChurnEventTypeFilter<$PrismaModel> | $Enums.ChurnEventType
+  }
+
+  export type NestedEnumChurnEventTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ChurnEventType | EnumChurnEventTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.ChurnEventType[]
+    notIn?: $Enums.ChurnEventType[]
+    not?: NestedEnumChurnEventTypeWithAggregatesFilter<$PrismaModel> | $Enums.ChurnEventType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumChurnEventTypeFilter<$PrismaModel>
+    _max?: NestedEnumChurnEventTypeFilter<$PrismaModel>
   }
 
   export type NestedEnumChurnStatusFilter<$PrismaModel = never> = {
@@ -19739,33 +17969,6 @@ export namespace Prisma {
     _max?: NestedEnumChurnStatusFilter<$PrismaModel>
   }
 
-  export type NestedDecimalNullableFilter<$PrismaModel = never> = {
-    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
-    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | null
-    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | null
-    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    not?: NestedDecimalNullableFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
-  }
-
-  export type NestedDecimalNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
-    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | null
-    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | null
-    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    not?: NestedDecimalNullableWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedDecimalNullableFilter<$PrismaModel>
-    _sum?: NestedDecimalNullableFilter<$PrismaModel>
-    _min?: NestedDecimalNullableFilter<$PrismaModel>
-    _max?: NestedDecimalNullableFilter<$PrismaModel>
-  }
-
   export type ClubCreateWithoutUserInput = {
     id: string
     display: string
@@ -19778,7 +17981,6 @@ export namespace Prisma {
     subscriptionStatus?: $Enums.SubscriptionStatus
     teams?: TeamCreateNestedManyWithoutClubInput
     Activity?: ActivityCreateNestedManyWithoutClubInput
-    metrics?: MonthlyChurnMetricCreateNestedManyWithoutClubInput
   }
 
   export type ClubUncheckedCreateWithoutUserInput = {
@@ -19793,7 +17995,6 @@ export namespace Prisma {
     subscriptionStatus?: $Enums.SubscriptionStatus
     teams?: TeamUncheckedCreateNestedManyWithoutClubInput
     Activity?: ActivityUncheckedCreateNestedManyWithoutClubInput
-    metrics?: MonthlyChurnMetricUncheckedCreateNestedManyWithoutClubInput
   }
 
   export type ClubCreateOrConnectWithoutUserInput = {
@@ -19881,7 +18082,6 @@ export namespace Prisma {
   export type SessionBookingCreateWithoutUserInput = {
     id?: string
     bookedAt?: Date | string
-    bookingStatus?: $Enums.BookingStatus
     attendanceStatus?: $Enums.AttendanceStatus
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -19892,7 +18092,6 @@ export namespace Prisma {
     id?: string
     activityId: string
     bookedAt?: Date | string
-    bookingStatus?: $Enums.BookingStatus
     attendanceStatus?: $Enums.AttendanceStatus
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -19910,21 +18109,19 @@ export namespace Prisma {
 
   export type ChurnEventCreateWithoutUserInput = {
     id?: string
-    eventType: string
+    eventType: $Enums.ChurnEventType
     eventDate: Date | string
     scoreImpact?: number
     reasonText?: string | null
-    metaJson?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
   }
 
   export type ChurnEventUncheckedCreateWithoutUserInput = {
     id?: string
-    eventType: string
+    eventType: $Enums.ChurnEventType
     eventDate: Date | string
     scoreImpact?: number
     reasonText?: string | null
-    metaJson?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
   }
 
@@ -19998,7 +18195,6 @@ export namespace Prisma {
     subscriptionStatus?: EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
     teams?: TeamUpdateManyWithoutClubNestedInput
     Activity?: ActivityUpdateManyWithoutClubNestedInput
-    metrics?: MonthlyChurnMetricUpdateManyWithoutClubNestedInput
   }
 
   export type ClubUncheckedUpdateWithoutUserInput = {
@@ -20013,7 +18209,6 @@ export namespace Prisma {
     subscriptionStatus?: EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
     teams?: TeamUncheckedUpdateManyWithoutClubNestedInput
     Activity?: ActivityUncheckedUpdateManyWithoutClubNestedInput
-    metrics?: MonthlyChurnMetricUncheckedUpdateManyWithoutClubNestedInput
   }
 
   export type TeamUpsertWithoutUserInput = {
@@ -20111,7 +18306,6 @@ export namespace Prisma {
     userId?: StringFilter<"SessionBooking"> | string
     activityId?: StringFilter<"SessionBooking"> | string
     bookedAt?: DateTimeFilter<"SessionBooking"> | Date | string
-    bookingStatus?: EnumBookingStatusFilter<"SessionBooking"> | $Enums.BookingStatus
     attendanceStatus?: EnumAttendanceStatusFilter<"SessionBooking"> | $Enums.AttendanceStatus
     createdAt?: DateTimeFilter<"SessionBooking"> | Date | string
     updatedAt?: DateTimeFilter<"SessionBooking"> | Date | string
@@ -20139,11 +18333,10 @@ export namespace Prisma {
     NOT?: ChurnEventScalarWhereInput | ChurnEventScalarWhereInput[]
     id?: StringFilter<"ChurnEvent"> | string
     userId?: StringFilter<"ChurnEvent"> | string
-    eventType?: StringFilter<"ChurnEvent"> | string
+    eventType?: EnumChurnEventTypeFilter<"ChurnEvent"> | $Enums.ChurnEventType
     eventDate?: DateTimeFilter<"ChurnEvent"> | Date | string
     scoreImpact?: IntFilter<"ChurnEvent"> | number
     reasonText?: StringNullableFilter<"ChurnEvent"> | string | null
-    metaJson?: JsonNullableFilter<"ChurnEvent">
     createdAt?: DateTimeFilter<"ChurnEvent"> | Date | string
   }
 
@@ -20285,7 +18478,7 @@ export namespace Prisma {
     createdBy?: $Enums.AdminRole
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
-    subscription?: $Enums.SubscriptionTiers
+    subscriptionMethod?: $Enums.SubscriptionMethod
     joinedAt?: Date | string
     lastActivityAt?: Date | string | null
     team?: TeamCreateNestedOneWithoutUserInput
@@ -20309,7 +18502,7 @@ export namespace Prisma {
     createdBy?: $Enums.AdminRole
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
-    subscription?: $Enums.SubscriptionTiers
+    subscriptionMethod?: $Enums.SubscriptionMethod
     joinedAt?: Date | string
     lastActivityAt?: Date | string | null
     Activity?: ActivityUncheckedCreateNestedManyWithoutUserInput
@@ -20325,46 +18518,6 @@ export namespace Prisma {
 
   export type UserCreateManyClubInputEnvelope = {
     data: UserCreateManyClubInput | UserCreateManyClubInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type MonthlyChurnMetricCreateWithoutClubInput = {
-    id?: string
-    monthStartDate: Date | string
-    healthyCount?: number
-    mightLeaveSoonCount?: number
-    atRiskCount?: number
-    churnedCount?: number
-    newPlayers?: number
-    netGrowth?: number
-    retentionRate?: Decimal | DecimalJsLike | number | string | null
-    churnRate?: Decimal | DecimalJsLike | number | string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type MonthlyChurnMetricUncheckedCreateWithoutClubInput = {
-    id?: string
-    monthStartDate: Date | string
-    healthyCount?: number
-    mightLeaveSoonCount?: number
-    atRiskCount?: number
-    churnedCount?: number
-    newPlayers?: number
-    netGrowth?: number
-    retentionRate?: Decimal | DecimalJsLike | number | string | null
-    churnRate?: Decimal | DecimalJsLike | number | string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type MonthlyChurnMetricCreateOrConnectWithoutClubInput = {
-    where: MonthlyChurnMetricWhereUniqueInput
-    create: XOR<MonthlyChurnMetricCreateWithoutClubInput, MonthlyChurnMetricUncheckedCreateWithoutClubInput>
-  }
-
-  export type MonthlyChurnMetricCreateManyClubInputEnvelope = {
-    data: MonthlyChurnMetricCreateManyClubInput | MonthlyChurnMetricCreateManyClubInput[]
     skipDuplicates?: boolean
   }
 
@@ -20446,44 +18599,9 @@ export namespace Prisma {
     createdBy?: EnumAdminRoleFilter<"User"> | $Enums.AdminRole
     dateCreated?: DateTimeFilter<"User"> | Date | string
     dateUpdated?: DateTimeNullableFilter<"User"> | Date | string | null
-    subscription?: EnumSubscriptionTiersFilter<"User"> | $Enums.SubscriptionTiers
+    subscriptionMethod?: EnumSubscriptionMethodFilter<"User"> | $Enums.SubscriptionMethod
     joinedAt?: DateTimeFilter<"User"> | Date | string
     lastActivityAt?: DateTimeNullableFilter<"User"> | Date | string | null
-  }
-
-  export type MonthlyChurnMetricUpsertWithWhereUniqueWithoutClubInput = {
-    where: MonthlyChurnMetricWhereUniqueInput
-    update: XOR<MonthlyChurnMetricUpdateWithoutClubInput, MonthlyChurnMetricUncheckedUpdateWithoutClubInput>
-    create: XOR<MonthlyChurnMetricCreateWithoutClubInput, MonthlyChurnMetricUncheckedCreateWithoutClubInput>
-  }
-
-  export type MonthlyChurnMetricUpdateWithWhereUniqueWithoutClubInput = {
-    where: MonthlyChurnMetricWhereUniqueInput
-    data: XOR<MonthlyChurnMetricUpdateWithoutClubInput, MonthlyChurnMetricUncheckedUpdateWithoutClubInput>
-  }
-
-  export type MonthlyChurnMetricUpdateManyWithWhereWithoutClubInput = {
-    where: MonthlyChurnMetricScalarWhereInput
-    data: XOR<MonthlyChurnMetricUpdateManyMutationInput, MonthlyChurnMetricUncheckedUpdateManyWithoutClubInput>
-  }
-
-  export type MonthlyChurnMetricScalarWhereInput = {
-    AND?: MonthlyChurnMetricScalarWhereInput | MonthlyChurnMetricScalarWhereInput[]
-    OR?: MonthlyChurnMetricScalarWhereInput[]
-    NOT?: MonthlyChurnMetricScalarWhereInput | MonthlyChurnMetricScalarWhereInput[]
-    id?: StringFilter<"MonthlyChurnMetric"> | string
-    monthStartDate?: DateTimeFilter<"MonthlyChurnMetric"> | Date | string
-    clubId?: StringNullableFilter<"MonthlyChurnMetric"> | string | null
-    healthyCount?: IntFilter<"MonthlyChurnMetric"> | number
-    mightLeaveSoonCount?: IntFilter<"MonthlyChurnMetric"> | number
-    atRiskCount?: IntFilter<"MonthlyChurnMetric"> | number
-    churnedCount?: IntFilter<"MonthlyChurnMetric"> | number
-    newPlayers?: IntFilter<"MonthlyChurnMetric"> | number
-    netGrowth?: IntFilter<"MonthlyChurnMetric"> | number
-    retentionRate?: DecimalNullableFilter<"MonthlyChurnMetric"> | Decimal | DecimalJsLike | number | string | null
-    churnRate?: DecimalNullableFilter<"MonthlyChurnMetric"> | Decimal | DecimalJsLike | number | string | null
-    createdAt?: DateTimeFilter<"MonthlyChurnMetric"> | Date | string
-    updatedAt?: DateTimeFilter<"MonthlyChurnMetric"> | Date | string
   }
 
   export type ClubCreateWithoutTeamsInput = {
@@ -20498,7 +18616,6 @@ export namespace Prisma {
     subscriptionStatus?: $Enums.SubscriptionStatus
     Activity?: ActivityCreateNestedManyWithoutClubInput
     User?: UserCreateNestedManyWithoutClubInput
-    metrics?: MonthlyChurnMetricCreateNestedManyWithoutClubInput
   }
 
   export type ClubUncheckedCreateWithoutTeamsInput = {
@@ -20513,7 +18630,6 @@ export namespace Prisma {
     subscriptionStatus?: $Enums.SubscriptionStatus
     Activity?: ActivityUncheckedCreateNestedManyWithoutClubInput
     User?: UserUncheckedCreateNestedManyWithoutClubInput
-    metrics?: MonthlyChurnMetricUncheckedCreateNestedManyWithoutClubInput
   }
 
   export type ClubCreateOrConnectWithoutTeamsInput = {
@@ -20586,7 +18702,7 @@ export namespace Prisma {
     createdBy?: $Enums.AdminRole
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
-    subscription?: $Enums.SubscriptionTiers
+    subscriptionMethod?: $Enums.SubscriptionMethod
     joinedAt?: Date | string
     lastActivityAt?: Date | string | null
     club?: ClubCreateNestedOneWithoutUserInput
@@ -20610,7 +18726,7 @@ export namespace Prisma {
     createdBy?: $Enums.AdminRole
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
-    subscription?: $Enums.SubscriptionTiers
+    subscriptionMethod?: $Enums.SubscriptionMethod
     joinedAt?: Date | string
     lastActivityAt?: Date | string | null
     Activity?: ActivityUncheckedCreateNestedManyWithoutUserInput
@@ -20652,7 +18768,6 @@ export namespace Prisma {
     subscriptionStatus?: EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
     Activity?: ActivityUpdateManyWithoutClubNestedInput
     User?: UserUpdateManyWithoutClubNestedInput
-    metrics?: MonthlyChurnMetricUpdateManyWithoutClubNestedInput
   }
 
   export type ClubUncheckedUpdateWithoutTeamsInput = {
@@ -20667,7 +18782,6 @@ export namespace Prisma {
     subscriptionStatus?: EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
     Activity?: ActivityUncheckedUpdateManyWithoutClubNestedInput
     User?: UserUncheckedUpdateManyWithoutClubNestedInput
-    metrics?: MonthlyChurnMetricUncheckedUpdateManyWithoutClubNestedInput
   }
 
   export type ActivityUpsertWithWhereUniqueWithoutTeamInput = {
@@ -20739,7 +18853,6 @@ export namespace Prisma {
     subscriptionStatus?: $Enums.SubscriptionStatus
     teams?: TeamCreateNestedManyWithoutClubInput
     User?: UserCreateNestedManyWithoutClubInput
-    metrics?: MonthlyChurnMetricCreateNestedManyWithoutClubInput
   }
 
   export type ClubUncheckedCreateWithoutActivityInput = {
@@ -20754,7 +18867,6 @@ export namespace Prisma {
     subscriptionStatus?: $Enums.SubscriptionStatus
     teams?: TeamUncheckedCreateNestedManyWithoutClubInput
     User?: UserUncheckedCreateNestedManyWithoutClubInput
-    metrics?: MonthlyChurnMetricUncheckedCreateNestedManyWithoutClubInput
   }
 
   export type ClubCreateOrConnectWithoutActivityInput = {
@@ -20775,7 +18887,7 @@ export namespace Prisma {
     createdBy?: $Enums.AdminRole
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
-    subscription?: $Enums.SubscriptionTiers
+    subscriptionMethod?: $Enums.SubscriptionMethod
     joinedAt?: Date | string
     lastActivityAt?: Date | string | null
     club?: ClubCreateNestedOneWithoutUserInput
@@ -20800,7 +18912,7 @@ export namespace Prisma {
     createdBy?: $Enums.AdminRole
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
-    subscription?: $Enums.SubscriptionTiers
+    subscriptionMethod?: $Enums.SubscriptionMethod
     joinedAt?: Date | string
     lastActivityAt?: Date | string | null
     sessionBookings?: SessionBookingUncheckedCreateNestedManyWithoutUserInput
@@ -20816,7 +18928,6 @@ export namespace Prisma {
   export type SessionBookingCreateWithoutActivityInput = {
     id?: string
     bookedAt?: Date | string
-    bookingStatus?: $Enums.BookingStatus
     attendanceStatus?: $Enums.AttendanceStatus
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -20827,7 +18938,6 @@ export namespace Prisma {
     id?: string
     userId: string
     bookedAt?: Date | string
-    bookingStatus?: $Enums.BookingStatus
     attendanceStatus?: $Enums.AttendanceStatus
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -20897,7 +19007,6 @@ export namespace Prisma {
     subscriptionStatus?: EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
     teams?: TeamUpdateManyWithoutClubNestedInput
     User?: UserUpdateManyWithoutClubNestedInput
-    metrics?: MonthlyChurnMetricUpdateManyWithoutClubNestedInput
   }
 
   export type ClubUncheckedUpdateWithoutActivityInput = {
@@ -20912,7 +19021,6 @@ export namespace Prisma {
     subscriptionStatus?: EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
     teams?: TeamUncheckedUpdateManyWithoutClubNestedInput
     User?: UserUncheckedUpdateManyWithoutClubNestedInput
-    metrics?: MonthlyChurnMetricUncheckedUpdateManyWithoutClubNestedInput
   }
 
   export type UserUpsertWithoutActivityInput = {
@@ -20939,7 +19047,7 @@ export namespace Prisma {
     createdBy?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    subscription?: EnumSubscriptionTiersFieldUpdateOperationsInput | $Enums.SubscriptionTiers
+    subscriptionMethod?: EnumSubscriptionMethodFieldUpdateOperationsInput | $Enums.SubscriptionMethod
     joinedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastActivityAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     club?: ClubUpdateOneWithoutUserNestedInput
@@ -20964,7 +19072,7 @@ export namespace Prisma {
     createdBy?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    subscription?: EnumSubscriptionTiersFieldUpdateOperationsInput | $Enums.SubscriptionTiers
+    subscriptionMethod?: EnumSubscriptionMethodFieldUpdateOperationsInput | $Enums.SubscriptionMethod
     joinedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastActivityAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     sessionBookings?: SessionBookingUncheckedUpdateManyWithoutUserNestedInput
@@ -21001,7 +19109,7 @@ export namespace Prisma {
     createdBy?: $Enums.AdminRole
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
-    subscription?: $Enums.SubscriptionTiers
+    subscriptionMethod?: $Enums.SubscriptionMethod
     joinedAt?: Date | string
     lastActivityAt?: Date | string | null
     club?: ClubCreateNestedOneWithoutUserInput
@@ -21026,7 +19134,7 @@ export namespace Prisma {
     createdBy?: $Enums.AdminRole
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
-    subscription?: $Enums.SubscriptionTiers
+    subscriptionMethod?: $Enums.SubscriptionMethod
     joinedAt?: Date | string
     lastActivityAt?: Date | string | null
     Activity?: ActivityUncheckedCreateNestedManyWithoutUserInput
@@ -21110,7 +19218,7 @@ export namespace Prisma {
     createdBy?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    subscription?: EnumSubscriptionTiersFieldUpdateOperationsInput | $Enums.SubscriptionTiers
+    subscriptionMethod?: EnumSubscriptionMethodFieldUpdateOperationsInput | $Enums.SubscriptionMethod
     joinedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastActivityAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     club?: ClubUpdateOneWithoutUserNestedInput
@@ -21135,7 +19243,7 @@ export namespace Prisma {
     createdBy?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    subscription?: EnumSubscriptionTiersFieldUpdateOperationsInput | $Enums.SubscriptionTiers
+    subscriptionMethod?: EnumSubscriptionMethodFieldUpdateOperationsInput | $Enums.SubscriptionMethod
     joinedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastActivityAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     Activity?: ActivityUncheckedUpdateManyWithoutUserNestedInput
@@ -21209,7 +19317,7 @@ export namespace Prisma {
     createdBy?: $Enums.AdminRole
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
-    subscription?: $Enums.SubscriptionTiers
+    subscriptionMethod?: $Enums.SubscriptionMethod
     joinedAt?: Date | string
     lastActivityAt?: Date | string | null
     club?: ClubCreateNestedOneWithoutUserInput
@@ -21234,7 +19342,7 @@ export namespace Prisma {
     createdBy?: $Enums.AdminRole
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
-    subscription?: $Enums.SubscriptionTiers
+    subscriptionMethod?: $Enums.SubscriptionMethod
     joinedAt?: Date | string
     lastActivityAt?: Date | string | null
     Activity?: ActivityUncheckedCreateNestedManyWithoutUserInput
@@ -21271,7 +19379,7 @@ export namespace Prisma {
     createdBy?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    subscription?: EnumSubscriptionTiersFieldUpdateOperationsInput | $Enums.SubscriptionTiers
+    subscriptionMethod?: EnumSubscriptionMethodFieldUpdateOperationsInput | $Enums.SubscriptionMethod
     joinedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastActivityAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     club?: ClubUpdateOneWithoutUserNestedInput
@@ -21296,7 +19404,7 @@ export namespace Prisma {
     createdBy?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    subscription?: EnumSubscriptionTiersFieldUpdateOperationsInput | $Enums.SubscriptionTiers
+    subscriptionMethod?: EnumSubscriptionMethodFieldUpdateOperationsInput | $Enums.SubscriptionMethod
     joinedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastActivityAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     Activity?: ActivityUncheckedUpdateManyWithoutUserNestedInput
@@ -21317,7 +19425,7 @@ export namespace Prisma {
     createdBy?: $Enums.AdminRole
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
-    subscription?: $Enums.SubscriptionTiers
+    subscriptionMethod?: $Enums.SubscriptionMethod
     joinedAt?: Date | string
     lastActivityAt?: Date | string | null
     club?: ClubCreateNestedOneWithoutUserInput
@@ -21342,7 +19450,7 @@ export namespace Prisma {
     createdBy?: $Enums.AdminRole
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
-    subscription?: $Enums.SubscriptionTiers
+    subscriptionMethod?: $Enums.SubscriptionMethod
     joinedAt?: Date | string
     lastActivityAt?: Date | string | null
     Activity?: ActivityUncheckedCreateNestedManyWithoutUserInput
@@ -21379,7 +19487,7 @@ export namespace Prisma {
     createdBy?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    subscription?: EnumSubscriptionTiersFieldUpdateOperationsInput | $Enums.SubscriptionTiers
+    subscriptionMethod?: EnumSubscriptionMethodFieldUpdateOperationsInput | $Enums.SubscriptionMethod
     joinedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastActivityAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     club?: ClubUpdateOneWithoutUserNestedInput
@@ -21404,88 +19512,12 @@ export namespace Prisma {
     createdBy?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    subscription?: EnumSubscriptionTiersFieldUpdateOperationsInput | $Enums.SubscriptionTiers
+    subscriptionMethod?: EnumSubscriptionMethodFieldUpdateOperationsInput | $Enums.SubscriptionMethod
     joinedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastActivityAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     Activity?: ActivityUncheckedUpdateManyWithoutUserNestedInput
     sessionBookings?: SessionBookingUncheckedUpdateManyWithoutUserNestedInput
     churnEvents?: ChurnEventUncheckedUpdateManyWithoutUserNestedInput
-  }
-
-  export type ClubCreateWithoutMetricsInput = {
-    id: string
-    display: string
-    location?: string | null
-    income?: number
-    organizationNumber?: string | null
-    dateCreated?: Date | string
-    dateUpdated?: Date | string | null
-    type?: $Enums.AdminRole
-    subscriptionStatus?: $Enums.SubscriptionStatus
-    teams?: TeamCreateNestedManyWithoutClubInput
-    Activity?: ActivityCreateNestedManyWithoutClubInput
-    User?: UserCreateNestedManyWithoutClubInput
-  }
-
-  export type ClubUncheckedCreateWithoutMetricsInput = {
-    id: string
-    display: string
-    location?: string | null
-    income?: number
-    organizationNumber?: string | null
-    dateCreated?: Date | string
-    dateUpdated?: Date | string | null
-    type?: $Enums.AdminRole
-    subscriptionStatus?: $Enums.SubscriptionStatus
-    teams?: TeamUncheckedCreateNestedManyWithoutClubInput
-    Activity?: ActivityUncheckedCreateNestedManyWithoutClubInput
-    User?: UserUncheckedCreateNestedManyWithoutClubInput
-  }
-
-  export type ClubCreateOrConnectWithoutMetricsInput = {
-    where: ClubWhereUniqueInput
-    create: XOR<ClubCreateWithoutMetricsInput, ClubUncheckedCreateWithoutMetricsInput>
-  }
-
-  export type ClubUpsertWithoutMetricsInput = {
-    update: XOR<ClubUpdateWithoutMetricsInput, ClubUncheckedUpdateWithoutMetricsInput>
-    create: XOR<ClubCreateWithoutMetricsInput, ClubUncheckedCreateWithoutMetricsInput>
-    where?: ClubWhereInput
-  }
-
-  export type ClubUpdateToOneWithWhereWithoutMetricsInput = {
-    where?: ClubWhereInput
-    data: XOR<ClubUpdateWithoutMetricsInput, ClubUncheckedUpdateWithoutMetricsInput>
-  }
-
-  export type ClubUpdateWithoutMetricsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    display?: StringFieldUpdateOperationsInput | string
-    location?: NullableStringFieldUpdateOperationsInput | string | null
-    income?: IntFieldUpdateOperationsInput | number
-    organizationNumber?: NullableStringFieldUpdateOperationsInput | string | null
-    dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
-    dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    type?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
-    subscriptionStatus?: EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
-    teams?: TeamUpdateManyWithoutClubNestedInput
-    Activity?: ActivityUpdateManyWithoutClubNestedInput
-    User?: UserUpdateManyWithoutClubNestedInput
-  }
-
-  export type ClubUncheckedUpdateWithoutMetricsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    display?: StringFieldUpdateOperationsInput | string
-    location?: NullableStringFieldUpdateOperationsInput | string | null
-    income?: IntFieldUpdateOperationsInput | number
-    organizationNumber?: NullableStringFieldUpdateOperationsInput | string | null
-    dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
-    dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    type?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
-    subscriptionStatus?: EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
-    teams?: TeamUncheckedUpdateManyWithoutClubNestedInput
-    Activity?: ActivityUncheckedUpdateManyWithoutClubNestedInput
-    User?: UserUncheckedUpdateManyWithoutClubNestedInput
   }
 
   export type ActivityCreateManyUserInput = {
@@ -21512,7 +19544,6 @@ export namespace Prisma {
     id?: string
     activityId: string
     bookedAt?: Date | string
-    bookingStatus?: $Enums.BookingStatus
     attendanceStatus?: $Enums.AttendanceStatus
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -21520,11 +19551,10 @@ export namespace Prisma {
 
   export type ChurnEventCreateManyUserInput = {
     id?: string
-    eventType: string
+    eventType: $Enums.ChurnEventType
     eventDate: Date | string
     scoreImpact?: number
     reasonText?: string | null
-    metaJson?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
   }
 
@@ -21593,7 +19623,6 @@ export namespace Prisma {
   export type SessionBookingUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     bookedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    bookingStatus?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
     attendanceStatus?: EnumAttendanceStatusFieldUpdateOperationsInput | $Enums.AttendanceStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -21604,7 +19633,6 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     activityId?: StringFieldUpdateOperationsInput | string
     bookedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    bookingStatus?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
     attendanceStatus?: EnumAttendanceStatusFieldUpdateOperationsInput | $Enums.AttendanceStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -21614,7 +19642,6 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     activityId?: StringFieldUpdateOperationsInput | string
     bookedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    bookingStatus?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
     attendanceStatus?: EnumAttendanceStatusFieldUpdateOperationsInput | $Enums.AttendanceStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -21622,31 +19649,28 @@ export namespace Prisma {
 
   export type ChurnEventUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    eventType?: StringFieldUpdateOperationsInput | string
+    eventType?: EnumChurnEventTypeFieldUpdateOperationsInput | $Enums.ChurnEventType
     eventDate?: DateTimeFieldUpdateOperationsInput | Date | string
     scoreImpact?: IntFieldUpdateOperationsInput | number
     reasonText?: NullableStringFieldUpdateOperationsInput | string | null
-    metaJson?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ChurnEventUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    eventType?: StringFieldUpdateOperationsInput | string
+    eventType?: EnumChurnEventTypeFieldUpdateOperationsInput | $Enums.ChurnEventType
     eventDate?: DateTimeFieldUpdateOperationsInput | Date | string
     scoreImpact?: IntFieldUpdateOperationsInput | number
     reasonText?: NullableStringFieldUpdateOperationsInput | string | null
-    metaJson?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ChurnEventUncheckedUpdateManyWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    eventType?: StringFieldUpdateOperationsInput | string
+    eventType?: EnumChurnEventTypeFieldUpdateOperationsInput | $Enums.ChurnEventType
     eventDate?: DateTimeFieldUpdateOperationsInput | Date | string
     scoreImpact?: IntFieldUpdateOperationsInput | number
     reasonText?: NullableStringFieldUpdateOperationsInput | string | null
-    metaJson?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -21692,24 +19716,9 @@ export namespace Prisma {
     createdBy?: $Enums.AdminRole
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
-    subscription?: $Enums.SubscriptionTiers
+    subscriptionMethod?: $Enums.SubscriptionMethod
     joinedAt?: Date | string
     lastActivityAt?: Date | string | null
-  }
-
-  export type MonthlyChurnMetricCreateManyClubInput = {
-    id?: string
-    monthStartDate: Date | string
-    healthyCount?: number
-    mightLeaveSoonCount?: number
-    atRiskCount?: number
-    churnedCount?: number
-    newPlayers?: number
-    netGrowth?: number
-    retentionRate?: Decimal | DecimalJsLike | number | string | null
-    churnRate?: Decimal | DecimalJsLike | number | string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
   }
 
   export type TeamUpdateWithoutClubInput = {
@@ -21815,7 +19824,7 @@ export namespace Prisma {
     createdBy?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    subscription?: EnumSubscriptionTiersFieldUpdateOperationsInput | $Enums.SubscriptionTiers
+    subscriptionMethod?: EnumSubscriptionMethodFieldUpdateOperationsInput | $Enums.SubscriptionMethod
     joinedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastActivityAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     team?: TeamUpdateOneWithoutUserNestedInput
@@ -21839,7 +19848,7 @@ export namespace Prisma {
     createdBy?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    subscription?: EnumSubscriptionTiersFieldUpdateOperationsInput | $Enums.SubscriptionTiers
+    subscriptionMethod?: EnumSubscriptionMethodFieldUpdateOperationsInput | $Enums.SubscriptionMethod
     joinedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastActivityAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     Activity?: ActivityUncheckedUpdateManyWithoutUserNestedInput
@@ -21862,54 +19871,9 @@ export namespace Prisma {
     createdBy?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    subscription?: EnumSubscriptionTiersFieldUpdateOperationsInput | $Enums.SubscriptionTiers
+    subscriptionMethod?: EnumSubscriptionMethodFieldUpdateOperationsInput | $Enums.SubscriptionMethod
     joinedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastActivityAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  }
-
-  export type MonthlyChurnMetricUpdateWithoutClubInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    monthStartDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    healthyCount?: IntFieldUpdateOperationsInput | number
-    mightLeaveSoonCount?: IntFieldUpdateOperationsInput | number
-    atRiskCount?: IntFieldUpdateOperationsInput | number
-    churnedCount?: IntFieldUpdateOperationsInput | number
-    newPlayers?: IntFieldUpdateOperationsInput | number
-    netGrowth?: IntFieldUpdateOperationsInput | number
-    retentionRate?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    churnRate?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type MonthlyChurnMetricUncheckedUpdateWithoutClubInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    monthStartDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    healthyCount?: IntFieldUpdateOperationsInput | number
-    mightLeaveSoonCount?: IntFieldUpdateOperationsInput | number
-    atRiskCount?: IntFieldUpdateOperationsInput | number
-    churnedCount?: IntFieldUpdateOperationsInput | number
-    newPlayers?: IntFieldUpdateOperationsInput | number
-    netGrowth?: IntFieldUpdateOperationsInput | number
-    retentionRate?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    churnRate?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type MonthlyChurnMetricUncheckedUpdateManyWithoutClubInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    monthStartDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    healthyCount?: IntFieldUpdateOperationsInput | number
-    mightLeaveSoonCount?: IntFieldUpdateOperationsInput | number
-    atRiskCount?: IntFieldUpdateOperationsInput | number
-    churnedCount?: IntFieldUpdateOperationsInput | number
-    newPlayers?: IntFieldUpdateOperationsInput | number
-    netGrowth?: IntFieldUpdateOperationsInput | number
-    retentionRate?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    churnRate?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ActivityCreateManyTeamInput = {
@@ -21946,7 +19910,7 @@ export namespace Prisma {
     createdBy?: $Enums.AdminRole
     dateCreated?: Date | string
     dateUpdated?: Date | string | null
-    subscription?: $Enums.SubscriptionTiers
+    subscriptionMethod?: $Enums.SubscriptionMethod
     joinedAt?: Date | string
     lastActivityAt?: Date | string | null
   }
@@ -22026,7 +19990,7 @@ export namespace Prisma {
     createdBy?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    subscription?: EnumSubscriptionTiersFieldUpdateOperationsInput | $Enums.SubscriptionTiers
+    subscriptionMethod?: EnumSubscriptionMethodFieldUpdateOperationsInput | $Enums.SubscriptionMethod
     joinedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastActivityAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     club?: ClubUpdateOneWithoutUserNestedInput
@@ -22050,7 +20014,7 @@ export namespace Prisma {
     createdBy?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    subscription?: EnumSubscriptionTiersFieldUpdateOperationsInput | $Enums.SubscriptionTiers
+    subscriptionMethod?: EnumSubscriptionMethodFieldUpdateOperationsInput | $Enums.SubscriptionMethod
     joinedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastActivityAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     Activity?: ActivityUncheckedUpdateManyWithoutUserNestedInput
@@ -22073,7 +20037,7 @@ export namespace Prisma {
     createdBy?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     dateUpdated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    subscription?: EnumSubscriptionTiersFieldUpdateOperationsInput | $Enums.SubscriptionTiers
+    subscriptionMethod?: EnumSubscriptionMethodFieldUpdateOperationsInput | $Enums.SubscriptionMethod
     joinedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastActivityAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -22082,7 +20046,6 @@ export namespace Prisma {
     id?: string
     userId: string
     bookedAt?: Date | string
-    bookingStatus?: $Enums.BookingStatus
     attendanceStatus?: $Enums.AttendanceStatus
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -22091,7 +20054,6 @@ export namespace Prisma {
   export type SessionBookingUpdateWithoutActivityInput = {
     id?: StringFieldUpdateOperationsInput | string
     bookedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    bookingStatus?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
     attendanceStatus?: EnumAttendanceStatusFieldUpdateOperationsInput | $Enums.AttendanceStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -22102,7 +20064,6 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     bookedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    bookingStatus?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
     attendanceStatus?: EnumAttendanceStatusFieldUpdateOperationsInput | $Enums.AttendanceStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -22112,7 +20073,6 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     bookedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    bookingStatus?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
     attendanceStatus?: EnumAttendanceStatusFieldUpdateOperationsInput | $Enums.AttendanceStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string

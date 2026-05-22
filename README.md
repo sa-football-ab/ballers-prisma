@@ -8,63 +8,65 @@ npx prisma generate --config ./prisma.config.ts
 
 # Prisma migration commands
 
-## Local development only (safe to reset)
+### Stage-only steps (safe workflow)
 
-Use this for local/dev databases where data can be recreated.
+1. Edit `schema.prisma`.
+2. Create a new migration folder:
+   #TODO: Change the "ballers_migration_stage_01" to your new folder name
 
-npx prisma migrate dev --config ./prisma.config.ts
+```bash
+mkdir -p migrations/20260522_20260522_ballers_migration_stage_01
+```
 
-Note: `migrate dev` can ask to reset the database if Prisma detects migration drift or history mismatch. Reset will drop data.
+3. Generate the SQL diff:
+   #TODO: Change the "ballers_migration_stage_01" to your new folder name
 
-## Staging/production (do not reset)
+```bash
+npx prisma migrate diff \
+  --from-config-datasource \
+  --to-schema ./schema.prisma \
+  --script \
+  --config ./prisma.config.ts \
+  > migrations/20260522_ballers_migration_stage_01/migration.sql
+```
 
-Use this for shared databases with real data.
+4. Review the generated SQL:
 
-npx prisma migrate deploy --config ./prisma.config.ts
+```bash
+cat migrations/20260522_ballers_migration_stage_01/migration.sql
+```
 
-Do not run `migrate dev` against staging/production.
+5. Apply the SQL to the database:
 
-## Staging-only workflow (if you do not have a local DB)
+```bash
+npx prisma db execute --config ./prisma.config.ts --file migrations/20260522_ballers_migration_stage_01/migration.sql
+```
 
-If staging is your only database, use this no-reset flow instead of `migrate dev`.
+6. Mark the migration as applied:
 
-Why this flow:
+```bash
+npx prisma migrate resolve --applied 20260522_ballers_migration_stage_01 --config ./prisma.config.ts
+```
 
-- `migrate dev` can ask for reset when drift is detected.
-- This flow generates SQL from current staging to your schema, applies it safely, and then records migration history.
+7. Confirm migration status:
 
-1. Update `schema.prisma`.
-2. Create a migration folder (replace the timestamp and name):
-
-mkdir -p migrations/20260427140000_ballers_migration_44
-
-3. Generate SQL diff from current staging DB to schema:
-
-npx prisma migrate diff --from-config-datasource --to-schema ./schema.prisma --script --config ./prisma.config.ts > migrations/20260427140000_ballers_migration_44/migration.sql
-
-4. Review `migration.sql` before applying.
-5. Apply SQL without reset:
-
-npx prisma db execute --config ./prisma.config.ts --file migrations/20260427140000_ballers_migration_44/migration.sql
-
-6. Mark migration as applied:
-
-npx prisma migrate resolve --applied 20260427140000_ballers_migration_44 --config ./prisma.config.ts
-
-7. Verify status:
-
+```bash
 npx prisma migrate status --config ./prisma.config.ts
+```
 
-8. Commit:
+8. Commit the changes:
 
-git add schema.prisma migrations/20260427140000_ballers_migration_44/migration.sql
+```bash
+git add schema.prisma migrations/20260522_add_description_here/migration.sql
 git commit -m "Add migration 44"
+```
 
-Safety notes:
+### Notes for stage env
 
-- Always confirm you are connected to the intended database.
-- Review SQL for destructive operations before applying.
-- Keep backups/snapshots for staging before major changes.
+- Use a new folder name for each schema change.
+- Keep old migration folders; they are the applied history.
+- Do not delete old migrations unless you know what you are doing.
+- If `prisma migrate status` says `Database schema is up to date!`, your migration history and database are consistent.
 
 # After logging in with the npm try runing this command to publish on npm
 

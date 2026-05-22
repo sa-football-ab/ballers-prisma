@@ -75,19 +75,19 @@ enum ChurnEventType {
     FEED_ENGAGED
 
     // Training inactivity penalties
-    TRAINING_PENALTY_APPLIED_5_DAYS
-    TRAINING_PENALTY_APPLIED_10_DAYS
-    TRAINING_PENALTY_APPLIED_15_DAYS
+    TRAINING_PENALTY_TIER1
+    TRAINING_PENALTY_TIER2
+    TRAINING_PENALTY_TIER3
 
     // Live session inactivity penalties
-    LIVE_PENALTY_APPLIED_5_DAYS
-    LIVE_PENALTY_APPLIED_10_DAYS
-    LIVE_PENALTY_APPLIED_15_DAYS
+    LIVE_PENALTY_TIER1
+    LIVE_PENALTY_TIER2
+    LIVE_PENALTY_TIER3
 
     // Feed inactivity penalties
-    FEED_PENALTY_APPLIED_5_DAYS
-    FEED_PENALTY_APPLIED_10_DAYS
-    FEED_PENALTY_APPLIED_15_DAYS
+    FEED_PENALTY_TIER1
+    FEED_PENALTY_TIER2
+    FEED_PENALTY_TIER3
 
     // Status transitions
     STATUS_CHANGED
@@ -141,7 +141,6 @@ model Club {
     teams    Team[]
     Activity Activity[]
     User     User[]
-    metrics  MonthlyChurnMetric[]
 }
 
 model Team {
@@ -257,23 +256,20 @@ model SessionBooking {
     userId           String
     activity         Activity         @relation(fields: [activityId], references: [id])
     activityId       String
-    bookedAt         DateTime         @default(now())
     attendanceStatus AttendanceStatus @default(NO_SHOW)
     createdAt        DateTime         @default(now())
     updatedAt        DateTime         @updatedAt
 
     @@index([userId])
     @@index([activityId])
-    @@index([bookedAt])
     @@index([attendanceStatus])
-    @@index([userId, bookedAt])
 }
 
 model ChurnEvent {
     id          String         @id @default(cuid())
     user        User           @relation(fields: [userId], references: [id])
     userId      String
-    eventType   ChurnEventType
+    eventType   ChurnEventType @default(STATUS_CHANGED)
     eventDate   DateTime
     scoreImpact Int            @default(0)
     reasonText  String?        @db.Text
