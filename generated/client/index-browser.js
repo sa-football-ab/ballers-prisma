@@ -135,7 +135,7 @@ exports.Prisma.UserScalarFieldEnum = {
   createdBy: 'createdBy',
   dateCreated: 'dateCreated',
   dateUpdated: 'dateUpdated',
-  churnStatus: 'churnStatus',
+  subscriptionMethod: 'subscriptionMethod',
   joinedAt: 'joinedAt',
   lastActivityAt: 'lastActivityAt'
 };
@@ -233,43 +233,39 @@ exports.Prisma.PlayerTrainingProgramScalarFieldEnum = {
   dateCreated: 'dateCreated'
 };
 
-exports.Prisma.PlayerSubscriptionScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  tier: 'tier',
-  status: 'status',
-  startDate: 'startDate',
-  endDate: 'endDate',
-  autoRenew: 'autoRenew',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-};
-
 exports.Prisma.SessionBookingScalarFieldEnum = {
   id: 'id',
-  playerUserId: 'playerUserId',
+  userId: 'userId',
   activityId: 'activityId',
   bookedAt: 'bookedAt',
-  bookingStatus: 'bookingStatus',
   attendanceStatus: 'attendanceStatus',
-  joinedAt: 'joinedAt',
-  leftAt: 'leftAt',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
 
-exports.Prisma.MonthlyChurnMetricScalarFieldEnum = {
+exports.Prisma.ChurnEventScalarFieldEnum = {
   id: 'id',
-  monthStartDate: 'monthStartDate',
-  clubId: 'clubId',
-  healthyCount: 'healthyCount',
-  mightLeaveSoonCount: 'mightLeaveSoonCount',
-  atRiskCount: 'atRiskCount',
-  churnedCount: 'churnedCount',
-  newPlayers: 'newPlayers',
-  netGrowth: 'netGrowth',
-  retentionRate: 'retentionRate',
-  churnRate: 'churnRate',
+  userId: 'userId',
+  eventType: 'eventType',
+  eventDate: 'eventDate',
+  scoreImpact: 'scoreImpact',
+  reasonText: 'reasonText',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.PlayerHealthSummaryScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  joinedAt: 'joinedAt',
+  lastTrainingAt: 'lastTrainingAt',
+  lastLiveSessionAt: 'lastLiveSessionAt',
+  lastFeedActivityAt: 'lastFeedActivityAt',
+  trainingRiskPoints: 'trainingRiskPoints',
+  liveSessionRiskPoints: 'liveSessionRiskPoints',
+  feedRiskPoints: 'feedRiskPoints',
+  totalRiskScore: 'totalRiskScore',
+  currentStatus: 'currentStatus',
+  lastCalculatedAt: 'lastCalculatedAt',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -362,20 +358,21 @@ exports.Prisma.PlayerTrainingProgramOrderByRelevanceFieldEnum = {
   subscriptionId: 'subscriptionId'
 };
 
-exports.Prisma.PlayerSubscriptionOrderByRelevanceFieldEnum = {
-  id: 'id',
-  userId: 'userId'
-};
-
 exports.Prisma.SessionBookingOrderByRelevanceFieldEnum = {
   id: 'id',
-  playerUserId: 'playerUserId',
+  userId: 'userId',
   activityId: 'activityId'
 };
 
-exports.Prisma.MonthlyChurnMetricOrderByRelevanceFieldEnum = {
+exports.Prisma.ChurnEventOrderByRelevanceFieldEnum = {
   id: 'id',
-  clubId: 'clubId'
+  userId: 'userId',
+  reasonText: 'reasonText'
+};
+
+exports.Prisma.PlayerHealthSummaryOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userId: 'userId'
 };
 exports.UserType = exports.$Enums.UserType = {
   PLAYER: 'PLAYER',
@@ -390,11 +387,9 @@ exports.AdminRole = exports.$Enums.AdminRole = {
   LOK: 'LOK'
 };
 
-exports.ChurnStatus = exports.$Enums.ChurnStatus = {
-  HEALTHY: 'HEALTHY',
-  MIGHT_LEAVE_SOON: 'MIGHT_LEAVE_SOON',
-  AT_RISK: 'AT_RISK',
-  CHURNED: 'CHURNED'
+exports.SubscriptionMethod = exports.$Enums.SubscriptionMethod = {
+  ADMIN_GRANTED: 'ADMIN_GRANTED',
+  STRIPE_PAID: 'STRIPE_PAID'
 };
 
 exports.SubscriptionStatus = exports.$Enums.SubscriptionStatus = {
@@ -423,25 +418,32 @@ exports.SubscriptionType = exports.$Enums.SubscriptionType = {
   ACTIVITY: 'ACTIVITY'
 };
 
-exports.SubscriptionTier = exports.$Enums.SubscriptionTier = {
-  FREE: 'FREE',
-  PREMIUM: 'PREMIUM'
-};
-
-exports.SubscriptionRecordStatus = exports.$Enums.SubscriptionRecordStatus = {
-  ACTIVE: 'ACTIVE',
-  EXPIRED: 'EXPIRED',
-  CANCELED: 'CANCELED'
-};
-
-exports.BookingStatus = exports.$Enums.BookingStatus = {
-  BOOKED: 'BOOKED',
-  NO_BOOKING: 'NO_BOOKING'
-};
-
 exports.AttendanceStatus = exports.$Enums.AttendanceStatus = {
   ATTENDED: 'ATTENDED',
   NO_SHOW: 'NO_SHOW'
+};
+
+exports.ChurnEventType = exports.$Enums.ChurnEventType = {
+  TRAINING_COMPLETED: 'TRAINING_COMPLETED',
+  LIVE_SESSION_ATTENDED: 'LIVE_SESSION_ATTENDED',
+  FEED_ENGAGED: 'FEED_ENGAGED',
+  TRAINING_PENALTY_APPLIED_5_DAYS: 'TRAINING_PENALTY_APPLIED_5_DAYS',
+  TRAINING_PENALTY_APPLIED_10_DAYS: 'TRAINING_PENALTY_APPLIED_10_DAYS',
+  TRAINING_PENALTY_APPLIED_15_DAYS: 'TRAINING_PENALTY_APPLIED_15_DAYS',
+  LIVE_PENALTY_APPLIED_5_DAYS: 'LIVE_PENALTY_APPLIED_5_DAYS',
+  LIVE_PENALTY_APPLIED_10_DAYS: 'LIVE_PENALTY_APPLIED_10_DAYS',
+  LIVE_PENALTY_APPLIED_15_DAYS: 'LIVE_PENALTY_APPLIED_15_DAYS',
+  FEED_PENALTY_APPLIED_5_DAYS: 'FEED_PENALTY_APPLIED_5_DAYS',
+  FEED_PENALTY_APPLIED_10_DAYS: 'FEED_PENALTY_APPLIED_10_DAYS',
+  FEED_PENALTY_APPLIED_15_DAYS: 'FEED_PENALTY_APPLIED_15_DAYS',
+  STATUS_CHANGED: 'STATUS_CHANGED'
+};
+
+exports.ChurnStatus = exports.$Enums.ChurnStatus = {
+  HEALTHY: 'HEALTHY',
+  MIGHT_LEAVE_SOON: 'MIGHT_LEAVE_SOON',
+  AT_RISK: 'AT_RISK',
+  CHURNED: 'CHURNED'
 };
 
 exports.Prisma.ModelName = {
@@ -453,9 +455,9 @@ exports.Prisma.ModelName = {
   PlayerTrainingWeek: 'PlayerTrainingWeek',
   PlayerTrainingLevel: 'PlayerTrainingLevel',
   PlayerTrainingProgram: 'PlayerTrainingProgram',
-  PlayerSubscription: 'PlayerSubscription',
   SessionBooking: 'SessionBooking',
-  MonthlyChurnMetric: 'MonthlyChurnMetric'
+  ChurnEvent: 'ChurnEvent',
+  PlayerHealthSummary: 'PlayerHealthSummary'
 };
 
 /**
